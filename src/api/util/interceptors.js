@@ -7,6 +7,7 @@ import {
   getNetworkErrorCode,
   localizeNetworkErrorCode
 } from "@/api/util/network-errors";
+import { codeApi } from "@/api/code";
 
 backendServer.interceptors.response.use(
   response => {
@@ -29,9 +30,9 @@ backendServer.interceptors.response.use(
 backendServer.interceptors.request.use(async request => {
   // Inject authorization token if present
   const token = loadServerToken(backendServer);
-  if (token) {
-    request.headers["Authorization"] = `Bearer ${token}`;
-  }
+  if (token) request.headers["Authorization"] = `Bearer ${token}`;
+  const code = codeApi.getCode();
+  if (code) request.headers["Code"] = code;
   return request;
 });
 

@@ -1,0 +1,25 @@
+@page {
+  size: 210mm 297mm; margin: 15mm 15mm 15mm 15mm;
+}
+@media print {
+  .no-print,
+  .no-print * {
+    display:none !important;
+  }
+  header,
+  nav,
+  footer {
+    @extend .no-print;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .print_friendly {
+    page-break-inside:avoid;
+    page-break-after:auto
+  }
+  .card--print {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}

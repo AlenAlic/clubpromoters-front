@@ -1,6 +1,7 @@
 import { AuthenticatedUser, authApi } from "@/api/auth";
 import { loadServerToken, saveServerToken } from "@/api/util/token-storage";
 import { backendServer } from "@/api/util/servers";
+import { ADMIN, CLUB_OWNER, HOSTESS, ORGANIZER, PROMOTER } from "@/constants";
 
 const SET_USER = "AUTH: Set user";
 
@@ -29,7 +30,7 @@ const RESET_PASSWORD_REQUEST = "RESET_PASSWORD: Reset password request sent.";
 const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD: Successful request.";
 const RESET_PASSWORD_ERROR = "RESET_PASSWORD: Failed request.";
 
-export { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD };
+export { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD, SET_USER };
 
 const getUser = () => {
   const token = loadServerToken(backendServer);
@@ -37,15 +38,26 @@ const getUser = () => {
   return !!user && user.isValid ? user : null;
 };
 
+const setUser = token => {
+  saveServerToken(backendServer, token);
+  const user = token ? new AuthenticatedUser(token) : null;
+  return !!user && user.isValid ? user : null;
+};
+
 export default {
   state: {
     user: getUser(),
+    access: -1,
     loading: false
   },
+
   mutations: {
     [SET_USER](state, token) {
-      saveServerToken(backendServer, token);
-      state.user = token ? new AuthenticatedUser(token) : null;
+      let user = setUser(token);
+      state.user = user;
+      if (user) {
+        state.access = user.access;
+      }
     },
 
     [LOGIN_REQUEST](state) {
@@ -63,6 +75,7 @@ export default {
     },
     [LOGOUT_SUCCESS](state) {
       state.user = null;
+      state.access = -1;
       state.loading = false;
     },
     [LOGOUT_ERROR](state) {
@@ -114,6 +127,10 @@ export default {
           throw error;
         });
     },
+    // Set user
+    [SET_USER]: ({ commit }, { token }) => {
+      commit(SET_USER, token);
+    },
     // Sign a user out
     [LOGOUT]: ({ commit }) => {
       commit(LOGOUT_REQUEST);
@@ -138,6 +155,7 @@ export default {
           commit(RENEW_SUCCESS);
         })
         .catch(() => {
+          commit(SET_USER, null);
           commit(RENEW_ERROR);
         });
     },
@@ -171,6 +189,24 @@ export default {
   getters: {
     currentUser: state => {
       return state.user;
+    },
+    access: state => {
+      return state.user ? state.user.access : -1;
+    },
+    isAdmin: state => {
+      return state.user && state.user.access === ADMIN;
+    },
+    isOrganizer: state => {
+      return state.user && state.user.access === ORGANIZER;
+    },
+    isClubOwner: state => {
+      return state.user && state.user.access === CLUB_OWNER;
+    },
+    isHostess: state => {
+      return state.user && state.user.access === HOSTESS;
+    },
+    isPromoter: state => {
+      return state.user && state.user.access === PROMOTER;
     }
   }
 };

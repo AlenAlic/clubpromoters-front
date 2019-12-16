@@ -1,0 +1,154 @@
+<template>
+  <v-card>
+    <v-card-title>
+      {{ $t("organizer.active_parties.title") }}
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        :label="$t('general.search')"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      :loading="$store.state.users.loading"
+      :headers="headers"
+      :items="items"
+      :search="search"
+      :footer-props="{
+        'items-per-page-text': $t('vuetify.data-footer.items-per-page-text'),
+        'items-per-page-all-text': $t('vuetify.data-footer.items-per-page-all-text')
+      }"
+      show-expand
+      :expanded.sync="expanded"
+      item-key="id"
+      single-expand
+    >
+      <template v-slot:item.ticket_price="{ item }">
+        <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
+      </template>
+      <template v-slot:item.start_date="{ item }">
+        <div>{{ $util.dateTime(item.start_date).toFormat("d LLLL") }}</div>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-tooltip left>
+          <template v-slot:activator="{ on }">
+            <v-icon class="mr-2" v-on="on" @click="showModalFunc(item)">
+              mdi-pause-circle
+            </v-icon>
+          </template>
+          <span>{{ $t("organizer.active_parties.activate") }}</span>
+        </v-tooltip>
+      </template>
+      <template v-slot:expanded-item="{ headers, item }">
+        <td colspan="2">
+          {{
+            `${$t("organizer.inactive_parties.table.club_owner_commission")}: ${
+              item.club_owner_commission
+            }%`
+          }}
+        </td>
+        <td colspan="4">
+          {{
+            `${$t("organizer.inactive_parties.table.promoter_commission")}: ${
+              item.promoter_commission
+            }%`
+          }}
+        </td>
+      </template>
+    </v-data-table>
+    <modal
+      :show="showModal"
+      :id="id"
+      @closeModal="hideModalFunc"
+      :title="$t('organizer.active_parties.modal.title', { party: party })"
+      :text="$t('organizer.active_parties.modal.text')"
+      :yes="$t('organizer.active_parties.modal.yes')"
+      :no="$t('organizer.active_parties.modal.no')"
+      warning
+    ></modal>
+  </v-card>
+</template>
+
+<script>
+// TODO => View details as with past parties
+import Vue from "vue";
+import i18n from "@/languages";
+import Modal from "@/components/general/Modal";
+import store from "@/store";
+import { ACTIVE_PARTIES, INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
+export default {
+  components: { Modal },
+  data: function() {
+    return {
+      dialog: false,
+      showModal: false,
+      id: -1,
+      party: null,
+      expanded: [],
+      search: "",
+      headers: [
+        {
+          text: i18n.t("organizer.active_parties.table.headers.club"),
+          value: "club"
+        },
+        {
+          text: i18n.t("organizer.active_parties.table.headers.title"),
+          value: "title"
+        },
+        {
+          text: i18n.t("organizer.active_parties.table.headers.start_date"),
+          value: "start_date"
+        },
+        {
+          text: i18n.t("organizer.active_parties.table.headers.duration"),
+          value: "duration"
+        },
+        {
+          text: i18n.t("organizer.active_parties.table.headers.num_available_tickets"),
+          value: "num_available_tickets"
+        },
+        {
+          text: i18n.t("organizer.active_parties.table.headers.ticket_price"),
+          value: "ticket_price"
+        },
+        { value: "action", align: "right" },
+        { text: "", value: "data-table-expand" }
+      ]
+    };
+  },
+  computed: {
+    items() {
+      return this.$store.state.parties.activeParties.map(p =>
+        Object.assign(p, {
+          duration: `${this.$util.dateTime(p.start_date).toFormat("HH:mm")} - ${this.$util
+            .dateTime(p.end_date)
+            .toFormat("HH:mm")}`
+        })
+      );
+    }
+  },
+  methods: {
+    showModalFunc: function(item) {
+      this.showModal = true;
+      this.id = item.id;
+      this.party = item.title;
+    },
+    hideModalFunc: function(data) {
+      if (data.agree) this.activateParty();
+      this.showModal = false;
+      this.id = -1;
+      this.party = null;
+    },
+    activateParty: function() {
+      return Vue.axios.patch(`organizer/deactivate_party/${this.id}`).then(() => {
+        store.dispatch(ACTIVE_PARTIES);
+        store.dispatch(INACTIVE_PARTIES);
+      });
+    }
+  }
+};
+</script>
+
+<style scoped></style>

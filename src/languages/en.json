@@ -1,7 +1,46 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "profile": "Profile"
+    "profile": "Profile",
+    "admin": {
+      "setup": "Setup",
+      "test_data": "Test data"
+    },
+    "organizer": {
+      "subheader": {
+        "user_accounts": "User accounts",
+        "codes": "Codes",
+        "parties": "Parties",
+        "finances": "Finances"
+      },
+      "create_new_account": "Create new account",
+      "club_owner_accounts": "Club Owner accounts",
+      "promoter_accounts": "Promoter accounts",
+      "codes": "Codes",
+      "create_new_party": "Create new party",
+      "inactive_parties": "Inactive parties",
+      "active_parties": "Active parties",
+      "past_parties": "Past parties",
+      "party_income": "Party income",
+      "refunds": "Refunds",
+      "commissions": "Commissions"
+    },
+    "club_owner": {
+      "subheader": {
+        "user_accounts": "User accounts",
+        "parties": "Parties",
+        "finances": "Finances"
+      },
+      "hostesses": "Hostesses",
+      "active_parties": "Active parties",
+      "inactive_parties": "Inactive parties",
+      "past_parties": "Past parties",
+      "party_income": "Party income"
+    },
+    "promoter": {
+      "code": "My code",
+      "finances": "Income"
+    }
   },
   "network-errors": {
     "unknown": "Something went wrong while executing your request, please try again later.",
@@ -16,7 +55,17 @@
     "network": "Cannot connect to the server."
   },
   "general": {
-    "cancel": "Cancel"
+    "code": "Code",
+    "cancel": "Cancel",
+    "search": "Search",
+    "attention": "Attention",
+    "edit": "Edit",
+    "opens_in_new_window": "Opens in a new window"
+  },
+  "form_validation": {
+    "errors": {
+      "required": "This field is required"
+    }
   },
   "navigation": {
     "page_not_found": "This page does not exist.",
@@ -67,5 +116,294 @@
     "number": "contain at least one number",
     "match": "match the repeat password",
     "not_old_password": "not be the old password"
+  },
+  "vuetify": {
+    "data-footer": {
+      "items-per-page-text": "Rows per page:",
+      "items-per-page-all-text": "All"
+    }
+  },
+  "admin": {
+    "switch": {
+      "title": "Switch account",
+      "text": "Log in to a different user account",
+      "hint": "Select an account to switch to",
+      "no_accounts": "There are no active accounts to switch to",
+      "switch": "Switch"
+    },
+    "create_organizer": {
+      "title": "Create organizer account",
+      "hint": "The e-mail address that will be used for the organizer account",
+      "create_account": "Create account"
+    }
+  },
+  "organizer": {
+    "dashboard": {
+      "config": {
+        "title": "Settings",
+        "club_owner_commission": {
+          "label": "Club Owner commission",
+          "hint": "Default commission for Club Owners."
+        },
+        "promoter_commission": {
+          "label": "Club Owner commission",
+          "hint": "Default commission for Club Owners."
+        },
+        "mollie_api_key": {
+          "label": "Mollie API key",
+          "hint": "Required for Mollie to work."
+        },
+        "test_email": {
+          "label": "Test email",
+          "hint": "If the system is in debug mode, all e-mails will be sent to this address."
+        },
+        "submit": "Save"
+      }
+    },
+    "create_new_account":{
+      "club_owner": {
+        "title": "Create a new account for a club owner",
+        "club": {
+          "label": "Club name",
+          "hint": "This is the name that will show up on the parties."
+        },
+        "commission": {
+          "label": "Commission",
+          "hint": "Default commission that will be set for a party."
+        },
+        "submit": "Create account"
+      },
+      "promoter": {
+        "title": "Create a new account for a promoter",
+        "first_name": {
+          "label": "First name"
+        },
+        "last_name": {
+          "label": "Last name"
+        },
+        "commission": {
+          "label": "Commission",
+          "hint": "Default commission that will be set for a party."
+        },
+        "code": {
+          "label": "Code",
+          "hint": "Choose one of the free active codes below.",
+          "no_codes": "No free codes available."
+        },
+        "submit": "Create account"
+      }
+    },
+    "club_owner_accounts": {
+      "title": "Associated clubs",
+      "new_account": "Create new account",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "active": "Active",
+          "email": "E-mail address",
+          "commission": "Commission"
+        }
+      },
+      "commission": "Commission"
+    },
+    "promoter_accounts": {
+      "title": "Associated promoters",
+      "new_account": "Create new account",
+      "table": {
+        "headers": {
+          "name": "Name",
+          "active": "Active",
+          "email": "E-mail address",
+          "commission": "Commission",
+          "code": "Code"
+        }
+      }
+    },
+    "create_new_codes": {
+      "title": "Create new codes",
+      "label": "Number of codes",
+      "hint": "Send the number of new codes that you wish to create",
+      "submit": "Create codes"
+    },
+    "active_codes": {
+      "title": "Active codes",
+      "table": {
+        "headers": {
+          "code": "Code",
+          "promoter": "Promoter"
+        },
+        "deactivate": "Deactivate"
+      },
+      "add_promoter": "Assign to Promoter",
+      "promoter": {
+        "label": "Promoter",
+        "hint": "Choose Promoter to assign this code to.",
+        "no_promoters": "There are not active promoters without a code."
+      },
+      "modal": {
+        "title": "Deactivate code: {code}",
+        "text": "Deactivating a code is permanent!\nAre you sure you wish to deactivate the code?\n\nIf the code is assigned to a promoter, it will be removed from said promoter.",
+        "yes": "Yes, deactivate code",
+        "no": "No, keep code"
+      }
+    },
+    "inactive_codes": {
+      "title": "Inactive codes",
+      "table": {
+        "headers": {
+          "code": "Code"
+        }
+      }
+    },
+    "create_new_party": {
+      "title": "Create new party",
+      "club": {
+        "hint": "Select the club this party belongs to",
+        "no_clubs": "No active clubs found"
+      },
+      "party_title": {
+        "label": "Party title"},
+      "start_date": {
+        "label": "Start date and time"},
+      "end_date": {
+        "label": "End date and time"},
+      "number_of_tickets": {
+        "label": "# of tickets"},
+      "ticket_price": {
+        "label": "Price"},
+      "club_owner_commission": {
+        "label": "Club Owner commission",
+        "hint": "Set when choosing the Club Owner as their default value, can be overwritten."
+      },
+      "promoter_commission": {
+        "label": "Promoter commission",
+        "hint": "Can be set to give Promoters a higher commission than their default commission."
+      },
+      "image": {
+        "label": "Main image"},
+      "logo": {
+        "label": "Logo"},
+      "submit": "Create party"
+    },
+    "inactive_parties": {
+      "title": "Inactive parties",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "title": "Party name",
+          "start_date": "Day",
+          "duration": "Duration",
+          "num_available_tickets": "# tickets",
+          "ticket_price": "Ticket price"
+        },
+        "club_owner_commission": "Club Owner commission",
+        "promoter_commission": "Promoter commission"
+      },
+      "activate": "Start ticket sale",
+      "modal": {
+        "title": "Start ticket sale for: {party}",
+        "text": "Starting the ticket sale for the party will make it visible to promoters, and will allow customers to buy tickets for it.\n\nAre you sure you wish to start the ticket sale?",
+        "yes": "Yes, start ticket sale",
+        "no": "No, don't"
+      }
+    },
+    "active_parties": {
+      "title": "Active parties",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "title": "Party name",
+          "start_date": "Day",
+          "duration": "Duration",
+          "num_available_tickets": "# tickets",
+          "ticket_price": "Ticket price",
+          "profit": "Profit"
+        },
+        "club_owner_commission": "Club Owner commission",
+        "promoter_commission": "Promoter commission"
+      },
+      "activate": "Pause ticket sale",
+      "modal": {
+        "title": "Pause ticket sale for: {party}",
+        "text": "Pausing the ticket sale for the party will prevent customers to buy tickets for it.\n\nAre you sure you wish to pause the ticket sale?",
+        "yes": "Yes, pause ticket sale",
+        "no": "No, don't"
+      }
+    },
+    "past_parties": {
+      "title": "Past parties",
+      "view": "View"
+    },
+    "refunds": {
+      "title": "Purchase {id}",
+      "amount": {
+        "label": "Refund amount",
+        "hint": "Choose the amount you wish to refund"
+      },
+      "checkbox": "Yes, I am sure I wish to give a refund",
+      "submit": "Give refund"
+    }
+  },
+  "purchase": {
+    "order": {
+      "first_name": {
+        "label": "First name"
+      },
+      "last_name": {
+        "label": "Last name"
+      },
+      "email": {
+        "hint": "Your tickets will e-mailed to you."
+      },
+      "terms": {
+        "label": {
+          "1": "I have read, and accept the",
+          "2": "as set by clubpromoters.net.",
+          "link": {
+            "href": "https://clubpromoters.net/documents/terms",
+            "text": "terms and conditions"
+          }
+        }
+      },
+      "buy_tickets": "Order",
+      "errors": {
+        "terms": "You must accept the terms and conditions!"
+      }
+    }
+  },
+  "club_owner": {
+    "create_new_account": {
+      "hostess": {
+        "title": "Create a hostess account",
+        "first_name": {
+          "label": "First name"
+        },
+        "last_name": {
+          "label": "Last name"
+        },
+        "submit": "Create account"
+      }
+    },
+    "hostesses": {
+      "title": "Hostesses' accounts",
+      "new_account": "Create new account",
+      "table": {
+        "headers": {
+          "hostess": "Hostess",
+          "email": "E-mail",
+          "is_active": "Account active",
+          "working": "Working"
+        }
+      },
+      "working": "Working means that the hostess can log in to clubpromoters.net, and accept customers at the door.",
+      "activate": "Set as working",
+      "deactivate": "Set as not working",
+      "modal": {
+        "title": "Start ticket sale for: {party}",
+        "text": "Starting the ticket sale for the party will make it visible to promoters, and will allow customers to buy tickets for it.\n\nAre you sure you wish to start the ticket sale?",
+        "yes": "Yes, start ticket sale",
+        "no": "No, don't"
+      }
+    }
   }
 }

@@ -80,7 +80,7 @@ export default {
       loading: false
     };
   },
-  mounted: function() {
+  mounted() {
     this.$nextTick(function() {
       this.verifyActivationToken();
     });

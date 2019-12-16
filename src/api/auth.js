@@ -23,6 +23,8 @@ export class AuthenticatedUser {
   firstName;
   /** @member {string} */
   lastName;
+  /** @member {number} */
+  access;
   /** @member {Date} */
   expiresAt;
   /** @member {Date} */
@@ -36,6 +38,7 @@ export class AuthenticatedUser {
     const data = decode(token);
     this.id = data.id;
     this.email = data.email;
+    this.access = data.access;
     this.firstName = data.first_name;
     this.lastName = data.last_name;
     // Assumption: exp and iat fields are number of milliseconds since 1970

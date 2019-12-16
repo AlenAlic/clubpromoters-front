@@ -16,7 +16,7 @@ export default {
         this.$router.replace(redirect);
       } else {
         this.$router.replace({
-          name: "dashboard"
+          name: "home"
         });
       }
     }

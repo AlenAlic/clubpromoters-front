@@ -1,9 +1,17 @@
 <template>
   <v-app-bar dark app :clipped-left="$vuetify.breakpoint.mdAndUp" color="primary">
     <v-app-bar-nav-icon
-      v-if="$vuetify.breakpoint.mdAndDown"
+      v-if="$vuetify.breakpoint.mdAndDown && $auth.isAuthenticated && !$auth.isHostess"
       @click.stop="$emit('toggleDrawer')"
     ></v-app-bar-nav-icon>
+
+    <router-link v-if="$auth.isAuthenticated && $auth.isHostess" tag="span" :to="{ name: 'home' }">
+      <v-btn icon>
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+    </router-link>
+
+    <v-spacer v-if="$auth.isAuthenticated && $auth.isHostess"></v-spacer>
 
     <v-toolbar-title>Title</v-toolbar-title>
 
@@ -17,7 +25,7 @@
       </template>
 
       <v-list>
-        <v-list-item @click="() => {}" to="profile">
+        <v-list-item :to="{ name: 'profile' }">
           <v-list-item-icon>
             <v-icon>mdi-account-circle</v-icon>
           </v-list-item-icon>
@@ -35,35 +43,12 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
-    <v-menu bottom left offset-y>
-      <template v-slot:activator="{ on }">
-        <v-btn icon color="accent" v-on="on">
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-      </template>
-
-      <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
   </v-app-bar>
 </template>
 
 <script>
-import i18n from "@/languages";
 export default {
   name: "Header",
-  data: () => ({
-    items: [
-      { to: "dashboard", title: i18n.t("menu.dashboard"), icon: "mdi-view-dashboard" },
-      { to: "page1", title: "Page 1", icon: "mdi-atom" },
-      { to: "page2", title: "Page 2", icon: "mdi-flask-empty-outline" },
-      { to: "etc", title: "Etc.", icon: "mdi-radioactive" }
-    ]
-  }),
   methods: {
     signOut: function() {
       this.$auth.signOut().then(() => {

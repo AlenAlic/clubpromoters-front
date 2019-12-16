@@ -12,10 +12,48 @@ const AuthHandler = {
       },
 
       /**
+       * Get the currently signed in user's access level.
+       */
+      get access() {
+        return store.getters.access;
+      },
+
+      /**
        * Checks if the current user is authenticated
        */
       get isAuthenticated() {
         return !!this.currentUser;
+      },
+
+      /**
+       * Checks if the current user is an admin
+       */
+      get isAdmin() {
+        return store.getters.isAdmin;
+      },
+      /**
+       * Checks if the current user is an organizer
+       */
+      get isOrganizer() {
+        return store.getters.isOrganizer;
+      },
+      /**
+       * Checks if the current user is a club owner
+       */
+      get isClubOwner() {
+        return store.getters.isClubOwner;
+      },
+      /**
+       * Checks if the current user is a hostess
+       */
+      get isHostess() {
+        return store.getters.isHostess;
+      },
+      /**
+       * Checks if the current user is a promoter
+       */
+      get isPromoter() {
+        return store.getters.isPromoter;
       },
 
       /**

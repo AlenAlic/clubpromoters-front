@@ -1,7 +1,12 @@
-@import 'general/settings';
-@import 'general/general';
+@import "general/settings";
+@import "general/general";
+@import "general/states";
+@import "general/mixins";
+@import "general/transitions";
+@import "general/printing";
 
-@import 'general/tweaks';
+@import "general/tweaks";
 
 //Components
-@import 'components/alert/alert';
+@import "components/alert/alert";
+@import "components/party-cards/party-card";

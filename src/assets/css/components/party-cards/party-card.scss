@@ -1,0 +1,219 @@
+$font-family-party-card-orig: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal,
+  Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+$font-family-party-card: Arial Narrow Helvetica, Lucida Sans Unicode, Verdana, sans serif;
+$party-border-lg: 1px solid black;
+$party-card-width-lg: 630px;
+$party-card-border-radius: 4px;
+.party-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: $party-card-border-radius;
+  margin: 1rem auto;
+  min-width: $party-card-width-lg;
+  max-width: $party-card-width-lg;
+  //border: $party-border-lg;
+
+  .party {
+    &-img {
+      border: $party-border-lg;
+      height: 540px;
+      background-image: none;
+      background-size: cover;
+      background-position: center;
+      border-top-left-radius: $party-card-border-radius;
+      border-top-right-radius: $party-card-border-radius;
+    }
+    &-venue {
+      border: $party-border-lg;
+      font-size: 3rem;
+      display: flex;
+      justify-content: center;
+      font-family: $font-family-party-card;
+      text-transform: uppercase;
+    }
+    &-date {
+      border: $party-border-lg;
+      display: none;
+    }
+    &-info {
+      display: grid;
+      grid-template-columns: 22rem auto;
+      text-align: center;
+      .party-info-container {
+        display: grid;
+        grid-template-columns: auto 14rem;
+        .party {
+          &-date {
+            border: $party-border-lg;
+            font-family: $font-family-party-card;
+            display: flex;
+            flex-direction: column;
+            border-bottom-left-radius: $party-card-border-radius;
+            .party-month {
+              font-size: 2.8rem;
+              flex-grow: 1;
+            }
+            .party-day {
+              flex-grow: 1;
+              font-size: 3.2rem;
+            }
+          }
+          &-date-full {
+            display: none;
+          }
+          &-info-logo {
+            border: $party-border-lg;
+            .party-time {
+              font-family: $font-family-party-card;
+              border-bottom: $party-border-lg;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              padding: 0.15rem 0;
+              font-size: 1.25rem;
+            }
+            .party-logo {
+              border-top: $party-border-lg;
+              height: 7rem;
+              background-image: none;
+              background-size: cover;
+              background-position: center;
+            }
+          }
+        }
+      }
+      .party-buy {
+        font-size: 1.25rem;
+        border: $party-border-lg;
+        border-bottom-right-radius: $party-card-border-radius;
+      }
+    }
+  }
+}
+$party-border: 1px solid black;
+$party-card-width: 91vw;
+@media (max-width: 768px) {
+  .party-card {
+    min-width: $party-card-width;
+    max-width: $party-card-width;
+    //border: $party-border;
+
+    .party {
+      &-img {
+        border: $party-border;
+        height: 78vw;
+      }
+      &-venue {
+        border: $party-border;
+        font-size: 1.5rem;
+        font-family: $font-family-party-card;
+      }
+      &-date {
+        border: $party-border;
+        display: none;
+        flex-direction: row;
+        justify-content: space-around;
+        font-size: 1rem;
+      }
+      &-info {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .party-info-container {
+          display: grid;
+          grid-template-columns: auto 10rem;
+          .party {
+            &-date {
+              display: none;
+            }
+            &-date-full {
+              border: $party-border;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+            }
+            &-info-logo {
+              border: $party-border;
+              .party-time {
+                display: none;
+              }
+              .party-logo {
+                border-top: none;
+                height: 5rem;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+              }
+            }
+          }
+        }
+        .party-buy {
+          font-size: 1rem;
+          border: $party-border;
+          border-bottom-left-radius: $party-card-border-radius;
+        }
+      }
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.party-buy-tickets {
+  padding: 0.5rem 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tickets-container {
+  display: flex;
+  justify-content: space-between;
+}
+.tickets-container .party-counter .party-amount {
+  max-width: 2.5rem;
+  width: auto;
+  border: 1px solid gray;
+  margin: 0 0.75rem;
+  padding: 0 0.25rem;
+  text-align: center;
+}
+
+.party-amount {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.party-counter {
+  color: black !important;
+}
+
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-right-split-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.purchase-order {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+.purchase-order .card {
+  min-width: 300px;
+}

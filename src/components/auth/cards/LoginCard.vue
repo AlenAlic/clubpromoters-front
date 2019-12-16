@@ -49,6 +49,7 @@
 <script>
 import { ERROR_CODES, getNetworkErrorCode } from "@/api/util/network-errors";
 import i18n from "@/languages";
+import loadStore from "@/store/loader";
 export default {
   name: "LoginCard",
   data: function() {
@@ -70,8 +71,9 @@ export default {
       this.$auth
         .signInWithUsernameAndPassword(this.email, this.password, this.rememberMe)
         .then(() => {
+          loadStore();
           this.$router.push({
-            name: "dashboard"
+            name: "home"
           });
         })
         .catch(error => {

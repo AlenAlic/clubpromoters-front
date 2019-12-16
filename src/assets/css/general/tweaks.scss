@@ -1,0 +1,12 @@
+.code-input {
+  input[type="number"] {
+    -moz-appearance: textfield !important;
+    text-align: center;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+  }
+
+}
