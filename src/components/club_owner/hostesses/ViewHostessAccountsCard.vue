@@ -113,7 +113,7 @@ export default {
     }
   },
   methods: {
-    showModalFunc: function(user) {
+    showModalFunc() {
       this.showModal = true;
     },
     activateHostess(hostess) {
