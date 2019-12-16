@@ -115,7 +115,6 @@ export default {
   methods: {
     showModalFunc: function(user) {
       this.showModal = true;
-      console.log(user);
     },
     activateHostess(hostess) {
       return Vue.axios
