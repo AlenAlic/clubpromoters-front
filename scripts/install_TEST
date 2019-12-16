@@ -29,6 +29,21 @@ cd clubpromoters-front
 echo "Installing git repository complete============"
 
 
+echo "Setting up config============================="
+sudo bash -c 'cat > public/config/config.json' << EOL
+{
+    "cookies": {
+        "enabled": true,
+        "type": "banner"
+    },
+    "api": {
+        "url": "https://test.api.$DOMAIN"
+    }
+}
+EOL
+echo "Setting up config complete===================="
+
+
 echo "Build frontend================================"
 npm install
 npm run build
