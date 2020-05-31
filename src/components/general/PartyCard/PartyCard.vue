@@ -1,120 +1,222 @@
 <template>
-  <div class="party-card">
-    <div class="party-img bg-party-text-image" :style="{ backgroundImage: image }"></div>
-    <div class="party-venue" id="party-title">
-      {{ title }}
+  <v-card :max-width="`${(maxWindowHeight * 4) / 3}px`" class="mx-auto" dark>
+    <div
+      style="background-color: black; background-size: cover; background-position: center center;"
+    >
+      <v-lazy
+        :options="{ threshold: 0.95 }"
+        :min-height="`${minHeight}px`"
+        :style="{
+          background: images.length ? `url(${images[0]})` : 'black',
+          'background-size': 'cover',
+          'background-position': 'center center'
+        }"
+      >
+        <party-card-images v-if="loadedImages" :images="images" :interval="party.interval || 300" />
+        <v-img v-else :aspect-ratio="1" :src="loadingGif" :transition="null" />
+      </v-lazy>
     </div>
-    <div class="party-date">
-      <div>{{ monthLong }} {{ startDay }}</div>
-      <div class="no-breaks">{{ startTime }} - {{ endTime }}</div>
-    </div>
-    <div class="party-info">
-      <div class="party-info-container">
-        <div class="party-date">
-          <div id="party-month" class="party-month">
-            {{ monthShort }}
-          </div>
-          <div id="party-day" class="party-day">
-            {{ startDay }}
-          </div>
-        </div>
-        <div class="party-date-full">
-          <div>{{ monthShort }} {{ startDay }}</div>
-          <div class="no-breaks party-time">{{ startTime }} - {{ endTime }}</div>
-        </div>
-        <div class="party-info-logo">
-          <div class="party-time no-breaks party-time">{{ startTime }} - {{ endTime }}</div>
-          <div class="party-logo bg-party-text-logo" :style="{ backgroundImage: logo }"></div>
-        </div>
-      </div>
-      <div class="party-buy">
-        <div class="party-buy-tickets">
-          <div class="tickets-container unselectable py-1">
-            <span class="party-title">Tickets</span>
-            <span class="party-counter">
-              <i class="mdi mdi-minus-circle clickable" @click="changeTickets(-1)"></i>
-              <input
-                class="party-amount"
-                min="0"
-                step="1"
-                :value="preview ? 6 : tickets"
-                disabled
-              />
-              <i class="mdi mdi-plus-circle clickable" @click="changeTickets(1)"></i>
-            </span>
-          </div>
-          <div class="tables-container py-1">
-            <span class="party-title">Tables</span>
-            <span><i class="mdi mdi-information clickable"></i></span>
-          </div>
-          <div class="py-1">
-            <router-link
-              v-if="!preview && !showOnly"
-              tag="span"
-              :to="{ name: 'purchase.order', params: { id: party.id, tickets: tickets } }"
-            >
-              <v-btn dark color="black" :disabled="!tickets">
-                BUY
+    <v-row no-gutters>
+      <v-col cols="6">
+        <v-row no-gutters>
+          <v-img :src="logo" :aspect-ratio="21 / 9" eager :transition="null" />
+        </v-row>
+      </v-col>
+      <v-col class="text-center caption" cols="6" align-self="center">
+        <v-row no-gutters class="mt-0" justify="space-between">
+          <v-col>{{ startTime }} - {{ endTime }}</v-col>
+        </v-row>
+        <div class="text-center">Tickets: {{ $util.formatCurrency(price) }}</div>
+        <div class="my-0">
+          <v-row no-gutters justify="space-around" align="center">
+            <v-col>
+              <v-btn color="white" dark icon @click="changeTickets(-1)">
+                <v-icon>mdi-minus-circle</v-icon>
               </v-btn>
-            </router-link>
-            <v-btn v-else dark color="black" :disabled="!tickets">
-              BUY
-            </v-btn>
-          </div>
+            </v-col>
+            <v-col>
+              <v-btn
+                small
+                text
+                outlined
+                color="white"
+                dark
+                class="white--text"
+                style="pointer-events: none;"
+              >
+                {{ preview ? 6 : tickets }}
+              </v-btn>
+            </v-col>
+            <v-col>
+              <v-btn color="white" dark icon @click="changeTickets(1)">
+                <v-icon>mdi-plus-circle</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </div>
-      </div>
-    </div>
-  </div>
+      </v-col>
+    </v-row>
+    <v-row no-gutters class="text-center">
+      <v-col cols="6">
+        <v-btn color="white" text small class="my-2" @click="moreInfoModal = true">more info</v-btn>
+        <modal :show="moreInfoModal">
+          <v-card dark>
+            <v-card-title class="mb-1">
+              <span>{{ party.name || "Name" }}</span>
+              <v-spacer />
+              <v-btn icon @click="moreInfoModal = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-card-title>
+            <v-card-text>
+              <div class="my-3">{{ party.club ? party.club.club : "Club" }}</div>
+              <div class="my-3 has-line_breaks" v-if="party.description">
+                {{ party.description }}
+              </div>
+              <v-row no-gutters align="end">
+                <v-col>
+                  <div>
+                    <div>{{ fullStartDate }}</div>
+                    <div>{{ startTime }} - {{ endTime }}</div>
+                    <div>Tickets: {{ $util.formatCurrency(price) }}</div>
+                  </div>
+                </v-col>
+                <v-col class="text-right">
+                  <template v-if="party.location">
+                    <div>
+                      {{
+                        `${party.location.street} ${party.location.street_number}${party.location.street_number_addition}`
+                      }}
+                    </div>
+                    <div>
+                      {{ `${party.location.postal_code} ${party.location.postal_code_letters}` }}
+                    </div>
+                    <div>{{ party.location.city }}</div>
+                  </template>
+                </v-col>
+              </v-row>
+              <template v-if="party.location">
+                <div class="mt-1 mb-3 mx-0" v-if="party.location.maps_url">
+                  <iframe
+                    :src="party.location.maps_url"
+                    width="100%"
+                    height="300px"
+                    style="border:0;"
+                    allowfullscreen=""
+                    aria-hidden="false"
+                    tabindex="0"
+                  ></iframe>
+                </div>
+              </template>
+            </v-card-text>
+          </v-card>
+        </modal>
+      </v-col>
+      <v-col cols="6">
+        <v-btn
+          v-if="!preview && !showOnly"
+          color="white"
+          class="my-2 black--text"
+          small
+          :disabled="!tickets"
+          :to="{ name: 'purchase.order', params: { id: party.id, tickets: tickets } }"
+        >
+          BUY
+        </v-btn>
+        <v-btn v-else color="white" class="my-2 black--text" small :disabled="!tickets">BUY</v-btn>
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
-const DEFAULT_TITLE = "Title";
-const DEFAULT_MONTH_SHORT = "OCT";
+import loading from "@/assets/images/loading.gif";
+import PartyCardImages from "@/components/general/PartyCard/PartyCardImages";
+
+const DEFAULT_MONTH_SHORT = "Oct";
 const DEFAULT_MONTH_LONG = "October";
 const DEFAULT_START_DAY = "02";
-const DEFAULT_START_TIME = "22:00";
-const DEFAULT_END_TIME = "04:00";
+const DEFAULT_START_TIME = "21:35";
+const DEFAULT_END_TIME = "02:25";
 
-const DEFAULT_IMAGE_URL = `url(
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect fill='%23aaaaaa' width='100%25' height='100%25'/%3E%3Ctext fill='%23ffffff' font-size='72' font-family='Verdana' text-anchor='middle' alignment-baseline='middle' x='50%25' y='50%25'%3EIMAGE%3C/text%3E%3C/svg%3E"
-)`;
-const DEFAULT_LOGO_URL = `url(
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect fill='%23aaaaaa' width='100%25' height='100%25'/%3E%3Ctext fill='%23ffffff' font-size='36' font-family='Verdana' text-anchor='middle' alignment-baseline='middle' x='50%25' y='50%25'%3ELOGO%3C/text%3E%3C/svg%3E"
-)`;
+import IMAGE_0 from "@/assets/images/image_0.svg";
+import IMAGE_1 from "@/assets/images/image_1.svg";
+import IMAGE_2 from "@/assets/images/image_2.svg";
+import IMAGE_3 from "@/assets/images/image_3.svg";
+import IMAGE_4 from "@/assets/images/image_4.svg";
+const DEFAULT_IMAGES = [IMAGE_0, IMAGE_1, IMAGE_2, IMAGE_3, IMAGE_4];
+import DEFAULT_LOGO from "@/assets/images/image_logo.svg";
+import Modal from "@/components/general/Modal";
 
 export default {
   name: "PartyCard",
+  components: {
+    Modal,
+    PartyCardImages
+  },
   props: {
     party: { type: Object, default: null },
     preview: { type: Boolean, default: false },
     showOnly: { type: Boolean, default: false }
   },
   data: () => ({
-    tickets: 1
+    maxWindowHeight: 300,
+    tickets: 1,
+    windowSize: 300,
+    loadingImages: [],
+    loadedImages: false,
+    moreInfoModal: false
   }),
+  created() {
+    const img = new Image();
+    img.src = this.logo;
+    Promise.all(
+      this.images.map(url => {
+        const img = new Image();
+        img.src = url;
+        new Promise(resolve => {
+          img.onload = img.onerror = resolve;
+        });
+      })
+    ).then(() => {
+      this.$nextTick(() => {
+        this.loadedImages = true;
+        this.$emit("loaded");
+      });
+    });
+    this.setWindowSize();
+    window.addEventListener("resize", this.setWindowSize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.setWindowSize);
+  },
   computed: {
     hasPreview() {
       return this.party ? Object.keys(this.party).length > 0 : false;
     },
-    title() {
-      return this.hasPreview ? this.party.title : DEFAULT_TITLE;
+    minHeight() {
+      return Math.min(this.maxWindowHeight, ((this.windowSize - 24) * 3) / 4);
     },
-    image() {
+    loadingGif() {
+      return loading;
+    },
+    price() {
+      return this.hasPreview ? this.party.ticket_price : 0;
+    },
+    images() {
       if (this.preview) {
-        if (this.hasPreview && this.party.image)
-          return `url(${URL.createObjectURL(this.party.image)})`;
-        return DEFAULT_IMAGE_URL;
+        if (this.hasPreview && this.party.images) return this.party.images;
+        return DEFAULT_IMAGES;
       } else {
-        return `url(${this.party.image})`;
+        return this.party.images.map(img => img.url);
       }
     },
     logo() {
       if (this.preview) {
-        if (this.hasPreview && this.party.logo)
-          return `url(${URL.createObjectURL(this.party.logo)})`;
-        return DEFAULT_LOGO_URL;
+        if (this.hasPreview && this.party.logo) return this.party.logo;
+        return DEFAULT_LOGO;
       } else {
-        return `url(${this.party.logo})`;
+        return this.party.logo.url;
       }
     },
     startDate() {
@@ -134,6 +236,9 @@ export default {
     startTime() {
       return this.startDate ? this.startDate.toFormat("HH:mm") : DEFAULT_START_TIME;
     },
+    fullStartDate() {
+      return this.startDate ? this.startDate.toFormat("dd LLLL yyyy") : null;
+    },
     endDate() {
       return this.party && this.party.end_date ? this.$util.dateTime(this.party.end_date) : null;
     },
@@ -142,6 +247,9 @@ export default {
     }
   },
   methods: {
+    setWindowSize() {
+      this.windowSize = window.innerWidth;
+    },
     changeTickets(value) {
       let newValue = Number(this.tickets + value);
       if (newValue > 0 && newValue <= this.party.remaining_tickets) {

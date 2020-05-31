@@ -40,6 +40,14 @@
           </template>
           <span>{{ $t("organizer.active_parties.activate") }}</span>
         </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on }">
+            <v-icon class="mr-2" v-on="on" @click="showDataModalFunc(item)">
+              mdi-magnify
+            </v-icon>
+          </template>
+          <span>{{ $t("organizer.active_parties.view") }}</span>
+        </v-tooltip>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td colspan="2">
@@ -68,6 +76,14 @@
       :no="$t('organizer.active_parties.modal.no')"
       warning
     ></modal>
+    <modal :show="showDataModal" @closeModal="hideDataModalFunc">
+      <party-finances-data-card
+        v-if="party"
+        :party="party"
+        @closeModal="hideDataModalFunc"
+        organiser
+      ></party-finances-data-card>
+    </modal>
   </v-card>
 </template>
 
@@ -77,13 +93,15 @@ import Vue from "vue";
 import i18n from "@/languages";
 import Modal from "@/components/general/Modal";
 import store from "@/store";
+import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";
 import { ACTIVE_PARTIES, INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 export default {
-  components: { Modal },
+  components: { Modal, PartyFinancesDataCard },
   data: function() {
     return {
       dialog: false,
       showModal: false,
+      showDataModal: false,
       id: -1,
       party: null,
       expanded: [],
@@ -94,8 +112,12 @@ export default {
           value: "club"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.title"),
-          value: "title"
+          text: i18n.t("organizer.active_parties.table.headers.name"),
+          value: "name"
+        },
+        {
+          text: i18n.t("organizer.active_parties.table.headers.location"),
+          value: "location.name"
         },
         {
           text: i18n.t("organizer.active_parties.table.headers.start_date"),
@@ -140,6 +162,13 @@ export default {
       this.showModal = false;
       this.id = -1;
       this.party = null;
+    },
+    showDataModalFunc: function(item) {
+      this.showDataModal = true;
+      this.party = item;
+    },
+    hideDataModalFunc: function() {
+      this.showDataModal = false;
     },
     activateParty: function() {
       return Vue.axios.patch(`organizer/deactivate_party/${this.id}`).then(() => {

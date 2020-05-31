@@ -4,11 +4,9 @@
       <v-card max-width="400">
         <v-card-title>{{ $t("navigation.page_not_found") }}</v-card-title>
         <v-card-actions>
-          <router-link tag="span" :to="{ name: 'home' }">
-            <v-btn text color="primary">
-              {{ $t("navigation.go_back") }}
-            </v-btn>
-          </router-link>
+          <v-btn text color="primary" :to="{ name: 'home' }" exact>
+            {{ $t("navigation.go_back") }}
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>

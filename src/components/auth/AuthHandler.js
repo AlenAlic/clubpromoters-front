@@ -1,5 +1,12 @@
 import store from "@/store";
-import { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD } from "@/store/modules/auth";
+import {
+  LOGIN,
+  LOGOUT,
+  RENEW,
+  ACTIVATE,
+  RESET_PASSWORD,
+  CHANGE_PASSWORD
+} from "@/store/modules/auth";
 
 const AuthHandler = {
   install(Vue) {
@@ -103,6 +110,17 @@ const AuthHandler = {
        */
       resetPassword(token, password, repeat_password) {
         return store.dispatch(RESET_PASSWORD, { token, password, repeat_password });
+      },
+
+      /**
+       * Activate an account using the activation token
+       * @param password
+       * @param new_password
+       * @param repeat_password
+       * @returns {Promise}
+       */
+      changePassword(password, new_password, repeat_password) {
+        return store.dispatch(CHANGE_PASSWORD, { password, new_password, repeat_password });
       }
     };
   }

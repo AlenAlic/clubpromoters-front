@@ -1,8 +1,8 @@
 import { PROMOTER } from "@/constants";
 
 const DefaultWrapper = () => import("@/components/general/DefaultWrapper.vue");
-const DummyPage = () => import("@/pages/Dummy.vue");
 const Code = () => import("@/pages/promoter/Code.vue");
+const Income = () => import("@/pages/promoter/Income.vue");
 
 const promoterPages = {
   path: "/promoter",
@@ -19,9 +19,10 @@ const promoterPages = {
     },
     {
       path: "finances",
-      component: DummyPage,
+      component: Income,
       name: "promoter.finances"
     }
   ]
 };
+
 export default promoterPages;

@@ -8,13 +8,16 @@
     },
     "organizer": {
       "subheader": {
-        "user_accounts": "User accounts",
-        "codes": "Codes",
+        "club_owners": "Club Owners",
+        "promoters": "Promoters",
         "parties": "Parties",
+        "insight": "Insight",
         "finances": "Finances"
       },
-      "create_new_account": "Create new account",
-      "club_owner_accounts": "Club Owner accounts",
+      "club_owner_accounts": "Accounts",
+      "club_owner_locations": "Locations",
+      "upload_assets": "Upload assets",
+      "hostesses": "Hostesses",
       "promoter_accounts": "Promoter accounts",
       "codes": "Codes",
       "create_new_party": "Create new party",
@@ -22,8 +25,9 @@
       "active_parties": "Active parties",
       "past_parties": "Past parties",
       "party_income": "Party income",
+      "commissions": "Commissions",
       "refunds": "Refunds",
-      "commissions": "Commissions"
+      "payments": "Payments"
     },
     "club_owner": {
       "subheader": {
@@ -83,6 +87,8 @@
       "unknown_code": "Unknown activation code.",
       "error": ""
     },
+    "current_password": "Current password",
+    "new_password": "New password",
     "password": "Password",
     "repeat_password": "Repeat password",
     "email": "E-mail",
@@ -143,21 +149,35 @@
         "title": "Settings",
         "club_owner_commission": {
           "label": "Club Owner commission",
-          "hint": "Default commission for Club Owners."
+          "hint": "Default commission for Club Owners"
         },
         "promoter_commission": {
-          "label": "Club Owner commission",
-          "hint": "Default commission for Club Owners."
+          "label": "Promoter commission",
+          "hint": "Default commission for Promoters"
         },
         "mollie_api_key": {
           "label": "Mollie API key",
-          "hint": "Required for Mollie to work."
+          "hint": "Required for Mollie to work"
         },
         "test_email": {
           "label": "Test email",
-          "hint": "If the system is in debug mode, all e-mails will be sent to this address."
+          "hint": "If the system is in debug mode, all e-mails will be sent to this address"
+        },
+        "minimum_promoter_commission": {
+          "label": "Minimum Promoter commission",
+          "hint": "How much a Promoter will at least earn per ticket sold (can only be more, depending on commission percentages set)"
+        },
+        "administration_costs": {
+          "label": "Administration costs",
+          "hint": "How much administration costs should be charged per purchase"
         },
         "submit": "Save"
+      },
+      "terms": {
+        "title": "Terms and conditions",
+        "label": "PDF file",
+        "hint": "Shown at checkout",
+        "submit": "Upload"
       }
     },
     "create_new_account":{
@@ -205,6 +225,75 @@
         }
       },
       "commission": "Commission"
+    },
+    "club_owner_locations": {
+      "title": "Location",
+      "user": {
+        "hint": "Select a Club Owner"
+      },
+      "add_new_location": "Add new location",
+      "table": {
+        "headers": {
+          "name": "Name",
+          "address": "Address",
+          "postal": "Postal code",
+          "city": "City"
+        }
+      },
+      "new_location": {
+        "title": "Add new location",
+        "name": {
+          "label": "Name"
+        },
+        "street": {
+          "label": "Street"
+        },
+        "street_number": {
+          "label": "Number"
+        },
+        "street_number_addition": {
+          "label": "Number addition"
+        },
+        "postal_code": {
+          "label": "Postal code"
+        },
+        "postal_code_letters": {
+          "label": "Letters"
+        },
+        "city": {
+          "label": "City"
+        },
+        "maps_url": {
+          "label": "Google Maps",
+          "hint": "Will show an embedded Google Maps map of the location (optional)"
+        },
+        "submit": "Add location"
+      }
+    },
+    "club_owner_hostesses": {
+      "title": "Hostesses",
+      "user": {
+        "hint": "Select a Club Owner"
+      },
+      "add_new_hostess": "Add new hostess",
+      "table": {
+        "headers": {
+          "name": "Name",
+          "email": "Address",
+          "is_active": "Account active",
+          "working": "Working"
+        }
+      },
+      "new_hostess": {
+        "title": "Add new hostess",
+        "first_name": {
+          "label": "First name"
+        },
+        "last_name": {
+          "label": "Last name"
+        },
+        "submit": "Add hostess"
+      }
     },
     "promoter_accounts": {
       "title": "Associated promoters",
@@ -255,22 +344,58 @@
         }
       }
     },
+    "upload_assets": {
+      "title": {
+        "images": "Upload party images",
+        "logos": "Upload logos"
+      },
+      "subtitle": {
+        "images": "An aspect ratio of 1:1 works best.",
+        "logos": "An aspect ratio of 21:9 works best."
+      },
+      "label": {
+        "images": "Party images",
+        "logos": "Logos"
+      },
+      "button": "Upload",
+      "files": "Files",
+      "user": {
+        "preview": {
+          "hint": "Select a user to preview the assets of"
+        },
+        "upload": {
+          "hint": "Select a user to upload assets to"
+        }
+      }
+    },
     "create_new_party": {
       "title": "Create new party",
       "club": {
         "hint": "Select the club this party belongs to",
         "no_clubs": "No active clubs found"
       },
-      "party_title": {
-        "label": "Party title"},
+      "name": {
+        "label": "Party name"
+      },
+      "location": {
+        "label": "Location"
+      },
       "start_date": {
-        "label": "Start date and time"},
+        "label": "Start date and time"
+      },
       "end_date": {
-        "label": "End date and time"},
+        "label": "End date and time"
+      },
+      "description": {
+        "label": "Party description",
+        "hint": "Useful for any additional information. Will be shown under \"more information\" tab.,"
+      },
       "number_of_tickets": {
-        "label": "# of tickets"},
+        "label": "# of tickets"
+      },
       "ticket_price": {
-        "label": "Price"},
+        "label": "Price"
+      },
       "club_owner_commission": {
         "label": "Club Owner commission",
         "hint": "Set when choosing the Club Owner as their default value, can be overwritten."
@@ -279,10 +404,15 @@
         "label": "Promoter commission",
         "hint": "Can be set to give Promoters a higher commission than their default commission."
       },
-      "image": {
-        "label": "Main image"},
+      "interval": {
+        "label": "Interval between images: {number} ms"
+      },
+      "images": {
+        "label": "Images"
+      },
       "logo": {
-        "label": "Logo"},
+        "label": "Logo"
+      },
       "submit": "Create party"
     },
     "inactive_parties": {
@@ -290,7 +420,8 @@
       "table": {
         "headers": {
           "club": "Club",
-          "title": "Party name",
+          "name": "Party name",
+          "location": "Location",
           "start_date": "Day",
           "duration": "Duration",
           "num_available_tickets": "# tickets",
@@ -305,6 +436,27 @@
         "text": "Starting the ticket sale for the party will make it visible to promoters, and will allow customers to buy tickets for it.\n\nAre you sure you wish to start the ticket sale?",
         "yes": "Yes, start ticket sale",
         "no": "No, don't"
+      },
+      "edit_party": {
+        "title": "Edit party",
+        "name": {
+          "label": "Party name"
+        },
+        "number_of_tickets": {
+          "label": "# of tickets"
+        },
+        "ticket_price": {
+          "label": "Price"
+        },
+        "club_owner_commission": {
+          "label": "Club Owner commission",
+          "hint": "Set when choosing the Club Owner as their default value, can be overwritten."
+        },
+        "promoter_commission": {
+          "label": "Promoter commission",
+          "hint": "Can be set to give Promoters a higher commission than their default commission."
+        },
+        "submit": "Save changes"
       }
     },
     "active_parties": {
@@ -312,7 +464,8 @@
       "table": {
         "headers": {
           "club": "Club",
-          "title": "Party name",
+          "name": "Party name",
+          "location": "Location",
           "start_date": "Day",
           "duration": "Duration",
           "num_available_tickets": "# tickets",
@@ -328,10 +481,21 @@
         "text": "Pausing the ticket sale for the party will prevent customers to buy tickets for it.\n\nAre you sure you wish to pause the ticket sale?",
         "yes": "Yes, pause ticket sale",
         "no": "No, don't"
-      }
+      },
+      "view": "View"
     },
     "past_parties": {
       "title": "Past parties",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "name": "Party name",
+          "location": "Location",
+          "start_date": "Day",
+          "duration": "Duration",
+          "party_profit": "Profit"
+        }
+      },
       "view": "View"
     },
     "refunds": {

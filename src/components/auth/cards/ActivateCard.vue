@@ -14,11 +14,9 @@
             {{ $t("auth.activate.verification_error") }}
           </v-card-text>
           <v-card-actions>
-            <router-link tag="span" :to="{ name: 'home' }">
-              <v-btn text color="primary">
-                {{ $t("navigation.back_to_home_page") }}
-              </v-btn>
-            </router-link>
+            <v-btn text color="primary" :to="{ name: 'home' }" exact>
+              {{ $t("navigation.back_to_home_page") }}
+            </v-btn>
           </v-card-actions>
         </div>
         <div v-else>
@@ -43,6 +41,7 @@
                 @requirements="passwordRequirements"
               />
               <v-card-actions>
+                <v-spacer />
                 <v-btn
                   :disabled="!valid || loading"
                   :loading="loading"

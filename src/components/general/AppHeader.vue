@@ -1,19 +1,17 @@
 <template>
-  <v-app-bar dark app :clipped-left="$vuetify.breakpoint.mdAndUp" color="primary">
+  <v-app-bar dark app :clipped-left="$vuetify.breakpoint.mdAndUp" color="black">
     <v-app-bar-nav-icon
       v-if="$vuetify.breakpoint.mdAndDown && $auth.isAuthenticated && !$auth.isHostess"
       @click.stop="$emit('toggleDrawer')"
     ></v-app-bar-nav-icon>
 
-    <router-link v-if="$auth.isAuthenticated && $auth.isHostess" tag="span" :to="{ name: 'home' }">
-      <v-btn icon>
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-    </router-link>
+    <v-btn v-if="$auth.isAuthenticated && $auth.isHostess" icon :to="{ name: 'home' }" exact>
+      <v-icon>mdi-arrow-left</v-icon>
+    </v-btn>
 
     <v-spacer v-if="$auth.isAuthenticated && $auth.isHostess"></v-spacer>
 
-    <v-toolbar-title>Title</v-toolbar-title>
+    <v-toolbar-title>clubpromoters.net</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -48,7 +46,6 @@
 
 <script>
 export default {
-  name: "Header",
   methods: {
     signOut: function() {
       this.$auth.signOut().then(() => {

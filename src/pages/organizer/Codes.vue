@@ -1,16 +1,14 @@
 <template>
   <div>
     <v-row>
-      <v-col>
-        <create-new-codes-card></create-new-codes-card>
+      <v-col cols="12" lg="3">
+        <create-new-codes-card />
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <view-active-codes-card></view-active-codes-card>
+      <v-col cols="12" lg="5">
+        <view-active-codes-card />
       </v-col>
-      <v-col>
-        <view-inactive-codes-card></view-inactive-codes-card>
+      <v-col cols="12" lg="4">
+        <view-inactive-codes-card />
       </v-col>
     </v-row>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <completed-card></completed-card>
+    <completed-card />
   </v-row>
 </template>
 

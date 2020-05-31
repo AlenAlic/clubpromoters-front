@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header v-if="$auth.isAuthenticated" @toggleDrawer="drawer = !drawer" />
+    <app-header v-if="$auth.isAuthenticated" @toggleDrawer="drawer = !drawer" />
 
     <v-navigation-drawer
       v-if="$auth.isAuthenticated && !$auth.isHostess"
@@ -19,23 +19,21 @@
     </v-content>
 
     <v-footer v-if="$auth.isAuthenticated && $auth.isHostess && false" app grow min-height="64">
-      <v-spacer></v-spacer>
-      <router-link tag="span" :to="{ name: 'home' }">
-        <v-btn text color="primary">
-          {{ $t("navigation.back_to_home_page") }}
-        </v-btn>
-      </router-link>
+      <v-spacer />
+      <v-btn text color="primary" :to="{ name: 'home' }" exact>
+        {{ $t("navigation.back_to_home_page") }}
+      </v-btn>
     </v-footer>
   </v-app>
 </template>
 
 <script>
 import NavigationDrawerContent from "@/components/general/NavigationDrawerContent/NavigationDrawerContent";
-import Header from "@/components/general/Header";
+import AppHeader from "@/components/general/AppHeader";
 import loadStore from "@/store/loader";
 export default {
   name: "App",
-  components: { NavigationDrawerContent, Header },
+  components: { NavigationDrawerContent, AppHeader },
   data: () => ({
     drawer: null
   }),

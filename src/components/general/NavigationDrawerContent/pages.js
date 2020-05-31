@@ -19,19 +19,34 @@ export const admin_drawer_content = [
 export const organizer_drawer_content = [
   { to: "organizer.dashboard", title: i18n.t("menu.dashboard"), icon: "mdi-view-dashboard" },
   { divider: true },
-  { title: i18n.t("menu.organizer.subheader.user_accounts") },
+  { title: i18n.t("menu.organizer.subheader.club_owners") },
   {
     to: "organizer.club_owner_accounts",
     title: i18n.t("menu.organizer.club_owner_accounts"),
     icon: "mdi-folder-account"
   },
   {
+    to: "organizer.club_owner_locations",
+    title: i18n.t("menu.organizer.club_owner_locations"),
+    icon: "mdi-map-marker"
+  },
+  {
+    to: "organizer.upload_assets",
+    title: i18n.t("menu.organizer.upload_assets"),
+    icon: "mdi-image"
+  },
+  {
+    to: "organizer.hostesses",
+    title: i18n.t("menu.organizer.hostesses"),
+    icon: "mdi-human-female"
+  },
+  { divider: true },
+  { title: i18n.t("menu.organizer.subheader.promoters") },
+  {
     to: "organizer.promoter_accounts",
     title: i18n.t("menu.organizer.promoter_accounts"),
     icon: "mdi-account"
   },
-  { divider: true },
-  // { title: i18n.t("menu.organizer.subheader.codes") },
   {
     to: "organizer.codes",
     title: i18n.t("menu.organizer.codes"),
@@ -60,21 +75,28 @@ export const organizer_drawer_content = [
     icon: "mdi-history"
   },
   { divider: true },
-  { title: i18n.t("menu.organizer.subheader.finances") },
+  { title: i18n.t("menu.organizer.subheader.insight") },
   {
     to: "organizer.party_income",
     title: i18n.t("menu.organizer.party_income"),
-    icon: "mdi-calendar-outline"
-  },
-  {
-    to: "organizer.refunds",
-    title: i18n.t("menu.organizer.refunds"),
-    icon: "mdi-calendar-outline"
+    icon: "mdi-cash-multiple"
   },
   {
     to: "organizer.commissions",
     title: i18n.t("menu.organizer.commissions"),
-    icon: "mdi-calendar-outline"
+    icon: "mdi-cash"
+  },
+  { divider: true },
+  { title: i18n.t("menu.organizer.subheader.finances") },
+  {
+    to: "organizer.refunds",
+    title: i18n.t("menu.organizer.refunds"),
+    icon: "mdi-currency-usd-off"
+  },
+  {
+    to: "organizer.payments",
+    title: i18n.t("menu.organizer.payments"),
+    icon: "mdi-currency-usd"
   }
 ];
 

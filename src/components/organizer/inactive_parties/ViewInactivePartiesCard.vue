@@ -48,6 +48,14 @@
           </template>
           <span>{{ $t("general.edit") }}</span>
         </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on }">
+            <v-icon class="mr-2" v-on="on" @click="showDataModalFunc(item)">
+              mdi-magnify
+            </v-icon>
+          </template>
+          <span>{{ $t("organizer.active_parties.view") }}</span>
+        </v-tooltip>
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td colspan="2">
@@ -70,7 +78,7 @@
       :show="showModal"
       :id="id"
       @closeModal="hideModalFunc"
-      :title="$t('organizer.inactive_parties.modal.title', { party: party ? party.title : '' })"
+      :title="$t('organizer.inactive_parties.modal.title', { party: party ? party.name : '' })"
       :text="$t('organizer.inactive_parties.modal.text')"
       :yes="$t('organizer.inactive_parties.modal.yes')"
       :no="$t('organizer.inactive_parties.modal.no')"
@@ -83,24 +91,36 @@
       text="Todo"
       yes="OK"
       no="CANCEL"
-    ></modal>
+    >
+      <edit-party-card :party="party" @close="showEditModal = false" />
+    </modal>
+    <modal :show="showDataModal" @closeModal="hideDataModalFunc">
+      <party-finances-data-card
+        v-if="party"
+        :party="party"
+        @closeModal="hideDataModalFunc"
+        organiser
+      ></party-finances-data-card>
+    </modal>
   </v-card>
 </template>
 
 <script>
 // TODO => Edit party
-// TODO => View details as with past parties
 import Vue from "vue";
 import i18n from "@/languages";
 import Modal from "@/components/general/Modal";
 import store from "@/store";
+import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";
 import { ACTIVE_PARTIES, INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
+import EditPartyCard from "@/components/organizer/inactive_parties/EditPartyCard";
 export default {
-  components: { Modal },
+  components: { EditPartyCard, Modal, PartyFinancesDataCard },
   data: function() {
     return {
       dialog: false,
       showModal: false,
+      showDataModal: false,
       id: -1,
       party: null,
       showEditModal: false,
@@ -112,8 +132,12 @@ export default {
           value: "club"
         },
         {
-          text: i18n.t("organizer.inactive_parties.table.headers.title"),
-          value: "title"
+          text: i18n.t("organizer.active_parties.table.headers.name"),
+          value: "name"
+        },
+        {
+          text: i18n.t("organizer.inactive_parties.table.headers.location"),
+          value: "location.name"
         },
         {
           text: i18n.t("organizer.inactive_parties.table.headers.start_date"),
@@ -133,7 +157,8 @@ export default {
         },
         { value: "action", align: "right" },
         { text: "", value: "data-table-expand" }
-      ]
+      ],
+      preview: {}
     };
   },
   computed: {
@@ -166,6 +191,13 @@ export default {
       if (data.agree) this.activateParty();
       this.cleanUp();
     },
+    showDataModalFunc: function(item) {
+      this.showDataModal = true;
+      this.party = item;
+    },
+    hideDataModalFunc: function() {
+      this.showDataModal = false;
+    },
     activateParty() {
       return Vue.axios.patch(`organizer/activate_party/${this.id}`).then(() => {
         store.dispatch(ACTIVE_PARTIES);
@@ -178,6 +210,9 @@ export default {
     },
     hideEditModalFunc() {
       this.cleanUp();
+    },
+    getPreviewObject(o) {
+      this.preview = o;
     }
   }
 };

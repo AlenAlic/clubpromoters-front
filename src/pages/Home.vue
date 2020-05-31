@@ -1,12 +1,19 @@
 <template>
   <v-container fluid class="fill-height black">
-    <transition name="home-party_card" mode="out-in">
-      <v-row justify="center" v-if="parties.length > 0">
-        <v-col cols="12" v-for="party in parties" :key="party.id">
-          <party-card :party="party" show-only></party-card>
-        </v-col>
-      </v-row>
-    </transition>
+    <v-app-bar dark app color="black">
+      <v-btn icon>
+        <v-img style="width: 48px; height: 48px;" :src="tiger" contain></v-img>
+      </v-btn>
+      <v-spacer />
+      <v-btn icon :to="{ name: 'login' }">
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
+    </v-app-bar>
+    <v-row justify="center" v-if="parties.length > 0">
+      <v-col cols="12" v-for="party in parties" :key="party.id">
+        <party-card :party="party" show-only @loaded="showEnterCode = true" />
+      </v-col>
+    </v-row>
     <div class="enter-code text-center" :class="{ show: showEnterCode }">
       <v-form>
         <div class="code-container">
@@ -111,11 +118,11 @@
 import { codeApi } from "@/api/code";
 import Vue from "vue";
 import PartyCard from "@/components/general/PartyCard/PartyCard";
+import tiger from "@/assets/images/logo_tiger_black.svg";
 export default {
   components: { PartyCard },
   data: () => ({
     parties: [],
-    retrievedParties: false,
     showEnterCode: false,
     one: "",
     two: "",
@@ -143,6 +150,9 @@ export default {
     }
   },
   computed: {
+    tiger() {
+      return tiger;
+    },
     code() {
       return `${this.one}${this.two}${this.three}${this.four}${this.five}${this.six}`;
     },
@@ -158,10 +168,10 @@ export default {
           this.parties = response.data;
         })
         .finally(() => {
-          this.retrievedParties = true;
-          setTimeout(() => {
-            this.showEnterCode = true;
-          }, 200);
+          this.showEnterCode = true;
+          // setTimeout(() => {
+          //   this.showEnterCode = true;
+          // }, 200);
         });
     },
     checkForward: function(value, ref, event) {

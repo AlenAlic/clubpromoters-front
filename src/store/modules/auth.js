@@ -30,7 +30,12 @@ const RESET_PASSWORD_REQUEST = "RESET_PASSWORD: Reset password request sent.";
 const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD: Successful request.";
 const RESET_PASSWORD_ERROR = "RESET_PASSWORD: Failed request.";
 
-export { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD, SET_USER };
+const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+const CHANGE_PASSWORD_REQUEST = "CHANGE_PASSWORD: Change password request sent.";
+const CHANGE_PASSWORD_SUCCESS = "CHANGE_PASSWORD: Successful request.";
+const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD: Failed request.";
+
+export { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD, SET_USER, CHANGE_PASSWORD };
 
 const getUser = () => {
   const token = loadServerToken(backendServer);
@@ -110,6 +115,16 @@ export default {
     },
     [RESET_PASSWORD_ERROR](state) {
       state.loading = false;
+    },
+
+    [CHANGE_PASSWORD_REQUEST](state) {
+      state.loading = true;
+    },
+    [CHANGE_PASSWORD_SUCCESS](state) {
+      state.loading = false;
+    },
+    [CHANGE_PASSWORD_ERROR](state) {
+      state.loading = false;
     }
   },
   actions: {
@@ -182,6 +197,19 @@ export default {
         })
         .catch(error => {
           commit(RESET_PASSWORD_ERROR);
+          throw error;
+        });
+    },
+    // Change user password
+    [CHANGE_PASSWORD]: ({ commit }, { password, new_password, repeat_password }) => {
+      commit(CHANGE_PASSWORD_REQUEST);
+      return authApi
+        .changePassword(password, new_password, repeat_password)
+        .then(() => {
+          commit(CHANGE_PASSWORD_SUCCESS);
+        })
+        .catch(error => {
+          commit(CHANGE_PASSWORD_ERROR);
           throw error;
         });
     }

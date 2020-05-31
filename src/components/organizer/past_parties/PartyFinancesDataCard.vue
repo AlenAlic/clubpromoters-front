@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="headline">{{ party.title }}</v-card-title>
+    <v-card-title class="headline">{{ party.name }}</v-card-title>
 
     <v-card-text class="has-line_breaks body" v-if="!!party">
       <div>
@@ -41,7 +41,7 @@
           <span><b>Income:</b></span>
         </div>
         <div>
-          <span></span>
+          <i>Ticket sale</i>
           <span>{{ $util.formatCurrency(party.party_income) }}</span>
         </div>
         <div>

@@ -1,8 +1,8 @@
 <template>
   <v-row align="center">
     <v-col>
-      <v-card class="mx-auto" max-width="400">
-        <v-list>
+      <v-card class="mx-auto" max-width="400" v-if="!loading">
+        <v-list v-if="parties.length">
           <v-list-item
             three-line
             link
@@ -11,7 +11,7 @@
             :key="party.id"
           >
             <v-list-item-content>
-              <v-list-item-title>{{ party.title }}</v-list-item-title>
+              <v-list-item-title>{{ party.name }}</v-list-item-title>
               <v-list-item-subtitle>
                 {{
                   `${$util.dateTime(party.start_date).toFormat("d LLLL, HH:mm")}-${$util
@@ -25,6 +25,14 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+        <v-card-text v-else>
+          No parties today.
+        </v-card-text>
+      </v-card>
+      <v-card v-else class="mx-auto" max-width="400">
+        <v-card-text class="text-center">
+          <v-progress-circular indeterminate color="primary"></v-progress-circular>
+        </v-card-text>
       </v-card>
     </v-col>
   </v-row>
@@ -34,7 +42,7 @@ import Vue from "vue";
 export default {
   data: function() {
     return {
-      loading: false,
+      loading: true,
       parties: []
     };
   },

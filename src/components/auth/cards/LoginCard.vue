@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto">
-    <v-card max-width="400">
+    <v-card max-width="400px" dark>
       <v-form ref="form" v-model="valid" @submit.prevent="login">
         <v-card-title>{{ $t("auth.log_in") }}</v-card-title>
         <v-card-text>
@@ -20,6 +20,7 @@
           <v-checkbox v-model="rememberMe" :label="$t('auth.remember_me')" required></v-checkbox>
         </v-card-text>
         <v-card-actions>
+          <v-spacer />
           <v-btn
             :disabled="!valid || loading"
             :loading="loading"
@@ -30,19 +31,15 @@
           >
             {{ $t("auth.log_in") }}
           </v-btn>
-          <router-link tag="span" :to="{ name: 'home' }">
-            <v-btn text>
-              {{ $t("general.cancel") }}
-            </v-btn>
-          </router-link>
+          <v-btn text :to="{ name: 'home' }" exact>
+            {{ $t("general.cancel") }}
+          </v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
-    <router-link tag="span" :to="{ name: 'reset' }">
-      <v-btn text class="mt-2">
-        {{ $t("auth.forgot_password") }}
-      </v-btn>
-    </router-link>
+    <v-btn text class="mt-2" :to="{ name: 'reset' }">
+      {{ $t("auth.forgot_password") }}
+    </v-btn>
   </div>
 </template>
 

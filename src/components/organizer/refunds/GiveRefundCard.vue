@@ -6,6 +6,14 @@
       </v-card-title>
 
       <v-card-text>
+        <v-select
+          v-model="tickets"
+          hide-details
+          :items="Array.from(Array(purchase.number_of_tickets).keys()).map(n => n + 1)"
+          persistent-hint
+          :hint="$t('organizer.refunds.amount.hint')"
+          label="Tickets"
+        ></v-select>
         <v-text-field
           v-model="amount"
           type="number"
@@ -14,6 +22,7 @@
           persistent-hint
           :hint="$t('organizer.refunds.amount.hint')"
           required
+          prefix="€"
         >
         </v-text-field>
         <v-checkbox
@@ -47,16 +56,20 @@ export default {
     return {
       valid: false,
       loading: false,
+      tickets: 0,
       amount: null,
-      amountRules: [v => !!v || this.$t("form_validation.errors.required")],
+      amountRules: [this.$form.fieldRequired],
       giveRefund: false,
-      giveRefundRules: [v => !!v || this.$t("form_validation.errors.required")]
+      giveRefundRules: [this.$form.fieldRequired]
     };
   },
   methods: {
     close: function() {
       this.$emit("closeModal");
-      this.$refs.form.reset();
+      this.$refs.form.resetValidation();
+      this.tickets = 0;
+      this.amount = null;
+      this.giveRefund = false;
     },
     refund() {
       this.loading = true;
@@ -69,6 +82,11 @@ export default {
         .finally(() => {
           this.loading = false;
         });
+    }
+  },
+  watch: {
+    tickets: function() {
+      this.amount = this.tickets * this.purchase.ticket_price;
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="no-print">
-      <v-col>
+      <v-col cols="12" lg="4" offset-lg="4">
         <v-card>
           <v-card-title>Choose month</v-card-title>
           <v-card-text>
@@ -21,13 +21,13 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col cols="12" lg="4" offset-lg="4">
         <v-card class="card--print">
           <v-card-title>{{ getMonth }} {{ displayYear }}</v-card-title>
           <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
           <v-list-item class="print_friendly" two-line v-for="party in parties" :key="party.id">
             <v-list-item-content>
-              <v-list-item-title>{{ party.title }}</v-list-item-title>
+              <v-list-item-title>{{ party.name }}</v-list-item-title>
               <v-list-item-subtitle class="body">
                 <div class="two">
                   <span>Ticket price</span>
@@ -91,7 +91,7 @@ export default {
       return MONTHS[this.displayMonth];
     },
     years() {
-      return Array.from({ length: 2019 - this.year + 1 }, (v, k) => k + 2019);
+      return Array.from({ length: this.$util.now.year + 1 - 2019 }, (v, k) => k + 2019);
     }
   },
   methods: {

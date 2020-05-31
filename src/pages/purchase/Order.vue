@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="center">
-    <order-card></order-card>
+  <v-row justify="center" no-gutters>
+    <order-card />
   </v-row>
 </template>
 

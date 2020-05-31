@@ -15,6 +15,7 @@
         ></v-text-field>
       </v-card-text>
       <v-card-actions>
+        <v-spacer />
         <v-btn
           :disabled="num <= 0 || $store.state.codes.loadingActiveCodes"
           :loading="$store.state.codes.loadingActiveCodes"

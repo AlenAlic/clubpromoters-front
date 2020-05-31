@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <view-past-parties-card></view-past-parties-card>
+        <view-past-parties-card />
       </v-col>
     </v-row>
   </div>

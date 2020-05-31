@@ -42,5 +42,10 @@ export default {
           throw error;
         });
     }
+  },
+  getters: {
+    getClubOwner: state => id => {
+      return state.clubOwners.find(user => user.id === id);
+    }
   }
 };

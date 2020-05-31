@@ -56,18 +56,10 @@ export default {
         });
     },
     // Update config settings
-    [UPDATE_CONFIG](
-      { commit },
-      { default_club_owner_commission, default_promoter_commission, mollie_api_key, test_email }
-    ) {
+    [UPDATE_CONFIG]({ commit }, data) {
       commit(UPDATE_CONFIG_REQUEST);
       return Vue.axios
-        .post("organizer/config", {
-          default_club_owner_commission: default_club_owner_commission,
-          default_promoter_commission: default_promoter_commission,
-          mollie_api_key: mollie_api_key,
-          test_email: test_email
-        })
+        .post("organizer/config", data)
         .then(response => {
           commit(UPDATE_CONFIG_SUCCESS, response.data);
         })

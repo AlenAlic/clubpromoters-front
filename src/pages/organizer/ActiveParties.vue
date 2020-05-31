@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col>
-        <view-active-parties-card></view-active-parties-card>
+        <view-active-parties-card />
       </v-col>
     </v-row>
   </div>

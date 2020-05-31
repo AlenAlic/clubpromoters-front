@@ -1,19 +1,21 @@
 <template>
   <div>
     <v-row class="no-print">
-      <v-col>
+      <v-col cols="12" lg="4" offset-lg="4">
         <v-card>
-          <v-card-title>Choose month</v-card-title>
+          <v-card-title>Choose month to view finances</v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="months" label="Month"></v-select>
+                <v-select v-model="month" hide-details :items="$util.selectMonths" label="Month" />
               </v-col>
               <v-col cols="5">
-                <v-select v-model="year" :items="years" label="Year"></v-select>
+                <v-select v-model="year" hide-details :items="$util.financesYears" label="Year" />
               </v-col>
               <v-col cols="1" align-self="center" class="text-right">
-                <v-btn icon @click="getData"><v-icon>mdi-magnify</v-icon></v-btn>
+                <v-btn icon @click="getData">
+                  <v-icon>mdi-magnify</v-icon>
+                </v-btn>
               </v-col>
             </v-row>
           </v-card-text>
@@ -21,63 +23,90 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col cols="12" lg="4" offset-lg="4">
         <v-card class="card--print">
-          <v-card-title>{{ getMonth }} {{ displayYear }}</v-card-title>
+          <v-card-title>{{ $util.displayMonth(displayMonth) }} {{ displayYear }}</v-card-title>
           <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
-          <v-list-item class="print_friendly" two-line v-for="party in parties" :key="party.id">
-            <v-list-item-content>
-              <v-list-item-title>{{ party.title }}</v-list-item-title>
-              <v-list-item-subtitle class="body">
-                <div class="two">
-                  <span>Ticket price</span>
-                  <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
-                </div>
-                <div class="two">
-                  <span>Sold</span>
-                  <span>{{ party.sold_tickets }} / {{ party.num_available_tickets }}</span>
-                </div>
-                <div><b>Income</b></div>
-                <div class="three">
-                  <span></span>
-                  <span>{{ $util.formatCurrency(party.party_income) }}</span>
-                </div>
-                <div><b>Expenses</b></div>
-                <div class="three">
-                  <i>Refunds</i>
-                  <span>{{ $util.formatCurrency(party.party_refunds) }}</span>
-                </div>
-                <div class="three">
-                  <i>Promoter commissions</i>
-                  <span>{{ $util.formatCurrency(party.party_promoter_cut) }}</span>
-                </div>
-                <div class="three">
-                  <i>Club Owner commissions</i>
-                  <span>{{ $util.formatCurrency(party.party_club_owner_cut) }}</span>
-                </div>
-                <v-divider class="my-1"></v-divider>
-                <div class="three">
-                  <b>Subtotal</b>
-                  <span>{{ $util.formatCurrency(party.party_profit) }}</span>
-                </div>
-                <div>
-                  <span></span>
-                  <b>Total</b>
-                  <span>{{ $util.formatCurrency(party.party_profit) }}</span>
-                </div>
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="body">
-                <div>
-                  <span>Total</span>
-                  <span>{{ $util.formatCurrency(totalProfit) }}</span>
-                </div>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <template v-else-if="parties.length">
+            <v-list-item class="subtitle-2">
+              <v-list-item-content>
+                <v-list-item-title class="finances-body">
+                  <div>
+                    <span>Total profit</span>
+                    <span>{{ $util.formatCurrency(totalProfit) }}</span>
+                  </div>
+                </v-list-item-title>
+                <v-list-item-title class="finances-body">
+                  <div>
+                    <span>Total tickets sold</span>
+                    <span>{{ totalTicketsSold }} / {{ totalAvailableTickets }}</span>
+                  </div>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-expansion-panels accordion>
+              <v-expansion-panel v-for="party in parties" :key="party.id">
+                <v-expansion-panel-header>
+                  <v-row no-gutters justify="space-between">
+                    <v-col>{{ party.name }}</v-col>
+                    <v-col class="text-right">
+                      {{ party.sold_tickets }} / {{ party.num_available_tickets }}
+                    </v-col>
+                    <v-col class="text-right pr-3">
+                      {{ $util.formatCurrency(party.party_profit) }}
+                    </v-col>
+                  </v-row>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <v-list-item class="px-0">
+                    <v-list-item-content>
+                      <v-list-item-subtitle>
+                        {{ $util.dateTime(party.start_date).toFormat("dd LLLL") }}
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle class="finances-body">
+                        <div class="three">
+                          <span>Ticket price</span>
+                          <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
+                        </div>
+                        <div class="three">
+                          <span>Sold</span>
+                          <span>{{ party.sold_tickets }} / {{ party.num_available_tickets }}</span>
+                        </div>
+                        <div class="mt-2">
+                          <b>Income</b>
+                        </div>
+                        <div>
+                          <i>Ticket sale</i>
+                          <span>{{ $util.formatCurrency(party.party_income) }}</span>
+                        </div>
+                        <div class="mt-1">
+                          <b>Expenses</b>
+                        </div>
+                        <div>
+                          <i>Refunds</i>
+                          <span>{{ $util.formatCurrency(party.party_refunds) }}</span>
+                        </div>
+                        <div>
+                          <i>Promoter commissions</i>
+                          <span>{{ $util.formatCurrency(party.party_promoter_cut) }}</span>
+                        </div>
+                        <div>
+                          <i>Club Owner commissions</i>
+                          <span>{{ $util.formatCurrency(party.party_club_owner_cut) }}</span>
+                        </div>
+                        <v-divider class="my-1"></v-divider>
+                        <div>
+                          <b>Total</b>
+                          <span>{{ $util.formatCurrency(party.party_profit) }}</span>
+                        </div>
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </template>
+          <v-card-text v-else>No parties in {{ $util.displayMonth(displayMonth) }}.</v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -85,17 +114,15 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { MONTHS } from "@/constants";
 export default {
   data: function() {
     return {
+      loading: true,
       month: String(this.$util.now.month),
       year: this.$util.now.year,
       displayMonth: String(this.$util.now.month),
       displayYear: this.$util.now.year,
-      parties: [],
-      loading: true
+      parties: []
     };
   },
   created() {
@@ -107,21 +134,22 @@ export default {
         return t + c.party_profit;
       }, 0);
     },
-    months() {
-      return Object.keys(MONTHS).map(m => ({ text: MONTHS[m], value: m }));
+    totalTicketsSold() {
+      return this.parties.reduce((t, c) => {
+        return t + c.sold_tickets;
+      }, 0);
     },
-    getMonth() {
-      return MONTHS[this.displayMonth];
-    },
-    years() {
-      return Array.from({ length: 2019 - this.year + 1 }, (v, k) => k + 2019);
+    totalAvailableTickets() {
+      return this.parties.reduce((t, c) => {
+        return t + c.num_available_tickets;
+      }, 0);
     }
   },
   methods: {
     getData() {
       this.loading = true;
       this.parties = [];
-      Vue.axios
+      this.axios
         .get(`organizer/party_income/${this.year}/${this.month}`)
         .then(response => {
           this.parties = response.data;
@@ -135,21 +163,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-@import "../../assets/css/general/flex";
-.body {
-  div {
-    @extend .flex;
-    @extend .justify-content-between;
-    @extend .align-items-end;
-  }
-
-  .two {
-    width: 50%;
-  }
-  .three {
-    width: 75%;
-  }
-}
-</style>

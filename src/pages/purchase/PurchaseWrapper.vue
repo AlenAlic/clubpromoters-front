@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="fill-height black">
+  <v-container fluid class="fill-height black pt-0">
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>

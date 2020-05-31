@@ -34,7 +34,7 @@
         <v-tooltip left>
           <template v-slot:activator="{ on }">
             <v-icon class="mr-2" v-on="on" @click="showModalFunc(item)">
-              mdi-card-search
+              mdi-magnify
             </v-icon>
           </template>
           <span>{{ $t("organizer.past_parties.view") }}</span>
@@ -66,23 +66,27 @@ export default {
       search: "",
       headers: [
         {
-          text: i18n.t("organizer.active_parties.table.headers.club"),
+          text: i18n.t("organizer.past_parties.table.headers.club"),
           value: "club"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.title"),
-          value: "title"
+          text: i18n.t("organizer.past_parties.table.headers.name"),
+          value: "name"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.start_date"),
+          text: i18n.t("organizer.past_parties.table.headers.location"),
+          value: "location.name"
+        },
+        {
+          text: i18n.t("organizer.past_parties.table.headers.start_date"),
           value: "start_date"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.duration"),
+          text: i18n.t("organizer.past_parties.table.headers.duration"),
           value: "duration"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.profit"),
+          text: i18n.t("organizer.past_parties.table.headers.party_profit"),
           value: "party_profit"
         },
         { value: "action", align: "right" }

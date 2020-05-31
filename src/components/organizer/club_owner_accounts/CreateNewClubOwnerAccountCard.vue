@@ -77,7 +77,9 @@ export default {
         });
     },
     close() {
-      this.$refs.form.reset();
+      this.$refs.form.resetValidation();
+      this.club = "";
+      this.email = "";
       this.commission = `${this.$store.state.config.settings.default_club_owner_commission}`;
       this.$emit("close");
     }

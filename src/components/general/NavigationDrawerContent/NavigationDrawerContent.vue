@@ -1,7 +1,7 @@
 <template>
   <v-list>
     <div v-for="(item, index) in items" :key="index">
-      <v-list-item v-if="item.to" link :to="{ name: item.to }" active-class="accent">
+      <v-list-item v-if="item.to" link :to="{ name: item.to }" active-class="accent" dense>
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>

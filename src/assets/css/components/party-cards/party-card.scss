@@ -1,3 +1,14 @@
+.party__no_of_tickets {
+  .v-input__slot {
+    padding: 0 !important;
+    min-height: 32px !important;
+  }
+  input[type="text"] {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+}
+
 $font-family-party-card-orig: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal,
   Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
 $font-family-party-card: Arial Narrow Helvetica, Lucida Sans Unicode, Verdana, sans serif;

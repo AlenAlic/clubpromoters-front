@@ -104,8 +104,12 @@ export default {
         });
     },
     close() {
-      this.$refs.form.reset();
+      this.$refs.form.resetValidation();
+      this.first_name = "";
+      this.last_name = "";
+      this.email = "";
       this.commission = `${this.$store.state.config.settings.default_promoter_commission}`;
+      this.code = null;
       this.$emit("close");
     }
   }

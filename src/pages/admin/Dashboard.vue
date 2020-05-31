@@ -1,7 +1,7 @@
 <template>
   <v-row align="center">
-    <v-col>
-      <switch-user-card></switch-user-card>
+    <v-col cols="12" lg="4">
+      <switch-user-card />
     </v-col>
   </v-row>
 </template>

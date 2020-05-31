@@ -1,9 +1,9 @@
-const DummyPage = () => import("@/pages/Dummy.vue");
+const Profile = () => import("@/pages/Profile.vue");
 
 const userRoutes = {
   path: "/profile",
   name: "profile",
-  component: DummyPage,
+  component: Profile,
   meta: {
     auth: true
   }

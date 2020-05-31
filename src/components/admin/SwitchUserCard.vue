@@ -15,6 +15,7 @@
         ></v-select>
       </v-card-text>
       <v-card-actions>
+        <v-spacer />
         <v-btn
           :disabled="!account || switching"
           :loading="switching"

@@ -138,5 +138,19 @@ export const authApi = {
       password,
       repeat_password
     });
+  },
+  /**
+   * Changes the current users password.
+   * @param {string} password
+   * @param {string} new_password - The password to login with.
+   * @param {string} repeat_password - Repeat of the newly set password.
+   * @returns {Promise<void>}
+   */
+  async changePassword(password, new_password, repeat_password) {
+    return await backendServer.patch("/auth/password/change", {
+      password,
+      new_password,
+      repeat_password
+    });
   }
 };

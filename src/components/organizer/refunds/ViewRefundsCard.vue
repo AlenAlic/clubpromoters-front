@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="mt-3">
     <v-data-iterator :items="items" :search="search" :loading="loading" hide-default-footer>
       <template v-slot:header>
-        <v-toolbar dark color="secondary" extension-height="64">
+        <v-toolbar dark color="black" extension-height="64">
           <v-text-field
             v-model="search"
             clearable
@@ -48,7 +48,7 @@
               <v-divider></v-divider>
 
               <v-list dense>
-                <v-list-item two-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Status:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
@@ -56,7 +56,7 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item two-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Mollie:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
@@ -64,7 +64,7 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item three-line>
+                <v-list-item dense three-line>
                   <v-list-item-content>
                     <v-list-item-title>Purchased by:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
@@ -75,15 +75,15 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item two-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Tickets bought:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
-                      {{ item.number_of_tickers }}
+                      {{ item.number_of_tickets }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item two-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Price:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
@@ -91,7 +91,7 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item two-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Purchase date:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
@@ -99,18 +99,18 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item three-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Party:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
-                      {{ item.party.title }}
+                      {{ item.party.name }}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle class="text-right">
                       {{ item.party.date }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item two-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Entrance code:</v-list-item-title>
                     <v-list-item-subtitle class="text-right">
@@ -138,7 +138,7 @@
                     </v-list-item-title>
                   </template>
 
-                  <v-list-item v-for="(r, i) in item.refunds" :key="i" three-line>
+                  <v-list-item dense v-for="(r, i) in item.refunds" :key="i">
                     <v-list-item-content>
                       <v-list-item-title>{{ r.mollie_refund_id }}</v-list-item-title>
                       <v-list-item-subtitle class="text-right">
@@ -150,7 +150,7 @@
                     </v-list-item-content>
                   </v-list-item>
                 </v-list-group>
-                <v-list-item>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-btn text @click="showModalFunc(item)">
                       Give refund
@@ -194,31 +194,23 @@ export default {
   computed: {
     items() {
       return this.purchases.map(p => ({
-        id: p.id,
-        email: p.email,
-        status: p.status,
-        mollie_payment_id: p.mollie_payment_id,
-        entrance_code: p.entrance_code,
+        ...p,
         purchase_date: this.$util.dateTime(p.purchase_date).toFormat("d LLLL yyyy, HH:mm"),
-        name: p.name,
         party: {
-          title: p.party.title,
+          ...p.party,
           date: `${this.$util
             .dateTime(p.party.start_date)
             .toFormat("d LLLL yyyy, HH:mm")}-${this.$util
             .dateTime(p.party.end_date)
             .toFormat("HH:mm")}`
-        },
-        number_of_tickers: p.number_of_tickers,
-        price: p.price,
-        refunds: p.refunds
+        }
       }));
     },
     months() {
       return Object.keys(MONTHS).map(m => ({ text: MONTHS[m], value: m }));
     },
     years() {
-      return Array.from({ length: 2019 - this.year + 1 }, (v, k) => k + 2019);
+      return Array.from(Array(this.$util.now.year + 1 - 2019).keys()).map(n => n + 2019);
     }
   },
   methods: {

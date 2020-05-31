@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="no-print">
-      <v-col>
+      <v-col cols="12" lg="6" offset-lg="3">
         <v-card>
           <v-card-title>Choose month</v-card-title>
           <v-card-text>
@@ -21,92 +21,136 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col cols="12" lg="3" offset-lg="3">
         <v-card class="card--print">
           <v-card-title>{{ getMonth }} {{ displayYear }}</v-card-title>
-          <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
-          <v-list-item class="print_friendly" three-line v-for="user in promoters" :key="user.id">
-            <v-list-item-content>
-              <v-list-item-title>{{ user.name }}</v-list-item-title>
-              <v-list-item-subtitle class="body mt-2" v-for="party in user.parties" :key="party.id">
-                <div>
-                  <b>{{ party.title }}</b>
-                </div>
-                <div class="three">
-                  <span>Tickets sold</span>
-                  <span>{{ party.tickets }}</span>
-                </div>
-                <div>
-                  <span>Commission</span>
-                  <span>{{ $util.formatCurrency(party.price) }}</span>
-                </div>
-              </v-list-item-subtitle>
-              <v-list-item-subtitle class="body mt-3">
-                <div>
-                  <span>
-                    <b>Total commission</b>
-                  </span>
-                  <span>
-                    <b>{{ $util.formatCurrency(user.total) }}</b>
-                  </span>
-                </div>
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
+          <v-progress-linear v-if="loading" color="primary" indeterminate />
+          <v-list-item class="subtitle-2">
             <v-list-item-content>
               <v-list-item-title class="body">
                 <div>
-                  <span>Total</span>
+                  <span>Month total</span>
                   <span>{{ $util.formatCurrency(totalPromoterProfit) }}</span>
                 </div>
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-expansion-panels accordion>
+            <v-expansion-panel v-for="user in promoters" :key="user.id">
+              <v-expansion-panel-header>
+                <v-row no-gutters justify="space-between">
+                  <v-col> {{ user.name }}</v-col>
+                  <v-col class="text-right pr-3">{{ $util.formatCurrency(user.total) }}</v-col>
+                </v-row>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-list-item class="px-0">
+                  <v-list-item-content>
+                    <v-list-item-subtitle
+                      class="body mt-2"
+                      v-for="party in user.parties"
+                      :key="party.id"
+                    >
+                      <div>
+                        <b>{{ party.club }}</b>
+                      </div>
+                      <div>
+                        <i>{{ `${$util.dateTime(party.start_date).toFormat("d LLLL yyyy")}` }}</i>
+                      </div>
+                      <div class="three">
+                        <span>Tickets sold</span>
+                        <span>{{ party.tickets }}</span>
+                      </div>
+                      <v-divider class="my-1" />
+                      <div>
+                        <span>Commission</span>
+                        <span>{{ $util.formatCurrency(party.price) }}</span>
+                      </div>
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle class="body mt-3">
+                      <div>
+                        <span>
+                          <b>Total commission</b>
+                        </span>
+                        <span>
+                          <b>{{ $util.formatCurrency(user.total) }}</b>
+                        </span>
+                      </div>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-card>
       </v-col>
-      <v-col>
+      <v-col cols="12" lg="3">
         <v-card class="card--print">
           <v-card-title>{{ getMonth }} {{ displayYear }}</v-card-title>
           <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
-          <v-list-item class="print_friendly" three-line v-for="user in club_owners" :key="user.id">
-            <v-list-item-content>
-              <v-list-item-title>{{ user.club }}</v-list-item-title>
-              <v-list-item-subtitle class="body mt-2" v-for="party in user.parties" :key="party.id">
-                <div>
-                  <b>{{ party.title }}</b>
-                </div>
-                <div class="three">
-                  <span>Tickets sold</span>
-                  <span>{{ party.tickets }}</span>
-                </div>
-                <div>
-                  <span>Commission</span>
-                  <span>{{ $util.formatCurrency(party.price) }}</span>
-                </div>
-              </v-list-item-subtitle>
-              <v-list-item-subtitle class="body mt-3">
-                <div>
-                  <span>
-                    <b>Total commission</b>
-                  </span>
-                  <span>
-                    <b>{{ $util.formatCurrency(user.total) }}</b>
-                  </span>
-                </div>
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
+          <v-list-item class="subtitle-2">
             <v-list-item-content>
               <v-list-item-title class="body">
                 <div>
-                  <span>Total</span>
+                  <span>Month total</span>
                   <span>{{ $util.formatCurrency(totalClubOwnersProfit) }}</span>
                 </div>
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-expansion-panels accordion>
+            <v-expansion-panel v-for="user in club_owners" :key="user.id">
+              <v-expansion-panel-header>
+                <v-row no-gutters justify="space-between">
+                  <v-col> {{ user.club }}</v-col>
+                  <v-col class="text-right pr-3">{{ $util.formatCurrency(user.total) }}</v-col>
+                </v-row>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-list-item class="px-0">
+                  <v-list-item-content>
+                    <v-list-item-subtitle
+                      class="body mt-2"
+                      v-for="party in user.parties"
+                      :key="party.id"
+                    >
+                      <div>
+                        <span>
+                          <b>
+                            {{
+                              `${$util.dateTime(party.start_date).toFormat("d LLLL yyyy, HH:mm")}`
+                            }}
+                          </b>
+                        </span>
+                      </div>
+                      <div>
+                        {{ party.location.name }}
+                      </div>
+                      <div class="three">
+                        <span>Tickets sold</span>
+                        <span>{{ party.tickets }}</span>
+                      </div>
+                      <v-divider class="my-1" />
+                      <div>
+                        <span>Commission</span>
+                        <span>{{ $util.formatCurrency(party.price) }}</span>
+                      </div>
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle class="body mt-3">
+                      <div>
+                        <span>
+                          <b>Total commission</b>
+                        </span>
+                        <span>
+                          <b>{{ $util.formatCurrency(user.total) }}</b>
+                        </span>
+                      </div>
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-card>
       </v-col>
     </v-row>
@@ -150,7 +194,7 @@ export default {
       return MONTHS[this.displayMonth];
     },
     years() {
-      return Array.from({ length: 2019 - this.year + 1 }, (v, k) => k + 2019);
+      return Array.from(Array(this.$util.now.year + 1 - 2019).keys()).map(n => n + 2019);
     }
   },
   methods: {

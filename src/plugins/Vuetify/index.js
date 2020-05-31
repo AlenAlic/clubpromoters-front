@@ -1,8 +1,7 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
-import "vuetify/dist/vuetify.min.css";
 import "@mdi/font/css/materialdesignicons.css";
-import variables from "../../assets/css/general/settings.scss";
+import colors from "vuetify/lib/util/colors";
 
 Vue.use(Vuetify);
 
@@ -10,13 +9,22 @@ const opts = {
   theme: {
     themes: {
       light: {
-        primary: variables.primary,
-        secondary: variables.secondary,
-        accent: variables.accent,
-        error: variables.error,
-        warning: variables.warning,
-        info: variables.info,
-        success: variables.success
+        primary: colors.deepPurple,
+        secondary: colors.blue,
+        accent: colors.yellow.accent1,
+        error: colors.red.accent2,
+        warning: colors.orange.darken1,
+        info: colors.lightBlue.darken1,
+        success: colors.green
+      },
+      dark: {
+        primary: colors.deepPurple,
+        secondary: colors.blue,
+        accent: colors.yellow.accent1,
+        error: colors.red.accent2,
+        warning: colors.orange.darken1,
+        info: colors.lightBlue.darken1,
+        success: colors.green
       }
     }
   },

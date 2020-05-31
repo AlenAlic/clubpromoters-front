@@ -21,6 +21,15 @@
         'items-per-page-all-text': $t('vuetify.data-footer.items-per-page-all-text')
       }"
     >
+      <template v-slot:item.ticket_price="{ item }">
+        <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
+      </template>
+      <template v-slot:item.start_date="{ item }">
+        <div>{{ $util.dateTime(item.start_date).toFormat("d LLLL") }}</div>
+      </template>
+      <template v-slot:item.party_profit="{ item }">
+        <div>{{ $util.formatCurrency(item.party_profit) }}</div>
+      </template>
       <template v-slot:item.action="{ item }">
         <v-tooltip left>
           <template v-slot:activator="{ on }">
@@ -57,24 +66,24 @@ export default {
       search: "",
       headers: [
         {
-          text: i18n.t("organizer.active_parties.table.headers.club"),
+          text: i18n.t("organizer.past_parties.table.headers.club"),
           value: "club"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.title"),
-          value: "title"
+          text: i18n.t("organizer.past_parties.table.headers.name"),
+          value: "name"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.start_date"),
+          text: i18n.t("organizer.past_parties.table.headers.start_date"),
           value: "start_date"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.duration"),
+          text: i18n.t("organizer.past_parties.table.headers.duration"),
           value: "duration"
         },
         {
-          text: i18n.t("organizer.active_parties.table.headers.profit"),
-          value: "profit"
+          text: i18n.t("organizer.past_parties.table.headers.party_profit"),
+          value: "party_profit"
         },
         {
           value: "action",
@@ -85,34 +94,19 @@ export default {
   },
   computed: {
     items() {
-      return this.$store.state.club_owner_parties.pastParties.map(p => ({
-        id: p.id,
-        title: p.title,
-        club: p.club,
-        num_available_tickets: p.num_available_tickets,
-        ticket_price: this.$util.formatCurrency(p.ticket_price),
-        start_date: this.$util.dateTime(p.start_date).toFormat("d LLLL"),
-        duration: `${this.$util.dateTime(p.start_date).toFormat("HH:mm")} - ${this.$util
-          .dateTime(p.end_date)
-          .toFormat("HH:mm")}`,
-        club_owner_commission: `${this.$t(
-          "organizer.active_parties.table.club_owner_commission"
-        )}: ${p.club_owner_commission}%`,
-        promoter_commission: `${this.$t("organizer.active_parties.table.promoter_commission")}: ${
-          p.promoter_commission
-        }%`,
-        club_owner_commission_percentage: `${p.club_owner_commission}%`,
-        sold_tickets: p.sold_tickets,
-        tickets_on_hold: p.tickets_on_hold,
-        remaining_tickets: p.remaining_tickets,
-        tickets_denied_entry: p.tickets_denied_entry,
-        party_income: p.party_income,
-        party_refunds: p.party_refunds,
-        party_promoter_cut: p.party_promoter_cut,
-        party_club_owner_cut: p.party_club_owner_cut,
-        party_profit: p.party_profit,
-        profit: this.$util.formatCurrency(p.party_profit)
-      }));
+      return this.$store.state.club_owner_parties.pastParties.map(p =>
+        Object.assign(p, {
+          duration: `${this.$util.dateTime(p.start_date).toFormat("HH:mm")} - ${this.$util
+            .dateTime(p.end_date)
+            .toFormat("HH:mm")}`,
+          club_owner_commission: `${this.$t(
+            "organizer.active_parties.table.club_owner_commission"
+          )}: ${p.club_owner_commission}%`,
+          promoter_commission: `${this.$t("organizer.active_parties.table.promoter_commission")}: ${
+            p.promoter_commission
+          }%`
+        })
+      );
     }
   },
   methods: {

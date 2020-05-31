@@ -4,7 +4,10 @@ const DefaultWrapper = () => import("@/components/general/DefaultWrapper.vue");
 const Dashboard = () => import("@/pages/organizer/Dashboard.vue");
 const Codes = () => import("@/pages/organizer/Codes.vue");
 const ClubOwnerAccounts = () => import("@/pages/organizer/ClubOwnerAccounts.vue");
+const ClubOwnerLocations = () => import("@/pages/organizer/ClubOwnerLocations.vue");
+const ClubOwnerHostesses = () => import("@/pages/organizer/ClubOwnerHostesses.vue");
 const PromoterAccounts = () => import("@/pages/organizer/PromoterAccounts.vue");
+const UploadAssets = () => import("@/pages/organizer/UploadAssets.vue");
 const CreateNewParty = () => import("@/pages/organizer/CreateNewParty.vue");
 const InactiveParties = () => import("@/pages/organizer/InactiveParties.vue");
 const ActiveParties = () => import("@/pages/organizer/ActiveParties.vue");
@@ -12,6 +15,7 @@ const PastParties = () => import("@/pages/organizer/PastParties.vue");
 const Income = () => import("@/pages/organizer/Income.vue");
 const Refunds = () => import("@/pages/organizer/Refunds.vue");
 const Commissions = () => import("@/pages/organizer/Commissions.vue");
+const Dummy = () => import("@/pages/Dummy.vue");
 
 const organizerPages = {
   path: "/organizer",
@@ -30,6 +34,21 @@ const organizerPages = {
       path: "club_owner_accounts",
       component: ClubOwnerAccounts,
       name: "organizer.club_owner_accounts"
+    },
+    {
+      path: "club_owner_locations",
+      component: ClubOwnerLocations,
+      name: "organizer.club_owner_locations"
+    },
+    {
+      path: "upload_assets",
+      component: UploadAssets,
+      name: "organizer.upload_assets"
+    },
+    {
+      path: "hostesses",
+      component: ClubOwnerHostesses,
+      name: "organizer.hostesses"
     },
     {
       path: "promoter_accounts",
@@ -67,14 +86,19 @@ const organizerPages = {
       name: "organizer.party_income"
     },
     {
+      path: "commissions",
+      component: Commissions,
+      name: "organizer.commissions"
+    },
+    {
       path: "refunds",
       component: Refunds,
       name: "organizer.refunds"
     },
     {
-      path: "commissions",
-      component: Commissions,
-      name: "organizer.commissions"
+      path: "payments",
+      component: Dummy,
+      name: "organizer.payments"
     }
   ]
 };
