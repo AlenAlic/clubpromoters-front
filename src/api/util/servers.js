@@ -5,7 +5,6 @@ import axios from "axios/index";
  * @type {AxiosInstance}
  */
 export const backendServer = axios.create();
-backendServer.defaults.withCredentials = true;
 backendServer.defaults.headers.common["Content-Type"] = "application/json";
 
 /**

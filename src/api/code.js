@@ -9,7 +9,7 @@ export const codeApi = {
    * @returns {Promise}
    */
   async checkCode(code) {
-    return await backendServer.post("check_code", { code: code });
+    return await backendServer.post("/public/check_code", { code: code });
   },
 
   setCode(code) {

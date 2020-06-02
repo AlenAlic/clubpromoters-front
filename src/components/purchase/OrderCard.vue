@@ -108,7 +108,7 @@
 import Vue from "vue";
 export default {
   created() {
-    Vue.axios.get(`/party/${this.$route.params.id}`).then(response => {
+    Vue.axios.get(`/public/party/${this.$route.params.id}`).then(response => {
       this.party = response.data.party;
       this.tickets = this.setTickets(this.party, this.$route.params.tickets);
       this.settings = response.data.settings;

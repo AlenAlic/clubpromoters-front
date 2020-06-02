@@ -40,7 +40,7 @@ export default {
     [ASSETS]({ commit }, { user_id }) {
       commit(ASSETS_REQUEST);
       return Vue.axios
-        .get(`assets/${user_id}`)
+        .get(`user/assets/${user_id}`)
         .then(response => {
           commit(SET_ASSETS, response.data);
           commit(ASSETS_SUCCESS);

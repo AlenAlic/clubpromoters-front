@@ -16,6 +16,15 @@
           :rules="[$form.fieldRequired, $form.pfdFile]"
         ></v-file-input>
       </v-card-text>
+      <v-card-text>
+        Preview the terms
+        <a
+          v-if="$store.state.config.settings.terms"
+          target="_blank"
+          :href="$store.state.config.settings.terms"
+          >here</a
+        >
+      </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
@@ -34,6 +43,7 @@
 
 <script>
 import Vue from "vue";
+import { SET_CONFIG } from "@/store/modules/organizer/config";
 export default {
   data: function() {
     return {
@@ -58,12 +68,12 @@ export default {
             "Content-Type": "multipart/form-data"
           }
         })
-        .then(() => {
-          this.loading = false;
+        .then(response => {
           this.$refs.form.resetValidation();
           this.terms = null;
+          this.$store.commit(SET_CONFIG, response.data);
         })
-        .catch(() => {
+        .finally(() => {
           this.loading = false;
         });
     }

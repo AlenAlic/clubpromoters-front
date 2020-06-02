@@ -106,7 +106,7 @@ export default {
         formData.append(file.name, file);
       });
       Vue.axios
-        .post(`upload/images/${this.userId}`, formData, {
+        .post(`user/upload/images/${this.userId}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }

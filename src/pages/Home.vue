@@ -163,7 +163,7 @@ export default {
   methods: {
     getParties() {
       Vue.axios
-        .get("homepage_parties")
+        .get("public/homepage_parties")
         .then(response => {
           this.parties = response.data;
         })
