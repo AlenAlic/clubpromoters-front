@@ -1,26 +1,16 @@
 <template>
   <v-row align="center">
-    <v-col>
-      <loading-card v-if="loading"></loading-card>
-      <create-organizer-card
-        v-else-if="!hasOrganizer"
-        @createdOrganizerAccount="checkForOrganizerAccount"
-      ></create-organizer-card>
-      <v-card v-else-if="hasOrganizer">
-        <v-card-text class="text-center">
-          Has organizer
-        </v-card-text>
-      </v-card>
+    <v-col cols="12" md="6" xl="3">
+      <create-organizer-card @createdOrganizerAccount="checkForOrganizerAccount" />
     </v-col>
   </v-row>
 </template>
 <script>
 import Vue from "vue";
-import LoadingCard from "@/components/general/LoadingCard";
 import CreateOrganizerCard from "@/components/admin/CreateOrganizerCard";
 export default {
   name: "Setup",
-  components: { LoadingCard, CreateOrganizerCard },
+  components: { CreateOrganizerCard },
   data: function() {
     return {
       loading: true,

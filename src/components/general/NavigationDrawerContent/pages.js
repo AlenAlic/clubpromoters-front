@@ -2,18 +2,7 @@ import i18n from "@/languages";
 import { ADMIN, CLUB_OWNER, ORGANIZER, PROMOTER } from "@/constants";
 
 export const admin_drawer_content = [
-  { to: "admin.dashboard", title: i18n.t("menu.dashboard"), icon: "mdi-view-dashboard" },
-  { divider: true },
-  {
-    to: "admin.setup",
-    title: i18n.t("menu.admin.setup"),
-    icon: "mdi-atom"
-  },
-  {
-    to: "admin.test_data",
-    title: i18n.t("menu.admin.test_data"),
-    icon: "mdi-flask-empty-outline"
-  }
+  { to: "admin.dashboard", title: i18n.t("menu.dashboard"), icon: "mdi-view-dashboard" }
 ];
 
 export const organizer_drawer_content = [
