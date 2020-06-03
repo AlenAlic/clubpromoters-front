@@ -1,116 +1,118 @@
 <template>
   <v-container fluid class="fill-height black">
-    <v-app-bar dark app color="black">
-      <v-btn icon>
-        <v-img style="width: 48px; height: 48px;" :src="tiger" contain></v-img>
-      </v-btn>
-      <v-spacer />
-      <v-btn icon :to="{ name: 'login' }">
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-row justify="center" v-if="parties.length > 0">
-      <v-col cols="12" v-for="party in parties" :key="party.id">
-        <party-card :party="party" show-only @loaded="showEnterCode = true" />
-      </v-col>
-    </v-row>
-    <div class="enter-code text-center" :class="{ show: showEnterCode }">
-      <v-form>
-        <div class="code-container">
-          <v-text-field
-            class="code-input"
-            v-model="one"
-            ref="one"
-            dark
-            type="number"
-            maxlength="1"
-            min="0"
-            max="9"
-            pattern="[0-9]*"
-            autofocus
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            v-on:keyup="checkForward(one, $refs.two, $event)"
-          ></v-text-field>
-          <span class="space"></span>
-          <v-text-field
-            class="code-input"
-            v-model="two"
-            ref="two"
-            dark
-            type="number"
-            maxlength="1"
-            min="0"
-            max="9"
-            pattern="[0-9]*"
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            v-on:keyup="checkForward(two, $refs.three, $event)"
-            v-on:keydown.delete="checkBackwards(two, $refs.one, $event)"
-          ></v-text-field>
-          <span class="space"></span>
-          <v-text-field
-            class="code-input"
-            v-model="three"
-            ref="three"
-            dark
-            type="number"
-            maxlength="1"
-            min="0"
-            max="9"
-            pattern="[0-9]*"
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            v-on:keyup="checkForward(three, $refs.four, $event)"
-            v-on:keydown.delete="checkBackwards(three, $refs.two, $event)"
-          ></v-text-field>
-          <span class="space"></span>
-          <v-text-field
-            class="code-input"
-            v-model="four"
-            ref="four"
-            dark
-            type="number"
-            maxlength="1"
-            min="0"
-            max="9"
-            pattern="[0-9]*"
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            v-on:keyup="checkForward(four, $refs.five, $event)"
-            v-on:keydown.delete="checkBackwards(four, $refs.three, $event)"
-          ></v-text-field>
-          <span class="space"></span>
-          <v-text-field
-            class="code-input"
-            v-model="five"
-            ref="five"
-            dark
-            type="number"
-            maxlength="1"
-            min="0"
-            max="9"
-            pattern="[0-9]*"
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            v-on:keyup="checkForward(five, $refs.six, $event)"
-            v-on:keydown.delete="checkBackwards(five, $refs.four, $event)"
-          ></v-text-field>
-          <span class="space"></span>
-          <v-text-field
-            class="code-input"
-            v-model="six"
-            ref="six"
-            dark
-            type="number"
-            maxlength="1"
-            min="0"
-            max="9"
-            pattern="[0-9]*"
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            v-on:keyup="checkSubmit(six, $refs.submit, $event)"
-            v-on:keydown.delete="checkBackwards(six, $refs.five, $event)"
-          ></v-text-field>
-        </div>
-        <v-btn :disabled="!codeFilled" dark color="black" ref="submit" @click="checkCode">
-          ENTER
+    <div style="width: 100%;">
+      <v-app-bar dark app color="black">
+        <v-btn icon>
+          <v-img style="width: 48px; height: 48px;" :src="tiger" contain></v-img>
         </v-btn>
-      </v-form>
+        <v-spacer />
+        <v-btn icon :to="{ name: 'login' }">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-row justify="center" v-if="parties.length > 0">
+        <v-col cols="12" v-for="party in parties" :key="party.id">
+          <party-card :party="party" show-only @loaded="showEnterCode = true" />
+        </v-col>
+      </v-row>
+      <div class="enter-code text-center" :class="{ show: showEnterCode }">
+        <v-form>
+          <div class="code-container">
+            <v-text-field
+              class="code-input"
+              v-model="one"
+              ref="one"
+              dark
+              type="number"
+              maxlength="1"
+              min="0"
+              max="9"
+              pattern="[0-9]*"
+              autofocus
+              oninput="this.value=this.value.slice(0,this.maxLength)"
+              v-on:keyup="checkForward(one, $refs.two, $event)"
+            ></v-text-field>
+            <span class="space"></span>
+            <v-text-field
+              class="code-input"
+              v-model="two"
+              ref="two"
+              dark
+              type="number"
+              maxlength="1"
+              min="0"
+              max="9"
+              pattern="[0-9]*"
+              oninput="this.value=this.value.slice(0,this.maxLength)"
+              v-on:keyup="checkForward(two, $refs.three, $event)"
+              v-on:keydown.delete="checkBackwards(two, $refs.one, $event)"
+            ></v-text-field>
+            <span class="space"></span>
+            <v-text-field
+              class="code-input"
+              v-model="three"
+              ref="three"
+              dark
+              type="number"
+              maxlength="1"
+              min="0"
+              max="9"
+              pattern="[0-9]*"
+              oninput="this.value=this.value.slice(0,this.maxLength)"
+              v-on:keyup="checkForward(three, $refs.four, $event)"
+              v-on:keydown.delete="checkBackwards(three, $refs.two, $event)"
+            ></v-text-field>
+            <span class="space"></span>
+            <v-text-field
+              class="code-input"
+              v-model="four"
+              ref="four"
+              dark
+              type="number"
+              maxlength="1"
+              min="0"
+              max="9"
+              pattern="[0-9]*"
+              oninput="this.value=this.value.slice(0,this.maxLength)"
+              v-on:keyup="checkForward(four, $refs.five, $event)"
+              v-on:keydown.delete="checkBackwards(four, $refs.three, $event)"
+            ></v-text-field>
+            <span class="space"></span>
+            <v-text-field
+              class="code-input"
+              v-model="five"
+              ref="five"
+              dark
+              type="number"
+              maxlength="1"
+              min="0"
+              max="9"
+              pattern="[0-9]*"
+              oninput="this.value=this.value.slice(0,this.maxLength)"
+              v-on:keyup="checkForward(five, $refs.six, $event)"
+              v-on:keydown.delete="checkBackwards(five, $refs.four, $event)"
+            ></v-text-field>
+            <span class="space"></span>
+            <v-text-field
+              class="code-input"
+              v-model="six"
+              ref="six"
+              dark
+              type="number"
+              maxlength="1"
+              min="0"
+              max="9"
+              pattern="[0-9]*"
+              oninput="this.value=this.value.slice(0,this.maxLength)"
+              v-on:keyup="checkSubmit(six, $refs.submit, $event)"
+              v-on:keydown.delete="checkBackwards(six, $refs.five, $event)"
+            ></v-text-field>
+          </div>
+          <v-btn :disabled="!codeFilled" dark color="black" ref="submit" @click="checkCode">
+            ENTER
+          </v-btn>
+        </v-form>
+      </div>
     </div>
   </v-container>
 </template>
@@ -169,9 +171,6 @@ export default {
         })
         .finally(() => {
           this.showEnterCode = true;
-          // setTimeout(() => {
-          //   this.showEnterCode = true;
-          // }, 200);
         });
     },
     checkForward: function(value, ref, event) {
