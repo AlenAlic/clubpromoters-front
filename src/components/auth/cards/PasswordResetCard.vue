@@ -1,60 +1,56 @@
 <template>
-  <div class="mx-auto">
-    <v-card max-width="400">
-      <transition name="fade" mode="out-in">
-        <v-form ref="form" lazy-validation v-if="!newPasswordSet" @submit.prevent="changePassword">
-          <v-card-title>{{ $t("auth.change_password") }}</v-card-title>
-          <v-card-text>
-            <v-text-field
-              v-model="password"
-              :label="$t('auth.password')"
-              required
-              type="password"
-            ></v-text-field>
-            <v-text-field
-              v-model="repeatPassword"
-              :label="$t('auth.repeat_password')"
-              required
-              type="password"
-            ></v-text-field>
-            <password-requirements
-              ref="req"
-              :password="password"
-              :repeat_password="repeatPassword"
-              @requirements="passwordRequirements"
-            />
-          </v-card-text>
-          <v-card-actions>
-            <v-btn
-              :disabled="!valid || loading"
-              :loading="loading"
-              color="primary"
-              text
-              @click="changePassword"
-            >
-              {{ $t("auth.reset_password") }}
-            </v-btn>
-            <router-link tag="span" :to="{ name: 'login' }">
-              <v-btn text>
-                {{ $t("general.cancel") }}
-              </v-btn>
-            </router-link>
-          </v-card-actions>
-        </v-form>
-        <div v-else>
-          <v-card-title>{{ $t("auth.new_password_set.title") }}</v-card-title>
-          <v-card-text>{{ $t("auth.new_password_set.text") }}</v-card-text>
-          <v-card-actions>
-            <router-link tag="span" :to="{ name: 'login' }">
-              <v-btn text color="primary">
-                {{ $t("navigation.back_to_login_page") }}
-              </v-btn>
-            </router-link>
-          </v-card-actions>
-        </div>
-      </transition>
-    </v-card>
-  </div>
+  <v-card>
+    <transition name="fade" mode="out-in">
+      <v-form ref="form" lazy-validation v-if="!newPasswordSet" @submit.prevent="changePassword">
+        <v-card-title>{{ $t("auth.change_password") }}</v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="password"
+            :label="$t('auth.password')"
+            required
+            type="password"
+          ></v-text-field>
+          <v-text-field
+            v-model="repeatPassword"
+            :label="$t('auth.repeat_password')"
+            required
+            type="password"
+          ></v-text-field>
+          <password-requirements
+            ref="req"
+            :password="password"
+            :repeat_password="repeatPassword"
+            @requirements="passwordRequirements"
+          />
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            :disabled="!valid || loading"
+            :loading="loading"
+            color="primary"
+            text
+            @click="changePassword"
+          >
+            {{ $t("auth.reset_password") }}
+          </v-btn>
+          <v-btn text :to="{ name: 'login' }">
+            {{ $t("general.cancel") }}
+          </v-btn>
+        </v-card-actions>
+      </v-form>
+      <div v-else>
+        <v-card-title>{{ $t("auth.new_password_set.title") }}</v-card-title>
+        <v-card-text>{{ $t("auth.new_password_set.text") }}</v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn text color="primary" :to="{ name: 'login' }">
+            {{ $t("navigation.back_to_login_page") }}
+          </v-btn>
+        </v-card-actions>
+      </div>
+    </transition>
+  </v-card>
 </template>
 
 <script>

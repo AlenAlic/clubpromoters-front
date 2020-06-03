@@ -1,63 +1,61 @@
 <template>
-  <div class="mx-auto">
-    <v-card max-width="400">
-      <v-card-title>{{ $t("auth.activate.title") }}</v-card-title>
-      <transition name="fade" mode="out-in">
-        <div v-if="verifying">
-          <v-card-text class="text-center">
-            <div class="mb-3">{{ $t("auth.activate.verifying_token") }}</div>
-            <v-progress-circular indeterminate color="primary"></v-progress-circular>
-          </v-card-text>
-        </div>
-        <div v-else-if="error">
+  <v-card max-width="400">
+    <v-card-title>{{ $t("auth.activate.title") }}</v-card-title>
+    <transition name="fade" mode="out-in">
+      <div v-if="verifying">
+        <v-card-text class="text-center">
+          <div class="mb-3">{{ $t("auth.activate.verifying_token") }}</div>
+          <v-progress-circular indeterminate color="primary"></v-progress-circular>
+        </v-card-text>
+      </div>
+      <div v-else-if="error">
+        <v-card-text>
+          {{ $t("auth.activate.verification_error") }}
+        </v-card-text>
+        <v-card-actions>
+          <v-btn text color="primary" :to="{ name: 'home' }" exact>
+            {{ $t("navigation.back_to_home_page") }}
+          </v-btn>
+        </v-card-actions>
+      </div>
+      <div v-else>
+        <v-form ref="form" lazy-validation @submit.prevent="activate">
           <v-card-text>
-            {{ $t("auth.activate.verification_error") }}
+            {{ $t("auth.activate.set_password") }}
+            <v-text-field
+              v-model="password"
+              :label="$t('auth.password')"
+              required
+              type="password"
+            ></v-text-field>
+            <v-text-field
+              v-model="repeatPassword"
+              :label="$t('auth.repeat_password')"
+              required
+              type="password"
+            ></v-text-field>
+            <password-requirements
+              :password="password"
+              :repeat_password="repeatPassword"
+              @requirements="passwordRequirements"
+            />
+            <v-card-actions>
+              <v-spacer />
+              <v-btn
+                :disabled="!valid || loading"
+                :loading="loading"
+                color="primary"
+                text
+                @click="activate"
+              >
+                {{ $t("auth.activate.activate") }}
+              </v-btn>
+            </v-card-actions>
           </v-card-text>
-          <v-card-actions>
-            <v-btn text color="primary" :to="{ name: 'home' }" exact>
-              {{ $t("navigation.back_to_home_page") }}
-            </v-btn>
-          </v-card-actions>
-        </div>
-        <div v-else>
-          <v-form ref="form" lazy-validation @submit.prevent="activate">
-            <v-card-text>
-              {{ $t("auth.activate.set_password") }}
-              <v-text-field
-                v-model="password"
-                :label="$t('auth.password')"
-                required
-                type="password"
-              ></v-text-field>
-              <v-text-field
-                v-model="repeatPassword"
-                :label="$t('auth.repeat_password')"
-                required
-                type="password"
-              ></v-text-field>
-              <password-requirements
-                :password="password"
-                :repeat_password="repeatPassword"
-                @requirements="passwordRequirements"
-              />
-              <v-card-actions>
-                <v-spacer />
-                <v-btn
-                  :disabled="!valid || loading"
-                  :loading="loading"
-                  color="primary"
-                  text
-                  @click="activate"
-                >
-                  {{ $t("auth.activate.activate") }}
-                </v-btn>
-              </v-card-actions>
-            </v-card-text>
-          </v-form>
-        </div>
-      </transition>
-    </v-card>
-  </div>
+        </v-form>
+      </div>
+    </transition>
+  </v-card>
 </template>
 
 <script>

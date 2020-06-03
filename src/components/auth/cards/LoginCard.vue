@@ -1,46 +1,50 @@
 <template>
-  <div class="mx-auto">
-    <v-card max-width="400px" dark>
-      <v-form ref="form" v-model="valid" @submit.prevent="login">
-        <v-card-title>{{ $t("auth.log_in") }}</v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            :label="$t('auth.email')"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            :label="$t('auth.password')"
-            required
-            type="password"
-          ></v-text-field>
-          <v-checkbox v-model="rememberMe" :label="$t('auth.remember_me')" required></v-checkbox>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            :disabled="!valid || loading"
-            :loading="loading"
-            color="primary"
-            text
-            @click="login"
-            type="submit"
-          >
-            {{ $t("auth.log_in") }}
-          </v-btn>
-          <v-btn text :to="{ name: 'home' }" exact>
-            {{ $t("general.cancel") }}
-          </v-btn>
-        </v-card-actions>
-      </v-form>
-    </v-card>
-    <v-btn text class="mt-2" :to="{ name: 'reset' }">
-      {{ $t("auth.forgot_password") }}
-    </v-btn>
-  </div>
+  <v-row no-gutters="">
+    <v-col cols="12">
+      <v-card>
+        <v-form ref="form" v-model="valid" @submit.prevent="login">
+          <v-card-title>{{ $t("auth.log_in") }}</v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              :label="$t('auth.email')"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              :label="$t('auth.password')"
+              required
+              type="password"
+            ></v-text-field>
+            <v-checkbox v-model="rememberMe" :label="$t('auth.remember_me')" required></v-checkbox>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              :disabled="!valid || loading"
+              :loading="loading"
+              color="primary"
+              text
+              @click="login"
+              type="submit"
+            >
+              {{ $t("auth.log_in") }}
+            </v-btn>
+            <v-btn text :to="{ name: 'home' }" exact>
+              {{ $t("general.cancel") }}
+            </v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card>
+    </v-col>
+    <v-col cols="12">
+      <v-btn text :to="{ name: 'reset' }">
+        {{ $t("auth.forgot_password") }}
+      </v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

@@ -1,14 +1,17 @@
 <template>
-  <v-container class="fill-height">
+  <center-container>
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
-  </v-container>
+  </center-container>
 </template>
 
 <script>
+import CenterContainer from "../containers/CenterContainer";
 export default {
-  name: "Authentication",
+  components: {
+    CenterContainer
+  },
   created() {
     if (this.$auth.currentUser !== null) {
       let redirect = this.$route.query.redirect;

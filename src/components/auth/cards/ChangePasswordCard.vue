@@ -1,49 +1,47 @@
 <template>
-  <div class="mx-auto">
-    <v-card max-width="400">
-      <v-form ref="form" lazy-validation @submit.prevent="changePassword">
-        <v-card-title>{{ $t("auth.change_password") }}</v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-model="currentPassword"
-            :label="$t('auth.current_password')"
-            required
-            type="password"
-          ></v-text-field>
-          <v-text-field
-            v-model="newPassword"
-            :label="$t('auth.new_password')"
-            required
-            type="password"
-          ></v-text-field>
-          <v-text-field
-            v-model="repeatPassword"
-            :label="$t('auth.repeat_password')"
-            required
-            type="password"
-          ></v-text-field>
-          <password-requirements
-            ref="req"
-            :password="newPassword"
-            :repeat_password="repeatPassword"
-            @requirements="passwordRequirements"
-          />
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            :disabled="!valid || loading"
-            :loading="loading"
-            color="primary"
-            text
-            @click="changePassword"
-          >
-            {{ $t("auth.change_password") }}
-          </v-btn>
-        </v-card-actions>
-      </v-form>
-    </v-card>
-  </div>
+  <v-card>
+    <v-form ref="form" lazy-validation @submit.prevent="changePassword">
+      <v-card-title>{{ $t("auth.change_password") }}</v-card-title>
+      <v-card-text>
+        <v-text-field
+          v-model="currentPassword"
+          :label="$t('auth.current_password')"
+          required
+          type="password"
+        ></v-text-field>
+        <v-text-field
+          v-model="newPassword"
+          :label="$t('auth.new_password')"
+          required
+          type="password"
+        ></v-text-field>
+        <v-text-field
+          v-model="repeatPassword"
+          :label="$t('auth.repeat_password')"
+          required
+          type="password"
+        ></v-text-field>
+        <password-requirements
+          ref="req"
+          :password="newPassword"
+          :repeat_password="repeatPassword"
+          @requirements="passwordRequirements"
+        />
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          :disabled="!valid || loading"
+          :loading="loading"
+          color="primary"
+          text
+          @click="changePassword"
+        >
+          {{ $t("auth.change_password") }}
+        </v-btn>
+      </v-card-actions>
+    </v-form>
+  </v-card>
 </template>
 
 <script>
