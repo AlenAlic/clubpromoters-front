@@ -9,10 +9,8 @@ import i18n from "@/languages";
  * @readonly
  */
 export const ERROR_CODES = {
-  NONE: -1,
   UNKNOWN: 0,
-  SERVER_CORS: 1,
-  NETWORK: 2,
+  NETWORK: 1,
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
@@ -41,11 +39,11 @@ const HTTP_STATUS_MAPPING = {
  * @returns {boolean}
  */
 function isAxiosError(error) {
-  return error && error.hasOwnProperty("response");
+  return error && Object.prototype.hasOwnProperty.call(error, "response");
 }
 
 /**
- * Returns true if Error is a result of a CORS error during the request
+ * Returns true if Error is a result of network error during the request
  * @param {AxiosError} error
  * @returns {boolean}
  */
@@ -83,16 +81,12 @@ export function localizeNetworkErrorCode(code) {
     return null;
   }
   switch (code) {
-    case ERROR_CODES.NONE:
-      return null;
     case ERROR_CODES.NETWORK:
       return i18n.t("network-errors.network");
-    case ERROR_CODES.SERVER_CORS:
-      return i18n.t("network-errors.server-cors");
     case ERROR_CODES.BAD_REQUEST:
       return i18n.t("network-errors.bad-request");
     case ERROR_CODES.UNAUTHORIZED:
-      return i18n.t("network-errors.credentials");
+      return i18n.t("network-errors.unauthorized");
     case ERROR_CODES.FORBIDDEN:
       return i18n.t("network-errors.forbidden");
     case ERROR_CODES.NOT_FOUND:

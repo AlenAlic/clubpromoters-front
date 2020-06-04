@@ -5,17 +5,17 @@
       <v-card-text>
         <v-text-field
           v-model="first_name"
-          :rules="firstNameRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('club_owner.create_new_account.hostess.first_name.label')"
           required
         ></v-text-field>
         <v-text-field
           v-model="last_name"
-          :rules="lastNameRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('club_owner.create_new_account.hostess.last_name.label')"
           required
         ></v-text-field>
-        <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
+        <v-text-field v-model="email" :rules="[$form.fieldIsEmail]" :label="$t('auth.email')" required></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -38,11 +38,8 @@ export default {
       loading: false,
       valid: false,
       first_name: "",
-      firstNameRules: [v => !!v || this.$t("form_validation.errors.required")],
       last_name: "",
-      lastNameRules: [v => !!v || this.$t("form_validation.errors.required")],
-      email: "",
-      emailRules: [v => this.$util.isEmail(v) || this.$t("auth.errors.valid_email")]
+      email: ""
     };
   },
   methods: {

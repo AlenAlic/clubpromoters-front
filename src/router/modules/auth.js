@@ -1,27 +1,30 @@
 const CenterWrapper = () => import("@/components/wrappers/CenterWrapper");
-const ActivateCard = () => import("@/components/auth/cards/ActivateCard.vue");
-const PasswordForgottenCard = () => import("@/components/auth/cards/PasswordForgottenCard.vue");
-const PasswordResetCard = () => import("@/components/auth/cards/PasswordResetCard.vue");
+const ActivateAccount = () => import("../../components/auth/ActivateAccount");
+const RequestNewPassword = () => import("../../components/auth/RequestNewPassword");
+const SetNewPassword = () => import("../../components/auth/SetNewPassword");
 
-const authRoutes = {
-  path: "/auth",
-  component: CenterWrapper,
-  children: [
-    {
-      path: "activate/:token",
-      component: ActivateCard,
-      name: "activate"
-    },
-    {
-      path: "password/reset",
-      component: PasswordForgottenCard,
-      name: "reset"
-    },
-    {
-      path: "password/reset/:token",
-      component: PasswordResetCard,
-      name: "reset/token"
-    }
-  ]
-};
+const authRoutes = [
+  {
+    path: "/activate/:token",
+    component: ActivateAccount,
+    name: "activate"
+  },
+  {
+    path: "/password",
+    component: CenterWrapper,
+    redirect: { name: "reset" },
+    children: [
+      {
+        path: "reset",
+        component: RequestNewPassword,
+        name: "reset"
+      },
+      {
+        path: "reset/:token",
+        component: SetNewPassword,
+        name: "reset.token"
+      }
+    ]
+  }
+];
 export default authRoutes;

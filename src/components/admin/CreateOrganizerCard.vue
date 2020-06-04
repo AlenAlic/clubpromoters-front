@@ -5,7 +5,7 @@
       <v-card-text>
         <v-text-field
           v-model="email"
-          :rules="emailRules"
+          :rules="[$form.fieldIsEmail]"
           :label="$t('auth.email')"
           required
           persistent-hint
@@ -29,8 +29,7 @@ export default {
     return {
       loading: false,
       valid: false,
-      email: "",
-      emailRules: [v => this.$util.isEmail(v) || this.$t("auth.errors.valid_email")]
+      email: ""
     };
   },
   methods: {

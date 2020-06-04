@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 // Pages
 const Home = () => import("@/pages/Home.vue");
 const Login = () => import("@/pages/Login.vue");
-const Vuetify = () => import("@/pages/Vuetify.vue");
 const PageNotFound = () => import("@/pages/PageNotFound.vue");
 
 // Pages modules
@@ -35,16 +34,7 @@ const routes = [
     name: "login",
     component: Login
   },
-  {
-    path: "/vuetify",
-    name: "vuetify",
-    component: Vuetify,
-    meta: {
-      auth: false,
-      debugRoute: true
-    }
-  },
-  authPages,
+  ...authPages,
   ...userRoutes,
   adminPages,
   organizerPages,
@@ -100,9 +90,7 @@ router.beforeEach((to, from, next) => {
       return;
     } else {
       if (
-        to.matched.filter(
-          r => r.meta.access !== undefined && r.meta.access !== Vue.prototype.$auth.access
-        ).length > 0
+        to.matched.filter(r => r.meta.access !== undefined && r.meta.access !== Vue.prototype.$auth.access).length > 0
       ) {
         next({ name: "home" });
         return;

@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "switch": {
+      "title": "Switch account",
+      "text": "Log in to a different user account",
+      "hint": "Select an account to switch to",
+      "no_accounts": "There are no active accounts to switch to",
+      "switch": "Switch"
+    },
+    "create_organizer": {
+      "title": "Create organizer account",
+      "hint": "The e-mail address that will be used for the organizer account",
+      "create_account": "Create account"
+    }
+  }
+}

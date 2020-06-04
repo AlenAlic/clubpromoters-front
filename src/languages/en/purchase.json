@@ -1,0 +1,28 @@
+{
+  "purchase": {
+    "order": {
+      "first_name": {
+        "label": "First name"
+      },
+      "last_name": {
+        "label": "Last name"
+      },
+      "email": {
+        "hint": "Your tickets will e-mailed to you."
+      },
+      "terms": {
+        "label": {
+          "1": "I have read, and accept the",
+          "2": "as set by clubpromoters.net.",
+          "link": {
+            "text": "terms and conditions"
+          }
+        }
+      },
+      "buy_tickets": "Order",
+      "errors": {
+        "terms": "You must accept the terms and conditions!"
+      }
+    }
+  }
+}

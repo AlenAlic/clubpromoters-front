@@ -1,0 +1,45 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "organizer": {
+      "subheader": {
+        "club_owners": "Club Owners",
+        "promoters": "Promoters",
+        "parties": "Parties",
+        "insight": "Insight",
+        "finances": "Finances"
+      },
+      "club_owner_accounts": "Accounts",
+      "club_owner_locations": "Locations",
+      "upload_assets": "Upload assets",
+      "hostesses": "Hostesses",
+      "promoter_accounts": "Promoter accounts",
+      "codes": "Codes",
+      "create_new_party": "Create new party",
+      "inactive_parties": "Inactive parties",
+      "active_parties": "Active parties",
+      "past_parties": "Past parties",
+      "party_income": "Party income",
+      "commissions": "Commissions",
+      "refunds": "Refunds",
+      "payments": "Payments"
+    },
+    "club_owner": {
+      "subheader": {
+        "user_accounts": "User accounts",
+        "parties": "Parties",
+        "finances": "Finances"
+      },
+      "hostesses": "Hostesses",
+      "active_parties": "Active parties",
+      "inactive_parties": "Inactive parties",
+      "past_parties": "Past parties",
+      "party_income": "Party income"
+    },
+    "promoter": {
+      "code": "My code",
+      "finances": "Income"
+    }
+  }
+}

@@ -52,11 +52,11 @@ export default {
         case "large":
           return "890";
         case "x-large":
-          return "1190";
+          return "1390";
         case "xx-large":
-          return "1490";
+          return "1690";
         default: {
-          return "450";
+          return "590";
         }
       }
     }

@@ -1,0 +1,8 @@
+{
+  "vuetify": {
+    "data-footer": {
+      "items-per-page-text": "Rows per page:",
+      "items-per-page-all-text": "All"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "general": {
+    "attention": "Attention!",
+    "back_to_home_page": "Back to home page",
+    "back_to_login_page": "Back to login page",
+    "cancel": "Cancel",
+    "close": "Close",
+    "code": "Code",
+    "edit": "Edit",
+    "go_back": "Go back",
+    "ok": "OK",
+    "opens_in_new_window": "Opens in a new window",
+    "profile": "Profile",
+    "save_changes": "Save changes",
+    "search": "Search",
+    "security": "Security"
+  }
+}

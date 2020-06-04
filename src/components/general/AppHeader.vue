@@ -11,7 +11,7 @@
 
     <v-spacer v-if="$auth.isAuthenticated && $auth.isHostess"></v-spacer>
 
-    <v-toolbar-title>clubpromoters.net</v-toolbar-title>
+    <v-toolbar-title>{{ $t("app.title") }}</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -44,7 +44,7 @@
             <v-icon>mdi-logout</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ $t("auth.log_out") }}</v-list-item-title>
+            <v-list-item-title>{{ $t("auth.sign_out") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

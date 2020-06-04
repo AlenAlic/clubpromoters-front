@@ -47,21 +47,21 @@
         </div>
         <v-text-field
           v-model="first_name"
-          :rusles="firstNameRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('purchase.order.first_name.label')"
           color="black"
           required
         ></v-text-field>
         <v-text-field
           v-model="last_name"
-          :rules="lastNameRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('purchase.order.last_name.label')"
           color="black"
           required
         ></v-text-field>
         <v-text-field
           v-model="email"
-          :rules="emailRules"
+          :rules="[$form.fieldIsEmail]"
           :label="$t('auth.email')"
           color="black"
           required
@@ -74,7 +74,7 @@
               {{ $t("purchase.order.terms.label.1") }}
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
-                  <a target="_blank" :href="$t('purchase.order.terms.label.link.href')" @click.stop v-on="on">
+                  <a target="_blank" :href="$config.terms" @click.stop v-on="on">
                     {{ $t("purchase.order.terms.label.link.text") }}
                   </a>
                 </template>
@@ -117,11 +117,8 @@ export default {
       party: null,
       tickets: 0,
       first_name: "",
-      firstNameRules: [v => !!v || this.$t("form_validation.errors.required")],
       last_name: "",
-      lastNameRules: [v => !!v || this.$t("form_validation.errors.required")],
       email: "",
-      emailRules: [v => this.$util.isEmail(v) || this.$t("auth.errors.valid_email")],
       terms: false,
       termsRules: [v => !!v || this.$t("purchase.order.errors.terms")]
     };

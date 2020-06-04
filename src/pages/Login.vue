@@ -1,15 +1,15 @@
 <template>
   <center-container>
-    <login-card />
+    <login />
   </center-container>
 </template>
 
 <script>
 import CenterContainer from "@/components/containers/CenterContainer";
-import LoginCard from "@/components/auth/cards/LoginCard";
+import Login from "@/components/auth/Login";
 export default {
   components: {
-    LoginCard,
+    Login,
     CenterContainer
   },
   created() {
