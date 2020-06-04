@@ -28,7 +28,15 @@
             <v-icon>mdi-account-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ $t("menu.profile") }}</v-list-item-title>
+            <v-list-item-title>{{ $t("general.profile") }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item :to="{ name: 'security' }">
+          <v-list-item-icon>
+            <v-icon>mdi-account-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{ $t("general.security") }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item @click="signOut()">

@@ -1,18 +1,12 @@
-const Authentication = () => import("@/components/auth/Authentication.vue");
-const LoginCard = () => import("@/components/auth/cards/LoginCard.vue");
+const CenterWrapper = () => import("@/components/wrappers/CenterWrapper");
 const ActivateCard = () => import("@/components/auth/cards/ActivateCard.vue");
 const PasswordForgottenCard = () => import("@/components/auth/cards/PasswordForgottenCard.vue");
 const PasswordResetCard = () => import("@/components/auth/cards/PasswordResetCard.vue");
 
 const authRoutes = {
   path: "/auth",
-  component: Authentication,
+  component: CenterWrapper,
   children: [
-    {
-      path: "/login",
-      name: "login",
-      component: LoginCard
-    },
     {
       path: "activate/:token",
       component: ActivateCard,

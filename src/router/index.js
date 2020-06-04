@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 // Pages
 const Home = () => import("@/pages/Home.vue");
+const Login = () => import("@/pages/Login.vue");
 const Vuetify = () => import("@/pages/Vuetify.vue");
 const PageNotFound = () => import("@/pages/PageNotFound.vue");
 
@@ -30,6 +31,11 @@ const routes = [
     component: Home
   },
   {
+    path: "/login",
+    name: "login",
+    component: Login
+  },
+  {
     path: "/vuetify",
     name: "vuetify",
     component: Vuetify,
@@ -39,7 +45,7 @@ const routes = [
     }
   },
   authPages,
-  userRoutes,
+  ...userRoutes,
   adminPages,
   organizerPages,
   purchasePages,

@@ -133,13 +133,14 @@ export default {
         });
     },
     // Renew user token
-    [RENEW]({ commit }) {
+    [RENEW]({ commit, dispatch }) {
       commit(RENEW_REQUEST);
       return authApi
         .renew()
         .then(response => {
           commit(SET_USER, response.data);
           commit(RENEW_SUCCESS);
+          dispatch(GET_PROFILE);
         })
         .catch(() => {
           commit(CLEAR_USER);
