@@ -12,6 +12,8 @@
           v-if="showClubOwner"
           v-model="clubOwner"
           :items="clubOwners"
+          item-text="club"
+          item-value="id"
           persistent-hint
           :hint="$t('organizer.upload_assets.user.upload.hint')"
           :disabled="$store.state.users.loading"
@@ -71,7 +73,7 @@ export default {
       return this.showClubOwner ? this.clubOwner : this.$store.getters.access;
     },
     clubOwners() {
-      return this.$store.state.users.clubOwners.filter(c => c.is_active).map(o => ({ text: o.club, value: o.id }));
+      return this.$store.state.users.clubOwners.filter(c => c.is_active);
     }
   },
   methods: {
