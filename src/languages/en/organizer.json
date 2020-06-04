@@ -1,42 +1,12 @@
 {
   "organizer": {
-    "dashboard": {
-      "config": {
-        "title": "Settings",
-        "club_owner_commission": {
-          "label": "Club Owner commission",
-          "hint": "Default commission for Club Owners"
-        },
-        "promoter_commission": {
-          "label": "Promoter commission",
-          "hint": "Default commission for Promoters"
-        },
-        "mollie_api_key": {
-          "label": "Mollie API key",
-          "hint": "Required for Mollie to work"
-        },
-        "test_email": {
-          "label": "Test email",
-          "hint": "If the system is in debug mode, all e-mails will be sent to this address"
-        },
-        "minimum_promoter_commission": {
-          "label": "Minimum Promoter commission",
-          "hint": "How much a Promoter will at least earn per ticket sold (can only be more, depending on commission percentages set)"
-        },
-        "administration_costs": {
-          "label": "Administration costs",
-          "hint": "How much administration costs should be charged per purchase"
-        },
-        "submit": "Save"
-      },
-      "terms": {
-        "title": "Terms and conditions",
-        "label": "PDF file",
-        "hint": "Shown at checkout",
-        "submit": "Upload"
-      }
-    },
     "create_new_account":{
+      "first_name": {
+        "label": "First name"
+      },
+      "last_name": {
+        "label": "Last name"
+      },
       "club_owner": {
         "title": "Create a new account for a club owner",
         "club": {
@@ -50,13 +20,6 @@
         "submit": "Create account"
       },
       "promoter": {
-        "title": "Create a new account for a promoter",
-        "first_name": {
-          "label": "First name"
-        },
-        "last_name": {
-          "label": "Last name"
-        },
         "commission": {
           "label": "Commission",
           "hint": "Default commission that will be set for a party."

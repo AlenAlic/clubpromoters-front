@@ -5,13 +5,25 @@
       <v-card-text>
         <v-text-field
           v-model="club"
-          :rules="clubRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('organizer.create_new_account.club_owner.club.label')"
           required
           persistent-hint
           :hint="$t('organizer.create_new_account.club_owner.club.hint')"
         ></v-text-field>
-        <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
+        <v-text-field
+          v-model="first_name"
+          :rules="[$form.fieldRequired]"
+          :label="$t('organizer.create_new_account.first_name.label')"
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="last_name"
+          :rules="[$form.fieldRequired]"
+          :label="$t('organizer.create_new_account.last_name.label')"
+          required
+        ></v-text-field>
+        <v-text-field v-model="email" :rules="[$form.fieldIsEmail]" :label="$t('auth.email')" required></v-text-field>
         <v-text-field
           v-model="commission"
           :rules="commissionRules"
@@ -43,9 +55,9 @@ export default {
       loading: false,
       valid: false,
       club: "",
-      clubRules: [this.$form.fieldRequired],
+      first_name: "",
+      last_name: "",
       email: "",
-      emailRules: [this.$form.fieldIsEmail],
       commission: `${this.$store.state.config.settings.default_club_owner_commission}`,
       commissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax]
     };
@@ -57,21 +69,26 @@ export default {
         .post("organizer/create_new_club_owner", {
           club: this.club,
           email: this.email,
-          commission: this.commission
+          first_name: this.first_name,
+          last_name: this.last_name,
+          commission: Number(this.commission)
         })
         .then(() => {
-          store.dispatch(USERS);
-          this.close();
+          store.dispatch(USERS).then(() => {
+            this.close();
+          });
         })
         .finally(() => {
           this.loading = false;
         });
     },
     close() {
-      this.$refs.form.resetValidation();
       this.club = "";
       this.email = "";
+      this.first_name = "";
+      this.last_name = "";
       this.commission = `${this.$store.state.config.settings.default_club_owner_commission}`;
+      this.$refs.form.resetValidation();
       this.$emit("close");
     }
   }

@@ -6,13 +6,13 @@
         <v-text-field
           v-model="first_name"
           :rules="firstNameRules"
-          :label="$t('organizer.create_new_account.promoter.first_name.label')"
+          :label="$t('organizer.create_new_account.first_name.label')"
           required
         ></v-text-field>
         <v-text-field
           v-model="last_name"
           :rules="lastNameRules"
-          :label="$t('organizer.create_new_account.promoter.last_name.label')"
+          :label="$t('organizer.create_new_account.last_name.label')"
           required
         ></v-text-field>
         <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
