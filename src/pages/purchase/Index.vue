@@ -50,7 +50,7 @@
 </template>
 <script>
 import store from "@/store";
-import PartyCard from "@/components/general/PartyCard/PartyCard";
+import PartyCard from "@/components/general/party_card/PartyCard";
 import { DateTime } from "luxon";
 import tiger from "@/assets/images/logo_tiger_black.svg";
 import logo from "@/assets/images/logo_black.svg";

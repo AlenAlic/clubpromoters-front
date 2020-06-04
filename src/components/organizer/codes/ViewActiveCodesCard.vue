@@ -76,7 +76,7 @@
 <script>
 import Vue from "vue";
 import i18n from "@/languages";
-import Modal from "@/components/general/Modal";
+import Modal from "@/components/modal/Modal";
 import store from "@/store";
 import { ACTIVE_CODES, INACTIVE_CODES } from "@/store/modules/organizer/codes";
 import { USERS } from "@/store/modules/organizer/users";

@@ -1,6 +1,6 @@
 import { ADMIN } from "@/constants";
 
-const DefaultWrapper = () => import("@/components/general/DefaultWrapper.vue");
+const DefaultWrapper = () => import("@/components/wrappers/DefaultWrapper.vue");
 const Dashboard = () => import("@/pages/admin/Dashboard.vue");
 
 const adminPages = {

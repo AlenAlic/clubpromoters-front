@@ -159,7 +159,7 @@
 <script>
 // TODO => Viw party stats
 import Vue from "vue";
-import Modal from "@/components/general/Modal";
+import Modal from "@/components/modal/Modal";
 import { MONTHS } from "@/constants";
 import GiveRefundCard from "@/components/organizer/refunds/GiveRefundCard";
 export default {

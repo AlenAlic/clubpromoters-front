@@ -170,7 +170,7 @@
 <script>
 import Vue from "vue";
 import { QrcodeStream } from "vue-qrcode-reader";
-import Modal from "@/components/general/Modal";
+import Modal from "@/components/modal/Modal";
 import { ERROR_CODES, getNetworkErrorCode } from "@/api/util/network-errors";
 export default {
   components: { Modal, QrcodeStream },

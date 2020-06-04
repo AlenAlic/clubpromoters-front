@@ -70,7 +70,6 @@ const DEFAULT_CLEAR_TEXT = "CLEAR";
 const DEFAULT_OK_TEXT = "OK";
 const DEFAULT_CANCEL_TEXT = "CANCEL";
 export default {
-  name: "v-datetime-picker",
   model: {
     prop: "datetime",
     event: "input"

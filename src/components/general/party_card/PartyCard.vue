@@ -121,7 +121,7 @@
 
 <script>
 import loading from "@/assets/images/loading.gif";
-import PartyCardImages from "@/components/general/PartyCard/PartyCardImages";
+import PartyCardImages from "@/components/general/party_card/PartyCardImages";
 
 const DEFAULT_MONTH_SHORT = "Oct";
 const DEFAULT_MONTH_LONG = "October";
@@ -136,7 +136,7 @@ import IMAGE_3 from "@/assets/images/image_3.svg";
 import IMAGE_4 from "@/assets/images/image_4.svg";
 const DEFAULT_IMAGES = [IMAGE_0, IMAGE_1, IMAGE_2, IMAGE_3, IMAGE_4];
 import DEFAULT_LOGO from "@/assets/images/image_logo.svg";
-import Modal from "@/components/general/Modal";
+import Modal from "@/components/modal/Modal";
 
 export default {
   components: {

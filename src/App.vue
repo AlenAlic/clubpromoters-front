@@ -1,45 +1,41 @@
 <template>
   <v-app>
-    <app-header v-if="$auth.isAuthenticated" @toggleDrawer="drawer = !drawer" />
-
-    <v-navigation-drawer
-      v-if="$auth.isAuthenticated && !$auth.isHostess"
-      v-model="drawer"
-      :clipped="$vuetify.breakpoint.mdAndUp"
-      :permanent="$vuetify.breakpoint.lgAndUp"
-      app
-    >
-      <NavigationDrawerContent />
-    </v-navigation-drawer>
-
+    <app-header v-if="$auth.isAuthenticated" :breakpoint="breakpoint" @toggleDrawer="drawer = !drawer" />
+    <app-navigation-drawer v-if="$auth.isAuthenticated && !$auth.isHostess" :breakpoint="breakpoint" v-model="drawer" />
     <v-content>
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
     </v-content>
-
-    <v-footer v-if="$auth.isAuthenticated && $auth.isHostess && false" app grow min-height="64">
-      <v-spacer />
-      <v-btn text color="primary" :to="{ name: 'home' }" exact>
-        {{ $t("general.back_to_home_page") }}
-      </v-btn>
-    </v-footer>
+    <app-footer v-if="$auth.isAuthenticated && $auth.isHostess && false" />
   </v-app>
 </template>
 
 <script>
-import NavigationDrawerContent from "@/components/general/NavigationDrawerContent/NavigationDrawerContent";
-import AppHeader from "@/components/general/AppHeader";
+import AppNavigationDrawer from "@/components/app/AppNavigationDrawer";
+import AppHeader from "@/components/app/AppHeader";
+import AppFooter from "@/components/app/AppFooter";
 import loadStore from "@/store/loader";
 export default {
-  components: { NavigationDrawerContent, AppHeader },
-  data: () => ({
-    drawer: null
-  }),
-  mounted() {
+  components: {
+    AppNavigationDrawer,
+    AppHeader,
+    AppFooter
+  },
+  data() {
+    return {
+      drawer: false
+    };
+  },
+  created() {
     this.$nextTick(function() {
       this.$auth.renew().then(() => loadStore());
     });
+  },
+  computed: {
+    breakpoint() {
+      return this.$vuetify.breakpoint.mdAndUp;
+    }
   }
 };
 </script>

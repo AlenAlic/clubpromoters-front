@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar dark app :clipped-left="$vuetify.breakpoint.mdAndUp" color="black">
+  <v-app-bar dark app :clipped-left="breakpoint" color="black">
     <v-app-bar-nav-icon
-      v-if="$vuetify.breakpoint.mdAndDown && $auth.isAuthenticated && !$auth.isHostess"
+      v-if="!breakpoint && $auth.isAuthenticated && !$auth.isHostess"
       @click.stop="$emit('toggleDrawer')"
     ></v-app-bar-nav-icon>
 
@@ -54,6 +54,9 @@
 
 <script>
 export default {
+  props: {
+    breakpoint: { type: Boolean, default: false }
+  },
   methods: {
     signOut: function() {
       this.$auth.signOut().then(() => {

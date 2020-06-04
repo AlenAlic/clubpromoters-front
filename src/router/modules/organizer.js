@@ -1,6 +1,6 @@
 import { ORGANIZER } from "@/constants";
 
-const DefaultWrapper = () => import("@/components/general/DefaultWrapper.vue");
+const DefaultWrapper = () => import("@/components/wrappers/DefaultWrapper.vue");
 const Dashboard = () => import("@/pages/organizer/Dashboard.vue");
 const Codes = () => import("@/pages/organizer/Codes.vue");
 const ClubOwnerAccounts = () => import("@/pages/organizer/ClubOwnerAccounts.vue");

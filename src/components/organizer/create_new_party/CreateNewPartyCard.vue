@@ -149,7 +149,7 @@
 import Vue from "vue";
 import store from "@/store";
 import { USERS } from "@/store/modules/organizer/users";
-import VDatetimePicker from "@/components/general/VDatetimePicker";
+import VDatetimePicker from "@/components/Vuetify/VDatetimePicker";
 import { INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 import { ASSETS, CLEAR_ASSETS } from "@/store/modules/assets";
 export default {

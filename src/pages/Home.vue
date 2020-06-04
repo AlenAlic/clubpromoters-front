@@ -119,7 +119,7 @@
 <script>
 import { codeApi } from "@/api/code";
 import Vue from "vue";
-import PartyCard from "@/components/general/PartyCard/PartyCard";
+import PartyCard from "@/components/general/party_card/PartyCard";
 import tiger from "@/assets/images/logo_tiger_black.svg";
 export default {
   components: { PartyCard },

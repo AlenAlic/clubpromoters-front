@@ -83,7 +83,7 @@
 // TODO => View details as with past parties
 import Vue from "vue";
 import i18n from "@/languages";
-import Modal from "@/components/general/Modal";
+import Modal from "@/components/modal/Modal";
 import store from "@/store";
 import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";
 import { ACTIVE_PARTIES, INACTIVE_PARTIES } from "@/store/modules/organizer/parties";

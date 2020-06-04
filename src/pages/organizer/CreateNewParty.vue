@@ -3,25 +3,44 @@
     <v-col cols="12" lg="4">
       <create-new-party-card @preview="getPreviewObject" />
     </v-col>
-    <v-col style="background: black;">
+    <v-col>
       <v-lazy :options="{ threshold: 0.5 }">
         <party-card :party="preview" :preview="true" />
       </v-lazy>
     </v-col>
   </v-row>
-  <v-row v-else class="fill-height">
+  <v-row v-else align="center" class="fill-height" style="background: black;">
     <v-col cols="12" lg="4">
-      <loading-card />
+      <v-boilerplate
+        :skeletons="[
+          'card-heading',
+          'list-item-two-line',
+          'list-item-two-line',
+          'list-item-two-line',
+          'list-item-two-line',
+          'list-item-two-line',
+          'list-item-three-line',
+          'list-item-two-line',
+          'list-item-two-line',
+          'list-item-three-line',
+          'list-item-two-line',
+          'list-item-two-line',
+          'actions'
+        ]"
+      ></v-boilerplate>
+    </v-col>
+    <v-col cols="12" lg="3" offset-lg="2">
+      <v-boilerplate :skeletons="['image', 'article']"></v-boilerplate>
     </v-col>
   </v-row>
 </template>
 <script>
 import CreateNewPartyCard from "@/components/organizer/create_new_party/CreateNewPartyCard";
-import PartyCard from "@/components/general/PartyCard/PartyCard";
-import LoadingCard from "@/components/general/LoadingCard";
+import PartyCard from "@/components/general/party_card/PartyCard";
+import VBoilerplate from "@/components/Vuetify/VBoilerplate";
 export default {
   components: {
-    LoadingCard,
+    VBoilerplate,
     PartyCard,
     CreateNewPartyCard
   },

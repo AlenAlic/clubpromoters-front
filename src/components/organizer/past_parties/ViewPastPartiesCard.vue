@@ -54,7 +54,7 @@
 
 <script>
 import i18n from "@/languages";
-import Modal from "@/components/general/Modal";
+import Modal from "@/components/modal/Modal";
 import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";
 export default {
   components: { PartyFinancesDataCard, Modal },

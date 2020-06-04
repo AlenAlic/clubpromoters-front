@@ -1,6 +1,6 @@
 import { CLUB_OWNER } from "@/constants";
 
-const DefaultWrapper = () => import("@/components/general/DefaultWrapper.vue");
+const DefaultWrapper = () => import("@/components/wrappers/DefaultWrapper.vue");
 const DummyPage = () => import("@/pages/Dummy.vue");
 const Hostesses = () => import("@/pages/club_owner/Hostesses.vue");
 const PastParties = () => import("@/pages/club_owner/PastParties.vue");
