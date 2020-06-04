@@ -103,10 +103,13 @@ export default {
       return Vue.axios
         .patch("organizer/update_user_commission", {
           user_id: account.id,
-          commission: account.commission
+          commission: Number(account.commission)
         })
         .then(() => {
-          store.dispatch(USERS);
+          store.dispatch(USERS).then(() => {});
+        })
+        .catch(() => {
+          this.$toast.error(i18n.t("organizer.promoter_accounts.errors.commission_update"));
         });
     }
   }

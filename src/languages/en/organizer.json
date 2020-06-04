@@ -126,6 +126,9 @@
           "commission": "Commission",
           "code": "Code"
         }
+      },
+      "errors":{
+        "commission_update": "Something went wrong, could not update commission."
       }
     },
     "create_new_codes": {
