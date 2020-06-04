@@ -9,7 +9,6 @@
 import Vue from "vue";
 import CreateOrganizerCard from "@/components/admin/CreateOrganizerCard";
 export default {
-  name: "Setup",
   components: { CreateOrganizerCard },
   data: function() {
     return {

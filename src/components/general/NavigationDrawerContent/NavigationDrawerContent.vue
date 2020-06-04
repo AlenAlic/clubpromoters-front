@@ -24,7 +24,6 @@ import {
   promoter_drawer_content
 } from "@/components/general/NavigationDrawerContent/pages";
 export default {
-  name: "NavigationDrawerContent",
   props: { initialDrawer: null },
   data() {
     return {

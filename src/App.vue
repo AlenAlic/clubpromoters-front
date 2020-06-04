@@ -32,7 +32,6 @@ import NavigationDrawerContent from "@/components/general/NavigationDrawerConten
 import AppHeader from "@/components/general/AppHeader";
 import loadStore from "@/store/loader";
 export default {
-  name: "App",
   components: { NavigationDrawerContent, AppHeader },
   data: () => ({
     drawer: null

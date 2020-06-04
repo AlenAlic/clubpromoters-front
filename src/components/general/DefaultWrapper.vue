@@ -7,7 +7,5 @@
 </template>
 
 <script>
-export default {
-  name: "DefaultWrapper"
-};
+export default {};
 </script>

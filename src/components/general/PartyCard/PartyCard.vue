@@ -139,7 +139,6 @@ import DEFAULT_LOGO from "@/assets/images/image_logo.svg";
 import Modal from "@/components/general/Modal";
 
 export default {
-  name: "PartyCard",
   components: {
     Modal,
     PartyCardImages

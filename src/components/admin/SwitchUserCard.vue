@@ -37,7 +37,6 @@ import store from "@/store";
 import { SET_USER } from "@/store/modules/auth";
 import loadStore from "@/store/loader";
 export default {
-  name: "SwitchUserCard",
   data: function() {
     return {
       loading: true,

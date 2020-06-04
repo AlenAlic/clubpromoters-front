@@ -9,7 +9,6 @@
 <script>
 import { codeApi } from "@/api/code";
 export default {
-  name: "PurchaseWrapper",
   mounted() {
     codeApi.checkCode(codeApi.getCode()).catch(() => {
       codeApi.setCode(null);

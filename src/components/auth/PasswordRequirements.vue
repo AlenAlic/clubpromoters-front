@@ -38,7 +38,6 @@ const CONDITION_MET = "condition_met";
 const MINIMUM_PASSWORD_LENGTH = 16;
 
 export default {
-  name: "PasswordRequirements",
   props: {
     password: String,
     repeat_password: String,
