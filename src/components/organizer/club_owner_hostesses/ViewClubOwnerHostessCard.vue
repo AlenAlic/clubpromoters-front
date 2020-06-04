@@ -12,6 +12,7 @@
         :disabled="$store.state.users.loading"
         :loading="$store.state.users.loading"
         item-text="club"
+        item-value="id"
         return-object
       />
       <v-spacer></v-spacer>
