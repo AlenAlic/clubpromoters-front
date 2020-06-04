@@ -106,7 +106,10 @@ export default {
     days() {
       const today = this.$util.now;
       const tomorrow = today.plus({ days: 1 });
-      let days = [{ text: "Today", value: today }, { text: "Tomorrow", value: tomorrow }];
+      let days = [
+        { text: "Today", value: today },
+        { text: "Tomorrow", value: tomorrow }
+      ];
       for (let i = 1; i <= 5; i++) {
         const day = tomorrow.plus({ days: i });
         days.push({ text: day.toFormat("cccc"), value: day });
