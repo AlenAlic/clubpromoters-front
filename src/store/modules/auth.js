@@ -1,9 +1,12 @@
-import { AuthenticatedUser, authApi } from "@/api/auth";
-import { loadServerToken, saveServerToken } from "@/api/util/token-storage";
+import Vue from "vue";
+
+import { authApi, getUser } from "@/api/auth";
+import { saveServerToken } from "@/api/util/token-storage";
 import { backendServer } from "@/api/util/servers";
 import { ADMIN, CLUB_OWNER, HOSTESS, ORGANIZER, PROMOTER } from "@/constants";
 
 const SET_USER = "AUTH: Set user";
+const CLEAR_USER = "CLEAR_USER";
 
 const LOGIN = "LOGIN";
 const LOGIN_REQUEST = "LOGIN: Login request sent.";
@@ -20,122 +23,91 @@ const RENEW_REQUEST = "RENEW: Renew token request sent.";
 const RENEW_SUCCESS = "RENEW: Successful request.";
 const RENEW_ERROR = "RENEW: Failed request.";
 
-const ACTIVATE = "ACTIVATE";
-const ACTIVATE_REQUEST = "ACTIVATE: Account activation request sent.";
-const ACTIVATE_SUCCESS = "ACTIVATE: Successful request.";
-const ACTIVATE_ERROR = "ACTIVATE: Failed request.";
-
-const RESET_PASSWORD = "RESET_PASSWORD";
-const RESET_PASSWORD_REQUEST = "RESET_PASSWORD: Reset password request sent.";
-const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD: Successful request.";
-const RESET_PASSWORD_ERROR = "RESET_PASSWORD: Failed request.";
-
 const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 const CHANGE_PASSWORD_REQUEST = "CHANGE_PASSWORD: Change password request sent.";
 const CHANGE_PASSWORD_SUCCESS = "CHANGE_PASSWORD: Successful request.";
 const CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD: Failed request.";
 
-export { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD, SET_USER, CHANGE_PASSWORD };
+const GET_PROFILE = "GET_PROFILE";
+const SET_PROFILE = "SET_PROFILE";
+const CLEAR_PROFILE = "CLEAR_PROFILE";
+const UPDATE_PROFILE = "UPDATE_PROFILE";
 
-const getUser = () => {
-  const token = loadServerToken(backendServer);
-  const user = token ? new AuthenticatedUser(token) : null;
-  return !!user && user.isValid ? user : null;
-};
+const PROFILE_REQUEST = "PROFILE: Profile request sent.";
+const PROFILE_SUCCESS = "PROFILE: Successful request.";
+const PROFILE_ERROR = "PROFILE: Failed request.";
+
+export { LOGIN, LOGOUT, RENEW, SET_USER, CHANGE_PASSWORD, SET_PROFILE, UPDATE_PROFILE };
 
 const setUser = token => {
   saveServerToken(backendServer, token);
-  const user = token ? new AuthenticatedUser(token) : null;
-  return !!user && user.isValid ? user : null;
+  return getUser();
 };
 
 export default {
   state: {
     user: getUser(),
-    access: -1,
-    loading: false
+    profile: null,
+    loadingProfile: false
   },
 
   mutations: {
     [SET_USER](state, token) {
-      let user = setUser(token);
-      state.user = user;
-      if (user) {
-        state.access = user.access;
-      }
+      state.user = setUser(token);
     },
-
-    [LOGIN_REQUEST](state) {
-      state.loading = true;
-    },
-    [LOGIN_SUCCESS](state) {
-      state.loading = false;
-    },
-    [LOGIN_ERROR](state) {
-      state.loading = false;
-    },
-
-    [LOGOUT_REQUEST](state) {
-      state.loading = true;
-    },
-    [LOGOUT_SUCCESS](state) {
+    [CLEAR_USER](state) {
+      setUser(null);
       state.user = null;
-      state.access = -1;
-      state.loading = false;
-    },
-    [LOGOUT_ERROR](state) {
-      state.loading = false;
+      state.profile = null;
     },
 
-    [RENEW_REQUEST](state) {
-      state.loading = true;
-    },
-    [RENEW_SUCCESS](state) {
-      state.loading = false;
-    },
-    [RENEW_ERROR](state) {
-      state.loading = false;
-    },
+    [LOGIN_REQUEST]() {},
+    [LOGIN_SUCCESS]() {},
+    [LOGIN_ERROR]() {},
 
-    [ACTIVATE_REQUEST](state) {
-      state.loading = true;
-    },
-    [ACTIVATE_SUCCESS](state) {
-      state.loading = false;
-    },
-    [ACTIVATE_ERROR](state) {
-      state.loading = false;
-    },
+    [LOGOUT_REQUEST]() {},
+    [LOGOUT_SUCCESS]() {},
+    [LOGOUT_ERROR]() {},
 
-    [RESET_PASSWORD_REQUEST](state) {
-      state.loading = true;
-    },
-    [RESET_PASSWORD_SUCCESS](state) {
-      state.loading = false;
-    },
-    [RESET_PASSWORD_ERROR](state) {
-      state.loading = false;
-    },
+    [RENEW_REQUEST]() {},
+    [RENEW_SUCCESS]() {},
+    [RENEW_ERROR]() {},
 
-    [CHANGE_PASSWORD_REQUEST](state) {
-      state.loading = true;
+    [CHANGE_PASSWORD_REQUEST]() {},
+    [CHANGE_PASSWORD_SUCCESS]() {},
+    [CHANGE_PASSWORD_ERROR]() {},
+    [SET_PROFILE](state, profile) {
+      state.profile = profile;
     },
-    [CHANGE_PASSWORD_SUCCESS](state) {
-      state.loading = false;
+    [CLEAR_PROFILE](state) {
+      state.profile = null;
     },
-    [CHANGE_PASSWORD_ERROR](state) {
-      state.loading = false;
+    [PROFILE_REQUEST](state) {
+      state.loadingProfile = true;
+    },
+    [PROFILE_SUCCESS](state) {
+      state.loadingProfile = false;
+    },
+    [PROFILE_ERROR](state) {
+      state.loadingProfile = false;
     }
   },
   actions: {
+    [SET_USER]: ({ commit }, token) => {
+      commit(SET_USER, token);
+    },
+    [CLEAR_USER]: ({ commit }) => {
+      commit(CLEAR_USER);
+    },
     // Sign a user in
-    [LOGIN]({ commit }, { email, password, remember_me }) {
+    [LOGIN]({ commit, dispatch }, { email, password, remember_me }) {
       commit(LOGIN_REQUEST);
       return authApi
         .login(email, password, remember_me)
         .then(response => {
           commit(SET_USER, response.data);
           commit(LOGIN_SUCCESS);
+          dispatch(GET_PROFILE);
         })
         .catch(error => {
           commit(LOGIN_ERROR);
@@ -152,7 +124,7 @@ export default {
       return authApi
         .logout()
         .then(() => {
-          commit(SET_USER, null);
+          commit(CLEAR_USER);
           commit(LOGOUT_SUCCESS);
         })
         .catch(error => {
@@ -170,34 +142,8 @@ export default {
           commit(RENEW_SUCCESS);
         })
         .catch(() => {
-          commit(SET_USER, null);
+          commit(CLEAR_USER);
           commit(RENEW_ERROR);
-        });
-    },
-    // Activate user account
-    [ACTIVATE]: ({ commit }, { token, password, repeat_password }) => {
-      commit(ACTIVATE_REQUEST);
-      return authApi
-        .activate(token, password, repeat_password)
-        .then(() => {
-          commit(ACTIVATE_SUCCESS);
-        })
-        .catch(error => {
-          commit(ACTIVATE_ERROR);
-          throw error;
-        });
-    },
-    // Reset user password
-    [RESET_PASSWORD]: ({ commit }, { token, password, repeat_password }) => {
-      commit(RESET_PASSWORD_REQUEST);
-      return authApi
-        .resetPassword(token, password, repeat_password)
-        .then(() => {
-          commit(RESET_PASSWORD_SUCCESS);
-        })
-        .catch(error => {
-          commit(RESET_PASSWORD_ERROR);
-          throw error;
         });
     },
     // Change user password
@@ -207,10 +153,38 @@ export default {
         .changePassword(password, new_password, repeat_password)
         .then(() => {
           commit(CHANGE_PASSWORD_SUCCESS);
+          commit(CLEAR_USER);
         })
         .catch(error => {
           commit(CHANGE_PASSWORD_ERROR);
           throw error;
+        });
+    },
+    [GET_PROFILE]({ commit }) {
+      commit(PROFILE_REQUEST);
+      return Vue.axios
+        .get("/user/profile")
+        .then(response => {
+          commit(PROFILE_SUCCESS);
+          commit(SET_PROFILE, response.data);
+        })
+        .catch(() => {
+          commit(PROFILE_ERROR);
+        });
+    },
+    [UPDATE_PROFILE]({ commit }, { first_name, last_name }) {
+      commit(PROFILE_REQUEST);
+      return Vue.axios
+        .patch("/user/profile", {
+          first_name: first_name,
+          last_name: last_name
+        })
+        .then(response => {
+          commit(PROFILE_SUCCESS);
+          commit(SET_PROFILE, response.data);
+        })
+        .catch(() => {
+          commit(PROFILE_ERROR);
         });
     }
   },

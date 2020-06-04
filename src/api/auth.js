@@ -1,8 +1,8 @@
 import decode from "jwt-decode";
 import { backendServer } from "./util/servers";
+import { loadServerToken } from "./util/token-storage";
 
 /**
- * @typedef {Object} AuthenticatedUser
  * @property {number} id
  * @property {string} email
  * @property {string} firstName
@@ -34,16 +34,18 @@ export class AuthenticatedUser {
    * @param {EncodedJwtToken} token
    */
   constructor(token) {
-    this.token = token;
-    const data = decode(token);
-    this.id = data.id;
-    this.email = data.email;
-    this.access = data.access;
-    this.firstName = data.first_name;
-    this.lastName = data.last_name;
-    // Assumption: exp and iat fields are number of milliseconds since 1970
-    this.expiresAt = new Date(data.exp * 1000);
-    this.issuedAt = new Date(data.iat * 1000);
+    if (token) {
+      this.token = token;
+      const data = decode(token);
+      this.id = data.id;
+      this.email = data.email;
+      this.access = data.access;
+      this.firstName = data.first_name;
+      this.lastName = data.last_name;
+      // Assumption: exp and iat fields are number of milliseconds since 1970
+      this.expiresAt = new Date(data.exp * 1000);
+      this.issuedAt = new Date(data.iat * 1000);
+    }
   }
 
   /**
@@ -64,6 +66,12 @@ export class AuthenticatedUser {
     return this.expiresAt > new Date() && this.expiresAt > this.issuedAt;
   }
 }
+
+export const getUser = () => {
+  const token = loadServerToken(backendServer);
+  const user = token ? new AuthenticatedUser(token) : null;
+  return !!user && user.isValid ? user : null;
+};
 
 export const authApi = {
   /**
