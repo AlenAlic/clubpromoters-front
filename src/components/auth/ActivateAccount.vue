@@ -74,7 +74,7 @@ export default {
         .then(() => {
           this.$toast.success(i18n.t("auth.activate.success"));
           this.$router.push({
-            name: "home"
+            name: "login"
           });
         })
         .catch(error => {

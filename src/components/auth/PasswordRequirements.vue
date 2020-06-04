@@ -33,7 +33,7 @@ const MATCH = "match";
 const NOT_OLD_PASSWORD = "not_old_password";
 const ALL_REQUIREMENTS = "all_requirements";
 const CONDITION_MET = "condition_met";
-const MINIMUM_PASSWORD_LENGTH = 12;
+const MINIMUM_PASSWORD_LENGTH = 16;
 export default {
   props: {
     password: String,
