@@ -132,10 +132,11 @@
       }
     },
     "create_new_codes": {
-      "title": "Create new codes",
+      "title": "Generate new codes",
       "label": "Number of codes",
       "hint": "Send the number of new codes that you wish to create",
-      "submit": "Create codes"
+      "submit": "Generate codes",
+      "created": "Generated {num} new codes."
     },
     "active_codes": {
       "title": "Active codes",

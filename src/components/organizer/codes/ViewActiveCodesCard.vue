@@ -50,6 +50,9 @@
         </v-edit-dialog>
       </template>
       <template v-slot:item.action="{ item }">
+        <v-icon class="mr-2" @click="previewQRCode(item)">
+          mdi-magnify
+        </v-icon>
         <v-tooltip left>
           <template v-slot:activator="{ on }">
             <v-icon class="mr-2" v-on="on" @click="showModalFunc(item)">
@@ -70,14 +73,29 @@
       :no="$t('organizer.active_codes.modal.no')"
       danger
     ></modal>
+    <modal :show="preview" size="small">
+      <v-card class="text-center">
+        <v-card-text v-if="!codeImage">
+          <v-progress-circular class="mt-5" :width="5" color="primary" indeterminate />
+        </v-card-text>
+        <v-card-text v-else>
+          <v-img :src="`data:image/png;base64,${codeImage}`" alt="QR code" />
+          <span class="title">{{ code }}</span>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn text @click="stopPreviewQRCode">
+            {{ $t("general.close") }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </modal>
   </v-card>
 </template>
 
 <script>
-import Vue from "vue";
 import i18n from "@/languages";
 import Modal from "@/components/modal/Modal";
-import store from "@/store";
 import { ACTIVE_CODES, INACTIVE_CODES } from "@/store/modules/organizer/codes";
 import { USERS } from "@/store/modules/organizer/users";
 export default {
@@ -102,7 +120,9 @@ export default {
           value: "action",
           align: "right"
         }
-      ]
+      ],
+      preview: false,
+      codeImage: ""
     };
   },
   computed: {
@@ -115,15 +135,15 @@ export default {
   },
   methods: {
     save(code) {
-      return Vue.axios
+      return this.axios
         .patch("organizer/assign_code_to_promoter", {
           user_id: this.promoter,
           code_id: code.id
         })
         .then(() => {
           this.promoter = null;
-          store.dispatch(ACTIVE_CODES);
-          store.dispatch(USERS);
+          this.$store.dispatch(ACTIVE_CODES).then(() => {});
+          this.$store.dispatch(USERS).then(() => {});
         });
     },
     showModalFunc: function(code) {
@@ -138,11 +158,23 @@ export default {
       this.code = null;
     },
     deactivateCode: function() {
-      return Vue.axios.patch(`organizer/codes/deactivate/${this.id}`).then(() => {
-        store.dispatch(ACTIVE_CODES);
-        store.dispatch(INACTIVE_CODES);
-        store.dispatch(USERS);
+      return this.axios.patch(`organizer/codes/deactivate/${this.id}`).then(() => {
+        this.$store.dispatch(ACTIVE_CODES).then(() => {});
+        this.$store.dispatch(INACTIVE_CODES).then(() => {});
+        this.$store.dispatch(USERS).then(() => {});
       });
+    },
+    previewQRCode(code) {
+      this.preview = true;
+      this.code = code.code;
+      this.axios.get(`code/${code.id}/image`).then(response => {
+        this.codeImage = response.data;
+      });
+    },
+    stopPreviewQRCode() {
+      this.preview = false;
+      this.codeImage = "";
+      this.code = null;
     }
   }
 };

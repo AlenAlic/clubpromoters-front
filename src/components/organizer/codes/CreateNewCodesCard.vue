@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import store from "@/store";
+import i18n from "@/languages";
 import { NEW_CODES } from "@/store/modules/organizer/codes";
 export default {
   data: function() {
@@ -41,7 +41,8 @@ export default {
   },
   methods: {
     createNewCodes: function() {
-      store.dispatch(NEW_CODES, { num: this.num }).then(() => {
+      this.$store.dispatch(NEW_CODES, { num: Number(this.num) }).then(() => {
+        this.$toast.success(i18n.t("organizer.create_new_codes.created", { num: this.num }));
         this.num = null;
       });
     }
