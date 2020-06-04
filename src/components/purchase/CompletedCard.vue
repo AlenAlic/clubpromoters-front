@@ -4,8 +4,7 @@
       <v-card-title>Ticket purchase complete</v-card-title>
       <v-card-text>
         <p>
-          Your purchase for {{ purchase.number_of_tickets }} tickets to
-          {{ purchase.party.name }} has been completed.
+          Your purchase for {{ purchase.number_of_tickets }} tickets to {{ purchase.party.name }} has been completed.
         </p>
         <p>The tickets will be sent to "{{ purchase.email }}".</p>
       </v-card-text>

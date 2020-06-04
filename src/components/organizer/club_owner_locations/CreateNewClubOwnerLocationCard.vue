@@ -28,9 +28,7 @@
           <v-col cols="6">
             <v-text-field
               v-model="street_number_addition"
-              :label="
-                $t('organizer.club_owner_locations.new_location.street_number_addition.label')
-              "
+              :label="$t('organizer.club_owner_locations.new_location.street_number_addition.label')"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -96,11 +94,7 @@ export default {
       streetNumberRules: [this.$form.fieldRequired, this.$form.minNumber(1)],
       street_number_addition: "",
       postal_code: "",
-      postalCodeRules: [
-        this.$form.fieldRequired,
-        this.$form.minNumber(1000),
-        this.$form.maxNumber(9999)
-      ],
+      postalCodeRules: [this.$form.fieldRequired, this.$form.minNumber(1000), this.$form.maxNumber(9999)],
       postal_code_letters: "",
       postalCodeLettersRules: [
         this.$form.fieldRequired,

@@ -137,13 +137,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!isValid || loading"
-          :loading="loading"
-          color="primary"
-          text
-          type="submit"
-        >
+        <v-btn :disabled="!isValid || loading" :loading="loading" color="primary" text type="submit">
           {{ $t("organizer.create_new_party.submit") }}
         </v-btn>
       </v-card-actions>
@@ -181,17 +175,9 @@ export default {
       ticket_price: null,
       ticketPriceRules: [this.$form.fieldRequired],
       club_owner_commission: `${this.$store.state.config.settings.default_club_owner_commission}`,
-      clubOwnerCommissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ],
+      clubOwnerCommissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
       promoter_commission: `${this.$store.state.config.settings.default_promoter_commission}`,
-      promoterCommissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ],
+      promoterCommissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
       images: [],
       logo: null,
       interval: 4,

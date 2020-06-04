@@ -60,9 +60,7 @@ export default {
       return this.$store.getters.access === ORGANIZER;
     },
     clubOwners() {
-      return this.$store.state.users.clubOwners
-        .filter(c => c.is_active)
-        .map(o => ({ text: o.club, value: o.id }));
+      return this.$store.state.users.clubOwners.filter(c => c.is_active).map(o => ({ text: o.club, value: o.id }));
     }
   },
   watch: {

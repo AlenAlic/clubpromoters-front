@@ -5,12 +5,7 @@
         <v-form ref="form" v-model="valid" @submit.prevent="login">
           <v-card-title>{{ $t("auth.log_in") }}</v-card-title>
           <v-card-text>
-            <v-text-field
-              v-model="email"
-              :rules="emailRules"
-              :label="$t('auth.email')"
-              required
-            ></v-text-field>
+            <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
             <v-text-field
               v-model="password"
               :rules="passwordRules"
@@ -22,14 +17,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn
-              :disabled="!valid || loading"
-              :loading="loading"
-              color="primary"
-              text
-              @click="login"
-              type="submit"
-            >
+            <v-btn :disabled="!valid || loading" :loading="loading" color="primary" text @click="login" type="submit">
               {{ $t("auth.log_in") }}
             </v-btn>
             <v-btn text :to="{ name: 'home' }" exact>
@@ -79,10 +67,8 @@ export default {
         })
         .catch(error => {
           const status = getNetworkErrorCode(error);
-          if (status === ERROR_CODES.UNAUTHORIZED)
-            this.$toast.error(i18n.t("auth.errors.invalid_login"));
-          else if (status === ERROR_CODES.FORBIDDEN)
-            this.$toast.error(i18n.t("auth.errors.inactive_account"));
+          if (status === ERROR_CODES.UNAUTHORIZED) this.$toast.error(i18n.t("auth.errors.invalid_login"));
+          else if (status === ERROR_CODES.FORBIDDEN) this.$toast.error(i18n.t("auth.errors.inactive_account"));
           this.loading = false;
         });
     }

@@ -49,9 +49,7 @@
                 <v-expansion-panel-header>
                   <v-row no-gutters justify="space-between">
                     <v-col>{{ party.name }}</v-col>
-                    <v-col class="text-right">
-                      {{ party.sold_tickets }} / {{ party.num_available_tickets }}
-                    </v-col>
+                    <v-col class="text-right"> {{ party.sold_tickets }} / {{ party.num_available_tickets }} </v-col>
                     <v-col class="text-right pr-3">
                       {{ $util.formatCurrency(party.party_profit) }}
                     </v-col>

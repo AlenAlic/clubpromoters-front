@@ -5,11 +5,7 @@ import { ACTIVE_CODES, INACTIVE_CODES } from "@/store/modules/organizer/codes";
 import { USERS } from "@/store/modules/organizer/users";
 import { ACTIVE_PARTIES, INACTIVE_PARTIES, PAST_PARTIES } from "@/store/modules/organizer/parties";
 import { HOSTESSES } from "@/store/modules/club_owner/hostesses";
-import {
-  CO_INACTIVE_PARTIES,
-  CO_ACTIVE_PARTIES,
-  CO_PAST_PARTIES
-} from "@/store/modules/club_owner/parties";
+import { CO_INACTIVE_PARTIES, CO_ACTIVE_PARTIES, CO_PAST_PARTIES } from "@/store/modules/club_owner/parties";
 import { CODE } from "@/store/modules/promoter/code";
 
 export default () => {

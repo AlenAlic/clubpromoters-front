@@ -11,12 +11,7 @@
           persistent-hint
           :hint="$t('organizer.create_new_account.club_owner.club.hint')"
         ></v-text-field>
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          :label="$t('auth.email')"
-          required
-        ></v-text-field>
+        <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
         <v-text-field
           v-model="commission"
           :rules="commissionRules"
@@ -52,11 +47,7 @@ export default {
       email: "",
       emailRules: [this.$form.fieldIsEmail],
       commission: `${this.$store.state.config.settings.default_club_owner_commission}`,
-      commissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ]
+      commissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax]
     };
   },
   methods: {

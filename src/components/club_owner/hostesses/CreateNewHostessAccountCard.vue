@@ -15,12 +15,7 @@
           :label="$t('club_owner.create_new_account.hostess.last_name.label')"
           required
         ></v-text-field>
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          :label="$t('auth.email')"
-          required
-        ></v-text-field>
+        <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>

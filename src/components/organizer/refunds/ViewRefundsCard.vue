@@ -13,14 +13,7 @@
             label="Search"
           ></v-text-field>
           <template v-slot:extension>
-            <v-select
-              v-model="month"
-              flat
-              solo-inverted
-              hide-details
-              :items="months"
-              label="Month"
-            ></v-select>
+            <v-select v-model="month" flat solo-inverted hide-details :items="months" label="Month"></v-select>
             <v-spacer></v-spacer>
             <v-select
               class="mx-3"
@@ -41,9 +34,7 @@
         <v-row>
           <v-col v-for="item in props.items" :key="item.id" cols="12" sm="6" md="4" lg="3">
             <v-card>
-              <v-card-title class="subheading font-weight-bold">
-                Purchase {{ item.id }}
-              </v-card-title>
+              <v-card-title class="subheading font-weight-bold"> Purchase {{ item.id }} </v-card-title>
 
               <v-divider></v-divider>
 
@@ -118,11 +109,7 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-group
-                  prepend-icon="mdi-cash-usd"
-                  :value="false"
-                  v-if="item.refunds.length > 0"
-                >
+                <v-list-group prepend-icon="mdi-cash-usd" :value="false" v-if="item.refunds.length > 0">
                   <template v-slot:activator>
                     <v-list-item-title>
                       Refunds
@@ -198,9 +185,7 @@ export default {
         purchase_date: this.$util.dateTime(p.purchase_date).toFormat("d LLLL yyyy, HH:mm"),
         party: {
           ...p.party,
-          date: `${this.$util
-            .dateTime(p.party.start_date)
-            .toFormat("d LLLL yyyy, HH:mm")}-${this.$util
+          date: `${this.$util.dateTime(p.party.start_date).toFormat("d LLLL yyyy, HH:mm")}-${this.$util
             .dateTime(p.party.end_date)
             .toFormat("HH:mm")}`
         }

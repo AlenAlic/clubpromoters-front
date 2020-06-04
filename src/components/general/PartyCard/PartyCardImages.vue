@@ -1,12 +1,6 @@
 <template>
   <div style="background-color: black; background-size: cover; background-position: center center;">
-    <v-img
-      :src="images[index]"
-      :aspect-ratio="1"
-      :lazy-src="loadingGif"
-      :transition="null"
-      @click="restartSlideShow"
-    />
+    <v-img :src="images[index]" :aspect-ratio="1" :lazy-src="loadingGif" :transition="null" @click="restartSlideShow" />
   </div>
 </template>
 

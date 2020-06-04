@@ -1,8 +1,6 @@
 <template>
   <v-card :max-width="`${(maxWindowHeight * 4) / 3}px`" class="mx-auto" dark>
-    <div
-      style="background-color: black; background-size: cover; background-position: center center;"
-    >
+    <div style="background-color: black; background-size: cover; background-position: center center;">
       <v-lazy
         :options="{ threshold: 0.95 }"
         :min-height="`${minHeight}px`"
@@ -35,15 +33,7 @@
               </v-btn>
             </v-col>
             <v-col>
-              <v-btn
-                small
-                text
-                outlined
-                color="white"
-                dark
-                class="white--text"
-                style="pointer-events: none;"
-              >
+              <v-btn small text outlined color="white" dark class="white--text" style="pointer-events: none;">
                 {{ preview ? 6 : tickets }}
               </v-btn>
             </v-col>
@@ -220,9 +210,7 @@ export default {
       }
     },
     startDate() {
-      return this.party && this.party.start_date
-        ? this.$util.dateTime(this.party.start_date)
-        : null;
+      return this.party && this.party.start_date ? this.$util.dateTime(this.party.start_date) : null;
     },
     monthShort() {
       return this.startDate ? this.startDate.toFormat("LLL") : DEFAULT_MONTH_SHORT;

@@ -117,11 +117,9 @@ export default {
       this.showModal = true;
     },
     activateHostess(hostess) {
-      return Vue.axios
-        .patch(`club_owner/activate_hostess/${hostess.id}`, { working: !hostess.working })
-        .then(() => {
-          store.dispatch(HOSTESSES);
-        });
+      return Vue.axios.patch(`club_owner/activate_hostess/${hostess.id}`, { working: !hostess.working }).then(() => {
+        store.dispatch(HOSTESSES);
+      });
     }
   }
 };

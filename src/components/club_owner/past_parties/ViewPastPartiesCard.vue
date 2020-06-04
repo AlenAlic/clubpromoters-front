@@ -42,11 +42,7 @@
       </template>
     </v-data-table>
     <modal :show="showModal" @closeModal="hideModalFunc">
-      <party-finances-data-card
-        :party="party"
-        @closeModal="hideModalFunc"
-        club_owner
-      ></party-finances-data-card>
+      <party-finances-data-card :party="party" @closeModal="hideModalFunc" club_owner></party-finances-data-card>
     </modal>
   </v-card>
 </template>
@@ -99,9 +95,9 @@ export default {
           duration: `${this.$util.dateTime(p.start_date).toFormat("HH:mm")} - ${this.$util
             .dateTime(p.end_date)
             .toFormat("HH:mm")}`,
-          club_owner_commission: `${this.$t(
-            "organizer.active_parties.table.club_owner_commission"
-          )}: ${p.club_owner_commission}%`,
+          club_owner_commission: `${this.$t("organizer.active_parties.table.club_owner_commission")}: ${
+            p.club_owner_commission
+          }%`,
           promoter_commission: `${this.$t("organizer.active_parties.table.promoter_commission")}: ${
             p.promoter_commission
           }%`

@@ -51,9 +51,7 @@ const UtilitiesHandler = {
        */
       formatCurrency(value, currency = "€", replace = false, showMinus = true) {
         value = Number(value);
-        let formatted = `${value < 0 && showMinus ? "-" : ""}${currency}${Math.abs(value).toFixed(
-          2
-        )}`;
+        let formatted = `${value < 0 && showMinus ? "-" : ""}${currency}${Math.abs(value).toFixed(2)}`;
         if (replace) return formatted.replace(".00", ".-");
         else return formatted;
       },

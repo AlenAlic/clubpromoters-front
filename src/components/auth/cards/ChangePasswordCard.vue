@@ -9,12 +9,7 @@
           required
           type="password"
         ></v-text-field>
-        <v-text-field
-          v-model="newPassword"
-          :label="$t('auth.new_password')"
-          required
-          type="password"
-        ></v-text-field>
+        <v-text-field v-model="newPassword" :label="$t('auth.new_password')" required type="password"></v-text-field>
         <v-text-field
           v-model="repeatPassword"
           :label="$t('auth.repeat_password')"
@@ -30,13 +25,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!valid || loading"
-          :loading="loading"
-          color="primary"
-          text
-          @click="changePassword"
-        >
+        <v-btn :disabled="!valid || loading" :loading="loading" color="primary" text @click="changePassword">
           {{ $t("auth.change_password") }}
         </v-btn>
       </v-card-actions>

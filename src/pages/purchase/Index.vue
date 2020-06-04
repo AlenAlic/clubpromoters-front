@@ -74,9 +74,7 @@ export default {
         const dates = this.selectedDays;
         dates.sort();
         const filterStart = DateTime.fromISO(this.selectedDays[0].toISO()).startOf("day");
-        const filterEnd = DateTime.fromISO(
-          this.selectedDays[this.selectedDays.length - 1].toISO()
-        ).endOf("day");
+        const filterEnd = DateTime.fromISO(this.selectedDays[this.selectedDays.length - 1].toISO()).endOf("day");
         return parties.filter(p => {
           let startDate = this.$util.dateTime(p.start_date);
           return filterStart <= startDate && filterEnd >= startDate;

@@ -55,9 +55,7 @@
               </v-list-item-content>
             </v-list-item>
           </template>
-          <v-card-text v-else>
-            No tickets sold in {{ $util.displayMonth(displayMonth) }}.
-          </v-card-text>
+          <v-card-text v-else> No tickets sold in {{ $util.displayMonth(displayMonth) }}. </v-card-text>
         </v-card>
       </v-col>
     </v-row>

@@ -19,13 +19,7 @@
 
     <div class="text--wrap">{{ message }}</div>
 
-    <v-btn
-      :icon="!closeText"
-      :text="!!closeText"
-      v-if="showClose"
-      @click="close"
-      style="margin-right: -16px;"
-    >
+    <v-btn :icon="!closeText" :text="!!closeText" v-if="showClose" @click="close" style="margin-right: -16px;">
       <v-icon v-if="closeText">{{ closeIcon }}</v-icon>
       <span v-if="!!closeText">{{ closeText }}</span>
     </v-btn>

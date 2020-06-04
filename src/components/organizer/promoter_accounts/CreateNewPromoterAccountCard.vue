@@ -15,12 +15,7 @@
           :label="$t('organizer.create_new_account.promoter.last_name.label')"
           required
         ></v-text-field>
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          :label="$t('auth.email')"
-          required
-        ></v-text-field>
+        <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
         <v-text-field
           v-model="commission"
           :rules="commissionRules"
@@ -68,20 +63,14 @@ export default {
       email: "",
       emailRules: [this.$form.fieldIsEmail],
       commission: `${this.$store.state.config.settings.default_promoter_commission}`,
-      commissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ],
+      commissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
       code: null,
       codeRules: [this.$form.fieldRequired]
     };
   },
   computed: {
     codes() {
-      return this.$store.state.codes.activeCodes
-        .filter(c => !c.promoter)
-        .map(o => ({ text: o.code, value: o.id }));
+      return this.$store.state.codes.activeCodes.filter(c => !c.promoter).map(o => ({ text: o.code, value: o.id }));
     }
   },
   methods: {

@@ -55,13 +55,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!isValid || loading"
-          :loading="loading"
-          color="primary"
-          text
-          type="submit"
-        >
+        <v-btn :disabled="!isValid || loading" :loading="loading" color="primary" text type="submit">
           {{ $t("organizer.inactive_parties.edit_party.submit") }}
         </v-btn>
         <v-btn @click="close" text>{{ $t("general.cancel") }}</v-btn>
@@ -92,17 +86,9 @@ export default {
       ticket_price: this.party.ticket_price,
       ticketPriceRules: [this.$form.fieldRequired],
       club_owner_commission: `${this.party.club_owner_commission}`,
-      clubOwnerCommissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ],
+      clubOwnerCommissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
       promoter_commission: `${this.party.promoter_commission}`,
-      promoterCommissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ]
+      promoterCommissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax]
     };
   },
   computed: {

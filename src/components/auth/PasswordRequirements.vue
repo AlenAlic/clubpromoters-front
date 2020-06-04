@@ -72,13 +72,9 @@ export default {
           re = new RegExp("(?=.*[0-9])");
           return re.test(this.password) ? CONDITION_MET : "";
         case MATCH:
-          return this.password === this.repeat_password && this.password !== ""
-            ? CONDITION_MET
-            : "";
+          return this.password === this.repeat_password && this.password !== "" ? CONDITION_MET : "";
         case NOT_OLD_PASSWORD:
-          return this.password !== this.old_password &&
-            this.password !== "" &&
-            this.old_password !== ""
+          return this.password !== this.old_password && this.password !== "" && this.old_password !== ""
             ? CONDITION_MET
             : "";
         case ALL_REQUIREMENTS:

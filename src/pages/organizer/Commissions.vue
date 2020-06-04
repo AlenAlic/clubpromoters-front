@@ -46,11 +46,7 @@
               <v-expansion-panel-content>
                 <v-list-item class="px-0">
                   <v-list-item-content>
-                    <v-list-item-subtitle
-                      class="body mt-2"
-                      v-for="party in user.parties"
-                      :key="party.id"
-                    >
+                    <v-list-item-subtitle class="body mt-2" v-for="party in user.parties" :key="party.id">
                       <div>
                         <b>{{ party.club }}</b>
                       </div>
@@ -109,17 +105,11 @@
               <v-expansion-panel-content>
                 <v-list-item class="px-0">
                   <v-list-item-content>
-                    <v-list-item-subtitle
-                      class="body mt-2"
-                      v-for="party in user.parties"
-                      :key="party.id"
-                    >
+                    <v-list-item-subtitle class="body mt-2" v-for="party in user.parties" :key="party.id">
                       <div>
                         <span>
                           <b>
-                            {{
-                              `${$util.dateTime(party.start_date).toFormat("d LLLL yyyy, HH:mm")}`
-                            }}
+                            {{ `${$util.dateTime(party.start_date).toFormat("d LLLL yyyy, HH:mm")}` }}
                           </b>
                         </span>
                       </div>

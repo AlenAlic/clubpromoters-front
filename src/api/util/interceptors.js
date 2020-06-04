@@ -2,11 +2,7 @@ import Vue from "vue";
 import { backendServer } from "./servers";
 import { loadServerToken } from "./token-storage";
 import router from "@/router";
-import {
-  ERROR_CODES,
-  getNetworkErrorCode,
-  localizeNetworkErrorCode
-} from "@/api/util/network-errors";
+import { ERROR_CODES, getNetworkErrorCode, localizeNetworkErrorCode } from "@/api/util/network-errors";
 import { codeApi } from "@/api/code";
 
 backendServer.interceptors.response.use(

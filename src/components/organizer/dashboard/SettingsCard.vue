@@ -82,17 +82,9 @@ export default {
     return {
       valid: false,
       club_owner_commission: this.$store.state.config.settings.default_club_owner_commission,
-      clubOwnerCommissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ],
+      clubOwnerCommissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
       promoter_commission: this.$store.state.config.settings.default_promoter_commission,
-      promoterCommissionRules: [
-        this.$form.fieldRequired,
-        this.$form.commissionPositive,
-        this.$form.commissionMax
-      ],
+      promoterCommissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
       mollie_api_key: this.$store.state.config.settings.mollie_api_key,
       minimum_promoter_commission: this.$store.state.config.settings.minimum_promoter_commission,
       administration_costs: this.$store.state.config.settings.administration_costs,

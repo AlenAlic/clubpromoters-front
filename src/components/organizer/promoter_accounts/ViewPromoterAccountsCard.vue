@@ -17,9 +17,7 @@
             {{ $t("organizer.promoter_accounts.new_account") }}
           </v-btn>
         </template>
-        <create-new-promoter-account-card
-          @close="dialog = false"
-        ></create-new-promoter-account-card>
+        <create-new-promoter-account-card @close="dialog = false"></create-new-promoter-account-card>
       </v-dialog>
     </v-card-title>
     <v-data-table

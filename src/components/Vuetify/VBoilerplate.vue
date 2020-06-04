@@ -1,12 +1,6 @@
 <template>
   <div>
-    <v-skeleton-loader
-      v-for="(s, idx) in skeletons"
-      :key="idx"
-      :type="s"
-      :elevation="elevation"
-      tile
-    />
+    <v-skeleton-loader v-for="(s, idx) in skeletons" :key="idx" :type="s" :elevation="elevation" tile />
   </div>
 </template>
 

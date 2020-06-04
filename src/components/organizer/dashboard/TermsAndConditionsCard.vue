@@ -18,12 +18,7 @@
       </v-card-text>
       <v-card-text>
         Preview the terms
-        <a
-          v-if="$store.state.config.settings.terms"
-          target="_blank"
-          :href="$store.state.config.settings.terms"
-          >here</a
-        >
+        <a v-if="$store.state.config.settings.terms" target="_blank" :href="$store.state.config.settings.terms">here</a>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>

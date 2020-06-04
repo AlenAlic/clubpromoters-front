@@ -22,12 +22,7 @@
         <v-form ref="form" lazy-validation @submit.prevent="activate">
           <v-card-text>
             {{ $t("auth.activate.set_password") }}
-            <v-text-field
-              v-model="password"
-              :label="$t('auth.password')"
-              required
-              type="password"
-            ></v-text-field>
+            <v-text-field v-model="password" :label="$t('auth.password')" required type="password"></v-text-field>
             <v-text-field
               v-model="repeatPassword"
               :label="$t('auth.repeat_password')"
@@ -41,13 +36,7 @@
             />
             <v-card-actions>
               <v-spacer />
-              <v-btn
-                :disabled="!valid || loading"
-                :loading="loading"
-                color="primary"
-                text
-                @click="activate"
-              >
+              <v-btn :disabled="!valid || loading" :loading="loading" color="primary" text @click="activate">
                 {{ $t("auth.activate.activate") }}
               </v-btn>
             </v-card-actions>

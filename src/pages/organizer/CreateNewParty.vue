@@ -1,9 +1,5 @@
 <template>
-  <v-row
-    align="center"
-    style="background: black;"
-    v-if="Object.keys($store.state.config.settings).length"
-  >
+  <v-row align="center" style="background: black;" v-if="Object.keys($store.state.config.settings).length">
     <v-col cols="12" lg="4">
       <create-new-party-card @preview="getPreviewObject" />
     </v-col>

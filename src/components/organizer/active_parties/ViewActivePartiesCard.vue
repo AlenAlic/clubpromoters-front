@@ -51,18 +51,10 @@
       </template>
       <template v-slot:expanded-item="{ headers, item }">
         <td colspan="2">
-          {{
-            `${$t("organizer.inactive_parties.table.club_owner_commission")}: ${
-              item.club_owner_commission
-            }%`
-          }}
+          {{ `${$t("organizer.inactive_parties.table.club_owner_commission")}: ${item.club_owner_commission}%` }}
         </td>
         <td colspan="4">
-          {{
-            `${$t("organizer.inactive_parties.table.promoter_commission")}: ${
-              item.promoter_commission
-            }%`
-          }}
+          {{ `${$t("organizer.inactive_parties.table.promoter_commission")}: ${item.promoter_commission}%` }}
         </td>
       </template>
     </v-data-table>

@@ -17,9 +17,7 @@
             {{ $t("organizer.club_owner_accounts.new_account") }}
           </v-btn>
         </template>
-        <create-new-club-owner-account-card
-          @close="dialog = false"
-        ></create-new-club-owner-account-card>
+        <create-new-club-owner-account-card @close="dialog = false"></create-new-club-owner-account-card>
       </v-dialog>
     </v-card-title>
     <v-data-table

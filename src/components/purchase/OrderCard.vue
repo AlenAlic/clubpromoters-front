@@ -74,12 +74,7 @@
               {{ $t("purchase.order.terms.label.1") }}
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
-                  <a
-                    target="_blank"
-                    :href="$t('purchase.order.terms.label.link.href')"
-                    @click.stop
-                    v-on="on"
-                  >
+                  <a target="_blank" :href="$t('purchase.order.terms.label.link.href')" @click.stop v-on="on">
                     {{ $t("purchase.order.terms.label.link.text") }}
                   </a>
                 </template>

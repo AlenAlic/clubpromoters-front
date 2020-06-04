@@ -2,18 +2,10 @@
   <v-card>
     <v-form ref="form" v-model="valid" @submit.prevent="uploadImages" enctype="multipart/form-data">
       <v-card-title>
-        {{
-          logo
-            ? $t("organizer.upload_assets.title.logos")
-            : $t("organizer.upload_assets.title.images")
-        }}
+        {{ logo ? $t("organizer.upload_assets.title.logos") : $t("organizer.upload_assets.title.images") }}
       </v-card-title>
       <v-card-subtitle>
-        {{
-          logo
-            ? $t("organizer.upload_assets.subtitle.logos")
-            : $t("organizer.upload_assets.subtitle.images")
-        }}
+        {{ logo ? $t("organizer.upload_assets.subtitle.logos") : $t("organizer.upload_assets.subtitle.images") }}
       </v-card-subtitle>
       <v-card-text>
         <v-select
@@ -28,11 +20,7 @@
         ></v-select>
         <v-file-input
           v-model="images"
-          :label="
-            logo
-              ? $t('organizer.upload_assets.label.logos')
-              : $t('organizer.upload_assets.label.images')
-          "
+          :label="logo ? $t('organizer.upload_assets.label.logos') : $t('organizer.upload_assets.label.images')"
           show-size
           required
           multiple
@@ -41,13 +29,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!isValid || loading"
-          :loading="loading"
-          color="primary"
-          text
-          type="submit"
-        >
+        <v-btn :disabled="!isValid || loading" :loading="loading" color="primary" text type="submit">
           {{ $t("organizer.upload_assets.button") }}
         </v-btn>
       </v-card-actions>
@@ -89,9 +71,7 @@ export default {
       return this.showClubOwner ? this.clubOwner : this.$store.getters.access;
     },
     clubOwners() {
-      return this.$store.state.users.clubOwners
-        .filter(c => c.is_active)
-        .map(o => ({ text: o.club, value: o.id }));
+      return this.$store.state.users.clubOwners.filter(c => c.is_active).map(o => ({ text: o.club, value: o.id }));
     }
   },
   methods: {

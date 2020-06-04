@@ -47,16 +47,12 @@ export const fieldRequired = v => !!v || i18n.t("form.errors.required");
 export const fieldIsEmail = v => isEmail(v) || i18n.t("form.errors.valid_email");
 export const minNumber = (v, o) => v >= o || i18n.t("form.errors.min", { number: o });
 export const maxNumber = (v, o) => v <= o || i18n.t("form.errors.max", { number: o });
-export const charactersAreLetters = v =>
-  (v && v.match("^[A-Za-z]+$")) || i18n.t("form.errors.letters");
-export const minCharacterCount = (v, o) =>
-  (v && v.length >= o) || i18n.t("form.errors.min_character", { number: o });
-export const maxCharacterCount = (v, o) =>
-  v.length <= o || i18n.t("form.errors.max_character", { number: o });
+export const charactersAreLetters = v => (v && v.match("^[A-Za-z]+$")) || i18n.t("form.errors.letters");
+export const minCharacterCount = (v, o) => (v && v.length >= o) || i18n.t("form.errors.min_character", { number: o });
+export const maxCharacterCount = (v, o) => v.length <= o || i18n.t("form.errors.max_character", { number: o });
 export const exactCharacterCount = (v, o) =>
   (v && v.length === o) || i18n.t("form.errors.exact_character", { number: o });
-export const pfdFile = v =>
-  (!!v && v.type === "application/pdf") || i18n.t("form.errors.file_type.pdf");
+export const pfdFile = v => (!!v && v.type === "application/pdf") || i18n.t("form.errors.file_type.pdf");
 
 export const commissionPositive = v => v >= 0 || "Commission cannot be negative";
 export const commissionMax = v => v <= 50 || "Commission cannot exceed 50%";

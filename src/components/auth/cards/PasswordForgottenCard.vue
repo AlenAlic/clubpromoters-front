@@ -4,22 +4,11 @@
       <v-form ref="form" v-model="valid" v-if="!newPasswordSent" @submit.prevent="requestPassword">
         <v-card-title>{{ $t("auth.request_new_password") }}</v-card-title>
         <v-card-text>
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            :label="$t('auth.email')"
-            required
-          ></v-text-field>
+          <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn
-            :disabled="!valid"
-            :loading="loading"
-            color="primary"
-            text
-            @click="requestPassword"
-          >
+          <v-btn :disabled="!valid" :loading="loading" color="primary" text @click="requestPassword">
             {{ $t("auth.reset_password") }}
           </v-btn>
           <v-btn text :to="{ name: 'login' }">

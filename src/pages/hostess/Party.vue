@@ -9,9 +9,7 @@
     <v-col cols="12">
       <h3 class="text-center mb-2">
         <span>Guests hosted</span>
-        <span class="ml-2" v-if="party">
-          {{ guestAccepted + guestDenied }}/{{ party.sold_tickets }}
-        </span>
+        <span class="ml-2" v-if="party"> {{ guestAccepted + guestDenied }}/{{ party.sold_tickets }} </span>
         <span class="ml-2" v-else>.../...</span>
       </h3>
       <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
@@ -232,9 +230,7 @@ export default {
       return !this.purchase && !this.loading && this.error;
     },
     items() {
-      return this.purchase
-        ? this.purchase.tickets.filter(t => t.available).map((t, i) => i + 1)
-        : [];
+      return this.purchase ? this.purchase.tickets.filter(t => t.available).map((t, i) => i + 1) : [];
     }
   },
   methods: {
