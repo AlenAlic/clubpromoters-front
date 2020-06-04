@@ -13,13 +13,19 @@ const UtilitiesHandler = {
       isEmail: function(email) {
         return isEmail(email);
       },
-
       /**
        * Get a DateTime object.
        * @returns {DateTime}
        */
       dateTime(date) {
-        return DateTime.fromFormat(date, "yyyy-LL-dd HH:mm:ss");
+        return DateTime.fromSQL(date, { zone: "utc" }).toLocal();
+      },
+      /**
+       * Get a DateTime string.
+       * @returns {String}
+       */
+      dateTimeString(date) {
+        return this.dateTime(date).toFormat("yyyy-LL-dd HH:mm:ss");
       },
       /**
        * Get the duration between two DateTime objects.

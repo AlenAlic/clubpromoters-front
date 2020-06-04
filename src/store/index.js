@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import admin from "./modules/admin";
 import auth from "./modules/auth";
 import config from "./modules/organizer/config";
 import codes from "./modules/organizer/codes";
@@ -14,6 +15,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    admin: admin,
     auth: auth,
     config: config,
     codes: codes,

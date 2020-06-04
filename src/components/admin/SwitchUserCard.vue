@@ -6,12 +6,14 @@
         {{ $t("admin.switch.text") }}
         <v-select
           v-model="account"
-          :items="accounts"
+          :items="$store.state.admin.users"
           persistent-hint
+          item-text="email"
+          item-value="id"
           :hint="$t('admin.switch.hint')"
           :no-data-text="$t('admin.switch.no_accounts')"
-          :disabled="loading"
-          :loading="loading"
+          :disabled="$store.state.admin.loadingUsers"
+          :loading="$store.state.admin.loadingUsers"
         ></v-select>
       </v-card-text>
       <v-card-actions>
@@ -32,30 +34,27 @@
 </template>
 
 <script>
-import Vue from "vue";
-import store from "@/store";
 import { SET_USER } from "@/store/modules/auth";
+import { ADMIN_CLEAR_USERS, ADMIN_USERS } from "@/store/modules/admin";
 import loadStore from "@/store/loader";
 export default {
   data: function() {
     return {
-      loading: true,
       switching: false,
-      account: null,
-      accounts: []
+      account: null
     };
   },
   created() {
-    Vue.axios.get("admin/switch").then(response => {
-      this.accounts = response.data;
-      this.loading = false;
-    });
+    this.$store.dispatch(ADMIN_USERS).then(() => {});
+  },
+  beforeDestroy() {
+    this.$store.commit(ADMIN_CLEAR_USERS);
   },
   methods: {
-    switchAccount: function() {
+    switchAccount() {
       this.switching = true;
-      Vue.axios.post(`admin/switch/${this.account}`).then(response => {
-        store.dispatch(SET_USER, { token: response.data }).then(() => {
+      this.axios.post(`admin/switch/${this.account}`).then(response => {
+        this.$store.dispatch(SET_USER, { token: response.data }).then(() => {
           loadStore();
           this.$router.push({
             name: "home"

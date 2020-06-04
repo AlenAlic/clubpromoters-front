@@ -8,9 +8,24 @@
       "switch": "Switch"
     },
     "create_organizer": {
+      "first_name": {
+        "label": "First name"
+      },
+      "last_name": {
+        "label": "Last name"
+      },
       "title": "Create organizer account",
-      "hint": "The e-mail address that will be used for the organizer account",
       "create_account": "Create account"
+    },
+    "organizers": {
+      "table": {
+        "headers": {
+          "name": "Name",
+          "email": "E-mail",
+          "active": "Account active",
+          "last_seen": "Last seen"
+        }
+      }
     }
   }
 }
