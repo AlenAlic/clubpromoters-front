@@ -196,6 +196,9 @@ export default {
     access: state => {
       return state.user ? state.user.access : -1;
     },
+    userId: state => {
+      return state.user ? state.user.id : -1;
+    },
     isAdmin: state => {
       return state.user && state.user.access === ADMIN;
     },

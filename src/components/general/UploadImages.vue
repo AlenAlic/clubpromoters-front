@@ -70,7 +70,7 @@ export default {
       return this.$store.getters.access === ORGANIZER;
     },
     userId() {
-      return this.showClubOwner ? this.clubOwner : this.$store.getters.access;
+      return this.showClubOwner ? this.clubOwner : this.$store.getters.userId;
     },
     clubOwners() {
       return this.$store.state.users.clubOwners.filter(c => c.is_active);
