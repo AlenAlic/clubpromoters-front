@@ -20,6 +20,7 @@
         "submit": "Create account"
       },
       "promoter": {
+        "title": "Create a new account for a promoter",
         "commission": {
           "label": "Commission",
           "hint": "Default commission that will be set for a party."

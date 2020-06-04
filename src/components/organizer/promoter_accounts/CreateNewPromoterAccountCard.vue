@@ -5,17 +5,17 @@
       <v-card-text>
         <v-text-field
           v-model="first_name"
-          :rules="firstNameRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('organizer.create_new_account.first_name.label')"
           required
         ></v-text-field>
         <v-text-field
           v-model="last_name"
-          :rules="lastNameRules"
+          :rules="[$form.fieldRequired]"
           :label="$t('organizer.create_new_account.last_name.label')"
           required
         ></v-text-field>
-        <v-text-field v-model="email" :rules="emailRules" :label="$t('auth.email')" required></v-text-field>
+        <v-text-field v-model="email" :rules="[$form.fieldIsEmail]" :label="$t('auth.email')" required></v-text-field>
         <v-text-field
           v-model="commission"
           :rules="commissionRules"
@@ -29,6 +29,8 @@
           v-model="code"
           :label="$t('organizer.create_new_account.promoter.code.label')"
           :items="codes"
+          item-text="code"
+          item-value="id"
           persistent-hint
           :hint="$t('organizer.create_new_account.promoter.code.hint')"
           :no-data-text="$t('organizer.create_new_account.promoter.code.no_codes')"
@@ -57,48 +59,45 @@ export default {
       loading: false,
       valid: false,
       first_name: "",
-      firstNameRules: [this.$form.fieldRequired],
       last_name: "",
-      lastNameRules: [this.$form.fieldRequired],
       email: "",
-      emailRules: [this.$form.fieldIsEmail],
       commission: `${this.$store.state.config.settings.default_promoter_commission}`,
       commissionRules: [this.$form.fieldRequired, this.$form.commissionPositive, this.$form.commissionMax],
-      code: null,
-      codeRules: [this.$form.fieldRequired]
+      code: null
     };
   },
   computed: {
     codes() {
-      return this.$store.state.codes.activeCodes.filter(c => !c.promoter).map(o => ({ text: o.code, value: o.id }));
+      return this.$store.state.codes.activeCodes.filter(c => !c.promoter);
     }
   },
   methods: {
-    createPromoter: function() {
+    createPromoter() {
       this.loading = true;
       Vue.axios
         .post("organizer/create_new_promoter", {
           email: this.email,
           first_name: this.first_name,
           last_name: this.last_name,
-          commission: this.commission,
+          commission: Number(this.commission),
           code_id: this.code
         })
         .then(() => {
-          store.dispatch(USERS);
-          this.close();
+          store.dispatch(USERS).then(() => {
+            this.close();
+          });
         })
         .finally(() => {
           this.loading = false;
         });
     },
     close() {
-      this.$refs.form.resetValidation();
       this.first_name = "";
       this.last_name = "";
       this.email = "";
       this.commission = `${this.$store.state.config.settings.default_promoter_commission}`;
       this.code = null;
+      this.$refs.form.resetValidation();
       this.$emit("close");
     }
   }
