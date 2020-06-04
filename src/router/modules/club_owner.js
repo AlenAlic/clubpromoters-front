@@ -9,6 +9,7 @@ const Income = () => import("@/pages/club_owner/Income.vue");
 const clubOwnerPages = {
   path: "/club_owner",
   component: DefaultWrapper,
+  redirect: { name: "club_owner.dashboard" },
   meta: {
     auth: true,
     access: CLUB_OWNER

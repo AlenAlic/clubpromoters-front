@@ -20,6 +20,7 @@ const Dummy = () => import("@/pages/Dummy.vue");
 const organizerPages = {
   path: "/organizer",
   component: DefaultWrapper,
+  redirect: { name: "organizer.dashboard" },
   meta: {
     auth: true,
     access: ORGANIZER

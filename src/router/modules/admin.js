@@ -6,6 +6,7 @@ const Dashboard = () => import("@/pages/admin/Dashboard.vue");
 const adminPages = {
   path: "/admin",
   component: DefaultWrapper,
+  redirect: { name: "admin.dashboard" },
   meta: {
     auth: true,
     access: ADMIN

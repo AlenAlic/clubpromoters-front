@@ -7,6 +7,7 @@ const Income = () => import("@/pages/promoter/Income.vue");
 const promoterPages = {
   path: "/promoter",
   component: DefaultWrapper,
+  redirect: { name: "promoter.dashboard" },
   meta: {
     auth: true,
     access: PROMOTER

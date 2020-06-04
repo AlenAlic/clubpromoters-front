@@ -7,6 +7,7 @@ const Party = () => import("@/pages/hostess/Party.vue");
 const hostessPages = {
   path: "/hostess",
   component: DefaultWrapper,
+  redirect: { name: "hostess.dashboard" },
   meta: {
     auth: true,
     access: HOSTESS

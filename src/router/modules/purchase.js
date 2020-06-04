@@ -8,6 +8,7 @@ const Failed = () => import("@/pages/purchase/Failed.vue");
 const purchasePages = {
   path: "/purchase",
   component: PurchaseWrapper,
+  redirect: { name: "purchase.index" },
   children: [
     {
       path: "index",
