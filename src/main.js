@@ -12,23 +12,23 @@ import i18n from "@/languages";
 import "./registerServiceWorker";
 
 // Import the config independent modules.
+import vuetify from "@/plugins/Vuetify";
 import { frontendApi } from "@/api/frontend";
 import { backendServer } from "@/api/backend";
-import AuthHandler from "@/components/auth/AuthHandler";
-import UtilitiesHandler from "@/assets/js/utilities";
-import Notify from "@/plugins/Alerts";
-import vuetify from "@/plugins/Vuetify";
 import VueAxios from "vue-axios";
+import AuthHandler from "@/components/auth/AuthHandler";
+import utilities from "@/plugins/utilities";
+import form from "@/plugins/form";
+import toast from "@/plugins/toast";
 import Datetime from "vue-datetime";
 import "vue-datetime/dist/vue-datetime.css";
-import FormRulesHandler from "@/assets/js/formRules";
 
 // Register the config independent modules.
 Vue.use(AuthHandler);
-Vue.use(UtilitiesHandler);
-Vue.use(Notify);
+Vue.use(utilities);
+Vue.use(form);
+Vue.use(toast);
 Vue.use(Datetime);
-Vue.use(FormRulesHandler);
 
 // Turn off Vue Production tip
 Vue.config.productionTip = false;
@@ -66,4 +66,4 @@ async function main() {
 }
 
 // Mount App
-main();
+main().then(() => {});

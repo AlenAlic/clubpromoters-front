@@ -84,7 +84,7 @@ export default {
         })
         .catch(error => {
           const status = getNetworkErrorCode(error);
-          if (status === ERROR_CODES.BAD_REQUEST) this.$notify.error(i18n.t("auth.activate.error"));
+          if (status === ERROR_CODES.BAD_REQUEST) this.$toast.error(i18n.t("auth.activate.error"));
           this.loading = false;
         });
     }

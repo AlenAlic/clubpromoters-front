@@ -93,7 +93,7 @@ export const isEmail = email => {
   return re.test(String(email).toLowerCase());
 };
 
-export const now = () => {
+const now = () => {
   return DateTime.local();
 };
 

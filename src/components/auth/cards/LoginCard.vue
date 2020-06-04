@@ -80,9 +80,9 @@ export default {
         .catch(error => {
           const status = getNetworkErrorCode(error);
           if (status === ERROR_CODES.UNAUTHORIZED)
-            this.$notify.error(i18n.t("auth.errors.invalid_login"));
+            this.$toast.error(i18n.t("auth.errors.invalid_login"));
           else if (status === ERROR_CODES.FORBIDDEN)
-            this.$notify.error(i18n.t("auth.errors.inactive_account"));
+            this.$toast.error(i18n.t("auth.errors.inactive_account"));
           this.loading = false;
         });
     }
