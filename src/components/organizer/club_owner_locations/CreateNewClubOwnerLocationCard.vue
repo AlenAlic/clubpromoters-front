@@ -19,7 +19,7 @@
           <v-col cols="6">
             <v-text-field
               v-model="street_number"
-              :rules="streetNumberRules"
+              :rules="[$form.fieldRequired, $form.minNumber(1)]"
               type="number"
               :label="$t('organizer.club_owner_locations.new_location.street_number.label')"
               required
@@ -36,7 +36,7 @@
           <v-col cols="8">
             <v-text-field
               v-model="postal_code"
-              :rules="postalCodeRules"
+              :rules="[$form.fieldRequired, $form.minNumber(1000), $form.maxNumber(9999)]"
               type="number"
               :label="$t('organizer.club_owner_locations.new_location.postal_code.label')"
               required
@@ -45,7 +45,7 @@
           <v-col cols="4">
             <v-text-field
               v-model="postal_code_letters"
-              :rules="postalCodeLettersRules"
+              :rules="[$form.fieldRequired, $form.exactCharacterCount(2), $form.charactersAreLetters]"
               :label="$t('organizer.club_owner_locations.new_location.postal_code_letters.label')"
               required
             ></v-text-field>
@@ -91,16 +91,9 @@ export default {
       name: "",
       street: "",
       street_number: "",
-      streetNumberRules: [this.$form.fieldRequired, this.$form.minNumber(1)],
       street_number_addition: "",
       postal_code: "",
-      postalCodeRules: [this.$form.fieldRequired, this.$form.minNumber(1000), this.$form.maxNumber(9999)],
       postal_code_letters: "",
-      postalCodeLettersRules: [
-        this.$form.fieldRequired,
-        this.$form.exactCharacterCount(2),
-        this.$form.charactersAreLetters
-      ],
       city: "",
       maps_url: ""
     };
@@ -110,12 +103,12 @@ export default {
       this.loading = true;
       Vue.axios
         .post("organizer/create_new_location", {
-          user_id: this.clubOwner.id,
+          user_id: Number(this.clubOwner.id),
           name: this.name,
           street: this.street,
-          street_number: this.street_number,
+          street_number: Number(this.street_number),
           street_number_addition: this.street_number_addition || "",
-          postal_code: this.postal_code,
+          postal_code: Number(this.postal_code),
           postal_code_letters: this.postal_code_letters,
           city: this.city,
           maps_url: this.maps_url
@@ -123,8 +116,8 @@ export default {
         .then(() => {
           store.dispatch(USERS).then(() => {
             this.$emit("added");
+            this.close();
           });
-          this.close();
         })
         .finally(() => {
           this.loading = false;
