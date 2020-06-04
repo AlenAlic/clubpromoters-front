@@ -14,6 +14,7 @@
           :rules="[$form.fieldRequired]"
           @change="setClubOwner"
           item-text="club"
+          item-value="id"
           return-object
         ></v-select>
         <v-text-field

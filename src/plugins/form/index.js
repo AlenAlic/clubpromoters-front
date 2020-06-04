@@ -55,4 +55,4 @@ export const exactCharacterCount = (v, o) =>
 export const pfdFile = v => (!!v && v.type === "application/pdf") || i18n.t("form.errors.file_type.pdf");
 
 export const commissionPositive = v => v >= 0 || "Commission cannot be negative";
-export const commissionMax = v => v <= 50 || "Commission cannot exceed 50%";
+export const commissionMax = v => v <= 100 || "Commission cannot exceed 100%";
