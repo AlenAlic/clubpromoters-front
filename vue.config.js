@@ -17,7 +17,7 @@ module.exports = {
       favicon16: "img/pwa/favicon-16x16.png",
       appleTouchIcon: "img/pwa/apple-touch-icon-152x152.png",
       maskIcon: "img/pwa/safari-pinned-tab.svg",
-      msTileImage: "img/pwa/msapplication-icon-144x144.png"
+      msTileImage: "img/pwa/mstile-144x144.png"
     },
     themeColor: "#673AB7",
     msTileColor: "#FFFFFF"
