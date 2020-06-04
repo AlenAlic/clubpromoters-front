@@ -5,22 +5,14 @@ module.exports = {
   transpileDependencies: ["vuetify"],
   // https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
   pwa: {
-    appleMobileWebAppCapable: "yes",
-    appleMobileWebAppStatusBarStyle: "black",
-    workboxPluginMode: "GenerateSW",
+    workboxPluginMode: "InjectManifest",
     workboxOptions: {
-      skipWaiting: true,
-      clientsClaim: true
+      swSrc: "src/service-worker.js"
     },
-    iconPaths: {
-      favicon32: "img/pwa/favicon-32x32.png",
-      favicon16: "img/pwa/favicon-16x16.png",
-      appleTouchIcon: "img/pwa/apple-touch-icon-152x152.png",
-      maskIcon: "img/pwa/safari-pinned-tab.svg",
-      msTileImage: "img/pwa/mstile-144x144.png"
-    },
-    themeColor: "#673AB7",
-    msTileColor: "#FFFFFF"
+    themeColor: "#000000",
+    msTileColor: "#FFFFFF",
+    appleMobileWebAppCapable: "yes",
+    appleMobileWebAppStatusBarStyle: "black"
   },
   productionSourceMap: false,
   chainWebpack: config => {
@@ -39,6 +31,13 @@ module.exports = {
     config.plugin("copy").tap(([options]) => {
       options[0].ignore.push("*.example");
       return [options];
+    });
+    config.plugin("define").tap(args => {
+      let _base = args[0]["process.env"];
+      args[0]["process.env"] = {
+        ..._base
+      };
+      return args;
     });
   },
   css: {
