@@ -3,7 +3,7 @@
     <div class="mb-2">{{ $t("password_requirements.title") }}</div>
     <ul :class="checkPasswordRequirements('all_requirements')">
       <li :class="checkPasswordRequirements('minimum_character_count')">
-        {{ $t("password_requirements.minimum_character_count", { num: 16 }) }}
+        {{ $t("password_requirements.minimum_character_count", { num: minLength }) }}
       </li>
       <li :class="checkPasswordRequirements('lowercase_letter')">
         {{ $t("password_requirements.lowercase_letter") }}
@@ -32,11 +32,8 @@ const NUMBER = "number";
 const MATCH = "match";
 const NOT_OLD_PASSWORD = "not_old_password";
 const ALL_REQUIREMENTS = "all_requirements";
-
 const CONDITION_MET = "condition_met";
-
-const MINIMUM_PASSWORD_LENGTH = 16;
-
+const MINIMUM_PASSWORD_LENGTH = 12;
 export default {
   props: {
     password: String,
@@ -44,19 +41,24 @@ export default {
     old_password: String,
     useOldPassword: { type: Boolean, default: false }
   },
+  data: function() {
+    return {
+      minLength: MINIMUM_PASSWORD_LENGTH
+    };
+  },
   watch: {
-    password: function() {
+    password() {
       return this.$emit("requirements", this.checkPasswordRequirements(ALL_REQUIREMENTS));
     },
-    repeat_password: function() {
+    repeat_password() {
       return this.$emit("requirements", this.checkPasswordRequirements(ALL_REQUIREMENTS));
     },
-    old_password: function() {
+    old_password() {
       return this.$emit("requirements", this.checkPasswordRequirements(ALL_REQUIREMENTS));
     }
   },
   methods: {
-    checkPasswordRequirements: function(requirement) {
+    checkPasswordRequirements(requirement) {
       let re;
       switch (requirement) {
         case MINIMUM_CHARACTER_COUNT:
@@ -102,7 +104,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/css/general/settings";
 .password-requirements {
   background-color: #f2f3f4;
   padding: 1rem;
@@ -112,19 +113,16 @@ ul {
   list-style-type: none;
   margin: 0.5rem 0;
   padding: 0;
-
   li {
     padding-left: 0.25rem;
     clear: both;
-
     &.condition_met {
-      color: $success;
+      color: #4caf50;
     }
-
     &:before {
       font-family: "Material Design Icons";
       font-size: 1rem;
-      content: "\F5E0";
+      content: "\F05E0";
       float: left;
       width: 1rem;
       margin-right: 1rem;
