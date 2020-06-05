@@ -334,6 +334,22 @@
       },
       "checkbox": "Yes, I am sure I wish to give a refund",
       "submit": "Give refund"
+    },
+    "party_income": {
+      "total_profit": "Total profit",
+      "from_administration_costs": "From administration costs",
+      "total_tickets_sold": "Total tickets sold",
+      "ticket_price": "Ticket price",
+      "sold": "Sold",
+      "income": "Income",
+      "ticket_sale": "Ticket sale",
+      "administration_costs": "Administration costs",
+      "expense": "Expenses",
+      "refunds": "Refunds",
+      "promoter_commissions": "Promoter commissions",
+      "club_owner_commissions": "Club Owner commissions",
+      "total": "Total",
+      "no_parties": "No parties in {month}."
     }
   }
 }

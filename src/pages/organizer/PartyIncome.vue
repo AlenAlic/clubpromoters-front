@@ -32,13 +32,18 @@
               <v-list-item-content>
                 <v-list-item-title class="finances-body">
                   <div>
-                    <span>Total profit</span>
+                    <span>{{ $t("organizer.party_income.total_profit") }}</span>
                     <span>{{ $util.formatCurrency(totalProfit) }}</span>
+                  </div> </v-list-item-title
+                ><v-list-item-title class="finances-body">
+                  <div>
+                    <span>{{ $t("organizer.party_income.from_administration_costs") }}</span>
+                    <span>{{ $util.formatCurrency(totalAdministrationCostsProfit) }}</span>
                   </div>
                 </v-list-item-title>
                 <v-list-item-title class="finances-body">
                   <div>
-                    <span>Total tickets sold</span>
+                    <span>{{ $t("organizer.party_income.total_tickets_sold") }}</span>
                     <span>{{ totalTicketsSold }} / {{ totalAvailableTickets }}</span>
                   </div>
                 </v-list-item-title>
@@ -51,7 +56,7 @@
                     <v-col>{{ party.name }}</v-col>
                     <v-col class="text-right"> {{ party.sold_tickets }} / {{ party.num_available_tickets }} </v-col>
                     <v-col class="text-right pr-3">
-                      {{ $util.formatCurrency(party.party_profit) }}
+                      {{ $util.formatCurrency(party.total_profit) }}
                     </v-col>
                   </v-row>
                 </v-expansion-panel-header>
@@ -63,39 +68,43 @@
                       </v-list-item-subtitle>
                       <v-list-item-subtitle class="finances-body">
                         <div class="three">
-                          <span>Ticket price</span>
+                          <span>{{ $t("organizer.party_income.ticket_price") }}</span>
                           <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
                         </div>
                         <div class="three">
-                          <span>Sold</span>
+                          <span>{{ $t("organizer.party_income.sold") }}</span>
                           <span>{{ party.sold_tickets }} / {{ party.num_available_tickets }}</span>
                         </div>
                         <div class="mt-2">
-                          <b>Income</b>
+                          <b>{{ $t("organizer.party_income.income") }}</b>
                         </div>
                         <div>
-                          <i>Ticket sale</i>
-                          <span>{{ $util.formatCurrency(party.party_income) }}</span>
+                          <i>{{ $t("organizer.party_income.ticket_sale") }}</i>
+                          <span>{{ $util.formatCurrency(party.income_tickets_sold) }}</span>
+                        </div>
+                        <div>
+                          <i>{{ $t("organizer.party_income.administration_costs") }}</i>
+                          <span>{{ $util.formatCurrency(party.income_administration_costs) }}</span>
                         </div>
                         <div class="mt-1">
-                          <b>Expenses</b>
+                          <b>{{ $t("organizer.party_income.expenses") }}</b>
                         </div>
                         <div>
-                          <i>Refunds</i>
-                          <span>{{ $util.formatCurrency(party.party_refunds) }}</span>
+                          <i>{{ $t("organizer.party_income.refunds") }}</i>
+                          <span>{{ $util.formatCurrency(party.expenses_refunds) }}</span>
                         </div>
                         <div>
-                          <i>Promoter commissions</i>
-                          <span>{{ $util.formatCurrency(party.party_promoter_cut) }}</span>
+                          <i>{{ $t("organizer.party_income.promoter_commissions") }}</i>
+                          <span>{{ $util.formatCurrency(party.expenses_promoter_commissions) }}</span>
                         </div>
                         <div>
-                          <i>Club Owner commissions</i>
-                          <span>{{ $util.formatCurrency(party.party_club_owner_cut) }}</span>
+                          <i>{{ $t("organizer.party_income.club_owner_commissions") }}</i>
+                          <span>{{ $util.formatCurrency(party.expenses_club_owner_commissions) }}</span>
                         </div>
                         <v-divider class="my-1"></v-divider>
                         <div>
-                          <b>Total</b>
-                          <span>{{ $util.formatCurrency(party.party_profit) }}</span>
+                          <b>{{ $t("organizer.party_income.total") }}</b>
+                          <span>{{ $util.formatCurrency(party.total_profit) }}</span>
                         </div>
                       </v-list-item-subtitle>
                     </v-list-item-content>
@@ -104,7 +113,9 @@
               </v-expansion-panel>
             </v-expansion-panels>
           </template>
-          <v-card-text v-else>No parties in {{ $util.displayMonth(displayMonth) }}.</v-card-text>
+          <v-card-text v-else>
+            {{ $t("organizer.party_income.no_parties", { month: $util.displayMonth(displayMonth) }) }}
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -129,7 +140,12 @@ export default {
   computed: {
     totalProfit() {
       return this.parties.reduce((t, c) => {
-        return t + c.party_profit;
+        return t + c.total_profit;
+      }, 0);
+    },
+    totalAdministrationCostsProfit() {
+      return this.parties.reduce((t, c) => {
+        return t + c.income_administration_costs;
       }, 0);
     },
     totalTicketsSold() {

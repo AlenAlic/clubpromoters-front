@@ -12,7 +12,7 @@ const CreateNewParty = () => import("@/pages/organizer/CreateNewParty.vue");
 const InactiveParties = () => import("@/pages/organizer/InactiveParties.vue");
 const ActiveParties = () => import("@/pages/organizer/ActiveParties.vue");
 const PastParties = () => import("@/pages/organizer/PastParties.vue");
-const Income = () => import("@/pages/organizer/Income.vue");
+const PartyIncome = () => import("@/pages/organizer/PartyIncome.vue");
 const Refunds = () => import("@/pages/organizer/Refunds.vue");
 const Commissions = () => import("@/pages/organizer/Commissions.vue");
 const Dummy = () => import("@/pages/Dummy.vue");
@@ -83,7 +83,7 @@ const organizerPages = {
     },
     {
       path: "party_income",
-      component: Income,
+      component: PartyIncome,
       name: "organizer.party_income"
     },
     {
