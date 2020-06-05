@@ -132,7 +132,7 @@
                         {{ $util.formatCurrency(r.price) }}
                       </v-list-item-subtitle>
                       <v-list-item-subtitle class="text-right">
-                        {{ $util.dateTime(r.date).toFormat("d LLLL yyyy, HH:mm") }}
+                        {{ $util.dateTimeFromUTCString(r.date).toFormat("d LLLL yyyy, HH:mm") }}
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
@@ -182,12 +182,12 @@ export default {
     items() {
       return this.purchases.map(p => ({
         ...p,
-        purchase_date: this.$util.dateTime(p.purchase_date).toFormat("d LLLL yyyy, HH:mm"),
+        purchase_date: this.$util.dateTimeFromUTCString(p.purchase_date).toFormat("d LLLL yyyy, HH:mm"),
         party: {
           ...p.party,
-          date: `${this.$util.dateTime(p.party.start_date).toFormat("d LLLL yyyy, HH:mm")}-${this.$util
-            .dateTime(p.party.end_date)
-            .toFormat("HH:mm")}`
+          date: `${this.$util
+            .dateTimeFromUTCString(p.party.start_date)
+            .toFormat("d LLLL yyyy, HH:mm")}-${this.$util.dateTimeFromUTCString(p.party.end_date).toFormat("HH:mm")}`
         }
       }));
     },

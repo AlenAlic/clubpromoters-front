@@ -209,7 +209,7 @@ export default {
       }
     },
     startDate() {
-      return this.party && this.party.start_date ? this.$util.dateTime(this.party.start_date) : null;
+      return this.party && this.party.start_date ? this.$util.dateTimeFromUTCString(this.party.start_date) : null;
     },
     monthShort() {
       return this.startDate ? this.startDate.toFormat("LLL") : DEFAULT_MONTH_SHORT;
@@ -227,7 +227,7 @@ export default {
       return this.startDate ? this.startDate.toFormat("dd LLLL yyyy") : null;
     },
     endDate() {
-      return this.party && this.party.end_date ? this.$util.dateTime(this.party.end_date) : null;
+      return this.party && this.party.end_date ? this.$util.dateTimeFromUTCString(this.party.end_date) : null;
     },
     endTime() {
       return this.endDate ? this.endDate.toFormat("HH:mm") : DEFAULT_END_TIME;

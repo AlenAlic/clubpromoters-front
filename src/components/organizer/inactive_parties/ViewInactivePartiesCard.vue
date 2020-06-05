@@ -29,7 +29,7 @@
         <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
       </template>
       <template v-slot:item.start_date="{ item }">
-        <div>{{ $util.dateTime(item.start_date).toFormat("d LLLL") }}</div>
+        <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL") }}</div>
       </template>
       <template v-slot:item.action="{ item }">
         <v-tooltip left>
@@ -157,9 +157,9 @@ export default {
     items() {
       return this.$store.state.parties.inactiveParties.map(p =>
         Object.assign(p, {
-          duration: `${this.$util.dateTime(p.start_date).toFormat("HH:mm")} - ${this.$util
-            .dateTime(p.end_date)
-            .toFormat("HH:mm")}`
+          duration: `${this.$util
+            .dateTimeFromUTCString(p.start_date)
+            .toFormat("HH:mm")} - ${this.$util.dateTimeFromUTCString(p.end_date).toFormat("HH:mm")}`
         })
       );
     }

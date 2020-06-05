@@ -6,7 +6,7 @@
       <div>
         <span><b>Date:</b></span>
         <span>
-          {{ $util.dateTime(party.start_date).toFormat("d LLLL") }}
+          {{ $util.dateTimeFromUTCString(party.start_date).toFormat("d LLLL") }}
           <br />
           {{ party.duration }}
         </span>

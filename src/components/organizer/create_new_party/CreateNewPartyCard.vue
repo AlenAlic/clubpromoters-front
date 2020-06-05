@@ -35,6 +35,7 @@
         <v-datetime-picker
           v-model="start_date"
           :label="$t('organizer.create_new_party.start_date.label')"
+          :min="$util.nowString"
         ></v-datetime-picker>
         <v-datetime-picker
           v-model="end_date"
@@ -156,7 +157,7 @@ import { ASSETS, CLEAR_ASSETS } from "@/store/modules/assets";
 export default {
   components: { VDatetimePicker },
   created() {
-    store.dispatch(USERS);
+    store.dispatch(USERS).then(() => {});
   },
   beforeDestroy() {
     this.$store.commit(CLEAR_ASSETS);
@@ -226,23 +227,23 @@ export default {
       this.loading = true;
       Vue.axios
         .post("organizer/create_new_party", {
-          club: this.club.id,
+          user_id: this.club.id,
           name: this.name,
-          location: this.location.id,
-          start_date: this.start_date,
-          end_date: this.end_date,
+          location_id: this.location.id,
+          start_date: this.$util.convertDateTimeStringToUTCString(this.start_date),
+          end_date: this.$util.convertDateTimeStringToUTCString(this.end_date),
           description: this.description,
-          number_of_tickets: this.number_of_tickets,
-          ticket_price: this.ticket_price,
-          club_owner_commission: this.club_owner_commission,
-          promoter_commission: this.promoter_commission,
+          number_of_tickets: Number(this.number_of_tickets),
+          ticket_price: Number(this.ticket_price),
+          club_owner_commission: Number(this.club_owner_commission),
+          promoter_commission: Number(this.promoter_commission),
           images: this.images.map(img => img.id),
-          logo: this.logo.id,
-          interval: this.intervalOptions[this.interval]
+          logo_id: this.logo.id,
+          interval: Number(this.intervalOptions[this.interval])
         })
         .then(() => {
           this.loading = false;
-          store.dispatch(INACTIVE_PARTIES);
+          store.dispatch(INACTIVE_PARTIES).then(() => {});
           this.$refs.form.resetValidation();
           this.club = null;
           this.name = "";

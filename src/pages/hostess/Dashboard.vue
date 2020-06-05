@@ -14,9 +14,9 @@
               <v-list-item-title>{{ party.name }}</v-list-item-title>
               <v-list-item-subtitle>
                 {{
-                  `${$util.dateTime(party.start_date).toFormat("d LLLL, HH:mm")}-${$util
-                    .dateTime(party.end_date)
-                    .toFormat("HH:mm")}`
+                  `${$util
+                    .dateTimeFromUTCString(party.start_date)
+                    .toFormat("d LLLL, HH:mm")}-${$util.dateTimeFromUTCString(party.end_date).toFormat("HH:mm")}`
                 }}
               </v-list-item-subtitle>
               <v-list-item-subtitle class="text-right">

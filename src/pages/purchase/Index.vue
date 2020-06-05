@@ -76,7 +76,7 @@ export default {
         const filterStart = DateTime.fromISO(this.selectedDays[0].toISO()).startOf("day");
         const filterEnd = DateTime.fromISO(this.selectedDays[this.selectedDays.length - 1].toISO()).endOf("day");
         return parties.filter(p => {
-          let startDate = this.$util.dateTime(p.start_date);
+          let startDate = this.$util.dateTimeFromUTCString(p.start_date);
           return filterStart <= startDate && filterEnd >= startDate;
         });
       }
@@ -86,7 +86,7 @@ export default {
       let dates = new Set(
         this.parties.map(p =>
           this.$util
-            .dateTime(p.start_date)
+            .dateTimeFromUTCString(p.start_date)
             .startOf("day")
             .toISO()
         )
@@ -96,7 +96,7 @@ export default {
       const parties = Object.assign(...dates.map(k => ({ [k]: [] })));
       this.parties.forEach(p => {
         const date = this.$util
-          .dateTime(p.start_date)
+          .dateTimeFromUTCString(p.start_date)
           .startOf("day")
           .toISO();
         parties[date].push(p);

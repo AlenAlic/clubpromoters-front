@@ -25,7 +25,7 @@
         <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
       </template>
       <template v-slot:item.start_date="{ item }">
-        <div>{{ $util.dateTime(item.start_date).toFormat("d LLLL") }}</div>
+        <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL") }}</div>
       </template>
       <template v-slot:item.party_profit="{ item }">
         <div>{{ $util.formatCurrency(item.party_profit) }}</div>
@@ -92,9 +92,9 @@ export default {
     items() {
       return this.$store.state.club_owner_parties.pastParties.map(p =>
         Object.assign(p, {
-          duration: `${this.$util.dateTime(p.start_date).toFormat("HH:mm")} - ${this.$util
-            .dateTime(p.end_date)
-            .toFormat("HH:mm")}`,
+          duration: `${this.$util
+            .dateTimeFromUTCString(p.start_date)
+            .toFormat("HH:mm")} - ${this.$util.dateTimeFromUTCString(p.end_date).toFormat("HH:mm")}`,
           club_owner_commission: `${this.$t("organizer.active_parties.table.club_owner_commission")}: ${
             p.club_owner_commission
           }%`,

@@ -17,15 +17,21 @@ const UtilitiesHandler = {
        * Get a DateTime object.
        * @returns {DateTime}
        */
-      dateTime(date) {
-        return DateTime.fromSQL(date, { zone: "utc" }).toLocal();
+      dateTimeFromUTCString(date) {
+        return DateTime.fromSQL(date, { zone: "utc" }).setZone("Europe/Amsterdam");
       },
       /**
-       * Get a DateTime string.
-       * @returns {String}
+       * Get a default string representation from a DateTime object.
+       * @returns {string}
        */
-      dateTimeString(date) {
-        return this.dateTime(date).toFormat("yyyy-LL-dd HH:mm:ss");
+      dateTimeStringFromUTCString(date) {
+        return this.dateTimeFromUTCString(date).toFormat("yyyy-LL-dd HH:mm:ss");
+      },
+      convertDateTimeStringToUTC(s) {
+        return DateTime.fromFormat(s, "yyyy-LL-dd HH:mm:ss", { zone: "Europe/Amsterdam" }).toUTC();
+      },
+      convertDateTimeStringToUTCString(s) {
+        return this.convertDateTimeStringToUTC(s).toFormat("yyyy-LL-dd HH:mm:ss");
       },
       /**
        * Get the duration between two DateTime objects.
@@ -98,7 +104,7 @@ export const isEmail = email => {
 };
 
 const now = () => {
-  return DateTime.local();
+  return DateTime.local().setZone("Europe/Amsterdam");
 };
 
 const financesYears = () => {

@@ -14,7 +14,7 @@
           <td>{{ item.full_name }}</td>
           <td>{{ item.email }}</td>
           <td><true-false-icon :flag="item.is_active" /></td>
-          <td>{{ $util.dateTimeString(item.last_seen) }}</td>
+          <td>{{ $util.dateTimeFromUTCString(item.last_seen).toFormat("yyyy-LL-dd HH:mm:ss") }}</td>
         </tr>
       </tbody>
     </v-simple-table>

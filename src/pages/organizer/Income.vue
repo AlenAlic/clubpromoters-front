@@ -59,7 +59,7 @@
                   <v-list-item class="px-0">
                     <v-list-item-content>
                       <v-list-item-subtitle>
-                        {{ $util.dateTime(party.start_date).toFormat("dd LLLL") }}
+                        {{ $util.dateTimeFromUTCString(party.start_date).toFormat("dd LLLL") }}
                       </v-list-item-subtitle>
                       <v-list-item-subtitle class="finances-body">
                         <div class="three">

@@ -51,7 +51,7 @@
                         <b>{{ party.club }}</b>
                       </div>
                       <div>
-                        <i>{{ `${$util.dateTime(party.start_date).toFormat("d LLLL yyyy")}` }}</i>
+                        <i>{{ `${$util.dateTimeFromUTCString(party.start_date).toFormat("d LLLL yyyy")}` }}</i>
                       </div>
                       <div class="three">
                         <span>Tickets sold</span>
@@ -109,7 +109,7 @@
                       <div>
                         <span>
                           <b>
-                            {{ `${$util.dateTime(party.start_date).toFormat("d LLLL yyyy, HH:mm")}` }}
+                            {{ `${$util.dateTimeFromUTCString(party.start_date).toFormat("d LLLL yyyy, HH:mm")}` }}
                           </b>
                         </span>
                       </div>

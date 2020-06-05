@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     startDate() {
-      return this.$util.dateTime(this.party.start_date);
+      return this.$util.dateTimeFromUTCString(this.party.start_date);
     },
     startDay() {
       return this.startDate.toFormat("d LLLL yyyy");
@@ -134,7 +134,7 @@ export default {
       return this.startDate.toFormat("HH:mm");
     },
     endDate() {
-      return this.$util.dateTime(this.party.end_date);
+      return this.$util.dateTimeFromUTCString(this.party.end_date);
     },
     endTime() {
       return this.endDate.toFormat("HH:mm");
