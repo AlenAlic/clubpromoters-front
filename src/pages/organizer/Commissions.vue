@@ -3,14 +3,14 @@
     <v-row class="no-print">
       <v-col cols="12" lg="6" offset-lg="3">
         <v-card>
-          <v-card-title>Choose month</v-card-title>
+          <v-card-title>{{ $t("organizer.commissions.choose_month") }}</v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="months" label="Month"></v-select>
+                <v-select v-model="month" hide-details :items="months" :label="$t('general.month')"></v-select>
               </v-col>
               <v-col cols="5">
-                <v-select v-model="year" :items="years" label="Year"></v-select>
+                <v-select v-model="year" :items="years" :label="$t('general.year')"></v-select>
               </v-col>
               <v-col cols="1" align-self="center" class="text-right">
                 <v-btn icon @click="getData"><v-icon>mdi-magnify</v-icon></v-btn>
@@ -29,7 +29,7 @@
             <v-list-item-content>
               <v-list-item-title class="body">
                 <div>
-                  <span>Month total</span>
+                  <span>{{ $t("organizer.commissions.month_total") }}</span>
                   <span>{{ $util.formatCurrency(totalPromoterProfit) }}</span>
                 </div>
               </v-list-item-title>
@@ -54,19 +54,19 @@
                         <i>{{ `${$util.dateTimeFromUTCString(party.start_date).toFormat("d LLLL yyyy")}` }}</i>
                       </div>
                       <div class="three">
-                        <span>Tickets sold</span>
+                        <span>{{ $t("organizer.commissions.tickets_sold") }}</span>
                         <span>{{ party.tickets }}</span>
                       </div>
                       <v-divider class="my-1" />
                       <div>
-                        <span>Commission</span>
-                        <span>{{ $util.formatCurrency(party.price) }}</span>
+                        <span>{{ $t("organizer.commissions.commission") }}</span>
+                        <span>{{ $util.formatCurrency(party.expenses_promoter_commissions) }}</span>
                       </div>
                     </v-list-item-subtitle>
                     <v-list-item-subtitle class="body mt-3">
                       <div>
                         <span>
-                          <b>Total commission</b>
+                          <b>{{ $t("organizer.commissions.total_commission") }}</b>
                         </span>
                         <span>
                           <b>{{ $util.formatCurrency(user.total) }}</b>
@@ -88,7 +88,7 @@
             <v-list-item-content>
               <v-list-item-title class="body">
                 <div>
-                  <span>Month total</span>
+                  <span>{{ $t("organizer.commissions.month_total") }}</span>
                   <span>{{ $util.formatCurrency(totalClubOwnersProfit) }}</span>
                 </div>
               </v-list-item-title>
@@ -117,19 +117,19 @@
                         {{ party.location.name }}
                       </div>
                       <div class="three">
-                        <span>Tickets sold</span>
+                        <span>{{ $t("organizer.commissions.tickets_sold") }}</span>
                         <span>{{ party.tickets }}</span>
                       </div>
                       <v-divider class="my-1" />
                       <div>
-                        <span>Commission</span>
-                        <span>{{ $util.formatCurrency(party.price) }}</span>
+                        <span>{{ $t("organizer.commissions.commission") }}</span>
+                        <span>{{ $util.formatCurrency(party.expenses_club_owner_commissions) }}</span>
                       </div>
                     </v-list-item-subtitle>
                     <v-list-item-subtitle class="body mt-3">
                       <div>
                         <span>
-                          <b>Total commission</b>
+                          <b>{{ $t("organizer.commissions.total_commission") }}</b>
                         </span>
                         <span>
                           <b>{{ $util.formatCurrency(user.total) }}</b>

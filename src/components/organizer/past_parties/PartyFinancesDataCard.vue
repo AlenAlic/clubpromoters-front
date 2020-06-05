@@ -4,82 +4,115 @@
 
     <v-card-text class="has-line_breaks body" v-if="!!party">
       <div>
-        <span><b>Date:</b></span>
+        <span>
+          <b>{{ $t("organizer.party_finances_data.date") }}</b>
+        </span>
         <span>
           {{ $util.dateTimeFromUTCString(party.start_date).toFormat("d LLLL") }}
           <br />
           {{ party.duration }}
         </span>
       </div>
-      <div><b>Tickets:</b></div>
       <div>
-        <span><i>Price:</i></span>
+        <b>{{ $t("organizer.party_finances_data.tickets") }}</b>
+      </div>
+      <div>
+        <span>
+          <i>{{ $t("organizer.party_finances_data.price") }}</i>
+        </span>
         <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
       </div>
       <div>
-        <span><i>Made available:</i></span>
+        <span>
+          <i>{{ $t("organizer.party_finances_data.made_available") }}</i>
+        </span>
         <span>{{ party.num_available_tickets }}</span>
       </div>
       <div>
-        <span><i>Sold:</i></span>
+        <span>
+          <i>{{ $t("organizer.party_finances_data.sold") }}</i>
+        </span>
         <span>{{ party.sold_tickets }}</span>
       </div>
       <div v-if="organiser">
-        <span><i>On hold:</i></span>
+        <span>
+          <i>{{ $t("organizer.party_finances_data.on_hold") }}</i>
+        </span>
         <span>{{ party.tickets_on_hold }}</span>
       </div>
       <div v-if="club_owner">
-        <span><i>Denied entry:</i></span>
+        <span>
+          <i>{{ $t("organizer.party_finances_data.denied_entry") }}</i>
+        </span>
         <span>{{ party.tickets_denied_entry }}</span>
       </div>
       <div v-if="organiser">
-        <span><i>Left over:</i></span>
+        <span>
+          <i>{{ $t("organizer.party_finances_data.remaining") }}</i>
+        </span>
         <span>{{ party.remaining_tickets }}</span>
       </div>
       <template v-if="organiser">
         <div>
-          <span><b>Income:</b></span>
+          <span>
+            <b>{{ $t("organizer.party_finances_data.income") }}</b>
+          </span>
         </div>
         <div>
-          <i>Ticket sale</i>
-          <span>{{ $util.formatCurrency(party.party_income) }}</span>
+          <i>{{ $t("organizer.party_finances_data.ticket_sale") }}</i>
+          <span>{{ $util.formatCurrency(party.income_tickets_sold) }}</span>
         </div>
         <div>
-          <span><b>Expenses:</b></span>
+          <i>{{ $t("organizer.party_finances_data.administration_costs") }}</i>
+          <span>{{ $util.formatCurrency(party.income_administration_costs) }}</span>
         </div>
         <div>
-          <span><i>Refunds:</i></span>
-          <span>{{ $util.formatCurrency(party.party_refunds) }}</span>
+          <span>
+            <b>{{ $t("organizer.party_finances_data.expenses") }}</b>
+          </span>
         </div>
         <div>
-          <span><i>Promoters commission:</i></span>
-          <span>{{ $util.formatCurrency(party.party_promoter_cut) }}</span>
+          <span>
+            <i>{{ $t("organizer.party_finances_data.refunds") }}</i>
+          </span>
+          <span>{{ $util.formatCurrency(party.expenses_refunds) }}</span>
         </div>
         <div>
-          <span><i>Club Owners commission:</i></span>
-          <span>{{ $util.formatCurrency(party.party_club_owner_cut) }}</span>
+          <span>
+            <i>{{ $t("organizer.party_finances_data.promoter_commissions") }}</i>
+          </span>
+          <span>{{ $util.formatCurrency(party.expenses_promoter_commissions) }}</span>
+        </div>
+        <div>
+          <span>
+            <i>{{ $t("organizer.party_finances_data.club_owner_commissions") }}</i>
+          </span>
+          <span>{{ $util.formatCurrency(party.expenses_club_owner_commissions) }}</span>
         </div>
         <v-divider></v-divider>
         <div>
-          <span><b>Profit:</b></span>
-          <span>{{ $util.formatCurrency(party.party_profit, "€", false, true) }}</span>
+          <span>
+            <b>{{ $t("organizer.party_finances_data.profit") }}</b>
+          </span>
+          <span>{{ $util.formatCurrency(party.total_profit, "€", false, true) }}</span>
         </div>
       </template>
       <template v-if="club_owner">
         <div>
-          <span><b>Commission:</b></span>
+          <span>
+            <b>{{ $t("organizer.party_finances_data.commission") }}</b>
+          </span>
         </div>
         <div>
           <span></span>
-          <span>{{ $util.formatCurrency(party.party_club_owner_cut) }}</span>
+          <span>{{ $util.formatCurrency(party.income_club_owner_commissions) }}</span>
         </div>
       </template>
     </v-card-text>
-
     <v-card-actions>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn color="primary" text @click="close">
-        Close
+        {{ $t("general.close") }}
       </v-btn>
     </v-card-actions>
   </v-card>

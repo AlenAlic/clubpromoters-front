@@ -350,6 +350,32 @@
       "club_owner_commissions": "Club Owner commissions",
       "total": "Total",
       "no_parties": "No parties in {month}."
+    },
+    "party_finances_data": {
+      "date": "Date",
+      "tickets": "Tickets",
+      "price": "Price",
+      "made_available": "Made available",
+      "sold": "Sold",
+      "on_hold": "On hold",
+      "denied_entry": "Denied entry",
+      "remaining": "Remaining",
+      "income": "Income",
+      "ticket_sale": "Ticket sale",
+      "administration_costs": "Administration costs",
+      "expenses": "Expenses",
+      "refunds": "Refunds",
+      "promoter_commissions": "Promoter commissions",
+      "club_owner_commissions": "Club Owner commissions",
+      "profit": "Profit",
+      "commission": "Commission"
+    },
+    "commissions": {
+      "choose_month": "Choose month",
+      "month_total": "Month total",
+      "tickets_sold": "Tickets sold",
+      "commission": "Commission",
+      "total_commission": "Total commission"
     }
   }
 }

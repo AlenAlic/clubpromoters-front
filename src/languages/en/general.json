@@ -9,11 +9,13 @@
     "edit": "Edit",
     "go_back": "Go back",
     "home_page_message": "To enter our exclusive club and see our events, present your promoters code",
+    "month": "Month",
     "ok": "OK",
     "opens_in_new_window": "Opens in a new window",
     "profile": "Profile",
     "save_changes": "Save changes",
     "search": "Search",
-    "security": "Security"
+    "security": "Security",
+    "year": "Year"
   }
 }

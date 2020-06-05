@@ -7,10 +7,10 @@
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="$util.selectMonths" label="Month" />
+                <v-select v-model="month" hide-details :items="$util.selectMonths" :label="$t('general.month')" />
               </v-col>
               <v-col cols="5">
-                <v-select v-model="year" hide-details :items="$util.financesYears" label="Year" />
+                <v-select v-model="year" hide-details :items="$util.financesYears" :label="$t('general.year')" />
               </v-col>
               <v-col cols="1" align-self="center" class="text-right">
                 <v-btn icon @click="getData">

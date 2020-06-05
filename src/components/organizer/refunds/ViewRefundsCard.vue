@@ -13,8 +13,8 @@
             label="Search"
           ></v-text-field>
           <template v-slot:extension>
-            <v-select v-model="month" flat solo-inverted hide-details :items="months" label="Month"></v-select>
-            <v-spacer></v-spacer>
+            <v-select v-model="month" flat solo-inverted hide-details :items="months" :label="$t('general.month')" />
+            <v-spacer />
             <v-select
               class="mx-3"
               v-model="year"

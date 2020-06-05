@@ -28,7 +28,7 @@
         <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL") }}</div>
       </template>
       <template v-slot:item.party_profit="{ item }">
-        <div>{{ $util.formatCurrency(item.party_profit) }}</div>
+        <div>{{ $util.formatCurrency(item.total_profit) }}</div>
       </template>
       <template v-slot:item.action="{ item }">
         <v-tooltip left>
