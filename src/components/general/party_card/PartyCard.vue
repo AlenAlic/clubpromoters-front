@@ -2,7 +2,7 @@
   <v-card :max-width="`${(maxWindowHeight * 4) / 3}px`" class="mx-auto" dark>
     <div style="background-color: black; background-size: cover; background-position: center center;">
       <v-lazy
-        :options="{ threshold: 0.95 }"
+        :options="{ threshold: 0.99 }"
         :min-height="`${minHeight}px`"
         :style="{
           background: images.length ? `url(${images[0]})` : 'black',

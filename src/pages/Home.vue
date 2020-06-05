@@ -17,6 +17,7 @@
       </v-row>
       <div class="enter-code text-center" :class="{ show: showEnterCode }">
         <v-form>
+          <div class="white--text subtitle-1">{{ $t("general.home_page_message") }}</div>
           <div class="code-container">
             <v-text-field
               class="code-input"
