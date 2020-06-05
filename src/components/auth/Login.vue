@@ -4,11 +4,6 @@
       <v-form ref="form" v-model="valid" @submit.prevent="login">
         <v-card>
           <v-img :src="logo" style="background: black;" />
-          <v-toolbar color="black" dark flat>
-            <v-spacer />
-            <v-toolbar-title>{{ $t("auth.sign_in") }}</v-toolbar-title>
-            <v-spacer />
-          </v-toolbar>
           <v-card-text>
             <v-text-field
               id="login-email"
