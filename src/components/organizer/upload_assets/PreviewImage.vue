@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" max-width="100vh" persistent>
     <template v-slot:activator="{ on }">
-      <div @click="dialog = true">
+      <div v-on="on">
         <div class="mb-2 subtitle-2">{{ file.name }}</div>
         <v-img :src="file.url" :aspect-ratio="logo ? 21 / 9 : 1" />
       </div>
