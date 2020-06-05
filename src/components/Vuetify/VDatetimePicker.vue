@@ -6,7 +6,7 @@
         :disabled="disabled"
         :loading="loading"
         :label="label"
-        :value="formattedDatetime"
+        :value="result"
         v-on="on"
         readonly
       >
@@ -19,7 +19,7 @@
           <v-tab key="calendar">
             <v-icon>mdi-calendar</v-icon>
           </v-tab>
-          <v-tab key="timer" :disabled="dateSelected">
+          <v-tab key="timer" :disabled="!dateSelected">
             <v-icon>mdi-clock</v-icon>
           </v-tab>
           <v-tab-item key="calendar">
@@ -50,10 +50,10 @@
         </v-tabs>
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="warning" text @click.native="clearHandler">{{ clearText }}</v-btn>
-        <v-btn text @click="cancelHandler">{{ cancelText }}</v-btn>
+        <v-btn color="accent" text @click="clearHandler">{{ clearText }}</v-btn>
+        <v-spacer />
         <v-btn color="primary" text @click="okHandler">{{ okText }}</v-btn>
+        <v-btn text @click="cancelHandler">{{ cancelText }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -65,26 +65,27 @@ const DEFAULT_DATE = "";
 const DEFAULT_TIME = "";
 const DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 const DEFAULT_TIME_FORMAT = "HH:mm";
-const DEFAULT_DIALOG_WIDTH = 340;
-const DEFAULT_CLEAR_TEXT = "CLEAR";
+const DEFAULT_DIALOG_WIDTH = 360;
 const DEFAULT_OK_TEXT = "OK";
 const DEFAULT_CANCEL_TEXT = "CANCEL";
+const DEFAULT_CLEAR_TEXT = "CLEAR";
 export default {
   model: {
     prop: "datetime",
     event: "input"
   },
   props: {
-    datetime: { type: [DateTime, String], default: null },
+    datetime: { type: String, default: null },
     disabled: { type: Boolean },
     loading: { type: Boolean },
     label: { type: String, default: "" },
+    zone: { type: String, default: "Europe/Amsterdam" },
     dialogWidth: { type: Number, default: DEFAULT_DIALOG_WIDTH },
     dateFormat: { type: String, default: DEFAULT_DATE_FORMAT },
     timeFormat: { type: String, default: DEFAULT_TIME_FORMAT },
-    clearText: { type: String, default: DEFAULT_CLEAR_TEXT },
     okText: { type: String, default: DEFAULT_OK_TEXT },
     cancelText: { type: String, default: DEFAULT_CANCEL_TEXT },
+    clearText: { type: String, default: DEFAULT_CLEAR_TEXT },
     textFieldProps: { type: Object },
     datePickerProps: { type: Object },
     timePickerProps: { type: Object },
@@ -102,18 +103,17 @@ export default {
     this.init();
   },
   computed: {
-    formattedDatetime() {
-      return this.selectedDatetime ? this.selectedDatetime : "";
+    result() {
+      return this.date && this.time ? `${this.date} ${this.time}` : "";
     },
-    selectedDatetime() {
-      if (this.date && this.time) {
-        return `${this.date} ${this.time}:00`;
-      } else {
-        return null;
-      }
+    resultDatetime() {
+      return this.result ? DateTime.fromFormat(this.result, "yyyy-LL-dd HH:mm").setZone(this.zone) : null;
+    },
+    utcDatetime() {
+      return this.resultDatetime ? this.resultDatetime.toUTC().toFormat("yyyy-LL-dd HH:mm:ss") : null;
     },
     dateSelected() {
-      return !this.date;
+      return !!this.date;
     },
     minDate() {
       if (this.min) return this.min.substring(0, 10);
@@ -126,25 +126,19 @@ export default {
   },
   methods: {
     init() {
-      let currentDate = this.datetime;
-      if (!this.datetime) {
-        // currentDate = this.$util.nowString;
-        // this.date = currentDate.substring(0, 10);
-        // this.time = currentDate.substring(11, 16);
-        return;
-      }
-      if (this.datetime instanceof DateTime) {
-        this.date = currentDate.toFormat("yyyy-LL-dd");
-        this.time = currentDate.toFormat("HH:mm");
-      } else if (typeof this.datetime === "string" || this.datetime instanceof String) {
-        // see https://stackoverflow.com/a/9436948
-        this.date = currentDate.substring(0, 10);
-        this.time = currentDate.substring(11, 16);
+      if (this.datetime) {
+        this.date = this.datetime.substring(0, 10);
+        this.time = this.datetime.substring(11, 16);
       }
     },
     okHandler() {
       this.resetPicker();
-      this.$emit("input", this.selectedDatetime);
+      this.$emit("input", this.utcDatetime);
+      this.show = false;
+    },
+    cancelHandler() {
+      this.resetPicker();
+      this.show = false;
     },
     clearHandler() {
       this.resetPicker();
@@ -152,11 +146,7 @@ export default {
       this.time = DEFAULT_TIME;
       this.$emit("input", null);
     },
-    cancelHandler() {
-      this.resetPicker();
-    },
     resetPicker() {
-      this.show = false;
       this.activeTab = 0;
       if (this.$refs.timer) {
         this.$refs.timer.selectingHour = true;
@@ -169,11 +159,6 @@ export default {
       let res = [];
       for (let i = 0; i <= 59; i += delimiter) res.push(i);
       return res;
-    }
-  },
-  watch: {
-    datetime: function() {
-      this.init();
     }
   }
 };
