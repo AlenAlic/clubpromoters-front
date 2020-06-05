@@ -1,10 +1,8 @@
 <template>
-  <center-container>
+  <center-container style="background: black;">
     <v-form ref="form" v-model="valid" @submit.prevent="activate">
       <v-card>
-        <v-toolbar color="primary" dark flat>
-          <v-toolbar-title>{{ $t("auth.activate.title") }}</v-toolbar-title>
-        </v-toolbar>
+        <v-card-title>{{ $t("auth.activate.title") }}</v-card-title>
         <v-card-text>
           {{ $t("auth.activate.set_password") }}
           <v-text-field

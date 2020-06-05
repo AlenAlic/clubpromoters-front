@@ -1,5 +1,5 @@
 <template>
-  <center-container>
+  <center-container style="background: black;">
     <login />
   </center-container>
 </template>

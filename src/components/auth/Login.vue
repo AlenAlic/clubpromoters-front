@@ -3,8 +3,11 @@
     <v-col cols="12">
       <v-form ref="form" v-model="valid" @submit.prevent="login">
         <v-card>
+          <v-img :src="logo" style="background: black;" />
           <v-toolbar color="black" dark flat>
+            <v-spacer />
             <v-toolbar-title>{{ $t("auth.sign_in") }}</v-toolbar-title>
+            <v-spacer />
           </v-toolbar>
           <v-card-text>
             <v-text-field
@@ -33,7 +36,7 @@
       </v-form>
     </v-col>
     <v-col cols="12">
-      <v-btn text :to="{ name: 'reset' }">
+      <v-btn text :to="{ name: 'reset' }" color="primary">
         {{ $t("auth.forgot_password") }}
       </v-btn>
     </v-col>
@@ -43,6 +46,7 @@
 <script>
 import { ERROR_CODES, getNetworkErrorCode } from "../../api/util/network-errors";
 import i18n from "@/languages";
+import logo from "@/assets/images/logo_all_black.svg";
 export default {
   data: function() {
     return {
@@ -52,6 +56,11 @@ export default {
       rememberMe: false,
       loading: false
     };
+  },
+  computed: {
+    logo() {
+      return logo;
+    }
   },
   methods: {
     login() {

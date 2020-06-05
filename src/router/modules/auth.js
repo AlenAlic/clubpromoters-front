@@ -12,6 +12,7 @@ const authRoutes = [
   {
     path: "/password",
     component: CenterWrapper,
+    props: { dark: true },
     redirect: { name: "reset" },
     children: [
       {
