@@ -9,6 +9,14 @@
           :label="$t('organizer.inactive_parties.edit_party.name.label')"
           required
         ></v-text-field>
+        <v-textarea
+          v-model="description"
+          rows="4"
+          :label="$t('organizer.inactive_parties.edit_party.description.label')"
+          persistent-hint
+          :hint="$t('organizer.inactive_parties.edit_party.description.hint')"
+          no-resize
+        ></v-textarea>
         <v-row>
           <v-col>
             <v-text-field
@@ -77,6 +85,7 @@ export default {
       loading: false,
       valid: false,
       name: this.party.name,
+      description: this.party.description,
       number_of_tickets: this.party.num_available_tickets,
       numberOfTicketsRules: [
         this.$form.fieldRequired,
@@ -102,10 +111,11 @@ export default {
       Vue.axios
         .post(`organizer/edit_party/${this.party.id}`, {
           name: this.name,
-          number_of_tickets: this.number_of_tickets,
-          ticket_price: this.ticket_price,
-          club_owner_commission: this.club_owner_commission,
-          promoter_commission: this.promoter_commission
+          description: this.description,
+          number_of_tickets: Number(this.number_of_tickets),
+          ticket_price: Number(this.ticket_price),
+          club_owner_commission: Number(this.club_owner_commission),
+          promoter_commission: Number(this.promoter_commission)
         })
         .then(() => {
           store.dispatch(INACTIVE_PARTIES);

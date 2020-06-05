@@ -67,6 +67,7 @@
       </template>
     </v-data-table>
     <modal
+      v-if="showModal"
       :show="showModal"
       :id="id"
       @closeModal="hideModalFunc"
@@ -76,6 +77,7 @@
       :no="$t('organizer.inactive_parties.modal.no')"
     ></modal>
     <modal
+      v-if="showEditModal"
       :show="showEditModal"
       :id="id"
       @closeModal="hideEditModalFunc"
@@ -86,7 +88,7 @@
     >
       <edit-party-card :party="party" @close="showEditModal = false" />
     </modal>
-    <modal :show="showDataModal" @closeModal="hideDataModalFunc">
+    <modal v-if="showDataModal" :show="showDataModal" @closeModal="hideDataModalFunc">
       <party-finances-data-card
         v-if="party"
         :party="party"

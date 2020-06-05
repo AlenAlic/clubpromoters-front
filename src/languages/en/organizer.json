@@ -266,6 +266,10 @@
         "name": {
           "label": "Party name"
         },
+        "description": {
+          "label": "Party description",
+          "hint": "Useful for any additional information. Will be shown under \"more information\" tab.,"
+        },
         "number_of_tickets": {
           "label": "# of tickets"
         },
