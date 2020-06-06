@@ -177,8 +177,8 @@
         </v-row>
       </template>
     </v-data-iterator>
-    <modal :show="showModal" @closeModal="hideModalFunc">
-      <give-refund-card :purchase="purchase" @closeModal="hideModalFunc"></give-refund-card>
+    <modal v-if="showModal" :show="showModal" @closeModal="hideModalFunc">
+      <give-refund-card :purchase="purchase" @closeModal="hideModalFunc" />
     </modal>
   </div>
 </template>
