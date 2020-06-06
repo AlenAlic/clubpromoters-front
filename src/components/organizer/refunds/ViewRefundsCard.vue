@@ -35,13 +35,13 @@
           <v-col v-for="item in props.items" :key="item.id" cols="12" sm="6" md="4" lg="3">
             <v-card>
               <v-card-title class="subheading font-weight-bold"> Purchase {{ item.id }} </v-card-title>
-
-              <v-divider></v-divider>
-
-              <v-list dense>
+              <v-divider />
+              <v-list dense class="purchase-refund-list">
                 <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Status:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
                       {{ item.status }}
                     </v-list-item-subtitle>
@@ -50,18 +50,20 @@
                 <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Mollie:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
                       {{ item.mollie_payment_id }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item dense three-line>
+                <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Purchased by:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
-                      {{ item.name }}
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle class="text-right">
+                      {{ item.name }}<br />
                       {{ item.email }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -69,6 +71,8 @@
                 <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Tickets bought:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
                       {{ item.number_of_tickets }}
                     </v-list-item-subtitle>
@@ -76,7 +80,9 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Price:</v-list-item-title>
+                    <v-list-item-title>Tickets:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
                       {{ $util.formatCurrency(item.price) }}
                     </v-list-item-subtitle>
@@ -84,7 +90,19 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
+                    <v-list-item-title>Administration costs:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
+                    <v-list-item-subtitle class="text-right">
+                      {{ $util.formatCurrency(item.administration_costs) }}
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item dense>
+                  <v-list-item-content>
                     <v-list-item-title>Purchase date:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
                       {{ item.purchase_date }}
                     </v-list-item-subtitle>
@@ -93,17 +111,21 @@
                 <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Party:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
-                      {{ item.party.name }}
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle class="text-right">
-                      {{ item.party.date }}
+                      {{ item.party.name }}<br />
+                      {{ $util.dateTimeFromUTCString(item.party.start_date).toFormat("dd LLLL yyyy") }}<br />
+                      {{ $util.dateTimeFromUTCString(item.party.start_date).toFormat("HH:mm") }} -
+                      {{ $util.dateTimeFromUTCString(item.party.end_date).toFormat("HH:mm") }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
                     <v-list-item-title>Entrance code:</v-list-item-title>
+                  </v-list-item-content>
+                  <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
                       {{ item.entrance_code }}
                     </v-list-item-subtitle>
@@ -139,9 +161,14 @@
                 </v-list-group>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-btn text @click="showModalFunc(item)">
-                      Give refund
-                    </v-btn>
+                    <v-card flat>
+                      <v-card-actions class="px-0">
+                        <v-spacer />
+                        <v-btn text @click="showModalFunc(item)">
+                          Give refund
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -223,4 +250,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.v-list--dense {
+  .v-list-item--dense {
+    .v-list-item__content {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+}
+</style>
