@@ -1,0 +1,11 @@
+{
+  "promoter": {
+    "income": {
+      "title": "Choose month to view finances",
+      "tickets_sold": "Tickets sold",
+      "commissions": "Commission",
+      "total": "Total",
+      "no_tickets_sold": "Not tickets sold in {month}"
+    }
+  }
+}

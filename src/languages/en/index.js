@@ -10,6 +10,7 @@ import networkErrors from "./network-errors";
 import organizer from "./organizer";
 import page_not_found from "./page_not_found";
 import password_requirements from "./password_requirements";
+import promoter from "./promoter";
 import purchase from "./purchase";
 import user from "./user";
 import vuetify from "./vuetify";
@@ -26,6 +27,7 @@ const gb = {
   ...organizer,
   ...page_not_found,
   ...password_requirements,
+  ...promoter,
   ...purchase,
   ...user,
   ...vuetify

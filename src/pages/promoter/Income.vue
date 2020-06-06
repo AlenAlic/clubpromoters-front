@@ -3,16 +3,28 @@
     <v-row class="no-print">
       <v-col cols="12" lg="4" offset-lg="4">
         <v-card>
-          <v-card-title>Choose month to view finances</v-card-title>
+          <v-card-title>{{ $t("promoter.income.title") }}</v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="$util.selectMonths" :label="$t('general.month')" />
+                <v-select
+                  v-model="month"
+                  hide-details
+                  :items="$util.selectMonths"
+                  :label="$t('general.month')"
+                  @change="getData"
+                />
               </v-col>
-              <v-col cols="5">
-                <v-select v-model="year" hide-details :items="$util.financesYears" :label="$t('general.year')" />
+              <v-col cols="4">
+                <v-select
+                  v-model="year"
+                  hide-details
+                  :items="$util.financesYears"
+                  :label="$t('general.year')"
+                  @change="getData"
+                />
               </v-col>
-              <v-col cols="1" align-self="center" class="text-right">
+              <v-col cols="2" align-self="center" class="text-right">
                 <v-btn icon @click="getData">
                   <v-icon>mdi-magnify</v-icon>
                 </v-btn>
@@ -33,13 +45,15 @@
                 <v-list-item-title>{{ party.name }}</v-list-item-title>
                 <v-list-item-subtitle class="finances-body">
                   <div class="two">
-                    <span>Tickets sold</span>
+                    <span>{{ $t("promoter.income.tickets_sold") }}</span>
                     <span>{{ party.tickets }}</span>
                   </div>
-                  <div><b>Commission</b></div>
+                  <div>
+                    <b>{{ $t("promoter.income.commissions") }}</b>
+                  </div>
                   <div>
                     <i></i>
-                    <span>{{ $util.formatCurrency(party.price) }}</span>
+                    <span>{{ $util.formatCurrency(party.commission) }}</span>
                   </div>
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -48,14 +62,16 @@
               <v-list-item-content>
                 <v-list-item-title class="finances-body">
                   <div>
-                    <span>Total</span>
+                    <span>{{ $t("promoter.income.total") }}</span>
                     <span>{{ $util.formatCurrency(total) }}</span>
                   </div>
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </template>
-          <v-card-text v-else> No tickets sold in {{ $util.displayMonth(displayMonth) }}. </v-card-text>
+          <v-card-text v-else>
+            {{ $t("promoter.income.no_tickets_sold", { month: $util.displayMonth(displayMonth) }) }}
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
