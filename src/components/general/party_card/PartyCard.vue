@@ -24,7 +24,7 @@
         <v-row no-gutters class="mt-0" justify="space-between">
           <v-col>{{ startTime }} - {{ endTime }}</v-col>
         </v-row>
-        <div class="text-center">Tickets: {{ $util.formatCurrency(price) }}</div>
+        <div class="text-center">{{ $t("party_card.tickets", { num: $util.formatCurrency(price) }) }}</div>
         <div class="my-0">
           <v-row no-gutters justify="space-around" align="center">
             <v-col>
@@ -48,7 +48,9 @@
     </v-row>
     <v-row no-gutters class="text-center">
       <v-col cols="6">
-        <v-btn color="white" text small class="my-2" @click="moreInfoModal = true">more info</v-btn>
+        <v-btn color="white" text small class="my-2" @click="moreInfoModal = true">
+          {{ $t("party_card.more_info") }}
+        </v-btn>
         <modal :show="moreInfoModal">
           <v-card dark>
             <v-card-title class="mb-1">
@@ -58,6 +60,7 @@
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-card-title>
+            <v-card-subtitle>{{ party.club }}</v-card-subtitle>
             <v-card-text>
               <div class="my-3">{{ party.club ? party.club.club : "Club" }}</div>
               <div class="my-3 has-line_breaks" v-if="party.description">
@@ -68,15 +71,13 @@
                   <div>
                     <div>{{ fullStartDate }}</div>
                     <div>{{ startTime }} - {{ endTime }}</div>
-                    <div>Tickets: {{ $util.formatCurrency(price) }}</div>
+                    <div>{{ $t("party_card.tickets", { num: $util.formatCurrency(price) }) }}</div>
                   </div>
                 </v-col>
                 <v-col class="text-right">
                   <template v-if="party.location">
                     <div>
-                      {{
-                        `${party.location.street} ${party.location.street_number}${party.location.street_number_addition}`
-                      }}
+                      {{ address_street }}
                     </div>
                     <div>
                       {{ `${party.location.postal_code} ${party.location.postal_code_letters}` }}
@@ -111,9 +112,11 @@
           :disabled="!tickets"
           :to="{ name: 'purchase.order', params: { id: party.id, tickets: tickets } }"
         >
-          BUY
+          {{ $t("party_card.buy") }}
         </v-btn>
-        <v-btn v-else color="white" class="my-2 black--text" small :disabled="!tickets">BUY</v-btn>
+        <v-btn v-else color="white" class="my-2 black--text" small :disabled="!tickets">
+          {{ $t("party_card.buy") }}
+        </v-btn>
       </v-col>
     </v-row>
   </v-card>
@@ -123,8 +126,6 @@
 import loading from "@/assets/images/loading.gif";
 import PartyCardImages from "@/components/general/party_card/PartyCardImages";
 
-const DEFAULT_MONTH_SHORT = "Oct";
-const DEFAULT_MONTH_LONG = "October";
 const DEFAULT_START_DAY = "02";
 const DEFAULT_START_TIME = "21:35";
 const DEFAULT_END_TIME = "02:25";
@@ -165,7 +166,7 @@ export default {
         img.src = url;
         new Promise(resolve => {
           img.onload = img.onerror = resolve;
-        });
+        }).then(() => {});
       })
     ).then(() => {
       this.$nextTick(() => {
@@ -211,12 +212,6 @@ export default {
     startDate() {
       return this.party && this.party.start_date ? this.$util.dateTimeFromUTCString(this.party.start_date) : null;
     },
-    monthShort() {
-      return this.startDate ? this.startDate.toFormat("LLL") : DEFAULT_MONTH_SHORT;
-    },
-    monthLong() {
-      return this.startDate ? this.startDate.toFormat("LLLL") : DEFAULT_MONTH_LONG;
-    },
     startDay() {
       return this.startDate ? this.startDate.toFormat("dd") : DEFAULT_START_DAY;
     },
@@ -231,6 +226,13 @@ export default {
     },
     endTime() {
       return this.endDate ? this.endDate.toFormat("HH:mm") : DEFAULT_END_TIME;
+    },
+    address_street() {
+      if (this.party) {
+        const addition = this.party.location.street_number_addition ? this.party.location.street_number_addition : "";
+        return `${this.party.location.street} ${this.party.location.street_number}${addition}`;
+      }
+      return "";
     }
   },
   methods: {
@@ -238,20 +240,11 @@ export default {
       this.windowSize = window.innerWidth;
     },
     changeTickets(value) {
-      let newValue = Number(this.tickets + value);
-      if (newValue > 0 && newValue <= this.party.remaining_tickets) {
-        this.tickets = newValue;
-      }
-    },
-    orderTickets(id, tickets) {
-      if (tickets > 0) {
-        this.$router.push({
-          name: "purchase.order",
-          params: {
-            id: this.party.id,
-            tickets: this.tickets
-          }
-        });
+      if (!this.preview && !this.showOnly) {
+        let newValue = Number(this.tickets + value);
+        if (newValue > 0 && newValue <= this.party.num_remaining_tickets) {
+          this.tickets = newValue;
+        }
       }
     }
   }

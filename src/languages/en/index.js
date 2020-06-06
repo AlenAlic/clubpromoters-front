@@ -9,6 +9,7 @@ import menu from "./menu";
 import networkErrors from "./network-errors";
 import organizer from "./organizer";
 import page_not_found from "./page_not_found";
+import party_card from "./party_card";
 import password_requirements from "./password_requirements";
 import promoter from "./promoter";
 import purchase from "./purchase";
@@ -26,6 +27,7 @@ const gb = {
   ...networkErrors,
   ...organizer,
   ...page_not_found,
+  ...party_card,
   ...password_requirements,
   ...promoter,
   ...purchase,

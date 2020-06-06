@@ -154,7 +154,7 @@ export default {
       }
     },
     setTickets(party, tickets) {
-      return Math.min(tickets, party.remaining_tickets);
+      return Math.min(tickets, party.num_remaining_tickets);
     },
     purchase() {
       Vue.axios
