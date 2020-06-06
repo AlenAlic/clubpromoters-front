@@ -328,9 +328,16 @@
     },
     "refunds": {
       "title": "Purchase {id}",
+      "ticket_num": "Ticket {num}",
+      "refundable_tickets": "Refundable tickets",
+      "no_refundable_tickets": "No refundable tickets",
+      "non_refundable_tickets": "Non-refundable tickets (used and not denied entry)",
+      "no_non_refundable_tickets": "No non-refundable tickets",
+      "refunded_tickets": "Refunded tickets",
+      "no_refunded_tickets": "No refunded tickets",
       "amount": {
         "label": "Refund amount",
-        "hint": "Choose the amount you wish to refund"
+        "hint": "Amount to be refunded"
       },
       "checkbox": "Yes, I am sure I wish to give a refund",
       "submit": "Give refund"

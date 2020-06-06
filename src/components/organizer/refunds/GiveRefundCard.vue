@@ -4,39 +4,75 @@
       <v-card-title class="headline">
         {{ $t("organizer.refunds.title", { id: purchase.id }) }}
       </v-card-title>
-
       <v-card-text>
-        <v-select
-          v-model="tickets"
-          hide-details
-          :items="Array.from(Array(purchase.number_of_tickets).keys()).map(n => n + 1)"
-          persistent-hint
-          :hint="$t('organizer.refunds.amount.hint')"
-          label="Tickets"
-        ></v-select>
+        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.refundable_tickets") }}</div>
+        <template v-if="refundableTickets.length">
+          <v-checkbox
+            readonly
+            :label="$t('general.select_all')"
+            :value="allSelected"
+            @click.stop="selectAllToggle"
+            dense
+            hide-details
+          />
+          <v-checkbox
+            v-for="t in refundableTickets"
+            :key="t.id"
+            v-model="refundTickets"
+            :label="$t('organizer.refunds.ticket_num', { num: t.number })"
+            :value="t.id"
+            dense
+            hide-details
+            multiple
+          />
+        </template>
+        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.no_refundable_tickets") }}</div>
+        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.non_refundable_tickets") }}</div>
+        <template v-if="nonRefundableTickets.length">
+          <v-checkbox
+            v-for="t in nonRefundableTickets"
+            :key="t.id"
+            readonly
+            :label="$t('organizer.refunds.ticket_num', { num: t.number })"
+            dense
+            hide-details
+            indeterminate
+          />
+        </template>
+        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.no_non_refundable_tickets") }}</div>
+        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.refunded_tickets") }}</div>
+        <template v-if="refundedTickets.length">
+          <v-checkbox
+            v-for="t in refundedTickets"
+            :key="t.id"
+            readonly
+            :label="$t('organizer.refunds.ticket_num', { num: t.number })"
+            dense
+            hide-details
+            indeterminate
+          />
+        </template>
+        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.no_refunded_tickets") }}</div>
         <v-text-field
-          v-model="amount"
+          :value="refundAmount"
+          readonly
           type="number"
-          :rules="amountRules"
           :label="$t('organizer.refunds.amount.label')"
           persistent-hint
           :hint="$t('organizer.refunds.amount.hint')"
-          required
           prefix="€"
         >
         </v-text-field>
         <v-checkbox
           v-model="giveRefund"
-          :rules="giveRefundRules"
+          :rules="[$form.fieldRequired]"
           color="primary"
           :label="$t('organizer.refunds.checkbox')"
-        >
-        </v-checkbox>
+        />
       </v-card-text>
-
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn :disabled="!valid || loading" :loading="loading" color="primary" text type="submit">
+        <v-spacer />
+        <v-btn :disabled="!isValid || loading" :loading="loading" color="primary" text type="submit">
           {{ $t("organizer.refunds.submit") }}
         </v-btn>
         <v-btn text @click="close">
@@ -48,22 +84,44 @@
 </template>
 
 <script>
-// TODO => Change to select a number of tickets to be refunded
-import Vue from "vue";
 export default {
   props: { purchase: {} },
   data: function() {
     return {
       valid: false,
       loading: false,
-      tickets: 0,
-      amount: null,
-      amountRules: [this.$form.fieldRequired],
-      giveRefund: false,
-      giveRefundRules: [this.$form.fieldRequired]
+      refundTickets: [],
+      giveRefund: false
     };
   },
+  computed: {
+    isValid() {
+      return this.valid && this.refundAmount > 0;
+    },
+    refundableTickets() {
+      return this.purchase.tickets.filter(t => !t.refunded && !t.used);
+    },
+    nonRefundableTickets() {
+      return this.purchase.tickets.filter(t => t.used);
+    },
+    refundedTickets() {
+      return this.purchase.tickets.filter(t => t.refunded);
+    },
+    allSelected() {
+      return this.refundTickets.length === this.refundableTickets.length;
+    },
+    refundAmount() {
+      return this.refundTickets.length * this.purchase.ticket_price;
+    }
+  },
   methods: {
+    selectAllToggle() {
+      if (this.allSelected) {
+        this.refundTickets = [];
+      } else {
+        this.refundTickets = this.refundableTickets.map(t => t.id);
+      }
+    },
     close: function() {
       this.$emit("closeModal");
       this.$refs.form.resetValidation();
@@ -73,8 +131,12 @@ export default {
     },
     refund() {
       this.loading = true;
-      Vue.axios
-        .post("organizer/refund", { purchase_id: this.purchase.id, amount: this.amount })
+      this.axios
+        .post("organizer/refund", {
+          purchase_id: this.purchase.id,
+          amount: this.refundAmount,
+          tickets: this.refundTickets
+        })
         .then(response => {
           this.$emit("updated", response.data);
           this.close();
@@ -91,3 +153,9 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+.v-input--selection-controls {
+  margin-top: 4px !important;
+}
+</style>
