@@ -32,25 +32,25 @@
         <span>
           <i>{{ $t("organizer.party_finances_data.sold") }}</i>
         </span>
-        <span>{{ party.sold_tickets }}</span>
+        <span>{{ party.num_sold_tickets }}</span>
       </div>
       <div v-if="organiser">
         <span>
           <i>{{ $t("organizer.party_finances_data.on_hold") }}</i>
         </span>
-        <span>{{ party.tickets_on_hold }}</span>
+        <span>{{ party.num_tickets_on_hold }}</span>
       </div>
       <div v-if="club_owner">
         <span>
           <i>{{ $t("organizer.party_finances_data.denied_entry") }}</i>
         </span>
-        <span>{{ party.tickets_denied_entry }}</span>
+        <span>{{ party.num_tickets_denied_entry }}</span>
       </div>
       <div v-if="organiser">
         <span>
           <i>{{ $t("organizer.party_finances_data.remaining") }}</i>
         </span>
-        <span>{{ party.remaining_tickets }}</span>
+        <span>{{ party.num_remaining_tickets }}</span>
       </div>
       <template v-if="organiser">
         <div>

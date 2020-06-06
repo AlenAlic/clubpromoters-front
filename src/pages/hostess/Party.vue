@@ -9,14 +9,14 @@
     <v-col cols="12">
       <h3 class="text-center mb-2">
         <span>Guests hosted</span>
-        <span class="ml-2" v-if="party"> {{ guestAccepted + guestDenied }}/{{ party.sold_tickets }} </span>
+        <span class="ml-2" v-if="party">{{ guestAccepted + guestDenied }}/{{ party.num_sold_tickets }}</span>
         <span class="ml-2" v-else>.../...</span>
       </h3>
       <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
       <v-progress-linear
         v-else-if="party"
         color="primary"
-        :value="((guestAccepted + guestDenied) / party.sold_tickets) * 100"
+        :value="((guestAccepted + guestDenied) / party.num_sold_tickets) * 100"
       ></v-progress-linear>
     </v-col>
     <v-col cols="6" v-if="party">

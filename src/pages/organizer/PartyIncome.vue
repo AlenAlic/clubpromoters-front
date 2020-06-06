@@ -54,7 +54,7 @@
                 <v-expansion-panel-header>
                   <v-row no-gutters justify="space-between">
                     <v-col>{{ party.name }}</v-col>
-                    <v-col class="text-right"> {{ party.sold_tickets }} / {{ party.num_available_tickets }} </v-col>
+                    <v-col class="text-right"> {{ party.num_sold_tickets }} / {{ party.num_available_tickets }} </v-col>
                     <v-col class="text-right pr-3">
                       {{ $util.formatCurrency(party.total_profit) }}
                     </v-col>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="three">
                           <span>{{ $t("organizer.party_income.sold") }}</span>
-                          <span>{{ party.sold_tickets }} / {{ party.num_available_tickets }}</span>
+                          <span>{{ party.num_sold_tickets }} / {{ party.num_available_tickets }}</span>
                         </div>
                         <div class="mt-2">
                           <b>{{ $t("organizer.party_income.income") }}</b>
@@ -101,7 +101,7 @@
                           <i>{{ $t("organizer.party_income.club_owner_commissions") }}</i>
                           <span>{{ $util.formatCurrency(party.expenses_club_owner_commissions) }}</span>
                         </div>
-                        <v-divider class="my-1"></v-divider>
+                        <v-divider class="my-1" />
                         <div>
                           <b>{{ $t("organizer.party_income.total") }}</b>
                           <span>{{ $util.formatCurrency(party.total_profit) }}</span>
@@ -150,7 +150,7 @@ export default {
     },
     totalTicketsSold() {
       return this.parties.reduce((t, c) => {
-        return t + c.sold_tickets;
+        return t + c.num_sold_tickets;
       }, 0);
     },
     totalAvailableTickets() {

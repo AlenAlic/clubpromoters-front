@@ -35,7 +35,7 @@
                 </div>
                 <div class="two">
                   <span>Sold</span>
-                  <span>{{ party.sold_tickets }} / {{ party.num_available_tickets }}</span>
+                  <span>{{ party.num_sold_tickets }} / {{ party.num_available_tickets }}</span>
                 </div>
                 <div><b>Commission</b></div>
                 <div>

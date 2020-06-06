@@ -39,7 +39,7 @@
             <v-expansion-panel v-for="user in promoters" :key="user.id">
               <v-expansion-panel-header>
                 <v-row no-gutters justify="space-between">
-                  <v-col> {{ user.name }}</v-col>
+                  <v-col> {{ user.full_name }}</v-col>
                   <v-col class="text-right pr-3">{{ $util.formatCurrency(user.total) }}</v-col>
                 </v-row>
               </v-expansion-panel-header>
@@ -60,7 +60,7 @@
                       <v-divider class="my-1" />
                       <div>
                         <span>{{ $t("organizer.commissions.commission") }}</span>
-                        <span>{{ $util.formatCurrency(party.expenses_promoter_commissions) }}</span>
+                        <span>{{ $util.formatCurrency(party.commission) }}</span>
                       </div>
                     </v-list-item-subtitle>
                     <v-list-item-subtitle class="body mt-3">
@@ -118,7 +118,11 @@
                       </div>
                       <div class="three">
                         <span>{{ $t("organizer.commissions.tickets_sold") }}</span>
-                        <span>{{ party.tickets }}</span>
+                        <span>{{ party.num_sold_tickets }}</span>
+                      </div>
+                      <div class="three">
+                        <span>{{ $t("organizer.commissions.tickets_refunded") }}</span>
+                        <span>{{ party.num_tickets_refunded }}</span>
                       </div>
                       <v-divider class="my-1" />
                       <div>

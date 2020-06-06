@@ -20,7 +20,7 @@
                 }}
               </v-list-item-subtitle>
               <v-list-item-subtitle class="text-right">
-                {{ `Expecting ${party.sold_tickets} guests.` }}
+                {{ `Expecting ${party.num_sold_tickets} guests.` }}
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
