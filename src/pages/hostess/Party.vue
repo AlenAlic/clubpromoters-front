@@ -8,11 +8,11 @@
     </v-btn>
     <v-col cols="12">
       <h3 class="text-center mb-2">
-        <span>Guests hosted</span>
+        <span>{{ $t("hostess.party.guests_hosted") }}</span>
         <span class="ml-2" v-if="party">{{ guestAccepted + guestDenied }}/{{ party.num_sold_tickets }}</span>
         <span class="ml-2" v-else>.../...</span>
       </h3>
-      <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
+      <v-progress-linear v-if="loading" color="primary" indeterminate />
       <v-progress-linear
         v-else-if="party"
         color="primary"
@@ -21,28 +21,28 @@
     </v-col>
     <v-col cols="6" v-if="party">
       <v-card class="text-center">
-        <div class="pt-2 pb-1">Accepted</div>
+        <div class="pt-2 pb-1">{{ $t("hostess.party.accepted") }}</div>
         <div class="pt-1 pb-2">{{ guestAccepted }}</div>
       </v-card>
     </v-col>
     <v-col cols="6" v-if="party">
       <v-card class="text-center">
-        <div class="pt-2 pb-1">Denied</div>
+        <div class="pt-2 pb-1">{{ $t("hostess.party.denied") }}</div>
         <div class="pt-1 pb-2">{{ guestDenied }}</div>
       </v-card>
     </v-col>
-    <v-col cols="12" v-if="showCamera">
+    <v-col cols="12" v-if="showCamera" style="margin-bottom: 96px;">
       <v-sheet>
         <qrcode-stream :track="false" :camera="camera" @decode="onDecode" @init="onInit">
           <div v-if="validationSuccess" class="validation-success">
-            Authenticated!
+            {{ $t("hostess.party.authenticated") }}
           </div>
           <div v-if="validationPending" class="validation-pending">
-            Validating...
+            {{ $t("hostess.party.validating") }}
           </div>
           <div v-if="validationFailed" class="validation-failure text-center">
             <v-btn color="primary" depressed @click="resetCamera">
-              Restart camera
+              {{ $t("hostess.party.restart_camera") }}
             </v-btn>
           </div>
         </qrcode-stream>
@@ -51,23 +51,26 @@
     <v-col cols="12" v-if="!showCamera">
       <v-expansion-panels>
         <v-expansion-panel v-for="purchase in visiblePurchases" :key="purchase.id">
-          <v-expansion-panel-header>{{ purchase.entrance_code }}</v-expansion-panel-header>
+          <v-expansion-panel-header>
+            <span>{{ purchase.entrance_code }}</span>
+            <i>{{ purchase.full_name }}</i>
+          </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-list dense width="100%">
               <v-list-item dense two-line>
                 <v-list-item-content>
                   <v-list-item-title>
-                    Name:
+                    {{ $t("hostess.party.name") }}
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-right">
-                    {{ purchase.name }}
+                    {{ purchase.full_name }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item dense two-line>
                 <v-list-item-content>
                   <v-list-item-title>
-                    Tickets available:
+                    {{ $t("hostess.party.tickets_available") }}
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-right">
                     {{ checkAvailableTickets(purchase) }}
@@ -78,7 +81,7 @@
                 <v-list-item-content></v-list-item-content>
                 <v-list-item-action>
                   <v-btn color="primary" @click="checkIn(purchase)">
-                    Check in
+                    {{ $t("hostess.party.check_in") }}
                   </v-btn>
                 </v-list-item-action>
               </v-list-item>
@@ -88,41 +91,38 @@
       </v-expansion-panels>
     </v-col>
     <v-col cols="12" v-if="!showCamera">
-      <h3 class="text-center">Handled guests</h3>
+      <h3 class="text-center">
+        {{ $t("hostess.party.hosted_guests") }}
+      </h3>
     </v-col>
-    <v-col cols="12" v-if="!showCamera">
+    <v-col cols="12" v-if="!showCamera" style="margin-bottom: 80px;">
       <v-expansion-panels>
         <v-expansion-panel v-for="purchase in invisiblePurchases" :key="purchase.id">
-          <v-expansion-panel-header>{{ purchase.entrance_code }}</v-expansion-panel-header>
+          <v-expansion-panel-header>
+            <span>{{ purchase.entrance_code }}</span>
+            <i>{{ purchase.full_name }}</i>
+          </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-list dense width="100%">
               <v-list-item dense two-line>
                 <v-list-item-content>
                   <v-list-item-title>
-                    Name:
+                    {{ $t("hostess.party.name") }}
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-right">
-                    {{ purchase.name }}
+                    {{ purchase.full_name }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item dense two-line>
                 <v-list-item-content>
                   <v-list-item-title>
-                    Tickets available:
+                    {{ $t("hostess.party.tickets_available") }}
                   </v-list-item-title>
                   <v-list-item-subtitle class="text-right">
                     {{ checkAvailableTickets(purchase) }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
-              </v-list-item>
-              <v-list-item dense>
-                <v-list-item-content></v-list-item-content>
-                <v-list-item-action>
-                  <v-btn color="primary" @click="checkIn(purchase)">
-                    Check in
-                  </v-btn>
-                </v-list-item-action>
               </v-list-item>
             </v-list>
           </v-expansion-panel-content>
@@ -132,29 +132,31 @@
     <modal :show="showModal">
       <v-card v-if="purchase">
         <v-card-title>{{ purchase.entrance_code }}</v-card-title>
-        <v-card-title>{{ purchase.name }}</v-card-title>
-        <v-card-text>Tickets available: {{ checkAvailableTickets(purchase) }}</v-card-text>
+        <v-card-title>{{ purchase.full_name }}</v-card-title>
+        <v-card-text>
+          {{ $t("hostess.party.tickets_available_num", { num: checkAvailableTickets(purchase) }) }}
+        </v-card-text>
         <v-card-text>
           <v-select
             v-if="items.length > 1"
             v-model="tickets"
             :items="items"
-            label="Guests"
+            :label="$t('hostess.party.guests.label')"
             persistent-hint
-            hint="Choose how many guests to accept or deny"
+            :hint="$t('hostess.party.guests.hint')"
           ></v-select>
         </v-card-text>
         <v-card-actions>
           <v-btn color="error" text :loading="loadingModal" @click="deny">
-            DENY
+            {{ $t("hostess.party.deny") }}
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn color="success" text :loading="loadingModal" @click="accept">
-            ACCEPT
+            {{ $t("hostess.party.accept") }}
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn text :loading="loadingModal" @click="closeModal()">
-            CANCEL
+            {{ $t("hostess.party.cancel") }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -162,7 +164,7 @@
     <v-snackbar v-model="snackbar" @input="handleSnackbar">
       {{ error }}
       <v-btn color="accent" text @click.stop="resetCamera">
-        Close
+        {{ $t("general.close") }}
       </v-btn>
     </v-snackbar>
   </v-row>
@@ -172,6 +174,7 @@ import Vue from "vue";
 import { QrcodeStream } from "vue-qrcode-reader";
 import Modal from "@/components/modal/Modal";
 import { ERROR_CODES, getNetworkErrorCode } from "@/api/util/network-errors";
+import i18n from "@/languages";
 export default {
   components: { Modal, QrcodeStream },
   created() {
@@ -256,15 +259,15 @@ export default {
         await promise;
       } catch (error) {
         if (error.name === "NotAllowedError") {
-          this.error = "ERROR: you need to grant camera access permisson";
+          this.error = "ERROR: You need to grant camera access permission";
         } else if (error.name === "NotFoundError") {
-          this.error = "ERROR: no camera on this device";
+          this.error = "ERROR: No camera on this device";
         } else if (error.name === "NotSupportedError") {
-          this.error = "ERROR: secure context required (HTTPS, localhost)";
+          this.error = "ERROR: Secure context required (HTTPS, localhost)";
         } else if (error.name === "NotReadableError") {
-          this.error = "ERROR: is the camera already in use?";
+          this.error = "ERROR: Is the camera already in use?";
         } else if (error.name === "OverconstrainedError") {
-          this.error = "ERROR: installed cameras are not suitable";
+          this.error = "ERROR: Installed cameras are not suitable";
         } else if (error.name === "StreamApiNotSupportedError") {
           this.error = "ERROR: Stream API is not supported in this browser";
         }
@@ -282,8 +285,8 @@ export default {
           this.error = error;
           this.snackbar = true;
           const status = getNetworkErrorCode(error);
-          if (status === ERROR_CODES.BAD_REQUEST) this.error = "Available tickets have been used.";
-          if (status === ERROR_CODES.NOT_FOUND) this.error = "Invalid code.";
+          if (status === ERROR_CODES.BAD_REQUEST) this.error = i18n.t("hostess.party.available_tickets_used");
+          if (status === ERROR_CODES.NOT_FOUND) this.error = i18n.t("hostess.party.invalid_code");
           this.result = "";
         })
         .finally(() => {

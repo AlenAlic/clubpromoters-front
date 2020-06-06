@@ -1,0 +1,30 @@
+{
+  "hostess": {
+    "dashboard": {
+      "expecting_num_guests": "Expecting {num} guests today",
+      "no_parties_today": "No parties today."
+    },
+    "party": {
+      "guests_hosted": "Guests hosted",
+      "accepted": "Accepted",
+      "denied": "Denied",
+      "authenticated": "Authenticated!",
+      "validating": "Validating...",
+      "restart_camera": "Restart camera",
+      "check_in": "Check in",
+      "hosted_guests": "Hosted guests",
+      "tickets_available": "Tickets available",
+      "name": "Name",
+      "tickets_available_num": "Tickets available: {num}",
+      "guests": {
+        "label": "Guests",
+        "hint": "Choose how many guests to accept or deny"
+      },
+      "deny": "DENY",
+      "accept": "ACCEPT",
+      "cancel": "CANCEL",
+      "available_tickets_used": "All available tickets have been used.",
+      "invalid_code": "Invalid code"
+    }
+  }
+}

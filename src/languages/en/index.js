@@ -5,6 +5,7 @@ import auth from "./auth";
 import club_owner from "./club_owner";
 import form from "./form";
 import general from "./general";
+import hostess from "./hostess";
 import menu from "./menu";
 import networkErrors from "./network-errors";
 import organizer from "./organizer";
@@ -23,6 +24,7 @@ const gb = {
   ...club_owner,
   ...form,
   ...general,
+  ...hostess,
   ...menu,
   ...networkErrors,
   ...organizer,
