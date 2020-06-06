@@ -7,20 +7,17 @@
         <router-view></router-view>
       </transition>
     </v-content>
-    <app-footer v-if="$auth.isAuthenticated && $auth.isHostess && false" />
   </v-app>
 </template>
 
 <script>
 import AppNavigationDrawer from "@/components/app/AppNavigationDrawer";
 import AppHeader from "@/components/app/AppHeader";
-import AppFooter from "@/components/app/AppFooter";
 import loadStore from "@/store/loader";
 export default {
   components: {
     AppNavigationDrawer,
-    AppHeader,
-    AppFooter
+    AppHeader
   },
   data() {
     return {
