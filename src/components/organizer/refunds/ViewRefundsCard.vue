@@ -10,7 +10,7 @@
             solo-inverted
             hide-details
             prepend-inner-icon="mdi-magnify"
-            label="Search"
+            :label="$t('general.search')"
           />
           <v-spacer />
           <template v-slot:extension>
@@ -23,7 +23,7 @@
               solo-inverted
               hide-details
               :items="years"
-              label="Year"
+              :label="$t('general.year')"
             ></v-select>
             <v-spacer />
             <v-btn text :value="false" @click="getPurchases"><v-icon>mdi-magnify</v-icon></v-btn>
