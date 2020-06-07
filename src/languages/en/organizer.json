@@ -327,20 +327,35 @@
       "view": "View"
     },
     "refunds": {
-      "title": "Purchase {id}",
-      "ticket_num": "Ticket {num}",
-      "refundable_tickets": "Refundable tickets",
-      "no_refundable_tickets": "No refundable tickets",
-      "non_refundable_tickets": "Non-refundable tickets (used and not denied entry)",
-      "no_non_refundable_tickets": "No non-refundable tickets",
-      "refunded_tickets": "Refunded tickets",
-      "no_refunded_tickets": "No refunded tickets",
-      "amount": {
-        "label": "Refund amount",
-        "hint": "Amount to be refunded"
+      "view_refund": {
+        "title": "Purchase {id}",
+        "status": "Status",
+        "mollie_id": "Mollie id",
+        "purchased_by": "Purchased by",
+        "tickets_bought": "Tickets bought",
+        "tickets": "Tickets",
+        "administration_costs": "Administration costs",
+        "purchase_date": "Purchase date",
+        "party": "Party",
+        "entrance_code": "Entrance code",
+        "give_refund": "Give refund"
       },
-      "checkbox": "Yes, I am sure I wish to give a refund",
-      "submit": "Give refund"
+      "give_refund": {
+        "title": "Purchase {id}",
+        "ticket_num": "Ticket {num}",
+        "refundable_tickets": "Refundable tickets",
+        "no_refundable_tickets": "No refundable tickets",
+        "non_refundable_tickets": "Non-refundable tickets (used and not denied entry)",
+        "no_non_refundable_tickets": "No non-refundable tickets",
+        "refunded_tickets": "Refunded tickets",
+        "no_refunded_tickets": "No refunded tickets",
+        "amount": {
+          "label": "Refund amount",
+          "hint": "Amount to be refunded"
+        },
+        "checkbox": "Yes, I am sure I wish to give a refund",
+        "submit": "Give refund"
+      }
     },
     "party_income": {
       "total_profit": "Total profit",

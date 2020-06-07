@@ -2,10 +2,10 @@
   <v-card>
     <v-form ref="form" v-model="valid" @submit.prevent="refund">
       <v-card-title class="headline">
-        {{ $t("organizer.refunds.title", { id: purchase.id }) }}
+        {{ $t("organizer.refunds.give_refund.title", { id: purchase.id }) }}
       </v-card-title>
       <v-card-text>
-        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.refundable_tickets") }}</div>
+        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.give_refund.refundable_tickets") }}</div>
         <template v-if="refundableTickets.length">
           <v-checkbox
             readonly
@@ -19,47 +19,47 @@
             v-for="t in refundableTickets"
             :key="t.id"
             v-model="refundTickets"
-            :label="$t('organizer.refunds.ticket_num', { num: t.number })"
+            :label="$t('organizer.refunds.give_refund.ticket_num', { num: t.number })"
             :value="t.id"
             dense
             hide-details
             multiple
           />
         </template>
-        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.no_refundable_tickets") }}</div>
-        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.non_refundable_tickets") }}</div>
+        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.give_refund.no_refundable_tickets") }}</div>
+        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.give_refund.non_refundable_tickets") }}</div>
         <template v-if="nonRefundableTickets.length">
           <v-checkbox
             v-for="t in nonRefundableTickets"
             :key="t.id"
             readonly
-            :label="$t('organizer.refunds.ticket_num', { num: t.number })"
+            :label="$t('organizer.refunds.give_refund.ticket_num', { num: t.number })"
             dense
             hide-details
             indeterminate
           />
         </template>
-        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.no_non_refundable_tickets") }}</div>
-        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.refunded_tickets") }}</div>
+        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.give_refund.no_non_refundable_tickets") }}</div>
+        <div class="subtitle-2 mt-2">{{ $t("organizer.refunds.give_refund.refunded_tickets") }}</div>
         <template v-if="refundedTickets.length">
           <v-checkbox
             v-for="t in refundedTickets"
             :key="t.id"
             readonly
-            :label="$t('organizer.refunds.ticket_num', { num: t.number })"
+            :label="$t('organizer.refunds.give_refund.ticket_num', { num: t.number })"
             dense
             hide-details
             indeterminate
           />
         </template>
-        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.no_refunded_tickets") }}</div>
+        <div v-else class="body-2 mb-2">{{ $t("organizer.refunds.give_refund.no_refunded_tickets") }}</div>
         <v-text-field
           :value="refundAmount"
           readonly
           type="number"
-          :label="$t('organizer.refunds.amount.label')"
+          :label="$t('organizer.refunds.give_refund.amount.label')"
           persistent-hint
-          :hint="$t('organizer.refunds.amount.hint')"
+          :hint="$t('organizer.refunds.give_refund.amount.hint')"
           prefix="€"
         >
         </v-text-field>
@@ -67,13 +67,13 @@
           v-model="giveRefund"
           :rules="[$form.fieldRequired]"
           color="primary"
-          :label="$t('organizer.refunds.checkbox')"
+          :label="$t('organizer.refunds.give_refund.checkbox')"
         />
       </v-card-text>
       <v-card-actions>
         <v-spacer />
         <v-btn :disabled="!isValid || loading" :loading="loading" color="primary" text type="submit">
-          {{ $t("organizer.refunds.submit") }}
+          {{ $t("organizer.refunds.give_refund.submit") }}
         </v-btn>
         <v-btn text @click="close">
           {{ $t("general.cancel") }}

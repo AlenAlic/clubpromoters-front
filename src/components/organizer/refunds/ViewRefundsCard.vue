@@ -2,7 +2,7 @@
   <div class="mt-3">
     <v-data-iterator :items="items" :search="search" :loading="loading" hide-default-footer>
       <template v-slot:header>
-        <v-toolbar dark color="black" extension-height="64">
+        <v-toolbar dark color="primary" extension-height="64">
           <v-text-field
             v-model="search"
             clearable
@@ -11,7 +11,8 @@
             hide-details
             prepend-inner-icon="mdi-magnify"
             label="Search"
-          ></v-text-field>
+          />
+          <v-spacer />
           <template v-slot:extension>
             <v-select v-model="month" flat solo-inverted hide-details :items="months" :label="$t('general.month')" />
             <v-spacer />
@@ -24,7 +25,7 @@
               :items="years"
               label="Year"
             ></v-select>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn text :value="false" @click="getPurchases"><v-icon>mdi-magnify</v-icon></v-btn>
           </template>
         </v-toolbar>
@@ -34,12 +35,14 @@
         <v-row>
           <v-col v-for="item in props.items" :key="item.id" cols="12" sm="6" md="4" lg="3">
             <v-card>
-              <v-card-title class="subheading font-weight-bold"> Purchase {{ item.id }} </v-card-title>
+              <v-card-title class="subheading font-weight-bold">
+                {{ $t("organizer.refunds.view_refund.title", { id: item.id }) }}
+              </v-card-title>
               <v-divider />
               <v-list dense class="purchase-refund-list">
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Status:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.status") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -49,7 +52,7 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Mollie:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.mollie_id") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -59,7 +62,7 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Purchased by:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.purchased_by") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -70,7 +73,7 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Tickets bought:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.tickets_bought") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -90,7 +93,9 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Administration costs:</v-list-item-title>
+                    <v-list-item-title>
+                      {{ $t("organizer.refunds.view_refund.administration_costs") }}
+                    </v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -100,7 +105,7 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Purchase date:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.purchase_date") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -110,7 +115,7 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Party:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.party") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -123,7 +128,7 @@
                 </v-list-item>
                 <v-list-item dense>
                   <v-list-item-content>
-                    <v-list-item-title>Entrance code:</v-list-item-title>
+                    <v-list-item-title>{{ $t("organizer.refunds.view_refund.entrance_code") }}</v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-content>
                     <v-list-item-subtitle class="text-right">
@@ -165,7 +170,7 @@
                       <v-card-actions class="px-0">
                         <v-spacer />
                         <v-btn text @click="showModalFunc(item)">
-                          Give refund
+                          {{ $t("organizer.refunds.view_refund.give_refund") }}
                         </v-btn>
                       </v-card-actions>
                     </v-card>
@@ -184,7 +189,6 @@
 </template>
 
 <script>
-// TODO => Viw party stats
 import Vue from "vue";
 import Modal from "@/components/modal/Modal";
 import { MONTHS } from "@/constants";
