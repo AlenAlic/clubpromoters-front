@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-form ref="form" v-model="valid" @submit.prevent="createClubOwner">
+    <v-form ref="form" v-model="valid" @submit.prevent="createLocation">
       <v-card-title>{{ $t("organizer.club_owner_locations.new_location.title") }}</v-card-title>
       <v-card-text>
         <v-text-field
@@ -68,7 +68,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn :disabled="!valid || loading" :loading="loading" color="primary" text type="submit">
-          {{ $t("organizer.club_owner_locations.new_location.submit") }}
+          {{ isUpdating ? $t("general.save_changes") : $t("organizer.club_owner_locations.new_location.submit") }}
         </v-btn>
         <v-btn @click="close" text>{{ $t("general.cancel") }}</v-btn>
       </v-card-actions>
@@ -82,46 +82,87 @@ import store from "@/store";
 import { USERS } from "@/store/modules/organizer/users";
 export default {
   props: {
-    clubOwner: { type: Object, default: () => {} }
+    clubOwner: { type: Object, default: () => {} },
+    loc: { type: Object, default: () => {} }
   },
   data: function() {
-    return {
+    let data = {
       loading: false,
-      valid: false,
-      name: "",
-      street: "",
-      street_number: "",
-      street_number_addition: "",
-      postal_code: "",
-      postal_code_letters: "",
-      city: "",
-      maps_url: ""
+      valid: false
+    };
+    let location;
+    if (this.loc) {
+      location = {
+        name: this.loc.name,
+        street: this.loc.street,
+        street_number: this.loc.street_number,
+        street_number_addition: this.loc.street_number_addition,
+        postal_code: this.loc.postal_code,
+        postal_code_letters: this.loc.postal_code_letters,
+        city: this.loc.city,
+        maps_url: this.loc.maps_url
+      };
+    } else {
+      location = {
+        name: "",
+        street: "",
+        street_number: "",
+        street_number_addition: "",
+        postal_code: "",
+        postal_code_letters: "",
+        city: "",
+        maps_url: ""
+      };
+    }
+    return {
+      ...data,
+      ...location
     };
   },
+  computed: {
+    isUpdating() {
+      return !!this.loc;
+    }
+  },
   methods: {
-    createClubOwner: function() {
+    createLocation: function() {
+      const data = {
+        user_id: Number(this.clubOwner.id),
+        name: this.name,
+        street: this.street,
+        street_number: Number(this.street_number),
+        street_number_addition: this.street_number_addition || "",
+        postal_code: Number(this.postal_code),
+        postal_code_letters: this.postal_code_letters,
+        city: this.city,
+        maps_url: this.maps_url
+      };
       this.loading = true;
-      Vue.axios
-        .post("organizer/create_new_location", {
-          user_id: Number(this.clubOwner.id),
-          name: this.name,
-          street: this.street,
-          street_number: Number(this.street_number),
-          street_number_addition: this.street_number_addition || "",
-          postal_code: Number(this.postal_code),
-          postal_code_letters: this.postal_code_letters,
-          city: this.city,
-          maps_url: this.maps_url
-        })
-        .then(() => {
-          store.dispatch(USERS).then(() => {
-            this.$emit("added");
-            this.close();
+      if (this.isUpdating) {
+        Vue.axios
+          .patch(`organizer/update_location/${this.loc.id}`, data)
+          .then(() => {
+            store.dispatch(USERS).then(() => {
+              this.$emit("added");
+              this.close();
+            });
+          })
+          .finally(() => {
+            this.loading = false;
           });
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+      } else {
+        Vue.axios
+          .post("organizer/create_new_location", data)
+          .then(() => {
+            store.dispatch(USERS).then(() => {
+              this.$emit("added");
+              this.close();
+            });
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      }
     },
     close() {
       this.$refs.form.reset();

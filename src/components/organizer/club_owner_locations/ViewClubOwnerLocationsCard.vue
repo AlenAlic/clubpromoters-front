@@ -43,6 +43,24 @@
       <template v-slot:item.postal="{ item }">
         <span>{{ `${item.postal_code} ${item.postal_code_letters}` }}</span>
       </template>
+      <template v-slot:item.action="{ item }">
+        <v-tooltip left>
+          <template v-slot:activator="{ on }">
+            <v-icon class="mr-2" v-on="on" @click="showEditModalFunc(item)">
+              mdi-pencil
+            </v-icon>
+          </template>
+          <span>{{ $t("general.edit") }}</span>
+        </v-tooltip>
+        <modal v-if="showEditModal" :show="showEditModal">
+          <create-new-club-owner-location-card
+            @close="showEditModal = false"
+            :club-owner="clubOwner"
+            :loc="item"
+            @added="locationAdded"
+          ></create-new-club-owner-location-card>
+        </modal>
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -51,8 +69,9 @@
 import { ORGANIZER } from "@/constants";
 import i18n from "@/languages";
 import CreateNewClubOwnerLocationCard from "@/components/organizer/club_owner_locations/CreateNewClubOwnerLocationCard";
+import Modal from "@/components/modal/Modal";
 export default {
-  components: { CreateNewClubOwnerLocationCard },
+  components: { Modal, CreateNewClubOwnerLocationCard },
   data: function() {
     return {
       dialog: false,
@@ -74,8 +93,10 @@ export default {
         {
           text: i18n.t("organizer.club_owner_locations.table.headers.city"),
           value: "city"
-        }
-      ]
+        },
+        { value: "action", align: "right" }
+      ],
+      showEditModal: false
     };
   },
   computed: {
@@ -92,6 +113,9 @@ export default {
   methods: {
     locationAdded() {
       this.clubOwner = this.$store.getters.getClubOwner(this.clubOwner.id);
+    },
+    showEditModalFunc() {
+      this.showEditModal = true;
     }
   }
 };
