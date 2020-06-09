@@ -2,7 +2,31 @@
   "user": {
     "profile": {
       "first_name": "First name",
-      "last_name": "Last name"
+      "last_name": "Last name",
+      "address": {
+        "title": "Address",
+        "street": {
+          "label": "Street"
+        },
+        "street_number": {
+          "label": "Number"
+        },
+        "street_number_addition": {
+          "label": "Number addition"
+        },
+        "postal_code": {
+          "label": "Postal code"
+        },
+        "postal_code_letters": {
+          "label": "Letters"
+        },
+        "city": {
+          "label": "City"
+        }
+      },
+      "phone_number": {
+        "label": "Phone number"
+      }
     }
   }
 }

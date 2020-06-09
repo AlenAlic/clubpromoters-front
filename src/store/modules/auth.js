@@ -37,7 +37,9 @@ const PROFILE_REQUEST = "PROFILE: Profile request sent.";
 const PROFILE_SUCCESS = "PROFILE: Successful request.";
 const PROFILE_ERROR = "PROFILE: Failed request.";
 
-export { LOGIN, LOGOUT, RENEW, SET_USER, CHANGE_PASSWORD, SET_PROFILE, UPDATE_PROFILE };
+const UPDATE_PROFILE_ADDRESS = "UPDATE_PROFILE_ADDRESS";
+
+export { LOGIN, LOGOUT, RENEW, SET_USER, CHANGE_PASSWORD, SET_PROFILE, UPDATE_PROFILE, UPDATE_PROFILE_ADDRESS };
 
 const setUser = token => {
   saveServerToken(backendServer, token);
@@ -173,12 +175,35 @@ export default {
           commit(PROFILE_ERROR);
         });
     },
-    [UPDATE_PROFILE]({ commit }, { first_name, last_name }) {
+    [UPDATE_PROFILE]({ commit }, { first_name, last_name, phone_number }) {
       commit(PROFILE_REQUEST);
       return Vue.axios
         .patch("/user/profile", {
           first_name: first_name,
-          last_name: last_name
+          last_name: last_name,
+          phone_number: phone_number
+        })
+        .then(response => {
+          commit(PROFILE_SUCCESS);
+          commit(SET_PROFILE, response.data);
+        })
+        .catch(() => {
+          commit(PROFILE_ERROR);
+        });
+    },
+    [UPDATE_PROFILE_ADDRESS](
+      { commit },
+      { street, street_number, street_number_addition, postal_code, postal_code_letters, city }
+    ) {
+      commit(PROFILE_REQUEST);
+      return Vue.axios
+        .patch("/user/address", {
+          street: street,
+          street_number: street_number,
+          street_number_addition: street_number_addition,
+          postal_code: postal_code,
+          postal_code_letters: postal_code_letters,
+          city: city
         })
         .then(response => {
           commit(PROFILE_SUCCESS);
