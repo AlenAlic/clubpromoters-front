@@ -162,6 +162,16 @@
       "submit": "Generate codes",
       "created": "Generated {num} new codes."
     },
+    "download_codes": {
+      "title": "Download codes",
+      "text": "Select the codes that you wish to download in an excel file (including image).",
+      "select": "Open selection menu",
+      "modal": {
+        "subtitle": "Select the codes that you wish to download.",
+        "loading": "Generating file. This might take a while...",
+        "submit": "Download codes"
+      }
+    },
     "active_codes": {
       "title": "Active codes",
       "table": {
