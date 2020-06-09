@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     color() {
-      return this.data.profit > 0 ? "green--text" : "red--text";
+      return this.data.profit > 0 ? "green--text" : this.data.profit < 0 ? "red--text" : "";
     }
   }
 };
