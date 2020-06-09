@@ -10,7 +10,6 @@
               v-model="email"
               :rules="[$form.fieldRequired, $form.fieldIsEmail]"
               :label="$t('auth.email')"
-              validate-on-blur
             />
             <v-text-field
               id="login-password"
