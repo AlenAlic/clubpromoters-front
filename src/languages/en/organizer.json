@@ -1,5 +1,29 @@
 {
   "organizer": {
+    "dashboard": {
+      "active_parties": {
+        "title": "Active parties",
+        "go_to": "Go to active parties"
+      },
+      "inactive_parties": {
+        "title": "Inactive parties",
+        "go_to": "Go to inactive parties"
+      },
+      "today_parties": {
+        "title": "Today's parties"
+      },
+      "finances": {
+        "this_year": {
+          "title": "This years finances",
+          "subtitle": "Running total"
+        },
+        "this_month": "This month",
+        "last_month": "Last month",
+        "revenue": "Revenue",
+        "expenses": "Expenses",
+        "profit": "Profit"
+      }
+    },
     "create_new_account":{
       "first_name": {
         "label": "First name"
