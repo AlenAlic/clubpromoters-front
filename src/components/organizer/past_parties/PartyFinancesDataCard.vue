@@ -46,7 +46,7 @@
         </span>
         <span>{{ party.num_tickets_denied_entry }}</span>
       </div>
-      <div v-if="organiser">
+      <div>
         <span>
           <i>{{ $t("organizer.party_finances_data.remaining") }}</i>
         </span>
@@ -89,7 +89,7 @@
           </span>
           <span>{{ $util.formatCurrency(party.expenses_club_owner_commissions) }}</span>
         </div>
-        <v-divider></v-divider>
+        <v-divider />
         <div>
           <span>
             <b>{{ $t("organizer.party_finances_data.profit") }}</b>
@@ -105,7 +105,7 @@
         </div>
         <div>
           <span></span>
-          <span>{{ $util.formatCurrency(party.income_club_owner_commissions) }}</span>
+          <span>{{ $util.formatCurrency(party.commission) }}</span>
         </div>
       </template>
     </v-card-text>

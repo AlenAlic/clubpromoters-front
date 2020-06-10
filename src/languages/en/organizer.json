@@ -353,7 +353,7 @@
           "club": "Club",
           "name": "Party name",
           "location": "Location",
-          "start_date": "Day",
+          "start_date": "Date",
           "duration": "Duration",
           "party_profit": "Profit"
         }

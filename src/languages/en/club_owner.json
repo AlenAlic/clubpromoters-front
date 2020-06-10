@@ -51,6 +51,19 @@
         "yes": "Yes, start ticket sale",
         "no": "No, don't"
       }
+    },
+    "past_parties": {
+      "title": "Past parties",
+      "table": {
+        "headers": {
+          "name": "Party name",
+          "location": "Location",
+          "start_date": "Date",
+          "duration": "Duration",
+          "commission": "Commission"
+        }
+      },
+      "view": "View"
     }
   }
 }

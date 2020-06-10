@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ $t("organizer.past_parties.title") }}
+      {{ $t("club_owner.past_parties.title") }}
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -25,24 +25,24 @@
         <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
       </template>
       <template v-slot:item.start_date="{ item }">
-        <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL") }}</div>
+        <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL yyyy") }}</div>
       </template>
-      <template v-slot:item.party_profit="{ item }">
-        <div>{{ $util.formatCurrency(item.party_profit) }}</div>
+      <template v-slot:item.commission="{ item }">
+        <div>{{ $util.formatCurrency(item.commission) }}</div>
       </template>
       <template v-slot:item.action="{ item }">
         <v-tooltip left>
           <template v-slot:activator="{ on }">
             <v-icon class="mr-2" v-on="on" @click="showModalFunc(item)">
-              mdi-card-search
+              mdi-magnify
             </v-icon>
           </template>
-          <span>{{ $t("organizer.past_parties.view") }}</span>
+          <span>{{ $t("club_owner.past_parties.view") }}</span>
         </v-tooltip>
       </template>
     </v-data-table>
     <modal :show="showModal" @closeModal="hideModalFunc">
-      <party-finances-data-card :party="party" @closeModal="hideModalFunc" club_owner></party-finances-data-card>
+      <party-finances-data-card :party="party" @closeModal="hideModalFunc" club_owner />
     </modal>
   </v-card>
 </template>
@@ -62,24 +62,24 @@ export default {
       search: "",
       headers: [
         {
-          text: i18n.t("organizer.past_parties.table.headers.club"),
-          value: "club"
-        },
-        {
-          text: i18n.t("organizer.past_parties.table.headers.name"),
+          text: i18n.t("club_owner.past_parties.table.headers.name"),
           value: "name"
         },
         {
-          text: i18n.t("organizer.past_parties.table.headers.start_date"),
+          text: i18n.t("club_owner.past_parties.table.headers.location"),
+          value: "location.name"
+        },
+        {
+          text: i18n.t("club_owner.past_parties.table.headers.start_date"),
           value: "start_date"
         },
         {
-          text: i18n.t("organizer.past_parties.table.headers.duration"),
+          text: i18n.t("club_owner.past_parties.table.headers.duration"),
           value: "duration"
         },
         {
-          text: i18n.t("organizer.past_parties.table.headers.party_profit"),
-          value: "party_profit"
+          text: i18n.t("club_owner.past_parties.table.headers.commission"),
+          value: "commission"
         },
         {
           value: "action",
@@ -94,13 +94,7 @@ export default {
         Object.assign(p, {
           duration: `${this.$util
             .dateTimeFromUTCString(p.start_date)
-            .toFormat("HH:mm")} - ${this.$util.dateTimeFromUTCString(p.end_date).toFormat("HH:mm")}`,
-          club_owner_commission: `${this.$t("organizer.active_parties.table.club_owner_commission")}: ${
-            p.club_owner_commission
-          }%`,
-          promoter_commission: `${this.$t("organizer.active_parties.table.promoter_commission")}: ${
-            p.promoter_commission
-          }%`
+            .toFormat("HH:mm")} - ${this.$util.dateTimeFromUTCString(p.end_date).toFormat("HH:mm")}`
         })
       );
     }

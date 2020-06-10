@@ -25,7 +25,7 @@
         <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
       </template>
       <template v-slot:item.start_date="{ item }">
-        <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL") }}</div>
+        <div>{{ $util.dateTimeFromUTCString(item.start_date).toFormat("d LLLL yyyy") }}</div>
       </template>
       <template v-slot:item.party_profit="{ item }">
         <div>{{ $util.formatCurrency(item.total_profit) }}</div>
@@ -42,12 +42,7 @@
       </template>
     </v-data-table>
     <modal :show="showModal" @closeModal="hideModalFunc">
-      <party-finances-data-card
-        v-if="party"
-        :party="party"
-        @closeModal="hideModalFunc"
-        organiser
-      ></party-finances-data-card>
+      <party-finances-data-card v-if="party" :party="party" @closeModal="hideModalFunc" organiser />
     </modal>
   </v-card>
 </template>
