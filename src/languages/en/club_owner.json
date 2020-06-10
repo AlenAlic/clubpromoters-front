@@ -52,6 +52,32 @@
         "no": "No, don't"
       }
     },
+    "inactive_parties": {
+      "title": "Inactive parties",
+      "table": {
+        "headers": {
+          "name": "Party name",
+          "location": "Location",
+          "start_date": "Date",
+          "duration": "Duration",
+          "commission": "Commission"
+        }
+      },
+      "view": "View"
+    },
+    "active_parties": {
+      "title": "Active parties",
+      "table": {
+        "headers": {
+          "name": "Party name",
+          "location": "Location",
+          "start_date": "Date",
+          "duration": "Duration",
+          "commission": "Commission"
+        }
+      },
+      "view": "View"
+    },
     "past_parties": {
       "title": "Past parties",
       "table": {

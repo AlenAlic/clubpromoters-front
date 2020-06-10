@@ -100,7 +100,6 @@
 </template>
 
 <script>
-// TODO => Edit party
 import Vue from "vue";
 import i18n from "@/languages";
 import Modal from "@/components/modal/Modal";

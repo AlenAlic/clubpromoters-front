@@ -101,14 +101,14 @@ export const club_owner_drawer_content = [
   { divider: true },
   { title: i18n.t("menu.club_owner.subheader.parties") },
   {
-    to: "club_owner.active_parties",
-    title: i18n.t("menu.club_owner.active_parties"),
-    icon: "mdi-calendar-outline"
-  },
-  {
     to: "club_owner.inactive_parties",
     title: i18n.t("menu.club_owner.inactive_parties"),
     icon: "mdi-calendar-remove-outline"
+  },
+  {
+    to: "club_owner.active_parties",
+    title: i18n.t("menu.club_owner.active_parties"),
+    icon: "mdi-calendar-outline"
   },
   {
     to: "club_owner.past_parties",
