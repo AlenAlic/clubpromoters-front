@@ -19,9 +19,6 @@
     </v-col>
     <v-col cols="12" xl="6" class="py-0">
       <v-row>
-        <v-col cols="12" lg="8" xl="12">
-          <year-finances />
-        </v-col>
         <v-col lg="4" xl="12">
           <v-row>
             <v-col cols="12" lg="12" xl="6" class="pt-0">
@@ -31,6 +28,9 @@
               <last-month-finances />
             </v-col>
           </v-row>
+        </v-col>
+        <v-col cols="12" lg="8" xl="12">
+          <year-finances />
         </v-col>
       </v-row>
     </v-col>
