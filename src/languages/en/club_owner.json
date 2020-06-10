@@ -1,5 +1,24 @@
 {
   "club_owner": {
+    "dashboard": {
+      "active_parties": {
+        "title": "Active parties",
+        "go_to": "Go to active parties"
+      },
+      "inactive_parties": {
+        "title": "Inactive parties",
+        "go_to": "Go to inactive parties"
+      },
+      "today_parties": {
+        "title": "Today's parties"
+      },
+      "finances": {
+        "this_month": "This month",
+        "last_month": "Last month",
+        "tickets_sold": "Tickets sold",
+        "commission": "Commission"
+      }
+    },
     "create_new_account": {
       "hostess": {
         "title": "Create a hostess account",

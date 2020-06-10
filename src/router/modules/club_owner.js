@@ -2,6 +2,7 @@ import { CLUB_OWNER } from "@/constants";
 
 const DefaultWrapper = () => import("@/components/wrappers/DefaultWrapper.vue");
 const DummyPage = () => import("@/pages/Dummy.vue");
+const Dashboard = () => import("@/pages/club_owner/Dashboard.vue");
 const Hostesses = () => import("@/pages/club_owner/Hostesses.vue");
 const PastParties = () => import("@/pages/club_owner/PastParties.vue");
 const Income = () => import("@/pages/club_owner/Income.vue");
@@ -18,7 +19,7 @@ const clubOwnerPages = {
     {
       path: "dashboard",
       name: "club_owner.dashboard",
-      component: DummyPage
+      component: Dashboard
     },
     {
       path: "hostesses",
