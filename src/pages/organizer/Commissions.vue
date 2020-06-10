@@ -7,10 +7,10 @@
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="months" :label="$t('general.month')"></v-select>
+                <v-select v-model="month" hide-details :items="months" :label="$t('general.month')" @change="getData" />
               </v-col>
               <v-col cols="5">
-                <v-select v-model="year" :items="years" :label="$t('general.year')"></v-select>
+                <v-select v-model="year" :items="years" :label="$t('general.year')" @change="getData" />
               </v-col>
               <v-col cols="1" align-self="center" class="text-right">
                 <v-btn icon @click="getData"><v-icon>mdi-magnify</v-icon></v-btn>

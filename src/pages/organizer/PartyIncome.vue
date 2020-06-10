@@ -3,16 +3,28 @@
     <v-row class="no-print">
       <v-col cols="12" lg="4" offset-lg="4">
         <v-card>
-          <v-card-title>Choose month to view finances</v-card-title>
+          <v-card-title>{{ $t("general.choose_month") }}</v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="$util.selectMonths" :label="$t('general.month')" />
+                <v-select
+                  v-model="month"
+                  hide-details
+                  :items="$util.selectMonths"
+                  :label="$t('general.month')"
+                  @change="getData"
+                />
               </v-col>
-              <v-col cols="5">
-                <v-select v-model="year" hide-details :items="$util.financesYears" :label="$t('general.year')" />
+              <v-col cols="4">
+                <v-select
+                  v-model="year"
+                  hide-details
+                  :items="$util.financesYears"
+                  :label="$t('general.year')"
+                  @change="getData"
+                />
               </v-col>
-              <v-col cols="1" align-self="center" class="text-right">
+              <v-col cols="2" align-self="center" class="text-right">
                 <v-btn icon @click="getData">
                   <v-icon>mdi-magnify</v-icon>
                 </v-btn>
@@ -34,11 +46,6 @@
                   <div>
                     <span>{{ $t("organizer.party_income.total_profit") }}</span>
                     <span>{{ $util.formatCurrency(totalProfit) }}</span>
-                  </div> </v-list-item-title
-                ><v-list-item-title class="finances-body">
-                  <div>
-                    <span>{{ $t("organizer.party_income.from_administration_costs") }}</span>
-                    <span>{{ $util.formatCurrency(totalAdministrationCostsProfit) }}</span>
                   </div>
                 </v-list-item-title>
                 <v-list-item-title class="finances-body">
@@ -141,11 +148,6 @@ export default {
     totalProfit() {
       return this.parties.reduce((t, c) => {
         return t + c.total_profit;
-      }, 0);
-    },
-    totalAdministrationCostsProfit() {
-      return this.parties.reduce((t, c) => {
-        return t + c.income_administration_costs;
       }, 0);
     },
     totalTicketsSold() {

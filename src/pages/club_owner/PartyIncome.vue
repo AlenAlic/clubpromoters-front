@@ -3,16 +3,16 @@
     <v-row class="no-print">
       <v-col cols="12" lg="4" offset-lg="4">
         <v-card>
-          <v-card-title>Choose month</v-card-title>
+          <v-card-title>{{ $t("general.choose_month") }}</v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="6">
-                <v-select v-model="month" hide-details :items="months" :label="$t('general.month')"></v-select>
+                <v-select v-model="month" hide-details :items="months" :label="$t('general.month')" @change="getData" />
               </v-col>
-              <v-col cols="5">
-                <v-select v-model="year" :items="years" :label="$t('general.year')"></v-select>
+              <v-col cols="4">
+                <v-select v-model="year" :items="years" :label="$t('general.year')" @change="getData" />
               </v-col>
-              <v-col cols="1" align-self="center" class="text-right">
+              <v-col cols="2" align-self="center" class="text-right">
                 <v-btn icon @click="getData"><v-icon>mdi-magnify</v-icon></v-btn>
               </v-col>
             </v-row>
@@ -40,7 +40,7 @@
                 <div><b>Commission</b></div>
                 <div>
                   <i></i>
-                  <span>{{ $util.formatCurrency(party.party_club_owner_cut) }}</span>
+                  <span>{{ $util.formatCurrency(party.commission) }}</span>
                 </div>
               </v-list-item-subtitle>
             </v-list-item-content>
@@ -81,7 +81,7 @@ export default {
   computed: {
     totalProfit() {
       return this.parties.reduce((t, c) => {
-        return t + c.party_club_owner_cut;
+        return t + c.commission;
       }, 0);
     },
     months() {

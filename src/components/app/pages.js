@@ -119,7 +119,7 @@ export const club_owner_drawer_content = [
   { title: i18n.t("menu.club_owner.subheader.finances") },
   {
     to: "club_owner.party_income",
-    title: i18n.t("menu.club_owner.party_income"),
+    title: i18n.t("menu.club_owner.party_commissions"),
     icon: "mdi-calendar-outline"
   }
 ];

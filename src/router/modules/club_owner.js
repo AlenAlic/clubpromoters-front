@@ -6,7 +6,7 @@ const Hostesses = () => import("@/pages/club_owner/Hostesses.vue");
 const InactiveParties = () => import("@/pages/club_owner/InactiveParties.vue");
 const ActiveParties = () => import("@/pages/club_owner/ActiveParties.vue");
 const PastParties = () => import("@/pages/club_owner/PastParties.vue");
-const Income = () => import("@/pages/club_owner/Income.vue");
+const PartyIncome = () => import("@/pages/club_owner/PartyIncome.vue");
 
 const clubOwnerPages = {
   path: "/club_owner",
@@ -44,7 +44,7 @@ const clubOwnerPages = {
     },
     {
       path: "party_income",
-      component: Income,
+      component: PartyIncome,
       name: "club_owner.party_income"
     }
   ]
