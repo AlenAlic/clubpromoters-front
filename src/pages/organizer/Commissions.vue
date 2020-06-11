@@ -55,7 +55,11 @@
                       </div>
                       <div class="three">
                         <span>{{ $t("organizer.commissions.tickets_sold") }}</span>
-                        <span>{{ party.tickets }}</span>
+                        <span>{{ party.number_of_sold_tickets }}</span>
+                      </div>
+                      <div class="three">
+                        <span>{{ $t("organizer.commissions.tickets_refunded") }}</span>
+                        <span>{{ party.number_of_refunded_tickets }}</span>
                       </div>
                       <v-divider class="my-1" />
                       <div>

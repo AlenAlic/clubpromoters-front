@@ -90,6 +90,14 @@
         }
       },
       "view": "View"
+    },
+    "commissions": {
+      "ticket_price": "Ticket price",
+      "tickets_sold": "Sold",
+      "tickets_refunded": "Refunded",
+      "commission": "Commission",
+      "total": "Total",
+      "no_parties": "No parties this month."
     }
   }
 }

@@ -25,34 +25,47 @@
         <v-card class="card--print">
           <v-card-title>{{ getMonth }} {{ displayYear }}</v-card-title>
           <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
-          <v-list-item class="print_friendly" two-line v-for="party in parties" :key="party.id">
-            <v-list-item-content>
-              <v-list-item-title>{{ party.name }}</v-list-item-title>
-              <v-list-item-subtitle class="body">
-                <div class="two">
-                  <span>Ticket price</span>
-                  <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
-                </div>
-                <div class="two">
-                  <span>Sold</span>
-                  <span>{{ party.num_sold_tickets }} / {{ party.num_available_tickets }}</span>
-                </div>
-                <div><b>Commission</b></div>
-                <div>
-                  <i></i>
-                  <span>{{ $util.formatCurrency(party.commission) }}</span>
-                </div>
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <template v-if="parties.length">
+            <v-list-item class="print_friendly" two-line v-for="party in parties" :key="party.id">
+              <v-list-item-content>
+                <v-list-item-title>{{ party.name }}</v-list-item-title>
+                <v-list-item-subtitle class="body">
+                  <div class="two">
+                    <span>{{ $t("club_owner.commissions.ticket_price") }}</span>
+                    <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
+                  </div>
+                  <div class="two">
+                    <span>{{ $t("club_owner.commissions.tickets_sold") }}</span>
+                    <span>{{ party.num_sold_tickets }} / {{ party.num_available_tickets }}</span>
+                  </div>
+                  <div class="two">
+                    <span>{{ $t("club_owner.commissions.tickets_refunded") }}</span>
+                    <span>{{ party.num_tickets_refunded }}</span>
+                  </div>
+                  <div>
+                    <b>{{ $t("club_owner.commissions.commission") }}</b>
+                  </div>
+                  <div>
+                    <i></i>
+                    <span>{{ $util.formatCurrency(party.commission) }}</span>
+                  </div>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="body">
+                  <div>
+                    <span>{{ $t("club_owner.commissions.total") }}</span>
+                    <span>{{ $util.formatCurrency(totalProfit) }}</span>
+                  </div>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="body">
-                <div>
-                  <span>Total</span>
-                  <span>{{ $util.formatCurrency(totalProfit) }}</span>
-                </div>
-              </v-list-item-title>
+              <v-list-item-subtitle>{{ $t("club_owner.commissions.no_parties") }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-card>
