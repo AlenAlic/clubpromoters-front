@@ -22,6 +22,9 @@
         },
         "city": {
           "label": "City"
+        },
+        "country": {
+          "label": "Country"
         }
       },
       "phone_number": {

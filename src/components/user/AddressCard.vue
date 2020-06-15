@@ -51,6 +51,12 @@
           :label="$t('user.profile.address.city.label')"
           required
         ></v-text-field>
+        <v-text-field
+          v-model="country"
+          :rules="[$form.fieldRequired]"
+          :label="$t('user.profile.address.country.label')"
+          required
+        ></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
@@ -76,7 +82,8 @@ export default {
       street_number_addition: this.$store.state.auth.profile.street_number_addition,
       postal_code: this.$store.state.auth.profile.postal_code || "",
       postal_code_letters: this.$store.state.auth.profile.postal_code_letters,
-      city: this.$store.state.auth.profile.city
+      city: this.$store.state.auth.profile.city,
+      country: this.$store.state.auth.profile.country
     };
   },
   methods: {
@@ -87,6 +94,7 @@ export default {
       this.postal_code = this.$store.state.auth.profile.postal_code || "";
       this.postal_code_letters = this.$store.state.auth.profile.postal_code_letters;
       this.city = this.$store.state.auth.profile.city;
+      this.country = this.$store.state.auth.profile.country;
       this.$refs.address.resetValidation();
     },
     updateProfile() {
@@ -97,7 +105,8 @@ export default {
           street_number_addition: this.street_number_addition || "",
           postal_code: Number(this.postal_code),
           postal_code_letters: this.postal_code_letters,
-          city: this.city
+          city: this.city,
+          country: this.country
         })
         .then(() => {
           this.resetForm();

@@ -193,7 +193,7 @@ export default {
     },
     [UPDATE_PROFILE_ADDRESS](
       { commit },
-      { street, street_number, street_number_addition, postal_code, postal_code_letters, city }
+      { street, street_number, street_number_addition, postal_code, postal_code_letters, city, country }
     ) {
       commit(PROFILE_REQUEST);
       return Vue.axios
@@ -203,7 +203,8 @@ export default {
           street_number_addition: street_number_addition,
           postal_code: postal_code,
           postal_code_letters: postal_code_letters,
-          city: city
+          city: city,
+          country: country
         })
         .then(response => {
           commit(PROFILE_SUCCESS);
