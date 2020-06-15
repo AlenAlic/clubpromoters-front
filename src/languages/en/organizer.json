@@ -433,6 +433,21 @@
       "tickets_refunded": "Tickets refunded",
       "commission": "Commission",
       "total_commission": "Total commission"
+    },
+    "payments": {
+      "title": "Invoice overview",
+      "generated": "The following invoices have been generated and can be sent:",
+      "sent": "The following invoices have been sent:",
+      "generating": "Generating invoices. This might take a while...",
+      "club_owner_invoices": "{num} invoice(s) will be generated for Club Owners",
+      "promoter_receipts": "{num} receipt(s) will be generated for Promoters",
+      "promoter_invoices": "{num} invoice(s) will be generated for Promoters",
+      "total_documents": "In total, {num} document(s) will be generated",
+      "club_owners": "Club Owners",
+      "promoters": "Promoters",
+      "total": "Total",
+      "generate_invoices": "Generate invoices",
+      "send_invoices": "Send invoices"
     }
   }
 }

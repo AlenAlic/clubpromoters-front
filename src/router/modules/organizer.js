@@ -15,7 +15,7 @@ const PastParties = () => import("@/pages/organizer/PastParties.vue");
 const PartyIncome = () => import("@/pages/organizer/PartyIncome.vue");
 const Refunds = () => import("@/pages/organizer/Refunds.vue");
 const Commissions = () => import("@/pages/organizer/Commissions.vue");
-const Dummy = () => import("@/pages/Dummy.vue");
+const Payments = () => import("@/pages/organizer/Payments.vue");
 
 const organizerPages = {
   path: "/organizer",
@@ -98,7 +98,7 @@ const organizerPages = {
     },
     {
       path: "payments",
-      component: Dummy,
+      component: Payments,
       name: "organizer.payments"
     }
   ]
