@@ -118,3 +118,15 @@ const selectMonths = () => {
 const displayMonth = month => {
   return MONTHS[month];
 };
+
+export const downloadFile = (response, filename) => {
+  let fileURL = window.URL.createObjectURL(new Blob([response.data]));
+  let fileLink = document.createElement("a");
+
+  fileLink.href = fileURL;
+  fileLink.setAttribute("download", filename);
+  document.body.appendChild(fileLink);
+
+  fileLink.click();
+  fileLink.parentNode.removeChild(fileLink);
+};

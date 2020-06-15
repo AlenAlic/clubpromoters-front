@@ -51,6 +51,7 @@
 
 <script>
 import Modal from "@/components/modal/Modal";
+import { downloadFile } from "@/plugins/utilities";
 export default {
   components: { Modal },
   data: function() {
@@ -74,14 +75,7 @@ export default {
           }
         )
         .then(response => {
-          let fileURL = window.URL.createObjectURL(new Blob([response.data]));
-          let fileLink = document.createElement("a");
-
-          fileLink.href = fileURL;
-          fileLink.setAttribute("download", `codes_${this.$util.now.toFormat("dd-LL-yyyy_HHmmss")}.xlsx`);
-          document.body.appendChild(fileLink);
-
-          fileLink.click();
+          downloadFile(response, `codes_${this.$util.now.toFormat("dd-LL-yyyy_HHmmss")}.xlsx`);
           this.dialog = false;
           this.codes = [];
         })
