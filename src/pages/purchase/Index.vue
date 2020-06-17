@@ -1,9 +1,12 @@
 <template>
   <div style="width: 100%;">
-    <v-app-bar dark app prominent shrink-on-scroll fade-img-on-scroll color="black">
+    <v-app-bar dark app prominent shrink-on-scroll fade-img-on-scroll color="black" :src="logo">
       <v-btn icon>
         <v-img style="width: 48px; height: 48px;" :src="tiger" contain></v-img>
       </v-btn>
+      <template v-slot:img="{ props }">
+        <v-img v-bind="props" contain></v-img>
+      </template>
       <v-toolbar-title style="width: 100%;">
         <v-select
           v-model="selectedDays"
