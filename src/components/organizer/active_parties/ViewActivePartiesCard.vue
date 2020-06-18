@@ -12,7 +12,7 @@
       ></v-text-field>
     </v-card-title>
     <v-data-table
-      :loading="$store.state.users.loading"
+      :loading="$store.state.parties.loadingActiveParties"
       :headers="headers"
       :items="items"
       :search="search"
@@ -80,7 +80,6 @@
 </template>
 
 <script>
-// TODO => View details as with past parties
 import Vue from "vue";
 import i18n from "@/languages";
 import Modal from "@/components/modal/Modal";

@@ -38,11 +38,17 @@
 import CreateNewPartyCard from "@/components/organizer/create_new_party/CreateNewPartyCard";
 import PartyCard from "@/components/general/party_card/PartyCard";
 import VBoilerplate from "@/components/Vuetify/VBoilerplate";
+import { USERS } from "@/store/modules/organizer/users";
 export default {
   components: {
     VBoilerplate,
     PartyCard,
     CreateNewPartyCard
+  },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(USERS);
+    });
   },
   data: function() {
     return {

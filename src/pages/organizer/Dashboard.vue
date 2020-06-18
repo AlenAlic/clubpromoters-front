@@ -44,7 +44,14 @@ import TodayParties from "@/components/organizer/dashboard/TodayParties";
 import YearFinances from "@/components/organizer/dashboard/YearFinances";
 import LastMonthFinances from "@/components/organizer/dashboard/LastMonthFinances";
 import ThisMonthFinances from "@/components/organizer/dashboard/ThisMonthFinances";
+import { INACTIVE_PARTIES, ACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 export default {
-  components: { ThisMonthFinances, LastMonthFinances, YearFinances, TodayParties, InactiveParties, ActiveParties }
+  components: { ThisMonthFinances, LastMonthFinances, YearFinances, TodayParties, InactiveParties, ActiveParties },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(INACTIVE_PARTIES);
+      this.$store.dispatch(ACTIVE_PARTIES);
+    });
+  }
 };
 </script>

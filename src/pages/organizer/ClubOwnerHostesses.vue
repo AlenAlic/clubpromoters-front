@@ -9,7 +9,13 @@
 </template>
 <script>
 import ViewClubOwnerHostessCard from "@/components/organizer/club_owner_hostesses/ViewClubOwnerHostessCard";
+import { USERS } from "@/store/modules/organizer/users";
 export default {
-  components: { ViewClubOwnerHostessCard }
+  components: { ViewClubOwnerHostessCard },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(USERS);
+    });
+  }
 };
 </script>

@@ -9,7 +9,13 @@
 </template>
 <script>
 import ViewInactivePartiesCard from "@/components/club_owner/inactive_parties/ViewInactivePartiesCard";
+import { CO_INACTIVE_PARTIES } from "@/store/modules/club_owner/parties";
 export default {
-  components: { ViewInactivePartiesCard }
+  components: { ViewInactivePartiesCard },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(CO_INACTIVE_PARTIES);
+    });
+  }
 };
 </script>

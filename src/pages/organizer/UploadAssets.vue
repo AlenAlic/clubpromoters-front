@@ -16,10 +16,16 @@
 <script>
 import UploadImages from "@/components/general/UploadImages";
 import PreviewAssets from "@/components/organizer/upload_assets/PreviewAssets";
+import { USERS } from "@/store/modules/organizer/users";
 export default {
   components: {
     PreviewAssets,
     UploadImages
+  },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(USERS);
+    });
   }
 };
 </script>

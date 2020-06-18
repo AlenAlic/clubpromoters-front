@@ -50,7 +50,7 @@
         </v-tabs>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="accent" text @click="clearHandler">{{ clearText }}</v-btn>
+        <v-btn color="warning" text @click="clearHandler">{{ clearText }}</v-btn>
         <v-spacer />
         <v-btn color="primary" text @click="okHandler">{{ okText }}</v-btn>
         <v-btn text @click="cancelHandler">{{ cancelText }}</v-btn>

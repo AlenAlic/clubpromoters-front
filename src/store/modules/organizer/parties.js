@@ -79,7 +79,7 @@ export default {
     [ACTIVE_PARTIES]: ({ commit }) => {
       commit(ACTIVE_PARTIES_REQUEST);
       return Vue.axios
-        .get("public/active_parties")
+        .get("organizer/active_parties")
         .then(response => {
           commit(ACTIVE_PARTIES_SUCCESS, response.data);
         })

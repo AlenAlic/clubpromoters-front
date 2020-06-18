@@ -12,7 +12,7 @@
       ></v-text-field>
     </v-card-title>
     <v-data-table
-      :loading="$store.state.users.loading"
+      :loading="$store.state.parties.loadingInactiveParties"
       :headers="headers"
       :items="items"
       :search="search"

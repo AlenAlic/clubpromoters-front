@@ -44,7 +44,14 @@ import TodayParties from "@/components/club_owner/dashboard/TodayParties";
 import LastMonthFinances from "@/components/club_owner/dashboard/LastMonthFinances";
 import ThisMonthFinances from "@/components/club_owner/dashboard/ThisMonthFinances";
 import YearFinances from "@/components/club_owner/dashboard/YearFinances";
+import { CO_ACTIVE_PARTIES, CO_INACTIVE_PARTIES } from "@/store/modules/club_owner/parties";
 export default {
-  components: { YearFinances, ThisMonthFinances, LastMonthFinances, TodayParties, InactiveParties, ActiveParties }
+  components: { YearFinances, ThisMonthFinances, LastMonthFinances, TodayParties, InactiveParties, ActiveParties },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(CO_INACTIVE_PARTIES);
+      this.$store.dispatch(CO_ACTIVE_PARTIES);
+    });
+  }
 };
 </script>

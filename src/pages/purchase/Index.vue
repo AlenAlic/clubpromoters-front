@@ -57,8 +57,14 @@ import PartyCard from "@/components/general/party_card/PartyCard";
 import { DateTime } from "luxon";
 import tiger from "@/assets/images/logo_tiger_black.svg";
 import logo from "@/assets/images/logo_black.svg";
+import { PUBLIC_PARTIES } from "@/store/modules/public";
 export default {
   components: { PartyCard },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(PUBLIC_PARTIES);
+    });
+  },
   data: function() {
     return {
       selectedDays: []

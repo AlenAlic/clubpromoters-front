@@ -11,3 +11,14 @@
     </v-col>
   </v-row>
 </template>
+
+<script>
+import { CODE } from "@/store/modules/promoter/code";
+export default {
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(CODE);
+    });
+  }
+};
+</script>

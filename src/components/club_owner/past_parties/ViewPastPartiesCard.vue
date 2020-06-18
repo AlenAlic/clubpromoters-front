@@ -48,7 +48,6 @@
 </template>
 
 <script>
-// TODO => Viw party stats
 import i18n from "@/languages";
 import Modal from "@/components/modal/Modal";
 import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";

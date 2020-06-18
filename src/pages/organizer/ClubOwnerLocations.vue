@@ -8,7 +8,13 @@
 
 <script>
 import ViewClubOwnerLocationsCard from "@/components/organizer/club_owner_locations/ViewClubOwnerLocationsCard";
+import { USERS } from "@/store/modules/organizer/users";
 export default {
-  components: { ViewClubOwnerLocationsCard }
+  components: { ViewClubOwnerLocationsCard },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(USERS);
+    });
+  }
 };
 </script>

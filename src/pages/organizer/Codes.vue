@@ -19,7 +19,16 @@ import CreateNewCodesCard from "@/components/organizer/codes/CreateNewCodesCard"
 import ViewActiveCodesCard from "@/components/organizer/codes/ViewActiveCodesCard";
 import ViewInactiveCodesCard from "@/components/organizer/codes/ViewInactiveCodesCard";
 import PrintCodesCard from "@/components/organizer/codes/PrintCodesCard";
+import { ACTIVE_CODES, INACTIVE_CODES } from "@/store/modules/organizer/codes";
+import { USERS } from "@/store/modules/organizer/users";
 export default {
-  components: { PrintCodesCard, ViewInactiveCodesCard, ViewActiveCodesCard, CreateNewCodesCard }
+  components: { PrintCodesCard, ViewInactiveCodesCard, ViewActiveCodesCard, CreateNewCodesCard },
+  created() {
+    this.$nextTick(function() {
+      this.$store.dispatch(ACTIVE_CODES);
+      this.$store.dispatch(INACTIVE_CODES);
+      this.$store.dispatch(USERS);
+    });
+  }
 };
 </script>

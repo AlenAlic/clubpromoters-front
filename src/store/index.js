@@ -10,6 +10,7 @@ import hostesses from "./modules/club_owner/hostesses";
 import club_owner_parties from "./modules/club_owner/parties";
 import code from "./modules/promoter/code";
 import assets from "./modules/assets";
+import public_items from "./modules/public";
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     hostesses: hostesses,
     club_owner_parties: club_owner_parties,
     code: code,
-    assets: assets
+    assets: assets,
+    public: public_items
   }
 });
