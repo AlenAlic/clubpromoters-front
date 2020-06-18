@@ -5,14 +5,9 @@ const CONFIG_REQUEST = "CONFIG: Getting config.";
 const CONFIG_SUCCESS = "CONFIG: Successful request.";
 const CONFIG_ERROR = "CONFIG: Failed request.";
 
-const UPDATE_CONFIG = "UPDATE_CONFIG";
-const UPDATE_CONFIG_REQUEST = "UPDATE_CONFIG: Updating config.";
-const UPDATE_CONFIG_SUCCESS = "UPDATE_CONFIG: Successful request.";
-const UPDATE_CONFIG_ERROR = "UPDATE_CONFIG: Failed request.";
-
 const SET_CONFIG = "SET_CONFIG";
 
-export { CONFIG, UPDATE_CONFIG, SET_CONFIG };
+export { CONFIG, SET_CONFIG };
 
 export default {
   state: {
@@ -33,16 +28,6 @@ export default {
 
     [SET_CONFIG](state, settings) {
       state.settings = settings;
-    },
-
-    [UPDATE_CONFIG_REQUEST](state) {
-      state.loading = true;
-    },
-    [UPDATE_CONFIG_SUCCESS](state) {
-      state.loading = false;
-    },
-    [UPDATE_CONFIG_ERROR](state) {
-      state.loading = false;
     }
   },
   actions: {
@@ -57,20 +42,6 @@ export default {
         })
         .catch(error => {
           commit(CONFIG_ERROR);
-          throw error;
-        });
-    },
-    // Update config settings
-    [UPDATE_CONFIG]({ commit }, data) {
-      commit(UPDATE_CONFIG_REQUEST);
-      return Vue.axios
-        .post("organizer/config", data)
-        .then(response => {
-          commit(UPDATE_CONFIG_SUCCESS);
-          commit(SET_CONFIG, response.data);
-        })
-        .catch(error => {
-          commit(UPDATE_CONFIG_ERROR);
           throw error;
         });
     }
