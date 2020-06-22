@@ -78,7 +78,7 @@ export default {
       return logo;
     },
     parties() {
-      const parties = [...store.state.parties.activeParties];
+      const parties = [...store.state.public.parties];
       if (this.selectedDays.length) {
         const dates = this.selectedDays;
         dates.sort();
