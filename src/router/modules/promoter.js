@@ -3,6 +3,7 @@ import { PROMOTER } from "@/constants";
 const DefaultWrapper = () => import("@/components/wrappers/DefaultWrapper.vue");
 const Code = () => import("@/pages/promoter/Code.vue");
 const Income = () => import("@/pages/promoter/Income.vue");
+const Invoices = () => import("@/pages/promoter/Invoices.vue");
 
 const promoterPages = {
   path: "/promoter",
@@ -22,6 +23,11 @@ const promoterPages = {
       path: "finances",
       component: Income,
       name: "promoter.finances"
+    },
+    {
+      path: "invoices",
+      component: Invoices,
+      name: "promoter.invoices"
     }
   ]
 };

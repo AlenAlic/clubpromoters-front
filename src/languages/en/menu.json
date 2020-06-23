@@ -23,7 +23,8 @@
       "party_income": "Party income",
       "commissions": "Commissions",
       "refunds": "Refunds",
-      "payments": "Payments"
+      "payments": "Payments",
+      "invoices": "Invoices"
     },
     "club_owner": {
       "subheader": {
@@ -35,11 +36,13 @@
       "active_parties": "Active parties",
       "inactive_parties": "Inactive parties",
       "past_parties": "Past parties",
-      "party_commissions": "Commissions"
+      "party_commissions": "Commissions",
+      "invoices": "Invoices"
     },
     "promoter": {
       "code": "My code",
-      "finances": "Income"
+      "finances": "Income",
+      "invoices": "Invoices/Receipts"
     }
   }
 }

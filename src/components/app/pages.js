@@ -86,6 +86,11 @@ export const organizer_drawer_content = [
     to: "organizer.payments",
     title: i18n.t("menu.organizer.payments"),
     icon: "mdi-currency-usd"
+  },
+  {
+    to: "organizer.invoices",
+    title: i18n.t("menu.organizer.invoices"),
+    icon: "mdi-receipt"
   }
 ];
 
@@ -121,6 +126,11 @@ export const club_owner_drawer_content = [
     to: "club_owner.party_income",
     title: i18n.t("menu.club_owner.party_commissions"),
     icon: "mdi-calendar-outline"
+  },
+  {
+    to: "club_owner.invoices",
+    title: i18n.t("menu.club_owner.invoices"),
+    icon: "mdi-receipt"
   }
 ];
 
@@ -134,6 +144,11 @@ export const promoter_drawer_content = [
     to: "promoter.finances",
     title: i18n.t("menu.promoter.finances"),
     icon: "mdi-account-cash"
+  },
+  {
+    to: "promoter.invoices",
+    title: i18n.t("menu.promoter.invoices"),
+    icon: "mdi-receipt"
   }
 ];
 

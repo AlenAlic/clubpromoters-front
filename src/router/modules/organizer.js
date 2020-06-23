@@ -16,6 +16,7 @@ const PartyIncome = () => import("@/pages/organizer/PartyIncome.vue");
 const Refunds = () => import("@/pages/organizer/Refunds.vue");
 const Commissions = () => import("@/pages/organizer/Commissions.vue");
 const Payments = () => import("@/pages/organizer/Payments.vue");
+const Invoices = () => import("@/pages/organizer/Invoices.vue");
 
 const organizerPages = {
   path: "/organizer",
@@ -100,6 +101,11 @@ const organizerPages = {
       path: "payments",
       component: Payments,
       name: "organizer.payments"
+    },
+    {
+      path: "invoices",
+      component: Invoices,
+      name: "organizer.invoices"
     }
   ]
 };

@@ -18,6 +18,8 @@
     "security": "Security",
     "select_all": "Select all",
     "year": "Year",
-    "choose_month": "Choose month"
+    "choose_month": "Choose month",
+    "invoices": "Invoices",
+    "receipts": "Receipts"
   }
 }
