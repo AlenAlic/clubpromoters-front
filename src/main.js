@@ -30,6 +30,9 @@ Vue.use(form);
 Vue.use(toast);
 Vue.use(Datetime);
 
+// External flag css
+import "flag-icon-css/css/flag-icon.min.css";
+
 // Turn off Vue Production tip
 Vue.config.productionTip = false;
 

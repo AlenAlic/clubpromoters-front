@@ -7,6 +7,7 @@ import form from "./form";
 import general from "./general";
 import hostess from "./hostess";
 import invoices from "./invoices";
+import locale from "./locale";
 import menu from "./menu";
 import networkErrors from "./network-errors";
 import organizer from "./organizer";
@@ -27,6 +28,7 @@ const gb = {
   ...general,
   ...hostess,
   ...invoices,
+  ...locale,
   ...menu,
   ...networkErrors,
   ...organizer,

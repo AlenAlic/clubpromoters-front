@@ -15,40 +15,65 @@
 
     <v-spacer></v-spacer>
 
-    <v-menu v-if="$auth.isAuthenticated" bottom left offset-y>
-      <template v-slot:activator="{ on }">
-        <v-btn icon v-on="on">
-          <v-icon>mdi-account-circle</v-icon>
-        </v-btn>
-      </template>
+    <template v-if="$auth.isAuthenticated">
+      <v-menu bottom left offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
+            <span :class="`flag-icon flag-icon-${$i18n.locale} flag-icon-border`"></span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="c in ['gb', 'nl']"
+            :key="c"
+            @click="$i18n.locale = c"
+            color="primary"
+            :input-value="$i18n.locale === c"
+          >
+            <v-list-item-icon>
+              <span :class="`flag-icon flag-icon-${c}`"></span>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t(`locale.${c}`) }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
-      <v-list>
-        <v-list-item :to="{ name: 'profile' }">
-          <v-list-item-icon>
+      <v-menu bottom left offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
             <v-icon>mdi-account-circle</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("general.profile") }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item :to="{ name: 'security' }">
-          <v-list-item-icon>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("general.security") }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item @click="signOut()">
-          <v-list-item-icon>
-            <v-icon>mdi-logout</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t("auth.sign_out") }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item :to="{ name: 'profile' }">
+            <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("general.profile") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item :to="{ name: 'security' }">
+            <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("general.security") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="signOut()">
+            <v-list-item-icon>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t("auth.sign_out") }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </template>
   </v-app-bar>
 </template>
 
