@@ -271,6 +271,15 @@
       "logo": {
         "label": "Logo"
       },
+      "repeat_party": {
+        "label": "Add repeats of party"
+      },
+      "period": {
+        "label": "Repeat period"
+      },
+      "repeats": {
+        "label": "Repeat the party {number} times"
+      },
       "submit": "Create party"
     },
     "inactive_parties": {

@@ -106,7 +106,7 @@
               v-model="interval"
               :thumb-label="true"
               min="0"
-              :max="intervalOptions.length"
+              :max="intervalOptions.length - 1"
               ticks="always"
               tick-size="6"
             >
@@ -136,6 +136,39 @@
           item-text="name"
           return-object
         ></v-select>
+        <v-checkbox v-model="repeatParty" :label="$t('organizer.create_new_party.repeat_party.label')"></v-checkbox>
+        <transition name="fade">
+          <v-select
+            v-if="repeatParty"
+            v-model="period"
+            :items="periodOptions"
+            :label="$t('organizer.create_new_party.period.label')"
+            clearable
+          ></v-select>
+        </transition>
+        <transition name="fade">
+          <v-row v-if="repeatParty">
+            <v-col>
+              <v-subheader>
+                {{
+                  $t("organizer.create_new_party.repeats.label", {
+                    number: repeats
+                  })
+                }}
+              </v-subheader>
+              <v-slider
+                v-model="repeats"
+                :thumb-label="true"
+                min="2"
+                :max="$store.state.config.settings.max_party_repeats"
+                ticks="always"
+                tick-size="6"
+                :rules="repeatParty ? [$form.fieldRequired] : []"
+              >
+              </v-slider>
+            </v-col>
+          </v-row>
+        </transition>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
@@ -150,10 +183,12 @@
 <script>
 import Vue from "vue";
 import store from "@/store";
+import i18n from "@/languages";
 import { USERS } from "@/store/modules/organizer/users";
 import VDatetimePicker from "@/components/Vuetify/VDatetimePicker";
 import { INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 import { ASSETS, CLEAR_ASSETS } from "@/store/modules/assets";
+import { DAILY, WEEKLY, BIWEEKLY } from "@/constants";
 export default {
   components: { VDatetimePicker },
   created() {
@@ -187,7 +222,10 @@ export default {
         ...[...Array(9).keys()].map(n => n * 50 + 100),
         ...[...Array(9).keys()].map(n => n * 500 + 1000),
         ...[...Array(5).keys()].map(n => n * 1000 + 6000)
-      ]
+      ],
+      repeatParty: false,
+      repeats: 0,
+      period: null
     };
   },
   computed: {
@@ -199,6 +237,13 @@ export default {
     },
     isValid() {
       return this.valid;
+    },
+    periodOptions() {
+      return [
+        { text: i18n.t("general.daily"), value: DAILY },
+        { text: i18n.t("general.weekly"), value: WEEKLY },
+        { text: i18n.t("general.bi_weekly"), value: BIWEEKLY }
+      ];
     },
     previewObject() {
       return {
@@ -225,22 +270,29 @@ export default {
     },
     createParty() {
       this.loading = true;
+      let data = {
+        user_id: this.club.id,
+        name: this.name,
+        location_id: this.location.id,
+        start_date: this.start_date,
+        end_date: this.end_date,
+        description: this.description,
+        number_of_tickets: Number(this.number_of_tickets),
+        ticket_price: Number(this.ticket_price),
+        club_owner_commission: Number(this.club_owner_commission),
+        promoter_commission: Number(this.promoter_commission),
+        images: this.images.map(img => img.id),
+        logo_id: this.logo.id,
+        interval: Number(this.intervalOptions[this.interval])
+      };
+      if (this.repeatParty) {
+        data.period = this.period;
+        data.repeats = this.repeats;
+      } else {
+        data.repeats = 1;
+      }
       Vue.axios
-        .post("organizer/create_new_party", {
-          user_id: this.club.id,
-          name: this.name,
-          location_id: this.location.id,
-          start_date: this.$util.convertDateTimeStringToUTCString(this.start_date),
-          end_date: this.$util.convertDateTimeStringToUTCString(this.end_date),
-          description: this.description,
-          number_of_tickets: Number(this.number_of_tickets),
-          ticket_price: Number(this.ticket_price),
-          club_owner_commission: Number(this.club_owner_commission),
-          promoter_commission: Number(this.promoter_commission),
-          images: this.images.map(img => img.id),
-          logo_id: this.logo.id,
-          interval: Number(this.intervalOptions[this.interval])
-        })
+        .post("organizer/create_new_party", data)
         .then(() => {
           this.loading = false;
           store.dispatch(INACTIVE_PARTIES).then(() => {});
@@ -258,6 +310,8 @@ export default {
           this.images = [];
           this.logo = null;
           this.interval = 4;
+          this.period = null;
+          this.repeats = 0;
           this.$emit("preview", this.previewObject);
         })
         .catch(() => {

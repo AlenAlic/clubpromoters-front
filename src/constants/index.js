@@ -18,3 +18,7 @@ export const MONTHS = {
   11: "November",
   12: "December"
 };
+
+export const DAILY = "daily";
+export const WEEKLY = "weekly";
+export const BIWEEKLY = "bi-weekly";

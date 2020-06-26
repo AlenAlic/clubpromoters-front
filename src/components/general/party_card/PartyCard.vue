@@ -126,7 +126,6 @@
 import loading from "@/assets/images/loading.gif";
 import PartyCardImages from "@/components/general/party_card/PartyCardImages";
 
-const DEFAULT_START_DAY = "02";
 const DEFAULT_START_TIME = "21:35";
 const DEFAULT_END_TIME = "02:25";
 
@@ -211,9 +210,6 @@ export default {
     },
     startDate() {
       return this.party && this.party.start_date ? this.$util.dateTimeFromUTCString(this.party.start_date) : null;
-    },
-    startDay() {
-      return this.startDate ? this.startDate.toFormat("dd") : DEFAULT_START_DAY;
     },
     startTime() {
       return this.startDate ? this.startDate.toFormat("HH:mm") : DEFAULT_START_TIME;

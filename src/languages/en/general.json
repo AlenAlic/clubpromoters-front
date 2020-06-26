@@ -20,6 +20,9 @@
     "year": "Year",
     "choose_month": "Choose month",
     "invoices": "Invoices",
-    "receipts": "Receipts"
+    "receipts": "Receipts",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "bi_weekly": "Bi-weekly"
   }
 }
