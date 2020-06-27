@@ -381,7 +381,9 @@
         "purchase_date": "Purchase date",
         "party": "Party",
         "entrance_code": "Entrance code",
-        "give_refund": "Give refund"
+        "give_refund": "Give refund",
+        "resend_receipt": "Resend receipt",
+        "resend_tickets": "Resend tickets"
       },
       "give_refund": {
         "title": "Purchase {id}",

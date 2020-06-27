@@ -136,6 +136,23 @@
                     </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
+
+                <v-list-item dense>
+                  <v-list-item-content>
+                    <v-card flat>
+                      <v-card-actions class="px-0">
+                        <v-btn text color="primary" :loading="sending" @click="resendReceipts(item)">
+                          {{ $t("organizer.refunds.view_refund.resend_receipt") }}
+                        </v-btn>
+                        <v-spacer />
+                        <v-btn text color="primary" :loading="sending" @click="resendTickets(item)">
+                          {{ $t("organizer.refunds.view_refund.resend_tickets") }}
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-list-item-content>
+                </v-list-item>
+
                 <v-list-group prepend-icon="mdi-cash-usd" :value="false" v-if="item.refunds.length > 0">
                   <template v-slot:activator>
                     <v-list-item-title>
@@ -169,7 +186,7 @@
                     <v-card flat>
                       <v-card-actions class="px-0">
                         <v-spacer />
-                        <v-btn text @click="showModalFunc(item)">
+                        <v-btn text @click="showModalFunc(item)" color="primary">
                           {{ $t("organizer.refunds.view_refund.give_refund") }}
                         </v-btn>
                       </v-card-actions>
@@ -203,7 +220,8 @@ export default {
       search: "",
       month: String(this.$util.now.month),
       year: this.$util.now.year,
-      purchases: []
+      purchases: [],
+      sending: false
     };
   },
   mounted() {
@@ -249,6 +267,18 @@ export default {
       this.showModal = false;
       this.purchase = {};
       this.getPurchases();
+    },
+    resendReceipts(purchase) {
+      this.sending = true;
+      Vue.axios.get(`/purchase/resend_receipt/${purchase.id}`).finally(() => {
+        this.sending = false;
+      });
+    },
+    resendTickets(purchase) {
+      this.sending = true;
+      Vue.axios.get(`/purchase/resend_tickets/${purchase.id}`).finally(() => {
+        this.sending = false;
+      });
     }
   }
 };
@@ -261,6 +291,11 @@ export default {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
     }
+  }
+}
+.purchase-refund-list {
+  .v-list-item {
+    min-height: 28px;
   }
 }
 </style>
