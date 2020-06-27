@@ -63,7 +63,7 @@ export default {
         .then(() => {
           this.$toast.success(i18n.t("auth.new_password_set.general"));
           this.$router.push({
-            name: "home"
+            name: "login"
           });
         })
         .catch(error => {
