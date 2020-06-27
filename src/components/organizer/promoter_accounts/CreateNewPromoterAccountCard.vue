@@ -81,7 +81,7 @@ export default {
           first_name: this.first_name,
           last_name: this.last_name,
           commission: Number(this.commission),
-          code_id: this.code
+          code_id: this.code ? this.code : 0
         })
         .then(() => {
           store.dispatch(USERS).then(() => {
