@@ -151,7 +151,7 @@ export const authApi = {
    * @returns {Promise<void>}
    */
   async resetPassword(token, password, repeat_password) {
-    return await backendServer.patch(`/auth/password/reset/${token}`, {
+    return await backendServer.post(`/auth/password/reset/${token}`, {
       password,
       repeat_password
     });
