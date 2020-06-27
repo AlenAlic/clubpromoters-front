@@ -32,6 +32,7 @@
           required
           persistent-hint
           :hint="$t('organizer.create_new_account.club_owner.commission.hint')"
+          suffix="%"
         ></v-text-field>
       </v-card-text>
       <v-card-actions>

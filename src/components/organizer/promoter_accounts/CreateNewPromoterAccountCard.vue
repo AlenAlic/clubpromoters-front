@@ -24,6 +24,7 @@
           required
           persistent-hint
           :hint="$t('organizer.create_new_account.promoter.commission.hint')"
+          suffix="%"
         ></v-text-field>
         <v-select
           v-model="code"
