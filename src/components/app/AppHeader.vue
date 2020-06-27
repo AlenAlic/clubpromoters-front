@@ -13,7 +13,7 @@
 
     <v-toolbar-title>{{ $t("app.title") }}</v-toolbar-title>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
     <template v-if="$auth.isAuthenticated">
       <v-menu bottom left offset-y>
@@ -24,7 +24,7 @@
         </template>
         <v-list>
           <v-list-item
-            v-for="c in ['gb', 'nl']"
+            v-for="c in languages"
             :key="c"
             @click="$i18n.locale = c"
             color="primary"
@@ -78,9 +78,16 @@
 </template>
 
 <script>
+import { LANGUAGES } from "@/constants";
+
 export default {
   props: {
     breakpoint: { type: Boolean, default: false }
+  },
+  computed: {
+    languages() {
+      return LANGUAGES;
+    }
   },
   methods: {
     signOut: function() {

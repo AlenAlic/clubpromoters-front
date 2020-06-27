@@ -29,6 +29,10 @@
       },
       "phone_number": {
         "label": "Phone number"
+      },
+      "language": {
+        "label": "Language",
+        "hint": "Language for the website and invoices/receipts"
       }
     }
   }

@@ -22,3 +22,5 @@ export const MONTHS = {
 export const DAILY = "daily";
 export const WEEKLY = "weekly";
 export const BIWEEKLY = "bi-weekly";
+
+export const LANGUAGES = ["nl", "gb"];

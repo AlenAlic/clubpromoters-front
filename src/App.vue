@@ -26,8 +26,13 @@ export default {
   },
   created() {
     this.$nextTick(function() {
-      this.$auth.renew().then(() => loadStore());
-    });
+      this.$auth.renew().then(
+        function() {
+          loadStore();
+          this.$i18n.locale = this.$store.getters.language;
+        }.bind(this)
+      );
+    }, this);
   },
   computed: {
     breakpoint() {

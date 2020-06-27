@@ -23,6 +23,12 @@ export class AuthenticatedUser {
   firstName;
   /** @member {string} */
   lastName;
+  /** @member {boolean} */
+  businessEntity;
+  /** @member {boolean} */
+  acceptedTerms;
+  /** @member {string} */
+  language;
   /** @member {number} */
   access;
   /** @member {Date} */
@@ -42,6 +48,9 @@ export class AuthenticatedUser {
       this.access = data.access;
       this.firstName = data.first_name;
       this.lastName = data.last_name;
+      this.businessEntity = data.business_entity;
+      this.acceptedTerms = data.accepted_terms;
+      this.language = data.language;
       // Assumption: exp and iat fields are number of milliseconds since 1970
       this.expiresAt = new Date(data.exp * 1000);
       this.issuedAt = new Date(data.iat * 1000);

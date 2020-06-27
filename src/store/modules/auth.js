@@ -38,8 +38,19 @@ const PROFILE_SUCCESS = "PROFILE: Successful request.";
 const PROFILE_ERROR = "PROFILE: Failed request.";
 
 const UPDATE_PROFILE_ADDRESS = "UPDATE_PROFILE_ADDRESS";
+const UPDATE_LANGUAGE = "UPDATE_LANGUAGE";
 
-export { LOGIN, LOGOUT, RENEW, SET_USER, CHANGE_PASSWORD, SET_PROFILE, UPDATE_PROFILE, UPDATE_PROFILE_ADDRESS };
+export {
+  LOGIN,
+  LOGOUT,
+  RENEW,
+  SET_USER,
+  CHANGE_PASSWORD,
+  SET_PROFILE,
+  UPDATE_PROFILE,
+  UPDATE_PROFILE_ADDRESS,
+  UPDATE_LANGUAGE
+};
 
 const setUser = token => {
   saveServerToken(backendServer, token);
@@ -213,6 +224,20 @@ export default {
         .catch(() => {
           commit(PROFILE_ERROR);
         });
+    },
+    [UPDATE_LANGUAGE]({ commit }, { language }) {
+      commit(PROFILE_REQUEST);
+      return Vue.axios
+        .patch("/user/language", {
+          language: language
+        })
+        .then(response => {
+          commit(PROFILE_SUCCESS);
+          commit(SET_PROFILE, response.data);
+        })
+        .catch(() => {
+          commit(PROFILE_ERROR);
+        });
     }
   },
   getters: {
@@ -224,6 +249,15 @@ export default {
     },
     userId: state => {
       return state.user ? state.user.id : -1;
+    },
+    language: state => {
+      return state.user ? state.user.language : "gb";
+    },
+    business_entity: state => {
+      return state.user ? state.user.businessEntity : false;
+    },
+    accepted_terms: state => {
+      return state.user ? state.user.acceptedTerms : false;
     },
     isAdmin: state => {
       return state.user && state.user.access === ADMIN;
