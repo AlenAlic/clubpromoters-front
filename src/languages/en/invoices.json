@@ -2,6 +2,10 @@
   "invoices": {
     "invoice_number": "Number",
     "delivery_date": "Delivery date",
-    "name": "Club Owner/Promoter"
+    "name": "Club Owner/Promoter",
+    "language": {
+      "en_US": "English",
+      "nl_NL": "Dutch"
+    }
   }
 }

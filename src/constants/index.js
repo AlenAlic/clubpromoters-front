@@ -24,3 +24,4 @@ export const WEEKLY = "weekly";
 export const BIWEEKLY = "bi-weekly";
 
 export const LANGUAGES = ["nl", "gb"];
+export const INVOICE_LANGUAGES = ["nl_NL", "en_US"];

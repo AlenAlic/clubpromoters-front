@@ -1,13 +1,13 @@
 <template>
   <v-form ref="form" v-model="valid" @submit.prevent="updateProfile">
     <v-card>
-      <v-card-title>{{ $t("user.profile.language.title") }}</v-card-title>
+      <v-card-title>{{ $t("user.profile.invoice_language.title") }}</v-card-title>
       <v-card-text>
         <v-select
-          v-model="language"
+          v-model="invoice_language"
           :items="languages"
           persistent-hint
-          :hint="$t('user.profile.language.hint')"
+          :hint="$t('user.profile.invoice_language.hint')"
           :disabled="$store.state.users.loading"
           :loading="$store.state.users.loading"
           :rules="[$form.fieldRequired]"
@@ -27,37 +27,31 @@
 </template>
 
 <script>
-import { UPDATE_LANGUAGE } from "../../store/modules/auth";
-import { LANGUAGES } from "@/constants";
+import { UPDATE_INVOICE_LANGUAGE } from "../../store/modules/auth";
+import { INVOICE_LANGUAGES } from "@/constants";
 import i18n from "@/languages";
 
 export default {
   data: function() {
     return {
       valid: false,
-      language: this.$store.getters.language
+      invoice_language: this.$store.getters.invoice_language
     };
   },
   computed: {
     languages() {
-      return LANGUAGES.map(l => ({ text: i18n.t(`locale.${l}`), value: l }));
+      return INVOICE_LANGUAGES.map(l => ({ text: i18n.t(`invoices.language.${l}`), value: l }));
     }
   },
   methods: {
     resetForm() {
-      this.language = this.$store.getters.language;
+      this.invoice_language = this.$store.getters.invoice_language;
       this.$refs.form.resetValidation();
     },
     updateProfile() {
-      this.$store
-        .dispatch(UPDATE_LANGUAGE, {
-          language: this.language
-        })
-        .then(
-          function() {
-            this.$i18n.locale = this.language;
-          }.bind(this)
-        );
+      this.$store.dispatch(UPDATE_INVOICE_LANGUAGE, {
+        invoice_language: this.invoice_language
+      });
     }
   }
 };

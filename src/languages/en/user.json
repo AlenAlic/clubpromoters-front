@@ -31,8 +31,12 @@
         "label": "Phone number"
       },
       "language": {
-        "label": "Language",
-        "hint": "Language for the website and invoices/receipts"
+        "title": "Language",
+        "hint": "Default language for the website"
+      },
+      "invoice_language": {
+        "title": "Invoice language",
+        "hint": "Default language for invoices"
       }
     }
   }
