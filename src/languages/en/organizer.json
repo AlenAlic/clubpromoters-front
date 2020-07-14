@@ -248,7 +248,7 @@
         "label": "End date and time"
       },
       "description": {
-        "label": "Party description",
+        "label": "Party description (optional)",
         "hint": "Useful for any additional information. Will be shown under \"more information\" tab.,"
       },
       "number_of_tickets": {
