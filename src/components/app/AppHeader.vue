@@ -11,7 +11,9 @@
 
     <v-spacer v-if="$auth.isAuthenticated && $auth.isHostess"></v-spacer>
 
-    <v-toolbar-title>{{ $t("app.title") }}</v-toolbar-title>
+    <span>
+      <v-img class="float-left" style="width: 100px; height: 48px;" :src="logo" contain />
+    </span>
 
     <v-spacer />
 
@@ -80,6 +82,7 @@
 <script>
 import { LANGUAGES } from "@/constants";
 import { UPDATE_LANGUAGE } from "@/store/modules/auth";
+import logo from "@/assets/images/logo_all_black.svg";
 
 export default {
   props: {
@@ -88,6 +91,9 @@ export default {
   computed: {
     languages() {
       return LANGUAGES;
+    },
+    logo() {
+      return logo;
     }
   },
   methods: {
