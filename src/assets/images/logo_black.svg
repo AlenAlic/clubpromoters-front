@@ -3,7 +3,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="245.946pt" height="191.491pt" viewBox="0 0 245.946 181.491">
 <g enable-background="new">
 <g id="Layer-1" data-name="Layer 1">
-<path transform="matrix(1,0,0,-1,0,186.491)" d="M .763 0 L 245.946 0 L 245.946 191.491 L .763 191.491 Z " fill="#040505"/>
+<path transform="matrix(1,0,0,-1,0,186.491)" d="M .763 0 L 245.946 0 L 245.946 191.491 L .763 191.491 Z " fill="#000000"/>
 <clipPath id="cp2">
 <path transform="matrix(1,0,0,-1,0,191.491)" d="M 0 181.491 L 245.946 191.491 L 245.946 0 L 0 0 Z "/>
 </clipPath>
