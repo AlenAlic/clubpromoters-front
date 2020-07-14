@@ -1,16 +1,16 @@
 <template>
   <v-card v-if="party" min-width="250px">
     <v-form ref="form" v-model="valid" @submit.prevent="purchase">
-      <v-card-title>Order tickets</v-card-title>
+      <v-card-title>{{ $t("purchase.order.title") }}</v-card-title>
       <v-card-text class="text-right">
         <div class="left-right-split-container">
-          <span>Event:</span>
+          <span>{{ $t("purchase.order.event") }}</span>
           <span>{{ party.name }}</span>
         </div>
         <div>{{ startDay }}</div>
         <div>{{ startTime }} - {{ endTime }}</div>
         <div class="tickets-container unselectable py-1 mt-3">
-          <span class="party-title">Tickets</span>
+          <span class="party-title">{{ $t("purchase.order.tickets") }}</span>
           <span class="party-counter">
             <v-row no-gutters justify="space-around" align="center">
               <v-col>
@@ -32,15 +32,15 @@
           </span>
         </div>
         <div class="left-right-split-container">
-          <span>Price per ticket:</span>
+          <span>{{ $t("purchase.order.price_per_ticket") }}</span>
           <span>{{ $util.formatCurrency(party.ticket_price) }}</span>
         </div>
         <div class="left-right-split-container" v-if="administrationCosts">
-          <span>Administration costs:</span>
+          <span>{{ $t("purchase.order.administration_costs") }}</span>
           <span>{{ $util.formatCurrency(administrationCosts) }}</span>
         </div>
         <div class="left-right-split-container">
-          <span>Total:</span>
+          <span>{{ $t("purchase.order.total") }}</span>
           <span>
             {{ $util.formatCurrency(totalPrice) }}
           </span>

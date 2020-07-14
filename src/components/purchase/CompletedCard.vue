@@ -1,20 +1,18 @@
 <template>
   <v-card min-width="250px">
     <div v-if="purchase">
-      <v-card-title>Ticket purchase complete</v-card-title>
+      <v-card-title>{{ $t("purchase.completed.title") }}</v-card-title>
       <v-card-text>
         <p>
-          Your purchase for {{ purchase.number_of_tickets }} tickets to {{ purchase.party.name }} has been completed.
+          {{ $t("purchase.completed.text_1", { number: purchase.number_of_tickets, name: purchase.party.name }) }}
         </p>
-        <p>The tickets will be sent to "{{ purchase.email }}".</p>
+        <p>{{ $t("purchase.completed.text_2", { email: purchase.email }) }}</p>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <router-link tag="span" :to="{ name: 'purchase.index' }">
-          <v-btn text>
-            Back to party overview
-          </v-btn>
-        </router-link>
+        <v-btn text :to="{ name: 'purchase.index' }">
+          {{ $t("general.back_to_parties") }}
+        </v-btn>
       </v-card-actions>
     </div>
   </v-card>

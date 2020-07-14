@@ -1,6 +1,12 @@
 {
   "purchase": {
     "order": {
+      "title": "Order tickets",
+      "event": "Event:",
+      "tickets": "Tickets",
+      "price_per_tickets": "Price per ticket:",
+      "administration_costs": "Administration costs:",
+      "total": "Total:",
       "first_name": {
         "label": "First name"
       },
@@ -24,5 +30,16 @@
         "terms": "You must accept the terms and conditions!"
       }
     }
+  },
+  "completed": {
+    "title": "Ticket purchase completed",
+    "text_1": "Your purchase for {number} tickets to {name} has been completed.",
+    "text_2": "The tickets will be sent to \"{email}\"."
+  },
+  "failed": {
+    "title": "Ticket purchase failed",
+    "text_1": "Something went wrong with your ticket purchase.",
+    "text_2": "The purchase has been cancelled. You will <b>not</b> be billed.",
+    "text_3": "If you wish to purchase tickets to a party, please try again."
   }
 }
