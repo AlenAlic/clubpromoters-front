@@ -227,7 +227,24 @@
         "upload": {
           "hint": "Select a user to upload assets to"
         }
+      },
+      "modal": {
+        "name": {
+          "label": "Image name"
+        },
+        "change_name": "Change name",
+        "delete_image": "Delete image",
+        "delete": {
+          "title": "Deleting image",
+          "text": "Are you sure you wish to delete this image?"
+        }
       }
+    },
+    "preview_assets": {
+      "title": "Preview assets",
+      "subtitle": "Preview a single image by clicking on it",
+      "images": "Images",
+      "logos": "Logos"
     },
     "create_new_party": {
       "title": "Create new party",

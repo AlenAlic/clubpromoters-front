@@ -95,6 +95,7 @@ export default {
         })
         .then(() => {
           this.loading = false;
+          this.$emit("uploadedImages", this.clubOwner);
           this.$refs.form.reset();
         })
         .catch(() => {

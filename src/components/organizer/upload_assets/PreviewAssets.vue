@@ -1,8 +1,8 @@
 <template>
   <v-card>
-    <v-card-title>Preview assets</v-card-title>
+    <v-card-title>{{ $t("organizer.preview_assets.title") }}</v-card-title>
     <v-card-subtitle>
-      Preview a single image by clicking on it
+      {{ $t("organizer.preview_assets.subtitle") }}
     </v-card-subtitle>
     <v-card-text>
       <v-select
@@ -18,21 +18,21 @@
     <v-card-text>
       <template v-if="$store.state.assets.images.length">
         <v-row>
-          <v-col cols="12" class="title">Images</v-col>
+          <v-col cols="12" class="title">{{ $t("organizer.preview_assets.images") }}</v-col>
         </v-row>
         <v-row>
           <v-col cols="4" v-for="file in $store.state.assets.images" :key="file.id">
-            <preview-image :file="file" />
+            <preview-image :file="file" @updatedImage="getData" />
           </v-col>
         </v-row>
       </template>
       <template v-if="$store.state.assets.logos.length">
         <v-row>
-          <v-col cols="12" class="title">Logos</v-col>
+          <v-col cols="12" class="title">{{ $t("organizer.preview_assets.logos") }}</v-col>
         </v-row>
         <v-row>
           <v-col cols="4" v-for="file in $store.state.assets.logos" :key="file.id">
-            <preview-image :file="file" logo />
+            <preview-image :file="file" logo @updatedImage="getData" />
           </v-col>
         </v-row>
       </template>
@@ -63,10 +63,16 @@ export default {
       return this.$store.state.users.clubOwners.filter(c => c.is_active).map(o => ({ text: o.club, value: o.id }));
     }
   },
+  methods: {
+    getData() {
+      this.$store.dispatch(ASSETS, { user_id: this.clubOwner });
+    }
+  },
   watch: {
     clubOwner: function(newVal) {
       if (newVal) {
-        this.$store.dispatch(ASSETS, { user_id: this.clubOwner });
+        this.getData();
+        this.$emit("changedUser", this.clubOwner);
       }
     }
   }
