@@ -20,8 +20,9 @@
           </v-card-title>
           <v-card-subtitle>{{ $t("organizer.download_codes.modal.subtitle") }}</v-card-subtitle>
           <v-card-text v-if="!loading">
+            <v-text-field v-model="search" :label="$t('organizer.download_codes.modal.search.label')" />
             <v-checkbox
-              v-for="code in this.$store.state.codes.activeCodes"
+              v-for="code in filteredCodes"
               :key="code.id"
               v-model="codes"
               :label="`${code.code}${code.promoter ? ' - ' : ''}${code.promoter ? code.promoter.name : ''}`"
@@ -58,8 +59,27 @@ export default {
     return {
       loading: false,
       dialog: false,
-      codes: []
+      codes: [],
+      search: ""
     };
+  },
+  computed: {
+    filteredCodes() {
+      let codes = this.$store.state.codes.activeCodes;
+      if (!this.search) {
+        return codes;
+      } else {
+        return codes.filter(c => {
+          const f = this.search.toUpperCase();
+          return (
+            String(c.code)
+              .toUpperCase()
+              .includes(f) ||
+            (c.promoter && c.promoter.name.toUpperCase().includes(f))
+          );
+        });
+      }
+    }
   },
   methods: {
     printCodes() {

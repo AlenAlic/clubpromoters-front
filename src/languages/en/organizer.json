@@ -168,6 +168,9 @@
       "select": "Open selection menu",
       "modal": {
         "subtitle": "Select the codes that you wish to download.",
+        "search": {
+          "label": "Search"
+        },
         "loading": "Generating file. This might take a while...",
         "submit": "Download codes"
       }
