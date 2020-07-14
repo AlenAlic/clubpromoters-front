@@ -16,6 +16,9 @@
         </v-col>
       </v-row>
       <div class="enter-code text-center" :class="{ show: showEnterCode }">
+        <div>
+          <img style="max-width: 382px; width: 100%;" :src="logo" />
+        </div>
         <v-form>
           <div class="white--text subtitle-1">{{ $t("general.home_page_message") }}</div>
           <div class="code-container">
@@ -122,6 +125,7 @@ import { codeApi } from "@/api/code";
 import Vue from "vue";
 import PartyCard from "@/components/general/party_card/PartyCard";
 import tiger from "@/assets/images/logo_tiger_black.svg";
+import logo from "@/assets/images/logo_all_black.svg";
 export default {
   components: { PartyCard },
   data: () => ({
@@ -153,6 +157,9 @@ export default {
     }
   },
   computed: {
+    logo() {
+      return logo;
+    },
     tiger() {
       return tiger;
     },
@@ -218,6 +225,7 @@ $delay: 3s;
 $duration: 1s;
 .enter-code {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   justify-content: center;
@@ -251,12 +259,12 @@ $duration: 1s;
 
   .code-container {
     .space {
-      margin: 0 1rem;
+      margin: 0 0.625rem;
     }
 
     .code-input {
       display: inline-flex;
-      max-width: 2rem;
+      max-width: 1.5rem;
     }
   }
 }
