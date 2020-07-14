@@ -26,7 +26,7 @@
           <v-list-item
             v-for="c in languages"
             :key="c"
-            @click="$i18n.locale = c"
+            @click="updateLanguage(c)"
             color="primary"
             :input-value="$i18n.locale === c"
           >
@@ -79,6 +79,7 @@
 
 <script>
 import { LANGUAGES } from "@/constants";
+import { UPDATE_LANGUAGE } from "@/store/modules/auth";
 
 export default {
   props: {
@@ -96,6 +97,18 @@ export default {
           name: "home"
         });
       });
+    },
+    updateLanguage(language) {
+      this.$i18n.locale = language;
+      this.$store
+        .dispatch(UPDATE_LANGUAGE, {
+          language: language
+        })
+        .then(
+          function() {
+            this.$i18n.locale = language;
+          }.bind(this)
+        );
     }
   }
 };
