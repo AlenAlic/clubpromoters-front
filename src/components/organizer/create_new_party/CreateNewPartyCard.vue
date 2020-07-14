@@ -126,7 +126,18 @@
           item-text="name"
           return-object
           chips
-        ></v-select>
+        >
+          <template v-slot:item="{ item }">
+            <v-tooltip top content-class="px-0 py-0">
+              <template v-slot:activator="{ on, attrs }">
+                <div style="width: 100%" v-bind="attrs" v-on="on">{{ item.name }}</div>
+              </template>
+              <v-card>
+                <v-img style="width: 240px; height: 240px;" :src="item.url" :aspect-ratio="1" />
+              </v-card>
+            </v-tooltip>
+          </template>
+        </v-select>
         <v-select
           v-model="logo"
           :items="$store.state.assets.logos"
@@ -135,7 +146,18 @@
           :rules="[$form.fieldRequired]"
           item-text="name"
           return-object
-        ></v-select>
+        >
+          <template v-slot:item="{ item }">
+            <v-tooltip top content-class="px-0 py-0">
+              <template v-slot:activator="{ on, attrs }">
+                <div style="width: 100%" v-bind="attrs" v-on="on">{{ item.name }}</div>
+              </template>
+              <v-card>
+                <v-img style="width: 210px; height: 90px;" :src="item.url" :aspect-ratio="1" />
+              </v-card>
+            </v-tooltip>
+          </template>
+        </v-select>
         <v-checkbox v-model="repeatParty" :label="$t('organizer.create_new_party.repeat_party.label')"></v-checkbox>
         <transition name="fade">
           <v-select
@@ -329,5 +351,3 @@ export default {
   }
 };
 </script>
-
-<style scoped></style>
