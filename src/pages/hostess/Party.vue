@@ -197,8 +197,11 @@ export default {
     };
   },
   computed: {
+    paidPurchases() {
+      return this.purchases.filter(p => p.paid);
+    },
     guestAccepted() {
-      return this.purchases.reduce((t, c) => {
+      return this.paidPurchases.reduce((t, c) => {
         return (
           t +
           c.tickets.reduce((t2, c2) => {
@@ -208,7 +211,7 @@ export default {
       }, 0);
     },
     guestDenied() {
-      return this.purchases.reduce((t, c) => {
+      return this.paidPurchases.reduce((t, c) => {
         return (
           t +
           c.tickets.reduce((t2, c2) => {
@@ -218,10 +221,10 @@ export default {
       }, 0);
     },
     visiblePurchases() {
-      return this.purchases.filter(p => p.available);
+      return this.paidPurchases.filter(p => p.available);
     },
     invisiblePurchases() {
-      return this.purchases.filter(p => !p.available);
+      return this.paidPurchases.filter(p => !p.available);
     },
     validationPending() {
       return !this.purchase && this.loading;
@@ -233,7 +236,7 @@ export default {
       return !this.purchase && !this.loading && this.error;
     },
     items() {
-      return this.purchase ? this.purchase.tickets.filter(t => t.available).map((t, i) => i + 1) : [];
+      return this.purchase ? this.purchase.tickets.filter(t => t.is_available).map((t, i) => i + 1) : [];
     }
   },
   methods: {
@@ -319,7 +322,7 @@ export default {
       this.turnCameraOff();
     },
     checkAvailableTickets(purchase) {
-      return `${purchase.tickets.filter(t => t.available).length}/${purchase.tickets.length}`;
+      return `${purchase.tickets.filter(t => t.is_available).length}/${purchase.tickets.length}`;
     },
     accept() {
       this.loadingModal = true;
