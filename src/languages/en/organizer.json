@@ -148,11 +148,13 @@
           "active": "Active",
           "email": "E-mail address",
           "commission": "Commission",
+          "minimum_promoter_commission": "Minimum commission",
           "code": "Code"
         }
       },
       "errors":{
-        "commission_update": "Something went wrong, could not update commission."
+        "commission_update": "Something went wrong, could not update commission.",
+        "minimum_promoter_commission_update": "Something went wrong, could not update minimum commission."
       }
     },
     "create_new_codes": {

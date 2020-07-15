@@ -48,6 +48,26 @@
           </template>
         </v-edit-dialog>
       </template>
+      <template v-slot:item.minimum_promoter_commission="{ item }">
+        <v-edit-dialog
+          :return-value.sync="item.minimum_promoter_commission"
+          large
+          persistent
+          @save="saveMinimumCommission(item)"
+        >
+          <div>{{ $util.formatCurrency(item.minimum_promoter_commission) }}</div>
+          <template v-slot:input>
+            <v-text-field
+              v-model="item.minimum_promoter_commission"
+              :rules="[$form.fieldRequired, $form.minNumber(0)]"
+              :label="$t('organizer.club_owner_accounts.commission')"
+              autofocus
+              single-line
+              prefix="€"
+            ></v-text-field>
+          </template>
+        </v-edit-dialog>
+      </template>
       <template v-slot:item.code="{ item }">
         <span>{{ item.code ? item.code.code : null }}</span>
       </template>
@@ -87,6 +107,10 @@ export default {
           value: "commission"
         },
         {
+          text: i18n.t("organizer.promoter_accounts.table.headers.minimum_promoter_commission"),
+          value: "minimum_promoter_commission"
+        },
+        {
           text: i18n.t("organizer.promoter_accounts.table.headers.code"),
           value: "code"
         }
@@ -110,6 +134,19 @@ export default {
         })
         .catch(() => {
           this.$toast.error(i18n.t("organizer.promoter_accounts.errors.commission_update"));
+        });
+    },
+    saveMinimumCommission(account) {
+      return Vue.axios
+        .patch("organizer/update_minimum_promoter_commission", {
+          user_id: account.id,
+          minimum_commission: Number(account.minimum_promoter_commission)
+        })
+        .then(() => {
+          store.dispatch(USERS).then(() => {});
+        })
+        .catch(() => {
+          this.$toast.error(i18n.t("organizer.promoter_accounts.errors.minimum_promoter_commission_update"));
         });
     }
   }
