@@ -1,5 +1,9 @@
 {
   "promoter": {
+    "no_code": {
+      "title": "No code",
+      "text": "You haven't been assigned a code yet."
+    },
     "income": {
       "title": "Choose month to view finances",
       "tickets_sold": "Tickets sold",
