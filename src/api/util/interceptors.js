@@ -11,8 +11,13 @@ backendServer.interceptors.response.use(
   },
   error => {
     const errorCode = getNetworkErrorCode(error);
-    if (errorCode === ERROR_CODES.NETWORK) {
-      Vue.$toast.error(localizeNetworkErrorCode(errorCode));
+    if (
+      errorCode === ERROR_CODES.NETWORK ||
+      errorCode === ERROR_CODES.SERVER_ERROR ||
+      errorCode === ERROR_CODES.SERVER_OFFLINE ||
+      errorCode === ERROR_CODES.SERVER_TIMEOUT
+    ) {
+      Vue.prototype.$toast.error(localizeNetworkErrorCode(errorCode));
       return Promise.reject(error);
     }
     if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.meta.auth) {
