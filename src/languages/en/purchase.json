@@ -4,7 +4,7 @@
       "title": "Order tickets",
       "event": "Event:",
       "tickets": "Tickets",
-      "price_per_tickets": "Price per ticket:",
+      "price_per_ticket": "Price per ticket:",
       "administration_costs": "Administration costs:",
       "total": "Total:",
       "first_name": {
