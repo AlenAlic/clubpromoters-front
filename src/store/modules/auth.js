@@ -40,6 +40,7 @@ const PROFILE_ERROR = "PROFILE: Failed request.";
 const UPDATE_PROFILE_ADDRESS = "UPDATE_PROFILE_ADDRESS";
 const UPDATE_LANGUAGE = "UPDATE_LANGUAGE";
 const UPDATE_INVOICE_LANGUAGE = "UPDATE_INVOICE_LANGUAGE";
+const UPDATE_INVOICE_DATA = "UPDATE_INVOICE_DATA";
 
 export {
   LOGIN,
@@ -52,7 +53,8 @@ export {
   UPDATE_PROFILE,
   UPDATE_PROFILE_ADDRESS,
   UPDATE_LANGUAGE,
-  UPDATE_INVOICE_LANGUAGE
+  UPDATE_INVOICE_LANGUAGE,
+  UPDATE_INVOICE_DATA
 };
 
 const setUser = token => {
@@ -255,6 +257,23 @@ export default {
         .catch(() => {
           commit(PROFILE_ERROR);
         });
+    },
+    [UPDATE_INVOICE_DATA]({ commit }, { legal_name, iban, kvk_number, vat_number }) {
+      commit(PROFILE_REQUEST);
+      return Vue.axios
+        .patch("/user/invoice_data", {
+          legal_name: legal_name,
+          iban: iban,
+          kvk_number: kvk_number,
+          vat_number: vat_number
+        })
+        .then(response => {
+          commit(PROFILE_SUCCESS);
+          commit(SET_PROFILE, response.data);
+        })
+        .catch(() => {
+          commit(PROFILE_ERROR);
+        });
     }
   },
   getters: {
@@ -275,6 +294,9 @@ export default {
     },
     business_entity: state => {
       return state.user ? state.user.businessEntity : false;
+    },
+    invoice_data_complete: state => {
+      return state.profile ? state.profile.invoice_data_complete : true;
     },
     accepted_terms: state => {
       return state.user ? state.user.acceptedTerms : false;

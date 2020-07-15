@@ -1,5 +1,12 @@
 <template>
   <v-row>
+    <v-col cols="12" class="py-0" v-if="!$store.getters.invoice_data_complete">
+      <v-row>
+        <v-col cols="12" md="6" xl="3">
+          <check-invoice-data />
+        </v-col>
+      </v-row>
+    </v-col>
     <v-col cols="12" md="6" xl="3" class="py-0">
       <v-row>
         <v-col cols="12">
@@ -39,6 +46,7 @@
 
 <script>
 import ActiveParties from "@/components/club_owner/dashboard/ActiveParties";
+import CheckInvoiceData from "@/components/general/dashboard/CheckInvoiceData";
 import InactiveParties from "@/components/club_owner/dashboard/InactiveParties";
 import TodayParties from "@/components/club_owner/dashboard/TodayParties";
 import LastMonthFinances from "@/components/club_owner/dashboard/LastMonthFinances";
@@ -46,7 +54,15 @@ import ThisMonthFinances from "@/components/club_owner/dashboard/ThisMonthFinanc
 import YearFinances from "@/components/club_owner/dashboard/YearFinances";
 import { CO_ACTIVE_PARTIES, CO_INACTIVE_PARTIES } from "@/store/modules/club_owner/parties";
 export default {
-  components: { YearFinances, ThisMonthFinances, LastMonthFinances, TodayParties, InactiveParties, ActiveParties },
+  components: {
+    CheckInvoiceData,
+    YearFinances,
+    ThisMonthFinances,
+    LastMonthFinances,
+    TodayParties,
+    InactiveParties,
+    ActiveParties
+  },
   created() {
     this.$nextTick(function() {
       this.$store.dispatch(CO_INACTIVE_PARTIES);

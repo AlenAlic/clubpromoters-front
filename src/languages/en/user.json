@@ -37,6 +37,29 @@
       "invoice_language": {
         "title": "Invoice language",
         "hint": "Default language for invoices"
+      },
+      "invoice_data": {
+        "title": "Invoice related",
+        "legal_name": {
+          "label": "Legal name",
+          "hint": "Will only be shown on invoices"
+        },
+        "iban": {
+          "label": "IBAN"
+        },
+        "kvk_number": {
+          "label": "Chamber of Commerce number"
+        },
+        "vat_number": {
+          "label": "VAT number"
+        }
+      }
+    },
+    "dashboard": {
+      "check_invoice": {
+        "title": "Missing data",
+        "text": "There are items missing that are required for us to create invoices in your name.\nPlease check your profile.",
+        "go_to_profile": "Go to profile"
       }
     }
   }

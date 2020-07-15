@@ -1,5 +1,8 @@
 <template>
   <v-row align="center">
+    <v-col cols="12" v-if="!$store.getters.invoice_data_complete">
+      <check-invoice-data class="mx-auto" style="max-width: 400px;" />
+    </v-col>
     <v-col>
       <v-card class="mx-auto" max-width="400">
         <div v-if="!$store.state.code.loading && $store.state.code.code">
@@ -18,7 +21,9 @@
 
 <script>
 import { CODE } from "@/store/modules/promoter/code";
+import CheckInvoiceData from "@/components/general/dashboard/CheckInvoiceData";
 export default {
+  components: { CheckInvoiceData },
   created() {
     this.$nextTick(function() {
       this.$store.dispatch(CODE);
