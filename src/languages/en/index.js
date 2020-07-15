@@ -3,6 +3,7 @@ import admin from "./admin";
 import application from "./application";
 import auth from "./auth";
 import club_owner from "./club_owner";
+import errors from "./errors";
 import form from "./form";
 import general from "./general";
 import hostess from "./hostess";
@@ -24,6 +25,7 @@ const gb = {
   ...application,
   ...auth,
   ...club_owner,
+  ...errors,
   ...form,
   ...general,
   ...hostess,

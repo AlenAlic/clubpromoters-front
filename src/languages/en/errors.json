@@ -1,0 +1,5 @@
+{
+  "errors": {
+    "purchase_not_found": "Purchase not found, redirecting to home page."
+  }
+}
