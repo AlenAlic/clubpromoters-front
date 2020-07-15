@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { SET_USER } from "@/store/modules/auth";
+import { GET_PROFILE, SET_USER } from "@/store/modules/auth";
 import { ADMIN_CLEAR_USERS, ADMIN_USERS } from "@/store/modules/admin";
 import loadStore from "@/store/loader";
 export default {
@@ -55,6 +55,7 @@ export default {
       this.switching = true;
       this.axios.post(`admin/switch/${this.account}`).then(response => {
         this.$store.dispatch(SET_USER, { token: response.data }).then(() => {
+          this.$store.dispatch(GET_PROFILE);
           loadStore();
           this.$router.push({
             name: "home"
