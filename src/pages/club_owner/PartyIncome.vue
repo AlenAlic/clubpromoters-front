@@ -63,7 +63,7 @@
               </v-list-item-content>
             </v-list-item>
           </template>
-          <v-list-item>
+          <v-list-item v-else-if="!loading && !parties.length">
             <v-list-item-content>
               <v-list-item-subtitle>{{ $t("club_owner.commissions.no_parties") }}</v-list-item-subtitle>
             </v-list-item-content>
