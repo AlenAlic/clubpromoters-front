@@ -114,7 +114,8 @@ export default {
         },
         {
           text: i18n.t("organizer.active_codes.table.headers.promoter"),
-          value: "promoter"
+          value: "promoter",
+          filter: this.filterPromoterName
         },
         {
           value: "action",
@@ -175,6 +176,15 @@ export default {
       this.preview = false;
       this.codeImage = "";
       this.code = null;
+    },
+    filterPromoterName(value, search) {
+      search = search.toUpperCase();
+      return value
+        ? value.name.toUpperCase().indexOf(search) !== -1
+        : i18n
+            .t("organizer.active_codes.add_promoter")
+            .toUpperCase()
+            .indexOf(search) !== -1;
     }
   }
 };
