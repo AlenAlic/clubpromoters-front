@@ -421,7 +421,8 @@
           "hint": "Amount to be refunded"
         },
         "checkbox": "Yes, I am sure I wish to give a refund",
-        "submit": "Give refund"
+        "submit": "Give refund",
+        "conflict": "A refund with this amount cannot be given again within 30 minutes of the previous one (Mollie policy). Please wait, and try again later."
       }
     },
     "party_income": {

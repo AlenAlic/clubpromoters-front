@@ -15,6 +15,7 @@ export const ERROR_CODES = {
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
+  CONFLICT: 409,
   PAYLOAD_TOO_LARGE: 413,
   SERVER_ERROR: 500,
   SERVER_OFFLINE: 503,
@@ -26,6 +27,7 @@ const HTTP_STATUS_MAPPING = {
   [401]: ERROR_CODES.UNAUTHORIZED,
   [403]: ERROR_CODES.FORBIDDEN,
   [404]: ERROR_CODES.NOT_FOUND,
+  [409]: ERROR_CODES.CONFLICT,
   [413]: ERROR_CODES.PAYLOAD_TOO_LARGE,
   [500]: ERROR_CODES.SERVER_ERROR,
   [503]: ERROR_CODES.SERVER_OFFLINE,
@@ -91,6 +93,8 @@ export function localizeNetworkErrorCode(code) {
       return i18n.t("network-errors.forbidden");
     case ERROR_CODES.NOT_FOUND:
       return i18n.t("network-errors.not-found");
+    case ERROR_CODES.CONFLICT:
+      return i18n.t("network-errors.conflict");
     case ERROR_CODES.PAYLOAD_TOO_LARGE:
       return i18n.t("network-errors.payload-too-large");
     case ERROR_CODES.SERVER_ERROR:

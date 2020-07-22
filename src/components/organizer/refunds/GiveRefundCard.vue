@@ -84,6 +84,9 @@
 </template>
 
 <script>
+import { ERROR_CODES, getNetworkErrorCode } from "@/api/util/network-errors";
+import i18n from "@/languages";
+
 export default {
   props: { purchase: {} },
   data: function() {
@@ -140,6 +143,10 @@ export default {
         .then(response => {
           this.$emit("updated", response.data);
           this.close();
+        })
+        .catch(error => {
+          const status = getNetworkErrorCode(error);
+          if (status === ERROR_CODES.CONFLICT) this.$toast.error(i18n.t("organizer.refunds.give_refund.conflict"));
         })
         .finally(() => {
           this.loading = false;
