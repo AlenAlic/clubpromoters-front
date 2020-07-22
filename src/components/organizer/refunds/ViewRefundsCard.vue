@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-3">
-    <v-data-iterator :items="items" :search="search" :loading="loading" hide-default-footer>
+  <div class="mt-3 mb-5 pb-5">
+    <v-data-iterator :items="items" :search="search" :loading="loading">
       <template v-slot:header>
         <v-toolbar dark color="primary" extension-height="64">
           <v-text-field
