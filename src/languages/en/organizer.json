@@ -405,7 +405,8 @@
         "entrance_code": "Entrance code",
         "give_refund": "Give refund",
         "resend_receipt": "Resend receipt",
-        "resend_tickets": "Resend tickets"
+        "resend_tickets": "Resend tickets",
+        "refunds": "Refunds"
       },
       "give_refund": {
         "title": "Purchase {id}",

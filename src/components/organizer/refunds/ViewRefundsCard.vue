@@ -156,7 +156,7 @@
                 <v-list-group prepend-icon="mdi-cash-usd" :value="false" v-if="item.refunds.length > 0">
                   <template v-slot:activator>
                     <v-list-item-title>
-                      Refunds
+                      {{ $t("organizer.refunds.view_refund.refunds") }}
                       <i
                         >{{
                           $util.formatCurrency(
