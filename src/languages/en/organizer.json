@@ -406,7 +406,8 @@
         "give_refund": "Give refund",
         "resend_receipt": "Resend receipt",
         "resend_tickets": "Resend tickets",
-        "refunds": "Refunds"
+        "refunds": "Refunds",
+        "download_receipt": "Download receipt"
       },
       "give_refund": {
         "title": "Purchase {id}",

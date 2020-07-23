@@ -153,48 +153,62 @@
                   </v-list-item-content>
                 </v-list-item>
 
-                <template v-if="item.mollie_payment_id.startsWith('tr_')">
-                  <v-list-group prepend-icon="mdi-cash-usd" :value="false" v-if="item.refunds.length > 0">
-                    <template v-slot:activator>
-                      <v-list-item-title>
-                        {{ $t("organizer.refunds.view_refund.refunds") }}
-                        <i
-                          >{{
-                            $util.formatCurrency(
-                              item.refunds.reduce((t, c) => {
-                                return t + c.price;
-                              }, 0)
-                            )
-                          }}
-                        </i>
-                      </v-list-item-title>
-                    </template>
+                <v-list-group prepend-icon="mdi-cash-usd" :value="false" v-if="item.refunds.length > 0">
+                  <template v-slot:activator>
+                    <v-list-item-title>
+                      {{ $t("organizer.refunds.view_refund.refunds") }}
+                      <i
+                        >{{
+                          $util.formatCurrency(
+                            item.refunds.reduce((t, c) => {
+                              return t + c.price;
+                            }, 0)
+                          )
+                        }}
+                      </i>
+                    </v-list-item-title>
+                  </template>
 
-                    <v-list-item dense v-for="(r, i) in item.refunds" :key="i">
-                      <v-list-item-content>
-                        <v-list-item-title>{{ r.mollie_refund_id }}</v-list-item-title>
-                        <v-list-item-subtitle class="text-right">
-                          {{ $util.formatCurrency(r.price) }}
-                        </v-list-item-subtitle>
-                        <v-list-item-subtitle class="text-right">
-                          {{ $util.dateTimeFromUTCString(r.date).toFormat("d LLLL yyyy, HH:mm") }}
-                        </v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list-group>
-                  <v-list-item dense>
+                  <v-list-item dense v-for="(r, i) in item.refunds" :key="i">
                     <v-list-item-content>
-                      <v-card flat>
-                        <v-card-actions class="px-0">
-                          <v-spacer />
-                          <v-btn text @click="showModalFunc(item)" color="primary">
-                            {{ $t("organizer.refunds.view_refund.give_refund") }}
-                          </v-btn>
-                        </v-card-actions>
-                      </v-card>
+                      <v-list-item-title>{{ r.mollie_refund_id }}</v-list-item-title>
+                      <v-list-item-subtitle class="text-right">
+                        {{ $util.formatCurrency(r.price) }}
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle class="text-right">
+                        {{ $util.dateTimeFromUTCString(r.date).toFormat("d LLLL yyyy, HH:mm") }}
+                      </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
-                </template>
+                </v-list-group>
+                <v-list-item dense v-if="item.mollie_payment_id.startsWith('tr_')">
+                  <v-list-item-content>
+                    <v-card flat>
+                      <v-card-actions class="px-0">
+                        <v-spacer />
+                        <v-btn text @click="showModalFunc(item)" color="primary">
+                          {{ $t("organizer.refunds.view_refund.give_refund") }}
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item dense>
+                  <v-list-item-content>
+                    <v-card flat>
+                      <v-card-actions class="px-0">
+                        <v-btn text @click="downloadReceipt(item)" color="primary">
+                          <v-icon class="mr-2">
+                            mdi-download
+                          </v-icon>
+                          {{ $t("organizer.refunds.view_refund.download_receipt") }}
+                        </v-btn>
+                        <v-spacer />
+                      </v-card-actions>
+                    </v-card>
+                  </v-list-item-content>
+                </v-list-item>
               </v-list>
             </v-card>
           </v-col>
@@ -212,6 +226,7 @@ import Vue from "vue";
 import Modal from "@/components/modal/Modal";
 import { MONTHS } from "@/constants";
 import GiveRefundCard from "@/components/organizer/refunds/GiveRefundCard";
+import { downloadFile } from "@/plugins/utilities";
 export default {
   components: { GiveRefundCard, Modal },
   data: function() {
@@ -259,6 +274,15 @@ export default {
         })
         .finally(() => {
           this.loading = false;
+        });
+    },
+    downloadReceipt(purchase) {
+      this.axios
+        .get(`purchase/${purchase.id}/receipt/download`, {
+          responseType: "blob"
+        })
+        .then(response => {
+          downloadFile(response, purchase.last_receipt_name);
         });
     },
     showModalFunc: function(item) {

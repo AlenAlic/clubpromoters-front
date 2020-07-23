@@ -25,6 +25,7 @@
     "daily": "Daily",
     "weekly": "Weekly",
     "bi_weekly": "Bi-weekly",
-    "language": "Language"
+    "language": "Language",
+    "download": "Download"
   }
 }
