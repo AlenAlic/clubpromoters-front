@@ -60,7 +60,6 @@
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-card-title>
-            <v-card-subtitle>{{ party.club }}</v-card-subtitle>
             <v-card-text>
               <div class="my-3">{{ party.club ? party.club.club : "Club" }}</div>
               <div class="my-3 has-line_breaks" v-if="party.description">
