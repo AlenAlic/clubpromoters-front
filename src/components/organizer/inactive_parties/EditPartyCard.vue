@@ -75,7 +75,7 @@
 <script>
 import Vue from "vue";
 import store from "@/store";
-import { INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
+import { INACTIVE_PARTIES, ACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 export default {
   props: {
     party: { type: Object, default: () => {} }
@@ -90,7 +90,7 @@ export default {
       numberOfTicketsRules: [
         this.$form.fieldRequired,
         this.$form.minNumber(1),
-        this.$form.minNumber(this.party.locked_tickets)
+        this.$form.minNumber(this.party.num_locked_tickets)
       ],
       ticket_price: this.party.ticket_price,
       ticketPriceRules: [this.$form.fieldRequired],
@@ -118,7 +118,8 @@ export default {
           promoter_commission: Number(this.promoter_commission)
         })
         .then(() => {
-          store.dispatch(INACTIVE_PARTIES);
+          if (this.party.is_active) store.dispatch(ACTIVE_PARTIES);
+          else store.dispatch(INACTIVE_PARTIES);
           this.close();
         })
         .finally(() => {

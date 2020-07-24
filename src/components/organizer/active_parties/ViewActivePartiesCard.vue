@@ -42,6 +42,14 @@
         </v-tooltip>
         <v-tooltip left>
           <template v-slot:activator="{ on }">
+            <v-icon class="mr-2" v-on="on" @click="showEditModalFunc(item)">
+              mdi-pencil
+            </v-icon>
+          </template>
+          <span>{{ $t("general.edit") }}</span>
+        </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on }">
             <v-icon class="mr-2" v-on="on" @click="showDataModalFunc(item)">
               mdi-magnify
             </v-icon>
@@ -68,6 +76,9 @@
       :no="$t('organizer.active_parties.modal.no')"
       warning
     ></modal>
+    <modal v-if="showEditModal" :show="showEditModal" :id="id" @closeModal="hideEditModalFunc">
+      <edit-party-card :party="party" @close="showEditModal = false" />
+    </modal>
     <modal :show="showDataModal" @closeModal="hideDataModalFunc">
       <party-finances-data-card
         v-if="party"
@@ -86,8 +97,9 @@ import Modal from "@/components/modal/Modal";
 import store from "@/store";
 import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";
 import { ACTIVE_PARTIES, INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
+import EditPartyCard from "@/components/organizer/inactive_parties/EditPartyCard";
 export default {
-  components: { Modal, PartyFinancesDataCard },
+  components: { EditPartyCard, Modal, PartyFinancesDataCard },
   data: function() {
     return {
       dialog: false,
@@ -95,6 +107,7 @@ export default {
       showDataModal: false,
       id: -1,
       party: null,
+      showEditModal: false,
       expanded: [],
       search: "",
       headers: [
@@ -143,6 +156,16 @@ export default {
     }
   },
   methods: {
+    setData(item) {
+      this.id = item.id;
+      this.party = item;
+    },
+    cleanUp() {
+      this.showEditModal = false;
+      this.showModal = false;
+      this.id = -1;
+      this.party = null;
+    },
     showModalFunc: function(item) {
       this.showModal = true;
       this.id = item.id;
@@ -166,6 +189,13 @@ export default {
         store.dispatch(ACTIVE_PARTIES);
         store.dispatch(INACTIVE_PARTIES);
       });
+    },
+    showEditModalFunc(item) {
+      this.showEditModal = true;
+      this.setData(item);
+    },
+    hideEditModalFunc() {
+      this.cleanUp();
     }
   }
 };

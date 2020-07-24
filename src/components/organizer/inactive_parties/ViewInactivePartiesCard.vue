@@ -76,16 +76,7 @@
       :yes="$t('organizer.inactive_parties.modal.yes')"
       :no="$t('organizer.inactive_parties.modal.no')"
     ></modal>
-    <modal
-      v-if="showEditModal"
-      :show="showEditModal"
-      :id="id"
-      @closeModal="hideEditModalFunc"
-      title="Edit party"
-      text="Todo"
-      yes="OK"
-      no="CANCEL"
-    >
+    <modal v-if="showEditModal" :show="showEditModal" :id="id" @closeModal="hideEditModalFunc">
       <edit-party-card :party="party" @close="showEditModal = false" />
     </modal>
     <modal v-if="showDataModal" :show="showDataModal" @closeModal="hideDataModalFunc">
