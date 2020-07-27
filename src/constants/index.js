@@ -25,3 +25,9 @@ export const BIWEEKLY = "bi-weekly";
 
 export const LANGUAGES = ["nl", "gb"];
 export const INVOICE_LANGUAGES = ["nl_NL", "en_US"];
+
+export const INTERVAL_OPTIONS = [
+  ...[...Array(9).keys()].map(n => n * 50 + 100),
+  ...[...Array(9).keys()].map(n => n * 500 + 1000),
+  ...[...Array(5).keys()].map(n => n * 1000 + 6000)
+];

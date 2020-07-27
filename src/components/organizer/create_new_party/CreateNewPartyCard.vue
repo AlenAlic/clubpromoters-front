@@ -127,6 +127,18 @@
           return-object
           chips
         >
+          <template v-slot:selection="{ item }">
+            <v-tooltip top content-class="px-0 py-0">
+              <template v-slot:activator="{ on, attrs }">
+                <v-chip v-bind="attrs" v-on="on">
+                  <span>{{ item.name }}</span>
+                </v-chip>
+              </template>
+              <v-card>
+                <v-img style="width: 240px; height: 240px;" :src="item.url" :aspect-ratio="1" />
+              </v-card>
+            </v-tooltip>
+          </template>
           <template v-slot:item="{ item }">
             <v-tooltip top content-class="px-0 py-0">
               <template v-slot:activator="{ on, attrs }">
@@ -210,7 +222,7 @@ import { USERS } from "@/store/modules/organizer/users";
 import VDatetimePicker from "@/components/Vuetify/VDatetimePicker";
 import { INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 import { ASSETS, CLEAR_ASSETS } from "@/store/modules/assets";
-import { DAILY, WEEKLY, BIWEEKLY } from "@/constants";
+import { DAILY, WEEKLY, BIWEEKLY, INTERVAL_OPTIONS } from "@/constants";
 export default {
   components: { VDatetimePicker },
   created() {
@@ -240,11 +252,7 @@ export default {
       images: [],
       logo: null,
       interval: 4,
-      intervalOptions: [
-        ...[...Array(9).keys()].map(n => n * 50 + 100),
-        ...[...Array(9).keys()].map(n => n * 500 + 1000),
-        ...[...Array(5).keys()].map(n => n * 1000 + 6000)
-      ],
+      intervalOptions: INTERVAL_OPTIONS,
       repeatParty: false,
       repeats: 0,
       period: null
