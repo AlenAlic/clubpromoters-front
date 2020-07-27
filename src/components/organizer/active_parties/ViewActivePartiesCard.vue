@@ -20,10 +20,8 @@
         'items-per-page-text': $t('vuetify.data-footer.items-per-page-text'),
         'items-per-page-all-text': $t('vuetify.data-footer.items-per-page-all-text')
       }"
-      show-expand
       :expanded.sync="expanded"
       item-key="id"
-      single-expand
     >
       <template v-slot:item.ticket_price="{ item }">
         <div>{{ $util.formatCurrency(item.ticket_price) }}</div>
@@ -54,30 +52,39 @@
               mdi-magnify
             </v-icon>
           </template>
-          <span>{{ $t("organizer.active_parties.view") }}</span>
+          <span>{{ $t("general.view") }}</span>
         </v-tooltip>
-      </template>
-      <template v-slot:expanded-item="{ headers, item }">
-        <td colspan="2">
-          {{ `${$t("organizer.inactive_parties.table.club_owner_commission")}: ${item.club_owner_commission}%` }}
-        </td>
-        <td colspan="4">
-          {{ `${$t("organizer.inactive_parties.table.promoter_commission")}: ${item.promoter_commission}%` }}
-        </td>
       </template>
     </v-data-table>
     <modal
+      v-if="showModal"
       :show="showModal"
       :id="id"
       @closeModal="hideModalFunc"
-      :title="$t('organizer.active_parties.modal.title', { party: party })"
+      :title="$t('organizer.active_parties.modal.title', { party: party ? party.name : '' })"
       :text="$t('organizer.active_parties.modal.text')"
       :yes="$t('organizer.active_parties.modal.yes')"
       :no="$t('organizer.active_parties.modal.no')"
       warning
     ></modal>
-    <modal v-if="showEditModal" :show="showEditModal" :id="id" @closeModal="hideEditModalFunc">
-      <edit-party-card :party="party" @close="showEditModal = false" />
+    <modal v-if="showEditModal" :show="showEditModal" :id="id" @closeModal="hideEditModalFunc" size="xx-large">
+      <v-row
+        no-gutters
+        align="center"
+        style="background: black;"
+        v-if="Object.keys($store.state.config.settings).length"
+      >
+        <v-col cols="12" md="6" lg="5">
+          <edit-party-card :party="party" @close="showEditModal = false" @preview="getPreviewObject" />
+        </v-col>
+        <v-col>
+          <v-lazy :options="{ threshold: 0.5 }">
+            <div class="mx-auto" style="max-width: 400px;">
+              <party-card :party="preview" :preview="true" />
+            </div>
+          </v-lazy>
+        </v-col>
+      </v-row>
     </modal>
     <modal :show="showDataModal" @closeModal="hideDataModalFunc">
       <party-finances-data-card
@@ -98,8 +105,10 @@ import store from "@/store";
 import PartyFinancesDataCard from "@/components/organizer/past_parties/PartyFinancesDataCard";
 import { ACTIVE_PARTIES, INACTIVE_PARTIES } from "@/store/modules/organizer/parties";
 import EditPartyCard from "@/components/organizer/inactive_parties/EditPartyCard";
+import PartyCard from "@/components/general/party_card/PartyCard";
+
 export default {
-  components: { EditPartyCard, Modal, PartyFinancesDataCard },
+  components: { PartyCard, EditPartyCard, Modal, PartyFinancesDataCard },
   data: function() {
     return {
       dialog: false,
@@ -139,9 +148,9 @@ export default {
           text: i18n.t("organizer.active_parties.table.headers.ticket_price"),
           value: "ticket_price"
         },
-        { value: "action", align: "right" },
-        { text: "", value: "data-table-expand" }
-      ]
+        { value: "action", align: "right" }
+      ],
+      preview: {}
     };
   },
   computed: {
@@ -166,16 +175,13 @@ export default {
       this.id = -1;
       this.party = null;
     },
-    showModalFunc: function(item) {
+    showModalFunc(item) {
       this.showModal = true;
-      this.id = item.id;
-      this.party = item.title;
+      this.setData(item);
     },
-    hideModalFunc: function(data) {
+    hideModalFunc(data) {
       if (data.agree) this.activateParty();
-      this.showModal = false;
-      this.id = -1;
-      this.party = null;
+      this.cleanUp();
     },
     showDataModalFunc: function(item) {
       this.showDataModal = true;
@@ -196,9 +202,10 @@ export default {
     },
     hideEditModalFunc() {
       this.cleanUp();
+    },
+    getPreviewObject(o) {
+      this.preview = o;
     }
   }
 };
 </script>
-
-<style scoped></style>
