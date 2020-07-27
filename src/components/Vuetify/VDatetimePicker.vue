@@ -129,6 +129,7 @@ export default {
       if (this.datetime) {
         this.date = this.datetime.substring(0, 10);
         this.time = this.datetime.substring(11, 16);
+        this.$emit("input", this.utcDatetime);
       }
     },
     okHandler() {
