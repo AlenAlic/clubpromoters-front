@@ -315,9 +315,7 @@
           "duration": "Duration",
           "num_available_tickets": "# tickets",
           "ticket_price": "Ticket price"
-        },
-        "club_owner_commission": "Club Owner commission",
-        "promoter_commission": "Promoter commission"
+        }
       },
       "activate": "Start ticket sale",
       "modal": {
@@ -325,31 +323,6 @@
         "text": "Starting the ticket sale for the party will make it visible to promoters, and will allow customers to buy tickets for it.\n\nAre you sure you wish to start the ticket sale?",
         "yes": "Yes, start ticket sale",
         "no": "No, don't"
-      },
-      "edit_party": {
-        "title": "Edit party",
-        "name": {
-          "label": "Party name"
-        },
-        "description": {
-          "label": "Party description",
-          "hint": "Useful for any additional information. Will be shown under \"more information\" tab.,"
-        },
-        "number_of_tickets": {
-          "label": "# of tickets"
-        },
-        "ticket_price": {
-          "label": "Price"
-        },
-        "club_owner_commission": {
-          "label": "Club Owner commission",
-          "hint": "Set when choosing the Club Owner as their default value, can be overwritten."
-        },
-        "promoter_commission": {
-          "label": "Promoter commission",
-          "hint": "Can be set to give Promoters a higher commission than their default commission."
-        },
-        "submit": "Save changes"
       }
     },
     "active_parties": {
@@ -364,9 +337,7 @@
           "num_available_tickets": "# tickets",
           "ticket_price": "Ticket price",
           "profit": "Profit"
-        },
-        "club_owner_commission": "Club Owner commission",
-        "promoter_commission": "Promoter commission"
+        }
       },
       "activate": "Pause ticket sale",
       "modal": {
@@ -390,6 +361,9 @@
         }
       },
       "view": "View"
+    },
+    "edit_party": {
+      "title": "Edit party"
     },
     "refunds": {
       "view_refund": {
