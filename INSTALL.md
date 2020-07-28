@@ -1,10 +1,7 @@
-# clubpromoters-front
-Set up the live version, and a test version of the clubpromoters-front.
+# clubpromoters-front installation (Ubuntu 18.04 LTS)
+Installation guide for the clubpromoters-front
 
-
-
-## Installation (Ubuntu 18.04 LTS)
-
+## Preparations
 
 ### Installer instance
 We'll use an instance of clubpromoters-front to install the cluster.
@@ -15,28 +12,13 @@ We'll use an instance of clubpromoters-front to install the cluster.
 From here you can run any of the installations located in the scripts folder.
 
 
+## Different instances
+Installs the 
+### test
 
-### Variables
-Before installing anything, set the following environment variables:
+    source scripts/install_test
 
-    export DOMAIN=clubpromoters.net
+### demo
 
+    source scripts/install_demo
 
-
-### Installation scripts
-
-#### LIVE
-Before installing the LIVE version, set the following environment variables:
-
-    export LIVE_FOLDER=LIVE
-Then run the installation script:
-
-    source scripts/install_LIVE
- 
-#### TEST
-Before installing the TEST version, set the following environment variables:
-
-    export TEST_FOLDER=TEST
-Then run the installation script:
-
-    source scripts/install_TEST
