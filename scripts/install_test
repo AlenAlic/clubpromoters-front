@@ -41,7 +41,7 @@ sudo bash -c 'cat > public/config/config.json' << EOL
         "type": "banner"
     },
     "api": {
-        "url": "https://$TEST_API_SUBDOMAIN"
+        "url": "https://$TEST_API_SUBDOMAIN/api"
     },
     "terms": "https://$TEST_API_SUBDOMAIN/api/documents/terms",
     "promoter_terms": "https://$TEST_API_SUBDOMAIN/api/documents/promoter_terms"
