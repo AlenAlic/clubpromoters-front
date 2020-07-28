@@ -44,13 +44,14 @@ sudo bash -c 'cat > public/config/config.json' << EOL
         "url": "https://$DEMO_API_SUBDOMAIN"
     },
     "terms": "https://$DEMO_API_SUBDOMAIN/api/documents/terms",
-    "promoter_terms": "https://$DEMO_API_SUBDOMAIN/api/documents/promoter_terms",
+    "promoter_terms": "https://$DEMO_API_SUBDOMAIN/api/documents/promoter_terms"
 }
 EOL
 echo "Setting up config complete===================="
 
 
 echo "Build frontend================================"
+cd && cd $DEMO_FRONT_FOLDER
 npm install
 npm run build
 echo "Building complete============================="
