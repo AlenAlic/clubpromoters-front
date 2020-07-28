@@ -34,7 +34,7 @@ echo "Installing git repository complete============"
 
 echo "Setting up config============================="
 cd && cd $DEMO_FRONT_FOLDER
-sudo bash -c 'cat > public/config/config.json' << EOL
+bash -c 'cat > public/config/config.json' << EOL
 {
     "cookies": {
         "enabled": true,
