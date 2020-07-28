@@ -13,14 +13,9 @@ echo "SETTINGS"
 echo "========="
 echo "folder:"
 echo $TEST_FOLDER
-
-echo "Settings:"
-echo "========="
 echo "domain:"
 echo $DOMAIN
 echo "========="
-echo "folder:"
-echo $TEST_FOLDER
 echo ""
 
 echo "install test? (y/n)"
