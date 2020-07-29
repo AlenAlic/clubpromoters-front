@@ -71,7 +71,22 @@ router.beforeEach((to, from, next) => {
       return;
     }
   } else {
-    if (to.name === "home" || (to.name && to.fullPath === "/")) {
+    if (
+      [
+        "home",
+        "login",
+        "register",
+        "activate",
+        "reset",
+        "reset.token",
+        "purchase.index",
+        "purchase.order",
+        "purchase.completed",
+        "purchase.failed",
+        "purchase.qr_code"
+      ].includes(to.name) ||
+      (to.name && to.fullPath === "/")
+    ) {
       if (Vue.prototype.$auth.isAdmin) {
         next({ name: "admin.dashboard" });
       }

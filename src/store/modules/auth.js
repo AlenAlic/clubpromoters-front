@@ -142,12 +142,14 @@ export default {
       return authApi
         .logout()
         .then(() => {
-          commit(CLEAR_USER);
           commit(LOGOUT_SUCCESS);
         })
         .catch(error => {
           commit(LOGOUT_ERROR);
           throw error;
+        })
+        .finally(() => {
+          commit(CLEAR_USER);
         });
     },
     // Renew user token

@@ -98,9 +98,9 @@ export default {
   },
   methods: {
     signOut: function() {
-      this.$auth.signOut().then(() => {
+      this.$auth.signOut().finally(() => {
         this.$router.push({
-          name: "home"
+          name: "login"
         });
       });
     },

@@ -17,10 +17,17 @@
               :rules="[$form.fieldRequired]"
               :label="$t('auth.password')"
               type="password"
+              hide-details
             ></v-text-field>
-            <v-checkbox id="login-remember_me" v-model="rememberMe" :label="$t('auth.remember_me')" required />
+            <v-checkbox
+              id="login-remember_me"
+              v-model="rememberMe"
+              :label="$t('auth.remember_me')"
+              required
+              hide-details
+            />
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="pt-0">
             <v-spacer />
             <v-btn id="login-sign_in" :disabled="!valid" :loading="loading" color="primary" text type="submit">
               {{ $t("auth.sign_in") }}
