@@ -79,6 +79,7 @@ export default {
       this.$auth
         .changePassword(this.password, this.newPassword, this.repeatPassword)
         .then(() => {
+          this.$toast.success(i18n.t("auth.new_password_set.security"));
           this.$nextTick(function() {
             this.$router.push({
               name: "login"
@@ -87,7 +88,7 @@ export default {
         })
         .catch(error => {
           const status = getNetworkErrorCode(error);
-          if (status === ERROR_CODES.BAD_REQUEST) this.$notify.error(i18n.t("auth.activate.error"));
+          if (status === ERROR_CODES.BAD_REQUEST) this.$toast.error(i18n.t("auth.errors.password_incorrect"));
           this.loading = false;
         });
     }
