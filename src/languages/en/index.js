@@ -1,6 +1,5 @@
 // Please add the imports in alphabetical order for ease of finding when things become large.
 import admin from "./admin";
-import application from "./application";
 import auth from "./auth";
 import club_owner from "./club_owner";
 import errors from "./errors";
@@ -22,7 +21,6 @@ import vuetify from "./vuetify";
 
 const gb = {
   ...admin,
-  ...application,
   ...auth,
   ...club_owner,
   ...errors,
