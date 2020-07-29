@@ -80,6 +80,7 @@
                 </template>
                 {{ $t("general.opens_in_new_window") }}
               </v-tooltip>
+              {{ $t("purchase.order.terms.label.2") }}
             </div>
           </template>
         </v-checkbox>

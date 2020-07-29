@@ -73,6 +73,7 @@ router.beforeEach((to, from, next) => {
   } else {
     if (
       [
+        "dashboard",
         "home",
         "login",
         "register",

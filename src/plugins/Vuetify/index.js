@@ -10,7 +10,7 @@ const opts = {
     themes: {
       light: {
         primary: colors.blue,
-        secondary: colors.blue.darken2,
+        secondary: colors.teal.darken1,
         accent: colors.yellow.accent1,
         error: colors.red.accent2,
         warning: colors.orange.darken1,
