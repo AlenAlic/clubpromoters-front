@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 // Pages
 const Home = () => import("@/pages/Home.vue");
 const Login = () => import("@/pages/Login.vue");
+const Register = () => import("@/pages/Register.vue");
 const PageNotFound = () => import("@/pages/PageNotFound.vue");
 
 // Pages modules
@@ -33,6 +34,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register
   },
   ...authPages,
   ...userRoutes,

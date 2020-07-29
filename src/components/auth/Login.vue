@@ -33,6 +33,15 @@
               {{ $t("auth.sign_in") }}
             </v-btn>
           </v-card-actions>
+          <v-card-text class="pb-0">
+            {{ $t("auth.register.text") }}
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn color="secondary" text :to="{ name: 'register' }">
+              {{ $t("auth.register.btn") }}
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-form>
     </v-col>
