@@ -32,7 +32,7 @@
         "label": "Last name"
       },
       "club_owner": {
-        "title": "Create a new account for a club owner",
+        "title": "Create a new account for an Organizer",
         "club": {
           "label": "Club name",
           "hint": "This is the name that will show up on the parties."
@@ -73,7 +73,7 @@
     "club_owner_locations": {
       "title": "Location",
       "user": {
-        "hint": "Select a Club Owner"
+        "hint": "Select an Organizer"
       },
       "add_new_location": "Add new location",
       "table": {
@@ -117,7 +117,7 @@
     "club_owner_hostesses": {
       "title": "Hostesses",
       "user": {
-        "hint": "Select a Club Owner"
+        "hint": "Select an Organizer"
       },
       "add_new_hostess": "Add new hostess",
       "table": {
@@ -166,7 +166,7 @@
     },
     "download_codes": {
       "title": "Download codes",
-      "text": "Select the codes that you wish to download in an excel file (including image).",
+      "text": "Select the codes that you wish to download in an Excel file (including image).",
       "select": "Open selection menu",
       "modal": {
         "subtitle": "Select the codes that you wish to download.",
@@ -190,11 +190,11 @@
       "promoter": {
         "label": "Promoter",
         "hint": "Choose Promoter to assign this code to.",
-        "no_promoters": "There are not active promoters without a code."
+        "no_promoters": "There are not active Promoters without a code."
       },
       "modal": {
         "title": "Deactivate code: {code}",
-        "text": "Deactivating a code is permanent!\nAre you sure you wish to deactivate the code?\n\nIf the code is assigned to a promoter, it will be removed from said promoter.",
+        "text": "Deactivating a code is permanent!\nAre you sure you wish to deactivate the code?\n\nIf the code is assigned to a Promoter, it will be removed from said Promoter.",
         "yes": "Yes, deactivate code",
         "no": "No, keep code"
       }
@@ -268,7 +268,7 @@
       },
       "description": {
         "label": "Party description (optional)",
-        "hint": "Useful for any additional information. Will be shown under \"more information\" tab.,"
+        "hint": "Useful for any additional information. Will be shown under \"more information\" tab."
       },
       "number_of_tickets": {
         "label": "# of tickets"
@@ -277,8 +277,8 @@
         "label": "Price"
       },
       "club_owner_commission": {
-        "label": "Club Owner commission",
-        "hint": "Set when choosing the Club Owner as their default value, can be overwritten."
+        "label": "Organizer commission",
+        "hint": "Set when choosing the Organizer as their default value, can be overwritten."
       },
       "promoter_commission": {
         "label": "Promoter commission",
@@ -403,7 +403,6 @@
     },
     "party_income": {
       "total_profit": "Total profit",
-      "from_administration_costs": "From administration costs",
       "total_tickets_sold": "Total tickets sold",
       "ticket_price": "Ticket price",
       "sold": "Sold",
@@ -413,7 +412,7 @@
       "expenses": "Expenses",
       "refunds": "Refunds",
       "promoter_commissions": "Promoter commissions",
-      "club_owner_commissions": "Club Owner commissions",
+      "club_owner_commissions": "Organizer commissions",
       "total": "Total",
       "no_parties": "No parties in {month}."
     },
@@ -432,7 +431,7 @@
       "expenses": "Expenses",
       "refunds": "Refunds",
       "promoter_commissions": "Promoter commissions",
-      "club_owner_commissions": "Club Owner commissions",
+      "club_owner_commissions": "Organizer commissions",
       "profit": "Profit",
       "commission": "Commission"
     },
@@ -449,11 +448,11 @@
       "generated": "The following invoices have been generated and can be sent:",
       "sent": "The following invoices have been sent:",
       "generating": "Generating invoices. This might take a while...",
-      "club_owner_invoices": "{num} invoice(s) will be generated for Club Owners",
+      "club_owner_invoices": "{num} invoice(s) will be generated for Organizers",
       "promoter_receipts": "{num} receipt(s) will be generated for Promoters",
       "promoter_invoices": "{num} invoice(s) will be generated for Promoters",
       "total_documents": "In total, {num} document(s) will be generated",
-      "club_owners": "Club Owners",
+      "club_owners": "Organizers",
       "promoters": "Promoters",
       "total": "Total",
       "generate_invoices": "Generate invoices",

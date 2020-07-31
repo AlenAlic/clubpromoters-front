@@ -44,13 +44,7 @@
       },
       "working": "Working means that the hostess can log in to the site, and accept customers at the door.",
       "activate": "Set as working",
-      "deactivate": "Set as not working",
-      "modal": {
-        "title": "Start ticket sale for: {party}",
-        "text": "Starting the ticket sale for the party will make it visible to promoters, and will allow customers to buy tickets for it.\n\nAre you sure you wish to start the ticket sale?",
-        "yes": "Yes, start ticket sale",
-        "no": "No, don't"
-      }
+      "deactivate": "Set as not working"
     },
     "inactive_parties": {
       "title": "Inactive parties",
