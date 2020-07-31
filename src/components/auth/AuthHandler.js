@@ -30,6 +30,9 @@ const AuthHandler = {
       get isPromoter() {
         return store.getters.isPromoter;
       },
+      get hasAcceptedTerms() {
+        return store.getters.accepted_terms;
+      },
 
       signInWithUsernameAndPassword(email, password, remember_me) {
         return store.dispatch(LOGIN, { email, password, remember_me });

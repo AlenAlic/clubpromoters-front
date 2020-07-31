@@ -111,6 +111,9 @@ router.beforeEach((to, from, next) => {
       }
       return;
     } else {
+      if (Vue.prototype.$auth.isPromoter && !Vue.prototype.$auth.hasAcceptedTerms && to.name !== "promoter.terms") {
+        next({ name: "promoter.terms" });
+      }
       if (
         to.matched.filter(r => r.meta.access !== undefined && r.meta.access !== Vue.prototype.$auth.access).length > 0
       ) {

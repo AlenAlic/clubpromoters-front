@@ -10,6 +10,17 @@
       "commissions": "Commission",
       "total": "Total",
       "no_tickets_sold": "Not tickets sold in {month}"
+    },
+    "terms": {
+      "title": "Terms and conditions",
+      "text": "Before starting as a Promoter for Clubpromoters, you must accept our terms and conditions.",
+      "link": {
+        "1": "Click",
+        "2": "here",
+        "3": "to view our terms and conditions."
+      },
+      "label": "I have read, and accept the terms and conditions as set by Clubpromoters.",
+      "btn": "Accept terms,"
     }
   }
 }
