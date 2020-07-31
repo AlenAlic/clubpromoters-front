@@ -140,11 +140,12 @@
                 <v-list-item dense>
                   <v-list-item-content>
                     <v-card flat>
-                      <v-card-actions class="px-0">
+                      <v-card-actions class="px-0 py-0">
                         <v-btn text color="primary" :loading="sending" @click="resendReceipts(item)">
                           {{ $t("organizer.refunds.view_refund.resend_receipt") }}
                         </v-btn>
-                        <v-spacer />
+                      </v-card-actions>
+                      <v-card-actions class="px-0">
                         <v-btn text color="primary" :loading="sending" @click="resendTickets(item)">
                           {{ $t("organizer.refunds.view_refund.resend_tickets") }}
                         </v-btn>
