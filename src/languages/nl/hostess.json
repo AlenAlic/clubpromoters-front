@@ -1,0 +1,30 @@
+{
+  "hostess": {
+    "dashboard": {
+      "expecting_num_guests": "Verwacht {num} gasten vandaag",
+      "no_parties_today": "Er zijn geen feesten vandaag."
+    },
+    "party": {
+      "guests_hosted": "Gasten gehost",
+      "accepted": "Geaccepteerd",
+      "denied": "Geweigerd",
+      "authenticated": "Geauthenticeerd!",
+      "validating": "Valideren...",
+      "restart_camera": "Herstart camera",
+      "check_in": "Check in",
+      "hosted_guests": "Gehoste gasten",
+      "tickets_available": "Tickets beschikbaar",
+      "name": "Naam",
+      "tickets_available_num": "Tickets beschikbaar: {num}",
+      "guests": {
+        "label": "Gasten",
+        "hint": "Kies hoeveel gasten te accepteren of te weigeren"
+      },
+      "deny": "WEIGER",
+      "accept": "ACCEPTEER",
+      "cancel": "ANNULEER",
+      "available_tickets_used": "Alle beschikbare tickets zijn gebruikt.",
+      "invalid_code": "Ongeldige code"
+    }
+  }
+}

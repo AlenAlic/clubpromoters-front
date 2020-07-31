@@ -1,0 +1,32 @@
+{
+  "general": {
+    "attention": "Opgelet!",
+    "back_to_home_page": "Terug naar thuispagina",
+    "back_to_sign_in_page": "Terug naar inlogpagina",
+    "back_to_parties": "Terug naar feesten",
+    "cancel": "Annuleer",
+    "close": "Sluit",
+    "code": "Code",
+    "edit": "Wijzig",
+    "go_back": "Ga terug",
+    "home_page_message": "Om toegang te kijgen tot onze exclusieve club en onze feesten te zien, voer je promoters code in",
+    "month": "Maand",
+    "ok": "OK",
+    "opens_in_new_window": "Opent in een nieuw venster",
+    "profile": "Profiel",
+    "save_changes": "Sla wijzigingen op",
+    "search": "Zoek",
+    "security": "Beveiliging",
+    "select_all": "Selecteer alles",
+    "year": "Jaar",
+    "choose_month": "Kies maand",
+    "invoices": "Facturen",
+    "receipts": "Bonnetjes",
+    "daily": "Dagelijks",
+    "weekly": "Weekelijks",
+    "bi_weekly": "Tweewekelijks",
+    "language": "Taal",
+    "download": "Download",
+    "view": "Bekijk"
+  }
+}

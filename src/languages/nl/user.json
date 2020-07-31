@@ -1,0 +1,66 @@
+{
+  "user": {
+    "profile": {
+      "first_name": "Voornaam",
+      "last_name": "Achternaam",
+      "address": {
+        "title": "Adres",
+        "street": {
+          "label": "Straat"
+        },
+        "street_number": {
+          "label": "Nummer"
+        },
+        "street_number_addition": {
+          "label": "Toevoeging"
+        },
+        "postal_code": {
+          "label": "Postcode"
+        },
+        "postal_code_letters": {
+          "label": "Letters"
+        },
+        "city": {
+          "label": "Stad"
+        },
+        "country": {
+          "label": "Land"
+        }
+      },
+      "phone_number": {
+        "label": "Telefoonnummer"
+      },
+      "language": {
+        "title": "Taal",
+        "hint": "Standaard taal voor de website"
+      },
+      "invoice_language": {
+        "title": "Taal facturen",
+        "hint": "Standaard taal voor facturen"
+      },
+      "invoice_data": {
+        "title": "Factuur gerelateerd",
+        "legal_name": {
+          "label": "Naam",
+          "hint": "Wordt alleen op facturen getoond"
+        },
+        "iban": {
+          "label": "IBAN"
+        },
+        "kvk_number": {
+          "label": "KvK nummer"
+        },
+        "vat_number": {
+          "label": "BTW nummer"
+        }
+      }
+    },
+    "dashboard": {
+      "check_invoice": {
+        "title": "Ontbrekende gegevens",
+        "text": "Er ontbreken gegevens die nodig zijn om facturen uit te schrijven namens jullie.\nKijk a.u.b. je profielpagina na..",
+        "go_to_profile": "Ga naar profiel"
+      }
+    }
+  }
+}

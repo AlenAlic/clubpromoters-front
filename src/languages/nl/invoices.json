@@ -1,0 +1,11 @@
+{
+  "invoices": {
+    "invoice_number": "Nummer",
+    "delivery_date": "Factuurdatum",
+    "name": "Organizer/Promoter",
+    "language": {
+      "en_US": "Engels",
+      "nl_NL": "Nederlands"
+    }
+  }
+}

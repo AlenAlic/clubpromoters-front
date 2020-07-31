@@ -1,0 +1,17 @@
+{
+  "form": {
+    "errors": {
+      "exact_character": "Moet {number} karakter(s) lang zijn.",
+      "file_type": {
+        "pdf": "Bestand moet een .pdf bestand zijn."
+      },
+      "letters": "Dit veld mag alleen uit letters bestaan.",
+      "min": "Moet minstens {number} zijn.",
+      "min_characters": "Moet minstens  {number} karakter(s) lang zijn.",
+      "max": "Mag niet meer dan {number} zijn.",
+      "max_characters": "Mag nier meer dan {number} karakter(s) lang zijn.",
+      "required": "Dit veld is verplicht.",
+      "valid_email": "Moet een geldig e-mail adres zijn."
+    }
+  }
+}

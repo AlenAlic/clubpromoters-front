@@ -1,0 +1,15 @@
+{
+  "network-errors": {
+    "network": "Kan geen verbinding maken met de server.",
+    "bad-request": "Een incompleet verzoek was verstuurd. Kijk het a.u.b. na en probeer het nog eens.",
+    "unauthorized": "Je bent niet geautoriseerd om deze actie uit te voeren.",
+    "forbidden": "Je mag deze actie niet uitvoeren.",
+    "not-found": "De sever kon de verzochte informatie niet vinden.",
+    "conflict": "Het verzoek bevat een conflict.",
+    "payload-too-large": "Het bestand is te groot om te uploaden.",
+    "server-error": "Er is iets onverwacht mis gegaan. Indien dit blijft gebeuren, neem contact op met de beheerder.",
+    "server-offline": "De server is offline, het systeem is tijdelijk niet beschikbaar.",
+    "server-timeout": "De server deed er te lang over om te antwoorden. Indien dit blijft gebeuren, neem contact op met de beheerder.",
+    "unknown": "Er is iets mis gegaan bij het uitvoeren van het verzoek, probeer het a.u.b. later nog maals."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "purchase": {
+    "order": {
+      "title": "Bestel tickets",
+      "event": "Event:",
+      "tickets": "Tickets",
+      "price_per_ticket": "Prijs per ticket:",
+      "administration_costs": "Administratiekosten:",
+      "total": "Totaal:",
+      "first_name": {
+        "label": "Voornaam"
+      },
+      "last_name": {
+        "label": "Achternaam"
+      },
+      "email": {
+        "hint": "Je tickets worden verstuurd per mail."
+      },
+      "terms": {
+        "label": {
+          "1": "Ik heb de",
+          "2": "zoals gesteld door Clubpromoters gelezen en accepteer deze voorwaarden.",
+          "link": {
+            "text": "voorwaarden"
+          }
+        }
+      },
+      "buy_tickets": "Bestel",
+      "errors": {
+        "terms": "Je moet de voorwaarden accepteren!"
+      }
+    },
+    "completed": {
+      "title": "Ticket aankoop voltooid",
+      "text_1": "Je aankoop van {number} tickets voor {name} is voltooid.",
+      "text_2": "De tickets worden gemaild naar \"{email}\"."
+    },
+    "failed": {
+      "title": "Ticket aankoop mislukt",
+      "text_1": "Er ging iets mis bij het bestellen van de tickets.",
+      "text_2": "De aankoop is geannuleerd. Er worden <b>geen</b> kosten in rekening gebracht.",
+      "text_3": "Als je tickets voor een feest wilt bestellen, probeer het nog eens."
+    }
+  }
+}

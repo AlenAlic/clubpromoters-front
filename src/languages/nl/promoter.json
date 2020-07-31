@@ -1,0 +1,26 @@
+{
+  "promoter": {
+    "no_code": {
+      "title": "Geen code",
+      "text": "Je hebt nog geen code toegewezen gekregen."
+    },
+    "income": {
+      "title": "Kies een maand om de financiën in te zien",
+      "tickets_sold": "Tickets verkocht",
+      "commissions": "Commissie",
+      "total": "Totaal",
+      "no_tickets_sold": "Geen tickets verkocht in {month}"
+    },
+    "terms": {
+      "title": "Voorwaarden",
+      "text": "Voordat je start als Promoter bij Clubpromoters, moet je onze voorwaarden accepteren.",
+      "link": {
+        "1": "Klik",
+        "2": "hier",
+        "3": "om de voorwaarden te zien."
+      },
+      "label": "Ik heb de voorwaarden zoals gesteld door Clubpromoters gelezen en accepteer de voorwaarden.",
+      "btn": "Accepteer voorwaarden"
+    }
+  }
+}

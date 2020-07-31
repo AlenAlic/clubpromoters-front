@@ -1,0 +1,8 @@
+{
+  "vuetify": {
+    "data-footer": {
+      "items-per-page-text": "Rijen per pagina:",
+      "items-per-page-all-text": "Alles"
+    }
+  }
+}

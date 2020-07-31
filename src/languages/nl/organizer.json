@@ -1,0 +1,462 @@
+{
+  "organizer": {
+    "dashboard": {
+      "active_parties": {
+        "title": "Actieve feesten",
+        "go_to": "Ga naar actieve feesten"
+      },
+      "inactive_parties": {
+        "title": "Inactieve feesten",
+        "go_to": "Ga naar inactieve feesten"
+      },
+      "today_parties": {
+        "title": "Feesten van vandaag"
+      },
+      "finances": {
+        "this_year": {
+          "title": "Financiën van dit jaar",
+          "subtitle": "Lopend totaal"
+        },
+        "this_month": "Deze maand",
+        "last_month": "Vorige maand",
+        "revenue": "Omzet",
+        "expenses": "Kosten",
+        "profit": "Winst"
+      }
+    },
+    "create_new_account":{
+      "first_name": {
+        "label": "Voornaam"
+      },
+      "last_name": {
+        "label": "Achternaam"
+      },
+      "club_owner": {
+        "title": "Maak account aan voor Organisator",
+        "club": {
+          "label": "Club naam",
+          "hint": "Dit is de naam die zal verschijnen in het feest overzicht."
+        },
+        "commission": {
+          "label": "Commissie",
+          "hint": "Standaard commissie voor dit feest."
+        },
+        "submit": "Maak account aan"
+      },
+      "promoter": {
+        "title": "Maak account aan voor Promoter",
+        "commission": {
+          "label": "Commissie",
+          "hint": "Standaard commissie voor dit feest."
+        },
+        "code": {
+          "label": "Code",
+          "hint": "Kies één van de beschikbare codes hieronder.",
+          "no_codes": "Er zijn geen codes beschikbaar."
+        },
+        "submit": "Maak account aan"
+      }
+    },
+    "club_owner_accounts": {
+      "title": "Geassocieerde clubs",
+      "new_account": "Maak nieuw account aan",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "active": "Actief",
+          "email": "E-mail adres",
+          "commission": "Commissie"
+        }
+      },
+      "commission": "Commissie"
+    },
+    "club_owner_locations": {
+      "title": "Locatie",
+      "user": {
+        "hint": "Kies een Organisator"
+      },
+      "add_new_location": "Voeg nieuwe locatie toe",
+      "table": {
+        "headers": {
+          "name": "Naam",
+          "address": "Adres",
+          "postal": "Postcode",
+          "city": "Stad"
+        }
+      },
+      "new_location": {
+        "title": "Voeg nieuwe locatie toe",
+        "name": {
+          "label": "Naam"
+        },
+        "street": {
+          "label": "Straat"
+        },
+        "street_number": {
+          "label": "Nummer"
+        },
+        "street_number_addition": {
+          "label": "Toevoeging"
+        },
+        "postal_code": {
+          "label": "Postcode"
+        },
+        "postal_code_letters": {
+          "label": "Letters"
+        },
+        "city": {
+          "label": "Stad"
+        },
+        "maps_url": {
+          "label": "Google Maps",
+          "hint": "Laat een ingesloten kaart van de locatie op Google Maps zien (optioneel)"
+        },
+        "submit": "Voeg locatie toe"
+      }
+    },
+    "club_owner_hostesses": {
+      "title": "Hostesses",
+      "user": {
+        "hint": "Selecteer een Organisator"
+      },
+      "add_new_hostess": "Voeg nieuwe hostess toe",
+      "table": {
+        "headers": {
+          "name": "Naam",
+          "email": "E-mail",
+          "is_active": "Account actief",
+          "working": "Werkend"
+        }
+      },
+      "new_hostess": {
+        "title": "Voeg nieuwe hostess toe",
+        "first_name": {
+          "label": "Voornaam"
+        },
+        "last_name": {
+          "label": "Achternaam"
+        },
+        "submit": "Voeg hostess toe"
+      }
+    },
+    "promoter_accounts": {
+      "title": "Geassocieerde Promoters",
+      "new_account": "Voeg nieuw account toe",
+      "table": {
+        "headers": {
+          "name": "Naam",
+          "active": "Actieve",
+          "email": "E-mail adres",
+          "commission": "Commissie",
+          "minimum_promoter_commission": "Minimum commissie",
+          "code": "Code"
+        }
+      },
+      "errors":{
+        "commission_update": "Er ging iets onverwacht mis, kon de commissie niet updaten.",
+        "minimum_promoter_commission_update": "Er ging iets onverwacht mis, kon de commissie niet updaten."
+      }
+    },
+    "create_new_codes": {
+      "title": "Genereer nieuwe codes",
+      "label": "Aantal codes",
+      "hint": "Stuur het aantal nieuwe codes dat je wilt genereren",
+      "submit": "Genereer codes",
+      "created": "Er zijn {num} nieuwe codes gegenereerd."
+    },
+    "download_codes": {
+      "title": "Download codes",
+      "text": "Selecteer de codes die je wilt downloaden in een Excel bestand (inclusief afbeelding).",
+      "select": "Open selectie menu",
+      "modal": {
+        "subtitle": "Selecteer de codes die je wilt downloaden.",
+        "search": {
+          "label": "Zoek"
+        },
+        "loading": "Bestand wordt gegenereerd. Dit kan even duren...",
+        "submit": "Download codes"
+      }
+    },
+    "active_codes": {
+      "title": "Actieve codes",
+      "table": {
+        "headers": {
+          "code": "Code",
+          "promoter": "Promoter"
+        },
+        "deactivate": "Deactiveer"
+      },
+      "add_promoter": "Wijs toe aan Promoter",
+      "promoter": {
+        "label": "Promoter",
+        "hint": "Kies Promoter om deze code aan toe te wijzen.",
+        "no_promoters": "Er zijn geen actieve Promoters zonder code."
+      },
+      "modal": {
+        "title": "Deactiveer code: {code}",
+        "text": "Een code deactiveren is permanent!\nWeet je zeker dat je deze code wilt deactiveren?\n\nAls deze code toegewezen is aan een Promoter, zal deze automatisch ontkoppeld worden.",
+        "yes": "Ja, deactiveer code",
+        "no": "Nee, bewaar code"
+      }
+    },
+    "inactive_codes": {
+      "title": "Inactieve codes",
+      "table": {
+        "headers": {
+          "code": "Code"
+        }
+      }
+    },
+    "upload_assets": {
+      "title": {
+        "images": "Upload afbeeldingen voor feesten",
+        "logos": "Upload logos"
+      },
+      "subtitle": {
+        "images": "Een 1:1 beeldverhouding werkt het beste.",
+        "logos": "Een 21:9 beeldverhouding werkt het beste."
+      },
+      "label": {
+        "images": "Afbeeldingen",
+        "logos": "Logos"
+      },
+      "button": "Upload",
+      "files": "Bestanden",
+      "user": {
+        "preview": {
+          "hint": "Kies een gebruiker om de afbeeldingen van te weergeven"
+        },
+        "upload": {
+          "hint": "Kies een gebruiker om afbeeldingen voor te uploaden"
+        }
+      },
+      "modal": {
+        "name": {
+          "label": "Bestandsnaam"
+        },
+        "change_name": "Wijzig name",
+        "delete_image": "Verwijder afbeelding",
+        "delete": {
+          "title": "Afbeelding verwijderen",
+          "text": "Weet je zeker dat je deze afbeelding wilt verwijderen?"
+        }
+      }
+    },
+    "preview_assets": {
+      "title": "Bekijk afbeeldingen",
+      "subtitle": "Klik op een afbeelding om een grotere versie te zien",
+      "images": "Afbeeldingen",
+      "logos": "Logos"
+    },
+    "create_new_party": {
+      "title": "Maak nieuw feest aan",
+      "club": {
+        "hint": "Kies de Organisator van wie dit feest is",
+        "no_clubs": "Geen actieve Organisatoren gevonden"
+      },
+      "name": {
+        "label": "Feest naam"
+      },
+      "location": {
+        "label": "Locatie"
+      },
+      "start_date": {
+        "label": "Starttijd en -datum"
+      },
+      "end_date": {
+        "label": "Eindtijd en -datum"
+      },
+      "description": {
+        "label": "Beschrijving (optioneel)",
+        "hint": "Handig voor overige informatie voor het feest. Zal weergegeven worden onder het \"meer info\" tab."
+      },
+      "number_of_tickets": {
+        "label": "# tickets"
+      },
+      "ticket_price": {
+        "label": "Prijs"
+      },
+      "club_owner_commission": {
+        "label": "Organisator commissie",
+        "hint": "Wordt ingesteld als standaard waarde voor deze Organisator. Kan overschreven worden."
+      },
+      "promoter_commission": {
+        "label": "Promoter commissie",
+        "hint": "Kan ingesteld worden om Promoters een hogere commissie dan standaard te geven."
+      },
+      "interval": {
+        "label": "Interval tussen afbeeldingen: {number} ms"
+      },
+      "images": {
+        "label": "Afbeeldingen"
+      },
+      "logo": {
+        "label": "Logo"
+      },
+      "repeat_party": {
+        "label": "Voeg herhalingen van feest toe"
+      },
+      "period": {
+        "label": "herhalingsperiode"
+      },
+      "repeats": {
+        "label": "Herhaal het feest {number} maal"
+      },
+      "submit": "Maak feest aan"
+    },
+    "inactive_parties": {
+      "title": "Inactieve feesten",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "name": "Feest naam",
+          "location": "Locatie",
+          "start_date": "Dag",
+          "duration": "Duur",
+          "num_available_tickets": "# tickets",
+          "ticket_price": "Ticket prijs"
+        }
+      },
+      "activate": "Start ticket verkoop",
+      "modal": {
+        "title": "Start ticket verkoop voor: {party}",
+        "text": "De ticketverkoop starten zal het feest zichtbaar maken voor Promoters en stelt gasten in staat om tickets te kopen.\n\nWeet je zeker dat je de ticketverkoop wilt starten?",
+        "yes": "Ja, start ticket verkoop",
+        "no": "Nee"
+      }
+    },
+    "active_parties": {
+      "title": "Actieve feesten",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "name": "Feest naam",
+          "location": "Locatie",
+          "start_date": "Dag",
+          "duration": "Duur",
+          "num_available_tickets": "# tickets",
+          "ticket_price": "Ticket prijs",
+          "profit": "Winst"
+        }
+      },
+      "activate": "Pauzeer ticket verkoop",
+      "modal": {
+        "title": "Pauzeer ticket verkoop voor: {party}",
+        "text": "De ticket verkoop voor het feest pauzeren zorgt ervoor dat klanten geen tickets ervoor kunnen aanschaffen.\n\nWeet je zeker dat je de ticket verkoop wilt pauzeren?",
+        "yes": "Ja, pauzeer ticket verkoop",
+        "no": "Nee"
+      },
+      "view": "Bekijk"
+    },
+    "past_parties": {
+      "title": "Afgelopen feesten",
+      "table": {
+        "headers": {
+          "club": "Club",
+          "name": "Feest naam",
+          "location": "Locatie",
+          "start_date": "Dag",
+          "duration": "Duur",
+          "party_profit": "Winst"
+        }
+      },
+      "view": "Bekijk"
+    },
+    "edit_party": {
+      "title": "Wijzig feest"
+    },
+    "refunds": {
+      "view_refund": {
+        "title": "Aankoop {id}",
+        "status": "Status",
+        "mollie_id": "Mollie id",
+        "purchased_by": "Gekocht door",
+        "tickets_bought": "Aantal tickets",
+        "tickets": "Tickets",
+        "administration_costs": "Administratiekosten",
+        "purchase_date": "Aankoopdatum",
+        "party": "Feest",
+        "entrance_code": "Toegangscode",
+        "give_refund": "Geef terugbetaling",
+        "resend_receipt": "Verstuur bonnetje opnieuw",
+        "resend_tickets": "Verstuur tickets opnieuw",
+        "refunds": "Terugbetaling",
+        "download_receipt": "Download bonnetje"
+      },
+      "give_refund": {
+        "title": "Aankoop {id}",
+        "ticket_num": "Ticket {num}",
+        "refundable_tickets": "Terugbetaalbare tickets",
+        "no_refundable_tickets": "Geen terugbetaalbare tickets",
+        "non_refundable_tickets": "Niet terugbetaalbare tickets (gebruikt en niet geweigerd)",
+        "no_non_refundable_tickets": "Geen niet terugbetaalbare tickets",
+        "refunded_tickets": "Terugbetaalde tickets",
+        "no_refunded_tickets": "Geen terugbetaalde tickets",
+        "amount": {
+          "label": "Prijs terugbetaling",
+          "hint": "Totaalprijs van de terugbetaling"
+        },
+        "checkbox": "Ja, ik weet zeker dat ik een terugbetaling wil uitvoeren",
+        "submit": "Geef terugbetaling",
+        "conflict": "Een terugbetaling met deze prijs kan niet binnen 30 minuten van de vorige terugbetaling (Mollie beleid). Wacht even en probeer het later nog eens."
+      }
+    },
+    "party_income": {
+      "total_profit": "Totale winst",
+      "total_tickets_sold": "Totaal aantal tickets verkocht",
+      "ticket_price": "Ticket prijs",
+      "sold": "Verkocht",
+      "income": "Inkomsten",
+      "ticket_sale": "Ticket verkoop",
+      "administration_costs": "Administratiekosten",
+      "expenses": "Uitgaven",
+      "refunds": "Terruggaven",
+      "promoter_commissions": "Promoter commissies",
+      "club_owner_commissions": "Organisator commissies",
+      "total": "Totaal",
+      "no_parties": "Geen feesten in {month}."
+    },
+    "party_finances_data": {
+      "date": "Datum",
+      "tickets": "Tickets",
+      "price": "Prijs",
+      "made_available": "Beschikbaar gemaakt",
+      "sold": "Verkocht",
+      "on_hold": "In de wacht",
+      "denied_entry": "Afgewezen",
+      "remaining": "Overgebleven",
+      "income": "Inkomsten",
+      "ticket_sale": "Ticket verkoop",
+      "administration_costs": "Administratiekosten",
+      "expenses": "Uitgaven",
+      "refunds": "Terruggaven",
+      "promoter_commissions": "Promoter commissies",
+      "club_owner_commissions": "Organisator commissies",
+      "profit": "Winst",
+      "commission": "Commissies"
+    },
+    "commissions": {
+      "choose_month": "Kies maand",
+      "month_total": "Maandtotaal",
+      "tickets_sold": "Tickets verkocht",
+      "tickets_refunded": "Tickets teruggave",
+      "commission": "Commissie",
+      "total_commission": "Total Commissie"
+    },
+    "payments": {
+      "title": "Overzicht facturen",
+      "generated": "De volgende facturen zijn gegenereerd en kunnen verstuurd worden:",
+      "sent": "De volgende facturen zijn verstuurd:",
+      "generating": "Facturen worden gegenereerd. Dit kan even duren...",
+      "club_owner_invoices": "{num} facturen zullen gegenereerd worden voor Organisatoren",
+      "promoter_receipts": "{num} kwitanties zullen gegenereerd worden voor Promoters",
+      "promoter_invoices": "{num} facturen zullen gegenereerd worden voor Promoters",
+      "total_documents": "In totaal zullen er {num} documenten worden gegenereerd",
+      "club_owners": "Organisatoren",
+      "promoters": "Promoters",
+      "total": "Totaal",
+      "generate_invoices": "Genereer facturen",
+      "send_invoices": "Verstuur facturen"
+    }
+  }
+}

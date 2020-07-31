@@ -1,0 +1,31 @@
+{
+  "admin": {
+    "switch": {
+      "title": "Ander account",
+      "text": "Log in met een ander account",
+      "hint": "Kies een account om mee in te loggen",
+      "no_accounts": "Er zijn geen actieve accounts om mee in te loggen",
+      "switch": "Log in"
+    },
+    "create_organizer": {
+      "first_name": {
+        "label": "Voornaam"
+      },
+      "last_name": {
+        "label": "Achternaam"
+      },
+      "title": "Maak Owner account aan",
+      "create_account": "Maak account aan"
+    },
+    "organizers": {
+      "table": {
+        "headers": {
+          "name": "Naam",
+          "email": "E-mail",
+          "active": "Account actief",
+          "last_seen": "Laatst gezien"
+        }
+      }
+    }
+  }
+}

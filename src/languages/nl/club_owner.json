@@ -1,0 +1,97 @@
+{
+  "club_owner": {
+    "dashboard": {
+      "active_parties": {
+        "title": "Actieve feesten",
+        "go_to": "Ga naar actieve feesten"
+      },
+      "inactive_parties": {
+        "title": "Inactieve feesten",
+        "go_to": "Ga naar inactieve feesten"
+      },
+      "today_parties": {
+        "title": "Feesten van vandaag"
+      },
+      "finances": {
+        "this_month": "Deze maand",
+        "last_month": "Vorige maand",
+        "tickets_sold": "Tickets verkocht",
+        "commission": "Commissie"
+      }
+    },
+    "create_new_account": {
+      "hostess": {
+        "title": "Maak account aan voor een hostess",
+        "first_name": {
+          "label": "Voornaam"
+        },
+        "last_name": {
+          "label": "Achternaam"
+        },
+        "submit": "Maak account aan"
+      }
+    },
+    "hostesses": {
+      "title": "Hostesses' accounts",
+      "new_account": "Maak nieuwe account aan",
+      "table": {
+        "headers": {
+          "hostess": "Hostess",
+          "email": "E-mail",
+          "is_active": "Account actief",
+          "working": "Werkend"
+        }
+      },
+      "working": "Werkend betekend dat de hostess in kan loggen op de site en gasten via het systeem kan binnenlaten..",
+      "activate": "Verander naar werkend",
+      "deactivate": "Verander naar niet werkend"
+    },
+    "inactive_parties": {
+      "title": "Inactieve feesten",
+      "table": {
+        "headers": {
+          "name": "Feestnaam",
+          "location": "Locatie",
+          "start_date": "Datum",
+          "duration": "Duur",
+          "commission": "Commissie"
+        }
+      },
+      "view": "Bekijk"
+    },
+    "active_parties": {
+      "title": "Actieve feesten",
+      "table": {
+        "headers": {
+          "name": "Feestnaam",
+          "location": "Locatie",
+          "start_date": "Datum",
+          "duration": "Duur",
+          "commission": "Commissie"
+        }
+      },
+      "view": "Bekijk"
+    },
+    "past_parties": {
+      "title": "Afgelopen feesten",
+      "table": {
+        "headers": {
+          "name": "Feestnaam",
+          "location": "Locatie",
+          "start_date": "Datum",
+          "duration": "Duur",
+          "commission": "Commissie"
+        }
+      },
+      "view": "Bekijk"
+    },
+    "commissions": {
+      "ticket_price": "Ticket prijs",
+      "tickets_sold": "Verkocht",
+      "tickets_refunded": "Teruggave",
+      "commission": "Commissie",
+      "total": "Totaal",
+      "no_parties": "Geen feesten deze maand."
+    }
+  }
+}

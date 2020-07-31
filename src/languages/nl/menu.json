@@ -1,0 +1,48 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "profile": "Profiel",
+    "organizer": {
+      "subheader": {
+        "organizers": "Organizers",
+        "promoters": "Promoters",
+        "parties": "Feesten",
+        "insight": "Inzichten",
+        "finances": "Financiën"
+      },
+      "club_owner_accounts": "Accounts",
+      "club_owner_locations": "Locaties",
+      "upload_assets": "Upload afbeeldingen",
+      "hostesses": "Hostesses",
+      "promoter_accounts": "Promoter accounts",
+      "codes": "Codes",
+      "create_new_party": "Maak nieuw feest aan",
+      "inactive_parties": "Inactieve feesten",
+      "active_parties": "Actieve feesten",
+      "past_parties": "Afgelopen feesten",
+      "party_income": "Inkomsten van feesten",
+      "commissions": "Commissies",
+      "refunds": "Terugbetalingen",
+      "payments": "Betalingen",
+      "invoices": "Facturen"
+    },
+    "club_owner": {
+      "subheader": {
+        "user_accounts": "Hostesses",
+        "parties": "Feesten",
+        "finances": "Financiën"
+      },
+      "hostesses": "Hostesses",
+      "active_parties": "Actieve feesten",
+      "inactive_parties": "Inactieve feesten",
+      "past_parties": "Afgelopen feesten",
+      "party_commissions": "Commissies",
+      "invoices": "Facturen"
+    },
+    "promoter": {
+      "code": "Mijn code",
+      "finances": "Inkomsten",
+      "invoices": "Facturen"
+    }
+  }
+}
